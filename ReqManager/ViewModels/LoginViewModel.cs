@@ -7,6 +7,11 @@ namespace ReqManager.ViewModels
 {
     public class LoginViewModel
     {
+        public LoginViewModel()
+        {
+                
+        }
+
         public string login { get; set; }
         public string senha { get; set; }
     }

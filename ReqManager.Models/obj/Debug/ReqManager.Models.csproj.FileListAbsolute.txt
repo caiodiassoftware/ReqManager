@@ -3,3 +3,8 @@ c:\users\cdias\documents\visual studio 2015\Projects\ReqManager\ReqManager.Model
 c:\users\cdias\documents\visual studio 2015\Projects\ReqManager\ReqManager.Models\obj\Debug\ReqManager.Models.csprojResolveAssemblyReference.cache
 c:\users\cdias\documents\visual studio 2015\Projects\ReqManager\ReqManager.Models\obj\Debug\ReqManager.Models.dll
 c:\users\cdias\documents\visual studio 2015\Projects\ReqManager\ReqManager.Models\obj\Debug\ReqManager.Models.pdb
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Models\bin\Debug\ReqManager.Models.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Models\bin\Debug\ReqManager.Models.pdb
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Models\obj\Debug\ReqManager.Models.csprojResolveAssemblyReference.cache
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Models\obj\Debug\ReqManager.Models.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Models\obj\Debug\ReqManager.Models.pdb

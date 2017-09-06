@@ -27,7 +27,6 @@ namespace ReqManager.Models
         [MaxLength(50)]
         public string senha { get; set; }
 
-        public virtual UserRole userRole { get; set; }
-
+        public virtual ICollection<UserRole> userRoles { get; set; }
     }
 }

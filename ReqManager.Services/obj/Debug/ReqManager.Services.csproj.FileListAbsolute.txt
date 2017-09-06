@@ -9,3 +9,14 @@ C:\Users\cdias\Documents\Visual Studio 2015\Projects\ReqManager\ReqManager.Servi
 C:\Users\cdias\Documents\Visual Studio 2015\Projects\ReqManager\ReqManager.Services\bin\Debug\EntityFramework.xml
 C:\Users\cdias\Documents\Visual Studio 2015\Projects\ReqManager\ReqManager.Services\obj\Debug\ReqManager.Services.dll
 C:\Users\cdias\Documents\Visual Studio 2015\Projects\ReqManager\ReqManager.Services\obj\Debug\ReqManager.Services.pdb
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Debug\ReqManager.Services.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Debug\ReqManager.Services.pdb
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Debug\ReqManager.Data.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Debug\ReqManager.Models.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Debug\EntityFramework.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Debug\ReqManager.Data.pdb
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Debug\ReqManager.Models.pdb
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Debug\EntityFramework.xml
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\obj\Debug\ReqManager.Services.csprojResolveAssemblyReference.cache
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\obj\Debug\ReqManager.Services.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\obj\Debug\ReqManager.Services.pdb

@@ -19,5 +19,7 @@ namespace ReqManager.Models
         [Required]
         [MaxLength(255)]
         public string action { get; set; }
+
+        public virtual ICollection<RoleControllerAction> roleControllerActions { get; set; }
     }
 }

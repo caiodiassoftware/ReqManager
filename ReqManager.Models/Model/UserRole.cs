@@ -22,7 +22,9 @@ namespace ReqManager.Models
         public int ID_user { get; set; }
         public int ID_role { get; set; }
 
+        [ForeignKey("ID_user")]
         public virtual ICollection<User> users { get; set; }
+        [ForeignKey("ID_role")]
         public virtual ICollection<Role> roles { get; set; }
     }
 }

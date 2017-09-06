@@ -16,5 +16,8 @@ namespace ReqManager.Models
         [Required]
         [MaxLength(50)]
         public string description { get; set; }
+
+        public virtual ICollection<RoleControllerAction> roleControllerActions { get; set; }
+        public virtual ICollection<UserRole> userRoles { get; set; }
     }
 }

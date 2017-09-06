@@ -12,6 +12,7 @@ namespace ReqManager.Models
     public class ControllerAction
     {
         [Key]
+        [ScaffoldColumn(false)]
         public int ID_controllerAction { get; set; }
         [Required]
         [MaxLength(50)]

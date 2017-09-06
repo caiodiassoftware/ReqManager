@@ -8,3 +8,8 @@ C:\Users\cdias\Desktop\ReqManager\ReqManager.Models\bin\Debug\ReqManager.Models.
 C:\Users\cdias\Desktop\ReqManager\ReqManager.Models\obj\Debug\ReqManager.Models.csprojResolveAssemblyReference.cache
 C:\Users\cdias\Desktop\ReqManager\ReqManager.Models\obj\Debug\ReqManager.Models.dll
 C:\Users\cdias\Desktop\ReqManager\ReqManager.Models\obj\Debug\ReqManager.Models.pdb
+C:\Users\maquina06\Desktop\ReqManager\ReqManager.Models\bin\Debug\ReqManager.Models.dll
+C:\Users\maquina06\Desktop\ReqManager\ReqManager.Models\bin\Debug\ReqManager.Models.pdb
+C:\Users\maquina06\Desktop\ReqManager\ReqManager.Models\obj\Debug\ReqManager.Models.csprojResolveAssemblyReference.cache
+C:\Users\maquina06\Desktop\ReqManager\ReqManager.Models\obj\Debug\ReqManager.Models.dll
+C:\Users\maquina06\Desktop\ReqManager\ReqManager.Models\obj\Debug\ReqManager.Models.pdb

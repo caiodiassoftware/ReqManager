@@ -16,7 +16,7 @@ namespace ReqManager.Data
         }
 
         public IDbSet<User> Users { get; set; }
-        public IDbSet<UserRole> UsersRoles { get; set; }
+        public IDbSet<UserRole> UserRoles { get; set; }
         public IDbSet<Role> Roles { get; set; }
         public IDbSet<RoleControllerAction> RoleControllerActions { get; set; }
         public IDbSet<ControllerAction> ControllerActions { get; set; }

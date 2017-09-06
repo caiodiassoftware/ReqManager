@@ -20,3 +20,15 @@ C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Debug\EntityFramework.
 C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\obj\Debug\ReqManager.Services.csprojResolveAssemblyReference.cache
 C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\obj\Debug\ReqManager.Services.dll
 C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\obj\Debug\ReqManager.Services.pdb
+C:\Users\maquina06\Desktop\ReqManager\ReqManager.Services\bin\Debug\ReqManager.Services.dll
+C:\Users\maquina06\Desktop\ReqManager\ReqManager.Services\bin\Debug\ReqManager.Services.pdb
+C:\Users\maquina06\Desktop\ReqManager\ReqManager.Services\bin\Debug\ReqManager.Data.dll
+C:\Users\maquina06\Desktop\ReqManager\ReqManager.Services\bin\Debug\ReqManager.Models.dll
+C:\Users\maquina06\Desktop\ReqManager\ReqManager.Services\bin\Debug\EntityFramework.dll
+C:\Users\maquina06\Desktop\ReqManager\ReqManager.Services\bin\Debug\ReqManager.Data.pdb
+C:\Users\maquina06\Desktop\ReqManager\ReqManager.Services\bin\Debug\ReqManager.Data.dll.config
+C:\Users\maquina06\Desktop\ReqManager\ReqManager.Services\bin\Debug\ReqManager.Models.pdb
+C:\Users\maquina06\Desktop\ReqManager\ReqManager.Services\bin\Debug\EntityFramework.xml
+C:\Users\maquina06\Desktop\ReqManager\ReqManager.Services\obj\Debug\ReqManager.Services.csprojResolveAssemblyReference.cache
+C:\Users\maquina06\Desktop\ReqManager\ReqManager.Services\obj\Debug\ReqManager.Services.dll
+C:\Users\maquina06\Desktop\ReqManager\ReqManager.Services\obj\Debug\ReqManager.Services.pdb

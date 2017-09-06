@@ -10,21 +10,16 @@ namespace ReqManager.Models
 {
     [Table("ROLE_CONTROLLER_ACTION", Schema = "ACESS")]
     public class RoleControllerAction
-    {
-        public RoleControllerAction()
-        {
-            roles = new List<Role>();
-            controllerActions = new List<ControllerAction>();
-        }
-        
+    {        
         [Key]
+        [ScaffoldColumn(false)]
         public int ID_roleControllerAction { get; set; }
         public int ID_role { get; set; }
         public int ID_controllerAction { get; set; }
 
         [ForeignKey("ID_role")]
-        public virtual ICollection<Role> roles { get; set; }
+        public virtual Role roles { get; set; }
         [ForeignKey("ID_controllerAction")]
-        public virtual ICollection<ControllerAction> controllerActions { get; set; }
+        public virtual ControllerAction controllerActions { get; set; }
     }
 }

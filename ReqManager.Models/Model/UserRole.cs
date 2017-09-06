@@ -11,20 +11,15 @@ namespace ReqManager.Models
     [Table("USER_ROLE", Schema = "ACESS")]
     public class UserRole
     {
-        public UserRole()
-        {
-            users = new List<User>();
-            roles = new List<Role>();
-        }
-
         [Key]
+        [ScaffoldColumn(false)]
         public int ID_userRole { get; set; }
         public int ID_user { get; set; }
         public int ID_role { get; set; }
 
         [ForeignKey("ID_user")]
-        public virtual ICollection<User> users { get; set; }
+        public virtual User users { get; set; }
         [ForeignKey("ID_role")]
-        public virtual ICollection<Role> roles { get; set; }
+        public virtual Role roles { get; set; }
     }
 }

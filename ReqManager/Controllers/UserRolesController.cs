@@ -8,17 +8,23 @@ using System.Web;
 using System.Web.Mvc;
 using ReqManager.Data;
 using ReqManager.Models;
+using ReqManager.Services.InterfacesServices;
 
 namespace ReqManager.Controllers
 {
     public class UserRolesController : Controller
     {
-        private ReqManagerEntities db = new ReqManagerEntities();
+        private readonly IUserRoleService service;
+
+        public UserRolesController(IUserRoleService service)
+        {
+            this.service = service;
+        }
 
         // GET: UserRoles
         public ActionResult Index()
         {
-            return View(db.UserRoles.ToList());
+            return View(service.GetAll());
         }
 
         // GET: UserRoles/Details/5
@@ -28,7 +34,7 @@ namespace ReqManager.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UserRole userRole = db.UserRoles.Find(id);
+            UserRole userRole = service.Get(Convert.ToInt32(id));
             if (userRole == null)
             {
                 return HttpNotFound();
@@ -51,8 +57,8 @@ namespace ReqManager.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.UserRoles.Add(userRole);
-                db.SaveChanges();
+                service.add(userRole);
+                service.saveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -66,7 +72,7 @@ namespace ReqManager.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UserRole userRole = db.UserRoles.Find(id);
+            UserRole userRole = service.Get(Convert.ToInt32(id));
             if (userRole == null)
             {
                 return HttpNotFound();
@@ -83,8 +89,8 @@ namespace ReqManager.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(userRole).State = EntityState.Modified;
-                db.SaveChanges();
+                service.edit(userRole);
+                service.saveChanges();
                 return RedirectToAction("Index");
             }
             return View(userRole);
@@ -97,7 +103,7 @@ namespace ReqManager.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UserRole userRole = db.UserRoles.Find(id);
+            UserRole userRole = service.Get(Convert.ToInt32(id));
             if (userRole == null)
             {
                 return HttpNotFound();
@@ -110,19 +116,10 @@ namespace ReqManager.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            UserRole userRole = db.UserRoles.Find(id);
-            db.UserRoles.Remove(userRole);
-            db.SaveChanges();
+            UserRole userRole = service.Get(Convert.ToInt32(id));
+            service.delete(userRole);
+            service.saveChanges();
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

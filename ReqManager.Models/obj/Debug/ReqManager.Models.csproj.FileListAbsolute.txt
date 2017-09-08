@@ -13,3 +13,8 @@ C:\Users\maquina06\Desktop\ReqManager\ReqManager.Models\bin\Debug\ReqManager.Mod
 C:\Users\maquina06\Desktop\ReqManager\ReqManager.Models\obj\Debug\ReqManager.Models.csprojResolveAssemblyReference.cache
 C:\Users\maquina06\Desktop\ReqManager\ReqManager.Models\obj\Debug\ReqManager.Models.dll
 C:\Users\maquina06\Desktop\ReqManager\ReqManager.Models\obj\Debug\ReqManager.Models.pdb
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Models\bin\Debug\ReqManager.Models.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Models\bin\Debug\ReqManager.Models.pdb
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Models\obj\Debug\ReqManager.Models.csprojResolveAssemblyReference.cache
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Models\obj\Debug\ReqManager.Models.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Models\obj\Debug\ReqManager.Models.pdb

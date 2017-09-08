@@ -8,119 +8,54 @@ using System.Web;
 using System.Web.Mvc;
 using ReqManager.Data;
 using ReqManager.Models;
+using System.Reflection;
+using ReqManager.Services.Acess;
+using ReqManager.Services.InterfacesServices;
+using ReqManager.Data.Infrastructure;
 
 namespace ReqManager.Controllers
 {
     public class ControllerActionsController : Controller
     {
-        private ReqManagerEntities db = new ReqManagerEntities();
+        private readonly IControllerActionService service;
+
+        public ControllerActionsController(IControllerActionService service)
+        {
+            this.service = service;
+        }
 
         // GET: ControllerActions
         public ActionResult Index()
         {
-            return View(db.ControllerActions.ToList());
+            return View(service.GetAll().ToList());
         }
 
-        // GET: ControllerActions/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Refresh()
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ControllerAction controllerAction = db.ControllerActions.Find(id);
-            if (controllerAction == null)
-            {
-                return HttpNotFound();
-            }
-            return View(controllerAction);
-        }
-
-        // GET: ControllerActions/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: ControllerActions/Create
-        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
-        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID_controllerAction,controller,action")] ControllerAction controllerAction)
-        {
-            if (ModelState.IsValid)
-            {
-                db.ControllerActions.Add(controllerAction);
-                db.SaveChanges();
+                Assembly asm = Assembly.GetAssembly(typeof(MvcApplication));
+                List<ControllerAction> controllerActionListApplication = asm.GetTypes()
+                                        .Where(type => typeof(System.Web.Mvc.Controller).IsAssignableFrom(type))
+                                        .SelectMany(type => type.GetMethods(BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.Public))
+                                        .Where(m => !m.GetCustomAttributes(typeof(System.Runtime.CompilerServices.CompilerGeneratedAttribute), true).Any())
+                                        .Select(x => new { Controller = x.DeclaringType.Name, Action = x.Name })
+                                        .OrderBy(x => x.Controller).ThenBy(x => x.Action).Select(ca => new ControllerAction { action = ca.Action, controller = ca.Controller }).ToList();
+                service.refresh(controllerActionListApplication);
+                service.saveChanges();
                 return RedirectToAction("Index");
             }
-
-            return View(controllerAction);
-        }
-
-        // GET: ControllerActions/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
+            catch (Exception ex)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                throw ex;
             }
-            ControllerAction controllerAction = db.ControllerActions.Find(id);
-            if (controllerAction == null)
-            {
-                return HttpNotFound();
-            }
-            return View(controllerAction);
-        }
-
-        // POST: ControllerActions/Edit/5
-        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
-        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID_controllerAction,controller,action")] ControllerAction controllerAction)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(controllerAction).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(controllerAction);
-        }
-
-        // GET: ControllerActions/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ControllerAction controllerAction = db.ControllerActions.Find(id);
-            if (controllerAction == null)
-            {
-                return HttpNotFound();
-            }
-            return View(controllerAction);
-        }
-
-        // POST: ControllerActions/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            ControllerAction controllerAction = db.ControllerActions.Find(id);
-            db.ControllerActions.Remove(controllerAction);
-            db.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                //db.Dispose();
             }
             base.Dispose(disposing);
         }

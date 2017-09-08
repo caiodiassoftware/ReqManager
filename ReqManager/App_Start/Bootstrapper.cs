@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
 using ReqManager.Data.Infrastructure;
+using ReqManager.Data.InterfacesRepositories;
 using ReqManager.Data.Repositories;
 using ReqManager.Mappings;
 using ReqManager.Services.Acess;

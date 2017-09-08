@@ -8,17 +8,23 @@ using System.Web;
 using System.Web.Mvc;
 using ReqManager.Data;
 using ReqManager.Models;
+using ReqManager.Services.InterfacesServices;
 
 namespace ReqManager.Controllers
 {
     public class UserController : Controller
     {
-        private ReqManagerEntities db = new ReqManagerEntities();
+        private readonly IUserService service;
+
+        public UserController(IUserService service)
+        {
+            this.service = service;
+        }
 
         // GET: User
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+            return View(service.GetAll());
         }
 
         // GET: User/Details/5
@@ -28,7 +34,7 @@ namespace ReqManager.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
+            User user = service.Get(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -51,8 +57,8 @@ namespace ReqManager.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Users.Add(user);
-                db.SaveChanges();
+                service.add(user);
+                service.saveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -66,7 +72,7 @@ namespace ReqManager.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
+            User user = service.Get(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -83,8 +89,8 @@ namespace ReqManager.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
+                service.edit(user);
+                service.saveChanges();
                 return RedirectToAction("Index");
             }
             return View(user);
@@ -97,7 +103,7 @@ namespace ReqManager.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
+            User user = service.Get(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -110,19 +116,10 @@ namespace ReqManager.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            User user = db.Users.Find(id);
-            db.Users.Remove(user);
-            db.SaveChanges();
+            User user = service.Get(id);
+            service.delete(user);
+            service.saveChanges();
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

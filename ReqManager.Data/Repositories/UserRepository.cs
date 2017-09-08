@@ -1,4 +1,5 @@
 ﻿using ReqManager.Data.Infrastructure;
+using ReqManager.Data.InterfacesRepositories;
 using ReqManager.Models;
 using System;
 using System.Collections.Generic;
@@ -18,10 +19,5 @@ namespace ReqManager.Data.Repositories
         {
             return (User)this.DbContext.Users.Where(c => c.login == login).FirstOrDefault();
         }
-    }
-
-    public interface IUserRepository : IRepository<User>
-    {
-        User GetUserByLogin(string login);
     }
 }

@@ -1,6 +1,9 @@
-﻿using System;
+﻿using ReqManager.App_Start;
+using ReqManager.Services.Acess;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -16,17 +19,29 @@ namespace ReqManager
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            Bootstrapper.Run();
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
-            HttpContextBase context = new HttpContextWrapper(HttpContext.Current);
-            RouteData rd = RouteTable.Routes.GetRouteData(context);
-
-            if (rd != null)
+            try
             {
-                string controllerName = rd.GetRequiredString("controller");
-                string actionName = rd.GetRequiredString("action");
+                HttpContextBase context = new HttpContextWrapper(HttpContext.Current);
+                RouteData rd = RouteTable.Routes.GetRouteData(context);
+
+                if (rd != null)
+                {
+                    string controller = rd.GetRequiredString("controller");
+                    string action = rd.GetRequiredString("action");
+                }
+                else
+                {
+                    HttpContext.Current.RewritePath("Home/About");
+                }                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
     }

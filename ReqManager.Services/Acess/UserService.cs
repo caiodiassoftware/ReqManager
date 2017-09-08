@@ -1,6 +1,8 @@
 ﻿using ReqManager.Data.Infrastructure;
+using ReqManager.Data.InterfacesRepositories;
 using ReqManager.Data.Repositories;
 using ReqManager.Models;
+using ReqManager.Services.InterfacesServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,14 +11,6 @@ using System.Threading.Tasks;
 
 namespace ReqManager.Services.Acess
 {
-    public interface IUserService
-    {
-        IEnumerable<User> Get(string name = null);
-        User GetById(int id);
-        void Create(User user);
-        void Save();
-    }
-
     public class UserService : IUserService
     {
         private readonly IUserRepository repository;
@@ -33,19 +27,44 @@ namespace ReqManager.Services.Acess
             repository.Add(user);
         }
 
-        public User GetById(int id)
+        public IEnumerable<User> GetAll()
+        {
+            return repository.GetAll();
+        }
+
+        public User filterByLogin(string login)
+        {
+            return repository.GetUserByLogin(login);
+        }
+
+        public User get(int id)
         {
             return repository.GetById(id);
         }
 
-        public IEnumerable<User> Get(string login = null)
-        {
-            return string.IsNullOrEmpty(login) ? repository.GetAll() : repository.GetAll().Where(u => u.login.Equals(login));
-        }
-
-        public void Save()
+        public void saveChanges()
         {
             unit.Commit();
+        }
+
+        public User Get(int? id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void add(User userRole)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void edit(User userRole)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void delete(User userRole)
+        {
+            throw new NotImplementedException();
         }
     }
 }

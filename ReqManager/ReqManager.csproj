@@ -236,21 +236,17 @@
     <Content Include="Views\UserRoles\Details.cshtml" />
     <Content Include="Views\UserRoles\Edit.cshtml" />
     <Content Include="Views\UserRoles\Index.cshtml" />
-    <Content Include="Views\ControllerActions\Create.cshtml" />
-    <Content Include="Views\ControllerActions\Delete.cshtml" />
-    <Content Include="Views\ControllerActions\Details.cshtml" />
-    <Content Include="Views\ControllerActions\Edit.cshtml" />
     <Content Include="Views\ControllerActions\Index.cshtml" />
     <Content Include="Views\RoleControllerActions\Create.cshtml" />
     <Content Include="Views\RoleControllerActions\Delete.cshtml" />
     <Content Include="Views\RoleControllerActions\Details.cshtml" />
     <Content Include="Views\RoleControllerActions\Edit.cshtml" />
     <Content Include="Views\RoleControllerActions\Index.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

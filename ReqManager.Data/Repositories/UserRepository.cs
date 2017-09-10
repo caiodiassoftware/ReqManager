@@ -1,6 +1,6 @@
 ﻿using ReqManager.Data.Infrastructure;
 using ReqManager.Data.InterfacesRepositories;
-using ReqManager.Models;
+using ReqManager.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +9,15 @@ using System.Threading.Tasks;
 
 namespace ReqManager.Data.Repositories
 {
-    public class UserRepository : RepositoryBase<User>, IUserRepository
+    public class UserRepository : RepositoryBase<USERS>, IUserRepository
     {
         public UserRepository(IDbFactory dbFactory) : base(dbFactory)
         {
         }
 
-        public User GetUserByLogin(string login)
+        public USERS GetUserByLogin(string login)
         {
-            return (User)this.DbContext.Users.Where(c => c.login == login).FirstOrDefault();
+            return (USERS)this.DbContext.USERS.Where(c => c.login == login).FirstOrDefault();
         }
     }
 }

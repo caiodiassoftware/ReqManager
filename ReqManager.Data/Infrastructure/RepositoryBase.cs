@@ -1,5 +1,7 @@
-﻿using System;
+﻿using ReqManager.Data.DataAcess;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
@@ -10,6 +12,16 @@ namespace ReqManager.Data.Infrastructure
 {
     public abstract class RepositoryBase<T> where T : class
     {
+        #region Constructor
+
+        protected RepositoryBase(IDbFactory dbFactory)
+        {
+            DbFactory = dbFactory;
+            dbSet = DbContext.Set<T>();
+        }
+
+        #endregion
+
         #region Properties
         private ReqManagerEntities dataContext;
         private readonly IDbSet<T> dbSet;
@@ -26,54 +38,48 @@ namespace ReqManager.Data.Infrastructure
         }
         #endregion
 
-        protected RepositoryBase(IDbFactory dbFactory)
-        {
-            DbFactory = dbFactory;
-            dbSet = DbContext.Set<T>();
-        }
-
         #region Implementation
-        public virtual void Add(T entity)
+        public virtual void add(T entity)
         {
             dbSet.Add(entity);
         }
 
-        public virtual void Update(T entity)
+        public virtual void update(T entity)
         {
             dbSet.Attach(entity);
             dataContext.Entry(entity).State = EntityState.Modified;
         }
 
-        public virtual void Delete(T entity)
+        public virtual void delete(T entity)
         {
             dbSet.Remove(entity);
         }
 
-        public virtual void Delete(Expression<Func<T, bool>> where)
+        public virtual void delete(Expression<Func<T, bool>> where)
         {
             IEnumerable<T> objects = dbSet.Where<T>(where).AsEnumerable();
             foreach (T obj in objects)
                 dbSet.Remove(obj);
         }
 
-        public virtual T GetById(int id)
+        public virtual T get(int? id)
         {
             return dbSet.Find(id);
         }
 
-        public virtual IEnumerable<T> GetAll()
+        public T get(Expression<Func<T, bool>> where)
+        {
+            return dbSet.Where(where).FirstOrDefault<T>();
+        }
+
+        public virtual IEnumerable<T> getAll()
         {
             return dbSet.ToList();
         }
 
-        public virtual IEnumerable<T> GetMany(Expression<Func<T, bool>> where)
+        public virtual IEnumerable<T> filter(Expression<Func<T, bool>> where)
         {
             return dbSet.Where(where).ToList();
-        }
-
-        public T Get(Expression<Func<T, bool>> where)
-        {
-            return dbSet.Where(where).FirstOrDefault<T>();
         }
 
         #endregion

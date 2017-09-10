@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReqManager.Data", "ReqManag
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReqManager.Services", "ReqManager.Services\ReqManager.Services.csproj", "{8C9902B2-9C5C-4C2A-AD99-9D92BD4F970A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReqManager.Models", "ReqManager.Models\ReqManager.Models.csproj", "{2331E31B-B172-4BFC-BCF5-133CF68715A8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReqManager.Model", "ReqManager.Model\ReqManager.Model.csproj", "{7E758419-8F0D-4813-8207-5561EC69C932}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,12 +29,15 @@ Global
 		{8C9902B2-9C5C-4C2A-AD99-9D92BD4F970A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C9902B2-9C5C-4C2A-AD99-9D92BD4F970A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C9902B2-9C5C-4C2A-AD99-9D92BD4F970A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2331E31B-B172-4BFC-BCF5-133CF68715A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2331E31B-B172-4BFC-BCF5-133CF68715A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2331E31B-B172-4BFC-BCF5-133CF68715A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2331E31B-B172-4BFC-BCF5-133CF68715A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E758419-8F0D-4813-8207-5561EC69C932}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E758419-8F0D-4813-8207-5561EC69C932}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E758419-8F0D-4813-8207-5561EC69C932}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E758419-8F0D-4813-8207-5561EC69C932}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {66BEA98C-59D1-4834-8215-A48D1C2B7173}
 	EndGlobalSection
 EndGlobal

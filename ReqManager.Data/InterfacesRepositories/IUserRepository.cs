@@ -1,5 +1,5 @@
 ﻿using ReqManager.Data.Infrastructure;
-using ReqManager.Models;
+using ReqManager.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace ReqManager.Data.InterfacesRepositories
 {
-    public interface IUserRepository : IRepository<User>
+    public interface IUserRepository : IRepository<USERS>
     {
-        User GetUserByLogin(string login);
+        USERS GetUserByLogin(string login);
     }
 }

@@ -1,6 +1,6 @@
 ﻿using ReqManager.Data.Infrastructure;
 using ReqManager.Data.InterfacesRepositories;
-using ReqManager.Models;
+using ReqManager.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ReqManager.Data.Repositories
 {
-    public class ControllerActionRepository : RepositoryBase<ControllerAction>, IControllerActionRepository
+    public class ControllerActionRepository : RepositoryBase<CONTROLLER_ACTION>, IControllerActionRepository
     {
         public ControllerActionRepository(IDbFactory dbFactory) : base(dbFactory)
         {

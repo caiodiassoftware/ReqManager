@@ -1,5 +1,5 @@
 ﻿using ReqManager.Data.Infrastructure;
-using ReqManager.Models;
+using ReqManager.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ReqManager.Data.InterfacesRepositories
 {
-    public interface IRoleControllerActionRepository : IRepository<RoleControllerAction>
+    public interface IRoleControllerActionRepository : IRepository<ROLE_CONTROLLER_ACTION>
     {
     }
 }

@@ -11,6 +11,7 @@
     <AssemblyName>ReqManager.Services</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,26 +43,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Acess\ControllerActionService.cs" />
-    <Compile Include="Acess\RoleControllerActionService.cs" />
-    <Compile Include="Acess\RoleService.cs" />
-    <Compile Include="Acess\UserRoleService.cs" />
-    <Compile Include="Acess\UserService.cs" />
-    <Compile Include="InterfacesServices\IControllerActionService.cs" />
-    <Compile Include="InterfacesServices\IRoleControllerActionService.cs" />
-    <Compile Include="InterfacesServices\IRoleService.cs" />
-    <Compile Include="InterfacesServices\IUserRoleService.cs" />
-    <Compile Include="InterfacesServices\IUserService.cs" />
+    <Compile Include="Acess\Classes\ControllerActionService.cs" />
+    <Compile Include="Acess\Classes\UserService.cs" />
+    <Compile Include="Acess\Interfaces\IControllerActionService.cs" />
+    <Compile Include="Acess\Interfaces\IUserService.cs" />
+    <Compile Include="Estructure\IService.cs" />
+    <Compile Include="Estructure\ServiceBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Task\Classes\StatusTaskService.cs" />
+    <Compile Include="Task\Interfaces\IStatusTaskService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Artifact\Classes\" />
+    <Folder Include="Artifact\Interfaces\" />
+    <Folder Include="Link\Classes\" />
+    <Folder Include="Link\Interfaces\" />
+    <Folder Include="Project\Classes\" />
+    <Folder Include="Project\Interfaces\" />
+    <Folder Include="Requirements\Classes\" />
+    <Folder Include="Requirements\Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ReqManager.Data\ReqManager.Data.csproj">
       <Project>{42F12746-0006-4655-A60D-18DF61050C10}</Project>
       <Name>ReqManager.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ReqManager.Models\ReqManager.Models.csproj">
-      <Project>{2331E31B-B172-4BFC-BCF5-133CF68715A8}</Project>
-      <Name>ReqManager.Models</Name>
+    <ProjectReference Include="..\ReqManager.Model\ReqManager.Model.csproj">
+      <Project>{7e758419-8f0d-4813-8207-5561ec69c932}</Project>
+      <Name>ReqManager.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

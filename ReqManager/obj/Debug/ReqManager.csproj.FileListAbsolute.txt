@@ -169,7 +169,7 @@ C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\Microsoft.CodeDom.Provid
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\Newtonsoft.Json.dll
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\ReqManager.Data.dll
-C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\ReqManager.Models.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\ReqManager.Model.dll
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\ReqManager.Services.dll
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\System.Web.Helpers.dll
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\System.Web.Mvc.dll
@@ -180,7 +180,8 @@ C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\System.Web.WebPages.dll
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\System.Web.WebPages.Razor.dll
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\WebGrease.dll
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\ReqManager.Data.pdb
-C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\ReqManager.Models.pdb
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\ReqManager.Data.dll.config
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\ReqManager.Model.pdb
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\ReqManager.Services.pdb
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\Autofac.xml
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\Autofac.Integration.Mvc.xml
@@ -203,5 +204,6 @@ C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\System.Web.WebPages.Razo
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\Antlr3.Runtime.pdb
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\Newtonsoft.Json.xml
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\obj\Debug\ReqManager.csprojResolveAssemblyReference.cache
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\obj\Debug\ReqManager.csproj.CoreCompileInputs.cache
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\obj\Debug\ReqManager.dll
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\obj\Debug\ReqManager.pdb

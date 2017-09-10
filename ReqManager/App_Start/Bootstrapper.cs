@@ -1,15 +1,12 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
 using ReqManager.Data.Infrastructure;
-using ReqManager.Data.InterfacesRepositories;
 using ReqManager.Data.Repositories;
 using ReqManager.Mappings;
-using ReqManager.Services.Acess;
-using System;
-using System.Collections.Generic;
+using ReqManager.Services.Acess.Classes;
+using ReqManager.Services.Task.Classes;
 using System.Linq;
 using System.Reflection;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ReqManager.App_Start
@@ -35,6 +32,9 @@ namespace ReqManager.App_Start
                 .AsImplementedInterfaces().InstancePerRequest();
             // Services
             builder.RegisterAssemblyTypes(typeof(UserService).Assembly)
+               .Where(t => t.Name.EndsWith("Service"))
+               .AsImplementedInterfaces().InstancePerRequest();
+            builder.RegisterAssemblyTypes(typeof(StatusTaskService).Assembly)
                .Where(t => t.Name.EndsWith("Service"))
                .AsImplementedInterfaces().InstancePerRequest();
 

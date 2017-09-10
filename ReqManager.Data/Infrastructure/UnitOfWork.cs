@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ReqManager.Data.DataAcess;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,7 +24,7 @@ namespace ReqManager.Data.Infrastructure
 
         public void Commit()
         {
-            DbContext.Commit();
+            dbContext.Commit();
         }
     }
 }

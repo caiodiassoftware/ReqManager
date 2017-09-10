@@ -1,4 +1,6 @@
-﻿using ReqManager.Services.Acess;
+﻿using ReqManager.Data.DataAcess;
+using ReqManager.Services.Acess;
+using ReqManager.Services.Acess.Interfaces;
 using ReqManager.Services.InterfacesServices;
 using ReqManager.ViewModels;
 using System;
@@ -15,11 +17,14 @@ namespace ReqManager.Controllers
 
         public LoginController(IUserService userService)
         {
+            ReqManagerEntities db = new ReqManagerEntities();
             this.userService = userService;
         }
 
         public ActionResult Login()
         {
+            var list = userService.getAll();
+
             return View();
         }
 

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using ReqManager.Models;
+using ReqManager.Model;
 using ReqManager.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -17,7 +17,7 @@ namespace ReqManager.Mappings
 
         public DomainToViewModelMappingProfile()
         {
-            CreateMap<User, LoginViewModel>();
+            CreateMap<USERS, LoginViewModel>();
         }
     }
 }

@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ReqManager.Model
 {
     [Table("HISTORY_TASK", Schema = "TASK")]
-    public class HISTORY_TASK
+    public class HistoryTask
     {
         [Key]
         public int HistoryTaskID { get; set; }
@@ -20,7 +20,7 @@ namespace ReqManager.Model
         public string descriptionMeasureImportance { get; set; }
         public System.DateTime changedDate { get; set; }
     
-        public virtual USERS Users { get; set; }
-        public virtual TASK Task { get; set; }
+        public virtual Users Users { get; set; }
+        public virtual Task Task { get; set; }
     }
 }

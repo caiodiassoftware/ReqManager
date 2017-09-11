@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ReqManager.Model
 {
     [Table("REQUIREMENT_RATIONALE", Schema = "REQ")]
-    public partial class REQUIREMENT_RATIONALE
+    public partial class RequirementRationale
     {
         [Key]
         public int RequirementRationaleID { get; set; }
@@ -27,11 +27,11 @@ namespace ReqManager.Model
         [MaxLength(1000), MinLength(5)]
         public string rationale { get; set; }
     
-        public virtual USERS User { get; set; }
-        public virtual STAKEHOLDERS_PROJECT StakeholdersProject { get; set; }
-        public virtual MEASURE_IMPORTANCE MeasureImportance { get; set; }
-        public virtual REQUIREMENT Requirement { get; set; }
-        public virtual REQUIREMENT_TYPE RequirementType { get; set; }
-        public virtual REQUIREMENT_STATUS RequirementStatus { get; set; }
+        public virtual Users User { get; set; }
+        public virtual StakeholdersProject StakeholdersProject { get; set; }
+        public virtual MeasureImportance MeasureImportance { get; set; }
+        public virtual Requirement Requirement { get; set; }
+        public virtual RequirementTask RequirementType { get; set; }
+        public virtual RequirementStatus RequirementStatus { get; set; }
     }
 }

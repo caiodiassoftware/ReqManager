@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ReqManager.Model
 {
     [Table("HISTORY_PROJECT_ARTIFACT", Schema = "ART")]
-    public class HISTORY_PROJECT_ARTIFACT
+    public class HistoryProjectArtifact
     {
         [Key]
         public int HistoryArtefactID { get; set; }
@@ -27,6 +27,6 @@ namespace ReqManager.Model
         [MaxLength(25), MinLength(5)]
         public string login { get; set; }
     
-        public virtual PROJECT_ARTIFACT ProjectArtifact { get; set; }
+        public virtual ProjectArtifact ProjectArtifact { get; set; }
     }
 }

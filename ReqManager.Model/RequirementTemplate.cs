@@ -7,11 +7,11 @@ namespace ReqManager.Model
 {
 
     [Table("REQUIREMENT_TEMPLATE", Schema = "REQ")]
-    public class REQUIREMENT_TEMPLATE
+    public class RequirementTemplate
     {
-        public REQUIREMENT_TEMPLATE()
+        public RequirementTemplate()
         {
-            this.Requirement = new HashSet<REQUIREMENT>();
+            this.Requirement = new HashSet<Requirement>();
         }
     
         [Key]
@@ -23,8 +23,8 @@ namespace ReqManager.Model
         public string templateHtml { get; set; }
         public DateTime createDate { get; set; }
     
-        public virtual USERS Users { get; set; }
-        public virtual ICollection<REQUIREMENT> Requirement { get; set; }
-        public virtual REQUIREMENT_TYPE RequirementType { get; set; }
+        public virtual Users Users { get; set; }
+        public virtual ICollection<Requirement> Requirement { get; set; }
+        public virtual RequirementTask RequirementType { get; set; }
     }
 }

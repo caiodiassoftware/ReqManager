@@ -6,14 +6,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ReqManager.Model
 {
     [Table("PROJECT", Schema = "PROJ")]
-    public class PROJECT
+    public class Project
     {
-        public PROJECT()
+        public Project()
         {
-            this.ProjectArtifact = new HashSet<PROJECT_ARTIFACT>();
-            this.HistoryProject = new HashSet<HISTORY_PROJECT>();
-            this.StakeholderProject = new HashSet<STAKEHOLDERS_PROJECT>();
-            this.ProjectRequirement = new HashSet<PROJECT_REQUIREMENTS>();
+            this.ProjectArtifact = new HashSet<ProjectArtifact>();
+            this.HistoryProject = new HashSet<HistoryProject>();
+            this.StakeholderProject = new HashSet<StakeholdersProject>();
+            this.ProjectRequirement = new HashSet<ProjectRequirements>();
         }
     
         [Key]
@@ -36,11 +36,11 @@ namespace ReqManager.Model
         [Required]
         public System.DateTime creationDate { get; set; }
     
-        public virtual USERS Users { get; set; }
-        public virtual ICollection<PROJECT_ARTIFACT> ProjectArtifact { get; set; }
-        public virtual ICollection<HISTORY_PROJECT> HistoryProject { get; set; }
-        public virtual PROJECT_PHASES ProjectPhases { get; set; }
-        public virtual ICollection<STAKEHOLDERS_PROJECT> StakeholderProject { get; set; }
-        public virtual ICollection<PROJECT_REQUIREMENTS> ProjectRequirement { get; set; }
+        public virtual Users Users { get; set; }
+        public virtual ICollection<ProjectArtifact> ProjectArtifact { get; set; }
+        public virtual ICollection<HistoryProject> HistoryProject { get; set; }
+        public virtual ProjectPhases ProjectPhases { get; set; }
+        public virtual ICollection<StakeholdersProject> StakeholderProject { get; set; }
+        public virtual ICollection<ProjectRequirements> ProjectRequirement { get; set; }
     }
 }

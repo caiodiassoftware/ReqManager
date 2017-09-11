@@ -15,12 +15,12 @@ namespace ReqManager.Model
     using System.ComponentModel.DataAnnotations.Schema;
 
     [Table("TASK", Schema = "TASK")]
-    public class TASK
+    public class Task
     {
-        public TASK()
+        public Task()
         {
-            this.HistoryTask = new HashSet<HISTORY_TASK>();
-            this.UserTask = new HashSet<USER_TASK>();
+            this.HistoryTask = new HashSet<HistoryTask>();
+            this.UserTask = new HashSet<UserTask>();
         }
     
         [Key]
@@ -33,13 +33,13 @@ namespace ReqManager.Model
         public System.DateTime startDate { get; set; }
         public Nullable<DateTime> endDate { get; set; }
     
-        public virtual USERS Users { get; set; }
-        public virtual PROJECT_REQUIREMENTS ProjectRequirements { get; set; }
-        public virtual MEASURE_IMPORTANCE MeasureImportance { get; set; }
-        public virtual ICollection<HISTORY_TASK> HistoryTask { get; set; }
-        public virtual STATUS_TASK StatusTask { get; set; }
-        public virtual TASK_TYPE_TEMPLATE TaskTypeTemplate { get; set; }
-        public virtual TASK_TYPE TaskType { get; set; }
-        public virtual ICollection<USER_TASK> UserTask { get; set; }
+        public virtual Users Users { get; set; }
+        public virtual ProjectRequirements ProjectRequirements { get; set; }
+        public virtual MeasureImportance MeasureImportance { get; set; }
+        public virtual ICollection<HistoryTask> HistoryTask { get; set; }
+        public virtual StatusTask StatusTask { get; set; }
+        public virtual TaskTypeTemplate TaskTypeTemplate { get; set; }
+        public virtual TaskType TaskType { get; set; }
+        public virtual ICollection<UserTask> UserTask { get; set; }
     }
 }

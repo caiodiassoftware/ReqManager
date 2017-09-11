@@ -6,7 +6,7 @@ using ReqManager.Model;
 
 namespace ReqManager.Services.Acess.Classes
 {
-    public class UserService : ServiceBase<USERS>, IUserService
+    public class UserService : ServiceBase<Users>, IUserService
     {
         public UserService(IUserRepository repository, IUnitOfWork unit) : base(repository, unit)
         {

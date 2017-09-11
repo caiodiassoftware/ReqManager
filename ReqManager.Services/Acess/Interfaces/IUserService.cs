@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ReqManager.Services.Acess.Interfaces
 {
-    public interface IUserService : IService<USERS>
+    public interface IUserService : IService<Users>
     {
     }
 }

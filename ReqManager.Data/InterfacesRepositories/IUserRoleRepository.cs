@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ReqManager.Data.InterfacesRepositories
 {
-    public interface IUserRoleRepository : IRepository<USER_ROLE>
+    public interface IUserRoleRepository : IRepository<UserRole>
     {
     }
 }

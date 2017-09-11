@@ -6,11 +6,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ReqManager.Model
 {
     [Table("TASK_TYPE_TEMPLATE", Schema = "TASK")]
-    public class TASK_TYPE_TEMPLATE
+    public class TaskTypeTemplate
     {
-        public TASK_TYPE_TEMPLATE()
+        public TaskTypeTemplate()
         {
-            this.Task = new HashSet<TASK>();
+            this.Task = new HashSet<Task>();
         }
     
         [Key]
@@ -21,8 +21,8 @@ namespace ReqManager.Model
         [Required]
         public DateTime creationDate { get; set; }
     
-        public virtual USERS Users { get; set; }
-        public virtual ICollection<TASK> Task { get; set; }
-        public virtual TASK_TYPE TaskType { get; set; }
+        public virtual Users Users { get; set; }
+        public virtual ICollection<Task> Task { get; set; }
+        public virtual TaskType TaskType { get; set; }
     }
 }

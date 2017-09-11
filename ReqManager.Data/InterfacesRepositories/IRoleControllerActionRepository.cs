@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ReqManager.Data.InterfacesRepositories
 {
-    public interface IRoleControllerActionRepository : IRepository<ROLE_CONTROLLER_ACTION>
+    public interface IRoleControllerActionRepository : IRepository<RoleControllerAction>
     {
     }
 }

@@ -15,13 +15,13 @@ namespace ReqManager.Model
     using System.ComponentModel.DataAnnotations.Schema;
 
     [Table("REQUIREMENT_TYPE", Schema = "REQ")]
-    public class REQUIREMENT_TYPE
+    public class RequirementTask
     {
-        public REQUIREMENT_TYPE()
+        public RequirementTask()
         {
-            this.Requirement = new HashSet<REQUIREMENT>();
-            this.RequirementRationale = new HashSet<REQUIREMENT_RATIONALE>();
-            this.RequirimentTemplate = new HashSet<REQUIREMENT_TEMPLATE>();
+            this.Requirement = new HashSet<Requirement>();
+            this.RequirementRationale = new HashSet<RequirementRationale>();
+            this.RequirimentTemplate = new HashSet<RequirementTemplate>();
         }
     
         [Key]
@@ -30,8 +30,8 @@ namespace ReqManager.Model
         [MaxLength(50)]
         public string description { get; set; }
     
-        public virtual ICollection<REQUIREMENT> Requirement { get; set; }
-        public virtual ICollection<REQUIREMENT_RATIONALE> RequirementRationale { get; set; }
-        public virtual ICollection<REQUIREMENT_TEMPLATE> RequirimentTemplate { get; set; }
+        public virtual ICollection<Requirement> Requirement { get; set; }
+        public virtual ICollection<RequirementRationale> RequirementRationale { get; set; }
+        public virtual ICollection<RequirementTemplate> RequirimentTemplate { get; set; }
     }
 }

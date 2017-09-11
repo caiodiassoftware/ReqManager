@@ -3,7 +3,7 @@ using ReqManager.Model;
 
 namespace ReqManager.Data.InterfacesRepositories
 {
-    public interface IControllerActionRepository : IRepository<CONTROLLER_ACTION>
+    public interface IControllerActionRepository : IRepository<ControllerAction>
     {
 
     }

@@ -6,13 +6,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ReqManager.Model
 {
     [Table("ATTRIBUTES", Schema = "LINK")]
-    public class ATTRIBUTES
+    public class Attributes
     {
-        public ATTRIBUTES()
+        public Attributes()
         {
-            this.LinkArtifactAttributes = new HashSet<LINK_ARTIFACT_ATTRIBUTES>();
-            this.LinkRequirementAttributes = new HashSet<LINK_REQUIREMENT_ATTRIBUTES>();
-            this.AttributeTypeLink = new HashSet<ATTRIBUTES_TYPE_LINK>();
+            this.LinkArtifactAttributes = new HashSet<LinkArtifactAttributes>();
+            this.LinkRequirementAttributes = new HashSet<LinkRequirementAttributes>();
+            this.AttributeTypeLink = new HashSet<AttributesTypeLink>();
         }
     
         [Key]
@@ -21,8 +21,8 @@ namespace ReqManager.Model
         [MaxLength(50), MinLength(5)]
         public string description { get; set; }
     
-        public virtual ICollection<LINK_ARTIFACT_ATTRIBUTES> LinkArtifactAttributes { get; set; }
-        public virtual ICollection<LINK_REQUIREMENT_ATTRIBUTES> LinkRequirementAttributes { get; set; }
-        public virtual ICollection<ATTRIBUTES_TYPE_LINK> AttributeTypeLink { get; set; }
+        public virtual ICollection<LinkArtifactAttributes> LinkArtifactAttributes { get; set; }
+        public virtual ICollection<LinkRequirementAttributes> LinkRequirementAttributes { get; set; }
+        public virtual ICollection<AttributesTypeLink> AttributeTypeLink { get; set; }
     }
 }

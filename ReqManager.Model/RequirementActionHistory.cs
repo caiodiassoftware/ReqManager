@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ReqManager.Model
 {
     [Table("REQUIREMENT_ACTION_HISTORY", Schema = "REQ")]
-    public class REQUIREMENT_ACTION_HISTORY
+    public class RequirementActionHistory
     {
         [Key]
         public int RequirementActionHistoryID { get; set; }
@@ -19,6 +19,6 @@ namespace ReqManager.Model
         [Required]
         public DateTime changedDate { get; set; }
 
-        public virtual REQUIREMENT REQUIREMENT { get; set; }
+        public virtual Requirement REQUIREMENT { get; set; }
     }
 }

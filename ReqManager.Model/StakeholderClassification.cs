@@ -15,11 +15,11 @@ namespace ReqManager.Model
     using System.ComponentModel.DataAnnotations.Schema;
 
     [Table("STAKEHOLDER_CLASSIFICATION", Schema = "PROJ")]
-    public class STAKEHOLDER_CLASSIFICATION
+    public class StakeholderClassification
     {
-        public STAKEHOLDER_CLASSIFICATION()
+        public StakeholderClassification()
         {
-            this.StakeHolders = new HashSet<STAKEHOLDERS>();
+            this.StakeHolders = new HashSet<Stakeholders>();
         }
     
         [Key]
@@ -28,6 +28,6 @@ namespace ReqManager.Model
         [MaxLength(50)]
         public string description { get; set; }
     
-        public virtual ICollection<STAKEHOLDERS> StakeHolders { get; set; }
+        public virtual ICollection<Stakeholders> StakeHolders { get; set; }
     }
 }

@@ -15,12 +15,12 @@ namespace ReqManager.Model
     using System.ComponentModel.DataAnnotations.Schema;
 
     [Table("TASK_TYPE", Schema = "TASK")]
-    public  class TASK_TYPE
+    public  class TaskType
     {
-        public TASK_TYPE()
+        public TaskType()
         {
-            this.Task = new HashSet<TASK>();
-            this.TaskTypeTemplate = new HashSet<TASK_TYPE_TEMPLATE>();
+            this.Task = new HashSet<Task>();
+            this.TaskTypeTemplate = new HashSet<TaskTypeTemplate>();
         }
     
         [Key]
@@ -30,7 +30,7 @@ namespace ReqManager.Model
         [MaxLength(50)]
         public string description { get; set; }
     
-        public virtual ICollection<TASK> Task { get; set; }
-        public virtual ICollection<TASK_TYPE_TEMPLATE> TaskTypeTemplate { get; set; }
+        public virtual ICollection<Task> Task { get; set; }
+        public virtual ICollection<TaskTypeTemplate> TaskTypeTemplate { get; set; }
     }
 }

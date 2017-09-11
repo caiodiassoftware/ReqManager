@@ -6,7 +6,7 @@ using ReqManager.Services.Task.Interfaces;
 
 namespace ReqManager.Services.Task.Classes
 {
-    public class StatusTaskService : ServiceBase<STATUS_TASK>, IStatusTaskService
+    public class StatusTaskService : ServiceBase<StatusTask>, IStatusTaskService
     {
         public StatusTaskService(IStatusTaskRepository repository, IUnitOfWork unit) : base(repository, unit)
         {

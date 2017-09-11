@@ -15,12 +15,12 @@ namespace ReqManager.Model
     using System.ComponentModel.DataAnnotations.Schema;
 
     [Table("PROJECT_REQUIREMENTS", Schema = "PROJ")]
-    public class PROJECT_REQUIREMENTS
+    public class ProjectRequirements
     {
-        public PROJECT_REQUIREMENTS()
+        public ProjectRequirements()
         {
-            this.StakeholderRequirement = new HashSet<STAKEHOLDER_REQUIREMENT>();
-            this.Task = new HashSet<TASK>();
+            this.StakeholderRequirement = new HashSet<StakeholderRequirement>();
+            this.Task = new HashSet<Task>();
         }
     
         [Key]
@@ -28,10 +28,10 @@ namespace ReqManager.Model
         public DateTime creationDate { get; set; }
         public bool traceable { get; set; }
     
-        public virtual USERS Users { get; set; }
-        public virtual PROJECT Project { get; set; }
-        public virtual ICollection<STAKEHOLDER_REQUIREMENT> StakeholderRequirement { get; set; }
-        public virtual ICollection<TASK> Task { get; set; }
-        public virtual REQUIREMENT Requirement { get; set; }
+        public virtual Users Users { get; set; }
+        public virtual Project Project { get; set; }
+        public virtual ICollection<StakeholderRequirement> StakeholderRequirement { get; set; }
+        public virtual ICollection<Task> Task { get; set; }
+        public virtual Requirement Requirement { get; set; }
     }
 }

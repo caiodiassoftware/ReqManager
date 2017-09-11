@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ReqManager.Data.Repositories
 {
-    public class RoleRepository : RepositoryBase<ROLE>, IRoleRepository
+    public class RoleRepository : RepositoryBase<Role>, IRoleRepository
     {
         public RoleRepository(IDbFactory dbFactory) : base(dbFactory)
         {

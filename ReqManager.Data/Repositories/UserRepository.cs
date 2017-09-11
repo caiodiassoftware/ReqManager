@@ -9,15 +9,15 @@ using System.Threading.Tasks;
 
 namespace ReqManager.Data.Repositories
 {
-    public class UserRepository : RepositoryBase<USERS>, IUserRepository
+    public class UserRepository : RepositoryBase<Users>, IUserRepository
     {
         public UserRepository(IDbFactory dbFactory) : base(dbFactory)
         {
         }
 
-        public USERS GetUserByLogin(string login)
+        public Users GetUserByLogin(string login)
         {
-            return (USERS)this.DbContext.USERS.Where(c => c.login == login).FirstOrDefault();
+            return (Users)this.DbContext.USERS.Where(c => c.login == login).FirstOrDefault();
         }
     }
 }

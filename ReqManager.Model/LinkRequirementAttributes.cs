@@ -6,14 +6,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ReqManager.Model
 {
     [Table("LINK_REQUIREMENT_ATTRIBUTES", Schema = "LINK")]
-    public partial class LINK_REQUIREMENT_ATTRIBUTES
+    public partial class LinkRequirementAttributes
     {
         [Key]
         public int RequirementAttributeID { get; set; }
         [Required]
         public string value { get; set; }
     
-        public virtual ATTRIBUTES Attributes { get; set; }
-        public virtual LINK_BETWEEN_REQUIREMENT LinkRequirement { get; set; }
+        public virtual Attributes Attributes { get; set; }
+        public virtual LinkBetweenRequirement LinkRequirement { get; set; }
     }
 }

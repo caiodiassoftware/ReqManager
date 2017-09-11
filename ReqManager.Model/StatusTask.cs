@@ -6,11 +6,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ReqManager.Model
 {
     [Table("STATUS_TASK", Schema = "TASK")]
-    public class STATUS_TASK
+    public class StatusTask
     {
-        public STATUS_TASK()
+        public StatusTask()
         {
-            this.Task = new HashSet<TASK>();
+            this.Task = new HashSet<Task>();
         }
 
         [Key]
@@ -19,6 +19,6 @@ namespace ReqManager.Model
         [MaxLength(50)]
         public string description { get; set; }
     
-        public virtual ICollection<TASK> Task { get; set; }
+        public virtual ICollection<Task> Task { get; set; }
     }
 }

@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ReqManager.Model
 {
     [Table("HISTORY_PROJECT", Schema = "PROJ")]
-    public class HISTORY_PROJECT
+    public class HistoryProject
     {
         [Key]
         public int HistoryProjectID { get; set; }
@@ -17,7 +17,7 @@ namespace ReqManager.Model
         public DateTime endDate { get; set; }
         public DateTime changedDate { get; set; }
     
-        public virtual USERS Users { get; set; }
-        public virtual PROJECT Project { get; set; }
+        public virtual Users Users { get; set; }
+        public virtual Project Project { get; set; }
     }
 }

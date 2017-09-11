@@ -6,11 +6,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ReqManager.Model
 {
     [Table("CONTROLLER_ACTION", Schema = "ACESS")]
-    public class CONTROLLER_ACTION
+    public class ControllerAction
     {
-        public CONTROLLER_ACTION()
+        public ControllerAction()
         {
-            this.roleControllerAction = new HashSet<ROLE_CONTROLLER_ACTION>();
+            this.roleControllerAction = new HashSet<RoleControllerAction>();
         }
     
         [Key]
@@ -22,6 +22,6 @@ namespace ReqManager.Model
         [MaxLength(255)]
         public string action { get; set; }
     
-        public virtual ICollection<ROLE_CONTROLLER_ACTION> roleControllerAction { get; set; }
+        public virtual ICollection<RoleControllerAction> roleControllerAction { get; set; }
     }
 }

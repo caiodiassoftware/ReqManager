@@ -5,20 +5,20 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ReqManager.Model
 {
-    [Table("PROJECT_PHASES", Schema = "PROJ")]
-    public partial class PROJECT_PHASES
+    [Table("REQUIREMENT_STATUS", Schema = "REQ")]
+    public partial class RequirementStatus
     {
-        public PROJECT_PHASES()
+        public RequirementStatus()
         {
-            this.Project = new HashSet<PROJECT>();
+            this.Requirement = new HashSet<Requirement>();
         }
     
         [Key]
-        public int ProjectPhasesID { get; set; }
+        public int RequirementStatusID { get; set; }
         [Required]
         [MaxLength(50), MinLength(5)]
         public string description { get; set; }
     
-        public virtual ICollection<PROJECT> Project { get; set; }
+        public virtual ICollection<Requirement> Requirement { get; set; }
     }
 }

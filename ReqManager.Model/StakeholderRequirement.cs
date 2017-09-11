@@ -6,14 +6,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ReqManager.Model
 {
     [Table("STAKEHOLDER_REQUIREMENT", Schema = "PROJ")]
-    public class STAKEHOLDER_REQUIREMENT
+    public class StakeholderRequirement
     {
         [Key]
         public int StakeHolderRequirementID { get; set; }
         public DateTime creationDate { get; set; }
     
-        public virtual USERS User { get; set; }
-        public virtual PROJECT_REQUIREMENTS ProjectRequirements { get; set; }
-        public virtual STAKEHOLDERS StakeHolders { get; set; }
+        public virtual Users User { get; set; }
+        public virtual ProjectRequirements ProjectRequirements { get; set; }
+        public virtual Stakeholders StakeHolders { get; set; }
     }
 }

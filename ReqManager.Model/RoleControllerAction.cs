@@ -6,12 +6,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ReqManager.Model
 {
     [Table("ROLE_CONTROLLER_ACTION", Schema = "ACESS")]
-    public class ROLE_CONTROLLER_ACTION
+    public class RoleControllerAction
     {
         [Key]
         public int RoleControllerActionID { get; set; }
     
-        public virtual CONTROLLER_ACTION ControllerAction { get; set; }
-        public virtual ROLE Role { get; set; }
+        public virtual ControllerAction ControllerAction { get; set; }
+        public virtual Role Role { get; set; }
     }
 }

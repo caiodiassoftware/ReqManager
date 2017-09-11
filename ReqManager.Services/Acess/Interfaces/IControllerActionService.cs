@@ -4,7 +4,7 @@ using ReqManager.Services.Estructure;
 
 namespace ReqManager.Services.InterfacesServices
 {
-    public interface IControllerActionService : IService<CONTROLLER_ACTION>
+    public interface IControllerActionService : IService<ControllerAction>
     {
 
     }

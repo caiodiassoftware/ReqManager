@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ReqManager.Data.Repositories
 {
-    public class StatusTaskRepository : RepositoryBase<STATUS_TASK>, IStatusTaskRepository
+    public class StatusTaskRepository : RepositoryBase<StatusTask>, IStatusTaskRepository
     {
         public StatusTaskRepository(IDbFactory dbFactory) : base(dbFactory)
         {

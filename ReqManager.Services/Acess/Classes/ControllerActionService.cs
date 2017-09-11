@@ -9,7 +9,7 @@ using ReqManager.Model;
 
 namespace ReqManager.Services.Acess
 {
-    public class ControllerActionService : ServiceBase<CONTROLLER_ACTION>, IControllerActionService
+    public class ControllerActionService : ServiceBase<ControllerAction>, IControllerActionService
     {
         public ControllerActionService(IControllerActionRepository repository, IUnitOfWork unit) : base(repository, unit)
         {

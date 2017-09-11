@@ -5,20 +5,20 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ReqManager.Model
 {
-    [Table("ARTIFACT_TYPE", Schema = "ART")]
-    public class ARTIFACT_TYPE
+    [Table("PROJECT_PHASES", Schema = "PROJ")]
+    public partial class ProjectPhases
     {
-        public ARTIFACT_TYPE()
+        public ProjectPhases()
         {
-            this.ProjectArtifact = new HashSet<PROJECT_ARTIFACT>();
+            this.Project = new HashSet<Project>();
         }
     
         [Key]
-        public int ArtefactTypeID { get; set; }
+        public int ProjectPhasesID { get; set; }
         [Required]
         [MaxLength(50), MinLength(5)]
         public string description { get; set; }
     
-        public virtual ICollection<PROJECT_ARTIFACT> ProjectArtifact { get; set; }
+        public virtual ICollection<Project> Project { get; set; }
     }
 }

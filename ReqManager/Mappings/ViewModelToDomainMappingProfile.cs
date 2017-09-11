@@ -17,7 +17,7 @@ namespace ReqManager.Mappings
 
         public ViewModelToDomainMappingProfile()
         {
-            CreateMap<LoginViewModel, USERS>();
+            CreateMap<LoginViewModel, Users>();
         }
     }
 }

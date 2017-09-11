@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ReqManager.Services.Task.Interfaces
 {
-    public interface IStatusTaskService : IService<STATUS_TASK>
+    public interface IStatusTaskService : IService<StatusTask>
     {
     }
 }

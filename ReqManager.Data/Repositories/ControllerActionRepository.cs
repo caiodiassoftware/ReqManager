@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ReqManager.Data.Repositories
 {
-    public class ControllerActionRepository : RepositoryBase<CONTROLLER_ACTION>, IControllerActionRepository
+    public class ControllerActionRepository : RepositoryBase<ControllerAction>, IControllerActionRepository
     {
         public ControllerActionRepository(IDbFactory dbFactory) : base(dbFactory)
         {

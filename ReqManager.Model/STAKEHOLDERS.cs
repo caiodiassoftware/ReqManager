@@ -15,20 +15,20 @@ namespace ReqManager.Model
     using System.ComponentModel.DataAnnotations.Schema;
 
     [Table("STAKEHOLDERS", Schema = "PROJ")]
-    public class STAKEHOLDERS
+    public class Stakeholders
     {
-        public STAKEHOLDERS()
+        public Stakeholders()
         {
-            this.StakeHolderRequirement = new HashSet<STAKEHOLDER_REQUIREMENT>();
-            this.StakeHoldersProject = new HashSet<STAKEHOLDERS_PROJECT>();
+            this.StakeHolderRequirement = new HashSet<StakeholderRequirement>();
+            this.StakeHoldersProject = new HashSet<StakeholdersProject>();
         }
     
         [Key]
         public int StakeholderID { get; set; }
     
-        public virtual USERS Users { get; set; }
-        public virtual ICollection<STAKEHOLDER_REQUIREMENT> StakeHolderRequirement { get; set; }
-        public virtual STAKEHOLDER_CLASSIFICATION StakeHolderClassification { get; set; }
-        public virtual ICollection<STAKEHOLDERS_PROJECT> StakeHoldersProject { get; set; }
+        public virtual Users Users { get; set; }
+        public virtual ICollection<StakeholderRequirement> StakeHolderRequirement { get; set; }
+        public virtual StakeholderClassification StakeHolderClassification { get; set; }
+        public virtual ICollection<StakeholdersProject> StakeHoldersProject { get; set; }
     }
 }

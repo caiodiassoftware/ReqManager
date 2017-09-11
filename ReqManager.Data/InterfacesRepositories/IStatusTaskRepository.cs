@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ReqManager.Data.InterfacesRepositories
 {
-    public interface IStatusTaskRepository : IRepository<STATUS_TASK>
+    public interface IStatusTaskRepository : IRepository<StatusTask>
     {
     }
 }

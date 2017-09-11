@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace ReqManager.Data.InterfacesRepositories
 {
-    public interface IUserRepository : IRepository<USERS>
+    public interface IUserRepository : IRepository<Users>
     {
-        USERS GetUserByLogin(string login);
+        Users GetUserByLogin(string login);
     }
 }

@@ -35,7 +35,7 @@ namespace ReqManager.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            STATUS_TASK sTATUS_TASK = db.STATUS_TASK.Find(id);
+            StatusTask sTATUS_TASK = db.STATUS_TASK.Find(id);
             if (sTATUS_TASK == null)
             {
                 return HttpNotFound();
@@ -54,7 +54,7 @@ namespace ReqManager.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TaskStatusID,description")] STATUS_TASK sTATUS_TASK)
+        public ActionResult Create([Bind(Include = "TaskStatusID,description")] StatusTask sTATUS_TASK)
         {
             if (ModelState.IsValid)
             {
@@ -73,7 +73,7 @@ namespace ReqManager.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            STATUS_TASK sTATUS_TASK = db.STATUS_TASK.Find(id);
+            StatusTask sTATUS_TASK = db.STATUS_TASK.Find(id);
             if (sTATUS_TASK == null)
             {
                 return HttpNotFound();
@@ -86,7 +86,7 @@ namespace ReqManager.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TaskStatusID,description")] STATUS_TASK sTATUS_TASK)
+        public ActionResult Edit([Bind(Include = "TaskStatusID,description")] StatusTask sTATUS_TASK)
         {
             if (ModelState.IsValid)
             {
@@ -104,7 +104,7 @@ namespace ReqManager.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            STATUS_TASK sTATUS_TASK = db.STATUS_TASK.Find(id);
+            StatusTask sTATUS_TASK = db.STATUS_TASK.Find(id);
             if (sTATUS_TASK == null)
             {
                 return HttpNotFound();
@@ -117,7 +117,7 @@ namespace ReqManager.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            STATUS_TASK sTATUS_TASK = db.STATUS_TASK.Find(id);
+            StatusTask sTATUS_TASK = db.STATUS_TASK.Find(id);
             db.STATUS_TASK.Remove(sTATUS_TASK);
             db.SaveChanges();
             return RedirectToAction("Index");

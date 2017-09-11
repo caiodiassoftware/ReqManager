@@ -6,16 +6,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ReqManager.Model
 {
     [Table("REQUIREMENT", Schema = "REQ")]
-    public class REQUIREMENT
+    public class Requirement
     {
-        public REQUIREMENT()
+        public Requirement()
         {
-            this.LinkRequirementsOrigin = new HashSet<LINK_BETWEEN_REQUIREMENT>();
-            this.LinkRequirementsTarget = new HashSet<LINK_BETWEEN_REQUIREMENT>();
-            this.LinkRequirementsArtifacts = new HashSet<LINK_BETWEEN_REQUIREMENTS_ARTIFACTS>();
-            this.ProjectRequirements = new HashSet<PROJECT_REQUIREMENTS>();
-            this.RequirementActionHistory = new HashSet<REQUIREMENT_ACTION_HISTORY>();
-            this.RequirementRationale = new HashSet<REQUIREMENT_RATIONALE>();
+            this.LinkRequirementsOrigin = new HashSet<LinkBetweenRequirement>();
+            this.LinkRequirementsTarget = new HashSet<LinkBetweenRequirement>();
+            this.LinkRequirementsArtifacts = new HashSet<LinkBetweenRequirementsArtifacts>();
+            this.ProjectRequirements = new HashSet<ProjectRequirements>();
+            this.RequirementActionHistory = new HashSet<RequirementActionHistory>();
+            this.RequirementRationale = new HashSet<RequirementRationale>();
         }
     
         [Key]
@@ -39,19 +39,19 @@ namespace ReqManager.Model
         [MaxLength(1000), MinLength(5)]
         public string output { get; set; }
 
-        public virtual USERS Users { get; set; }
+        public virtual Users Users { get; set; }
         [InverseProperty("RequirementOriginID")]
-        public virtual ICollection<LINK_BETWEEN_REQUIREMENT> LinkRequirementsOrigin { get; set; }
+        public virtual ICollection<LinkBetweenRequirement> LinkRequirementsOrigin { get; set; }
         [InverseProperty("RequirementTargetID")]
-        public virtual ICollection<LINK_BETWEEN_REQUIREMENT> LinkRequirementsTarget { get; set; }
-        public virtual ICollection<LINK_BETWEEN_REQUIREMENTS_ARTIFACTS> LinkRequirementsArtifacts { get; set; }
-        public virtual ICollection<PROJECT_REQUIREMENTS> ProjectRequirements { get; set; }
-        public virtual STAKEHOLDERS_PROJECT StakeholderProject { get; set; }
-        public virtual MEASURE_IMPORTANCE MeasureImportance { get; set; }
-        public virtual ICollection<REQUIREMENT_ACTION_HISTORY> RequirementActionHistory { get; set; }
-        public virtual ICollection<REQUIREMENT_RATIONALE> RequirementRationale { get; set; }
-        public virtual REQUIREMENT_TEMPLATE RequirementTemplate { get; set; }
-        public virtual REQUIREMENT_STATUS RequirementStatus { get; set; }
-        public virtual REQUIREMENT_TYPE RequirementType { get; set; }
+        public virtual ICollection<LinkBetweenRequirement> LinkRequirementsTarget { get; set; }
+        public virtual ICollection<LinkBetweenRequirementsArtifacts> LinkRequirementsArtifacts { get; set; }
+        public virtual ICollection<ProjectRequirements> ProjectRequirements { get; set; }
+        public virtual StakeholdersProject StakeholderProject { get; set; }
+        public virtual MeasureImportance MeasureImportance { get; set; }
+        public virtual ICollection<RequirementActionHistory> RequirementActionHistory { get; set; }
+        public virtual ICollection<RequirementRationale> RequirementRationale { get; set; }
+        public virtual RequirementTemplate RequirementTemplate { get; set; }
+        public virtual RequirementStatus RequirementStatus { get; set; }
+        public virtual RequirementTask RequirementType { get; set; }
     }
 }

@@ -73,6 +73,7 @@
     <Compile Include="StakeholderClassification.cs" />
     <Compile Include="StakeholderRequirement.cs" />
     <Compile Include="StatusTask.cs" />
+    <Compile Include="Subtask.cs" />
     <Compile Include="Task.cs" />
     <Compile Include="TaskType.cs" />
     <Compile Include="TaskTypeTemplate.cs" />

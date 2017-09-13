@@ -1,6 +1,5 @@
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Model\bin\Debug\ReqManager.Model.dll
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Model\bin\Debug\ReqManager.Model.pdb
-C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Model\obj\Debug\ReqManager.Model.csproj.CoreCompileInputs.cache
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Model\obj\Debug\ReqManager.Model.dll
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Model\obj\Debug\ReqManager.Model.pdb
 C:\Users\maquina06\Desktop\ReqManager\ReqManager.Model\bin\Debug\ReqManager.Model.dll

@@ -178,7 +178,6 @@ C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\System.Web.WebPages.dll
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\System.Web.WebPages.Razor.dll
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\WebGrease.dll
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\ReqManager.Data.pdb
-C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\ReqManager.Data.dll.config
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\ReqManager.Model.pdb
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\ReqManager.Services.pdb
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\Autofac.xml
@@ -202,7 +201,6 @@ C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\System.Web.WebPages.Razo
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\Antlr3.Runtime.pdb
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\Newtonsoft.Json.xml
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\obj\Debug\ReqManager.csprojResolveAssemblyReference.cache
-C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\obj\Debug\ReqManager.csproj.CoreCompileInputs.cache
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\obj\Debug\ReqManager.dll
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\obj\Debug\ReqManager.pdb
 C:\Users\maquina06\Desktop\ReqManager\ReqManager\bin\ReqManager.Model.dll

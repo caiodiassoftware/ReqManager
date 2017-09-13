@@ -35,7 +35,7 @@ namespace ReqManager.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            StatusTask sTATUS_TASK = db.STATUS_TASK.Find(id);
+            StatusTask sTATUS_TASK = db.StatusTask.Find(id);
             if (sTATUS_TASK == null)
             {
                 return HttpNotFound();
@@ -58,7 +58,7 @@ namespace ReqManager.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.STATUS_TASK.Add(sTATUS_TASK);
+                db.StatusTask.Add(sTATUS_TASK);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -73,7 +73,7 @@ namespace ReqManager.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            StatusTask sTATUS_TASK = db.STATUS_TASK.Find(id);
+            StatusTask sTATUS_TASK = db.StatusTask.Find(id);
             if (sTATUS_TASK == null)
             {
                 return HttpNotFound();
@@ -104,7 +104,7 @@ namespace ReqManager.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            StatusTask sTATUS_TASK = db.STATUS_TASK.Find(id);
+            StatusTask sTATUS_TASK = db.StatusTask.Find(id);
             if (sTATUS_TASK == null)
             {
                 return HttpNotFound();
@@ -117,8 +117,8 @@ namespace ReqManager.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            StatusTask sTATUS_TASK = db.STATUS_TASK.Find(id);
-            db.STATUS_TASK.Remove(sTATUS_TASK);
+            StatusTask sTATUS_TASK = db.StatusTask.Find(id);
+            db.StatusTask.Remove(sTATUS_TASK);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

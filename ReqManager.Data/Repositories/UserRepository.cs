@@ -17,7 +17,7 @@ namespace ReqManager.Data.Repositories
 
         public Users GetUserByLogin(string login)
         {
-            return (Users)this.DbContext.USERS.Where(c => c.login == login).FirstOrDefault();
+            return (Users)this.DbContext.user.Where(c => c.login == login).FirstOrDefault();
         }
     }
 }

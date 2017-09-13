@@ -8,5 +8,6 @@ namespace ReqManager.Data.Repositories
 {
     public class UserRoleRepository
     {
+
     }
 }

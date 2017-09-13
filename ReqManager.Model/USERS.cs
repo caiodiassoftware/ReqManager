@@ -16,9 +16,7 @@ namespace ReqManager.Model
             this.LinkRequirementsArtifacts = new HashSet<LinkBetweenRequirementsArtifacts>();
             this.LinkRequirements = new HashSet<LinkBetweenRequirement>();
             this.HistoryProject = new HashSet<HistoryProject>();
-            this.StakeHolderRequirement = new HashSet<StakeholderRequirement>();
             this.Project = new HashSet<Project>();
-            this.StakeHolderProject = new HashSet<StakeholdersProject>();
             this.ProjectRequirement = new HashSet<ProjectRequirements>();
             this.HistoryTask = new HashSet<HistoryTask>();
             this.TaskTypeTemplate = new HashSet<TaskTypeTemplate>();
@@ -58,16 +56,16 @@ namespace ReqManager.Model
         [Required]
         [MaxLength(20)]
         public string document { get; set; }
-    
+        [Required]
+        public Boolean active { get; set; }
+
         public virtual ICollection<UserRole> UserRole { get; set; }
         public virtual ICollection<Stakeholders> StakeHolders { get; set; }
         public virtual ICollection<ProjectArtifact> ProjectArtifact { get; set; }
         public virtual ICollection<LinkBetweenRequirementsArtifacts> LinkRequirementsArtifacts { get; set; }
         public virtual ICollection<LinkBetweenRequirement> LinkRequirements { get; set; }
         public virtual ICollection<HistoryProject> HistoryProject { get; set; }
-        public virtual ICollection<StakeholderRequirement> StakeHolderRequirement { get; set; }
         public virtual ICollection<Project> Project { get; set; }
-        public virtual ICollection<StakeholdersProject> StakeHolderProject { get; set; }
         public virtual ICollection<ProjectRequirements> ProjectRequirement { get; set; }
         public virtual ICollection<HistoryTask> HistoryTask { get; set; }
         public virtual ICollection<TaskTypeTemplate> TaskTypeTemplate { get; set; }

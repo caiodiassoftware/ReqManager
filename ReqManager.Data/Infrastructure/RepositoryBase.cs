@@ -47,7 +47,7 @@ namespace ReqManager.Data.Infrastructure
         public virtual void update(T entity)
         {
             dbSet.Attach(entity);
-            dataContext.Entry(entity).State = EntityState.Modified;
+            dataContext.Entry(entity).State = System.Data.Entity.EntityState.Modified;
         }
 
         public virtual void delete(T entity)

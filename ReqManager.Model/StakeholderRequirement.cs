@@ -11,8 +11,7 @@ namespace ReqManager.Model
         [Key]
         public int StakeHolderRequirementID { get; set; }
         public DateTime creationDate { get; set; }
-    
-        public virtual Users User { get; set; }
+
         public virtual ProjectRequirements ProjectRequirements { get; set; }
         public virtual Stakeholders StakeHolders { get; set; }
     }

@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Interface Repository</Title>
+      <Author>Caio Dias</Author>
+      <Description>Create basic code for Repository Interface ReqManager</Description>
+      <Shortcut>iRepository</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>Class</ID>
+          <Function>ClassName()</Function>
+        </Literal>
+        <Literal>
+          <ID>Model</ID>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[
+        
+      public interface $Class$ : IRepository<$Model$>
+      {
+        
+      }
+        
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Class Repository</Title>
+      <Author>Caio Dias</Author>
+      <Description>Create basic code for Repository Concrete Class ReqManager</Description>
+      <Shortcut>cRepository</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>Class</ID>
+          <Function>ClassName()</Function>
+        </Literal>
+        <Literal>
+          <ID>Model</ID>
+          <ToolTip>Model's name</ToolTip>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[
+        
+        public teste class $Class$ : RepositoryBase<$Model$>, I$Model$Repository
+        {
+            public $Class$(IDbFactory dbFactory) : base(dbFactory)
+            {
+            }
+        }
+        
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

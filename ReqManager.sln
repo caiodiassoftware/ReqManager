@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReqManager.Services", "ReqM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReqManager.Model", "ReqManager.Model\ReqManager.Model.csproj", "{7E758419-8F0D-4813-8207-5561EC69C932}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReqManager.Utils", "ReqManager.Utils\ReqManager.Utils.csproj", "{1D612B68-4A04-4FD0-A09A-7816FBAB867B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{7E758419-8F0D-4813-8207-5561EC69C932}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E758419-8F0D-4813-8207-5561EC69C932}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E758419-8F0D-4813-8207-5561EC69C932}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D612B68-4A04-4FD0-A09A-7816FBAB867B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D612B68-4A04-4FD0-A09A-7816FBAB867B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D612B68-4A04-4FD0-A09A-7816FBAB867B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D612B68-4A04-4FD0-A09A-7816FBAB867B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

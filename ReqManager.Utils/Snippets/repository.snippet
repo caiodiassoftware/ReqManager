@@ -10,19 +10,21 @@
     <Snippet>
       <Declarations>
         <Literal>
-          <ID>Class</ID>
+          <ID>iRepClass</ID>
           <Function>ClassName()</Function>
+          <Default>Class</Default>
         </Literal>
         <Literal>
-          <ID>Model</ID>
+          <ID>iRepModel</ID>
+          <Default>Model</Default>
         </Literal>
       </Declarations>
       <Code Language="CSharp">
         <![CDATA[
         
-      public interface $Class$ : IRepository<$Model$>
+      public interface $iRepClass$ : IRepository<$iRepModel$>
       {
-        
+          
       }
         
         ]]>
@@ -39,20 +41,22 @@
     <Snippet>
       <Declarations>
         <Literal>
-          <ID>Class</ID>
+          <ID>cRepositoryClass</ID>
           <Function>ClassName()</Function>
+         <Default>Class</Default>
         </Literal>
-        <Literal>
-          <ID>Model</ID>
+        <Literal Editable="true">
+          <ID>cRepositoryModel</ID>
           <ToolTip>Model's name</ToolTip>
+         <Default>Model</Default>
         </Literal>
       </Declarations>
       <Code Language="CSharp">
         <![CDATA[
         
-        public teste class $Class$ : RepositoryBase<$Model$>, I$Model$Repository
+        public class $cRepositoryClass$ : RepositoryBase<$cRepositoryModel$>, I$cRepositoryModel$Repository
         {
-            public $Class$(IDbFactory dbFactory) : base(dbFactory)
+            public $cRepositoryClass$(IDbFactory dbFactory) : base(dbFactory)
             {
             }
         }

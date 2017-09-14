@@ -6,24 +6,23 @@
       <Author>Caio Dias</Author>
       <Description>Create basic code for Service Interface ReqManager</Description>
       <Shortcut>iService</Shortcut>
-      <SnippetTypes>
-        <SnippetType>Expansion</SnippetType>
-      </SnippetTypes>
     </Header>
     <Snippet>
       <Declarations>
         <Literal>
-          <ID>Class</ID>
+          <ID>iServiceClass</ID>
           <Function>ClassName()</Function>
+          <Default>Class</Default>
         </Literal>
         <Literal>
-          <ID>Model</ID>
+          <ID>iServiceModel</ID>
+          <Default>Model</Default>
         </Literal>
       </Declarations>
       <Code Language="CSharp">
         <![CDATA[
         
-      public interface Class : IService<$Model$>
+      public interface $iServiceClass$ : IService<$iServiceModel$>
       {
           
       }
@@ -42,20 +41,22 @@
     <Snippet>
       <Declarations>
         <Literal>
-          <ID>Class</ID>
+          <ID>cServiceClass</ID>
           <Function>ClassName()</Function>
+          <Default>Class</Default>
         </Literal>
-        <Literal>
-          <ID>Model</ID>
+        <Literal Editable="true">
+          <ID>cServiceModel</ID>
           <ToolTip>Model's name</ToolTip>
+          <Default>Model</Default>
         </Literal>
       </Declarations>
       <Code Language="CSharp">
         <![CDATA[
         
-        public class $Class$ : ServiceBase<$Model$>, I$Model$Service
+        public class $cServiceClass$ : ServiceBase<$cServiceModel$>, I$cServiceModel$Service
         {
-            public $Class$(I$Model$Repository repository, IUnitOfWork unit) : base(repository, unit)
+            public $cServiceClass$(I$cServiceModel$Repository repository, IUnitOfWork unit) : base(repository, unit)
             {
 
             }
@@ -64,5 +65,5 @@
         ]]>
       </Code>
     </Snippet>
-  </CodeSnippet>
+  </CodeSnippet>  
 </CodeSnippets>

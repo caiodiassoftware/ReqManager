@@ -21,28 +21,5 @@ namespace ReqManager
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             Bootstrapper.Run();
         }
-
-        protected void Application_BeginRequest(object sender, EventArgs e)
-        {
-            try
-            {
-                HttpContextBase context = new HttpContextWrapper(HttpContext.Current);
-                RouteData rd = RouteTable.Routes.GetRouteData(context);
-
-                if (rd != null)
-                {
-                    string controller = rd.GetRequiredString("controller");
-                    string action = rd.GetRequiredString("action");
-                }
-                else
-                {
-                    HttpContext.Current.RewritePath("Home/About");
-                }                
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
     }
 }

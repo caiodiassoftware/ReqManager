@@ -30,7 +30,6 @@ C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\Microsoft.CodeDom.Providers.Dot
 C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\Newtonsoft.Json.dll
 C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\ReqManager.Data.dll
-C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\ReqManager.Models.dll
 C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\ReqManager.Services.dll
 C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\System.Web.Helpers.dll
 C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\System.Web.Mvc.dll
@@ -42,7 +41,6 @@ C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\System.Web.WebPages.Razor.dll
 C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\WebGrease.dll
 C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\EntityFramework.dll
 C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\ReqManager.Data.pdb
-C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\ReqManager.Models.pdb
 C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\ReqManager.Services.pdb
 C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\Autofac.xml
 C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\Autofac.Integration.Mvc.xml
@@ -205,3 +203,9 @@ C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\obj\Debug\ReqManager.dll
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\obj\Debug\ReqManager.pdb
 C:\Users\maquina06\Desktop\ReqManager\ReqManager\bin\ReqManager.Model.dll
 C:\Users\maquina06\Desktop\ReqManager\ReqManager\bin\ReqManager.Model.pdb
+C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\EntityFramework.SqlServer.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\ReqManager.Model.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\ReqManager.Data.dll.config
+C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\ReqManager.Model.pdb
+C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\EntityFramework.SqlServer.xml
+C:\Users\cdias\Desktop\ReqManager\ReqManager\obj\Debug\ReqManager.csproj.CoreCompileInputs.cache

@@ -24,7 +24,7 @@ namespace ReqManager.Data.Infrastructure
 
         public void Commit()
         {
-            dbContext.Commit();
+            DbContext.Commit();
         }
     }
 }

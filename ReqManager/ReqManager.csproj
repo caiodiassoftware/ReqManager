@@ -179,6 +179,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="ManagerController\BaseController.cs" />
     <Compile Include="Mappings\AutoMapperConfiguration.cs" />
     <Compile Include="Mappings\DomainToViewModelMappingProfile.cs" />
     <Compile Include="Mappings\ViewModelToDomainMappingProfile.cs" />

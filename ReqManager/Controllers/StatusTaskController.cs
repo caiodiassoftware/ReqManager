@@ -9,127 +9,15 @@ using System.Web.Mvc;
 using ReqManager.Data.DataAcess;
 using ReqManager.Model;
 using ReqManager.Services.Task.Interfaces;
+using ReqManager.ManagerController;
 
 namespace ReqManager.Controllers
 {
-    public class StatusTaskController : Controller
+    public class StatusTaskController : BaseController<StatusTask>
     {
-        private IStatusTaskService service { get; set; }
-        private ReqManagerEntities db = new ReqManagerEntities();
-
-        public StatusTaskController(IStatusTaskService service)
+        public StatusTaskController(IStatusTaskService service) : base(service)
         {
-            this.service = service;
-        }
 
-        // GET: StatusTask
-        public ActionResult Index()
-        {
-            return View(service.getAll());
-        }
-
-        // GET: StatusTask/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            StatusTask sTATUS_TASK = db.StatusTask.Find(id);
-            if (sTATUS_TASK == null)
-            {
-                return HttpNotFound();
-            }
-            return View(sTATUS_TASK);
-        }
-
-        // GET: StatusTask/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: StatusTask/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TaskStatusID,description")] StatusTask sTATUS_TASK)
-        {
-            if (ModelState.IsValid)
-            {
-                db.StatusTask.Add(sTATUS_TASK);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(sTATUS_TASK);
-        }
-
-        // GET: StatusTask/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            StatusTask sTATUS_TASK = db.StatusTask.Find(id);
-            if (sTATUS_TASK == null)
-            {
-                return HttpNotFound();
-            }
-            return View(sTATUS_TASK);
-        }
-
-        // POST: StatusTask/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TaskStatusID,description")] StatusTask sTATUS_TASK)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(sTATUS_TASK).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(sTATUS_TASK);
-        }
-
-        // GET: StatusTask/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            StatusTask sTATUS_TASK = db.StatusTask.Find(id);
-            if (sTATUS_TASK == null)
-            {
-                return HttpNotFound();
-            }
-            return View(sTATUS_TASK);
-        }
-
-        // POST: StatusTask/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            StatusTask sTATUS_TASK = db.StatusTask.Find(id);
-            db.StatusTask.Remove(sTATUS_TASK);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

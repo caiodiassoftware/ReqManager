@@ -61,20 +61,80 @@
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
-    <Compile Include="InterfacesRepositories\IControllerActionRepository.cs" />
-    <Compile Include="InterfacesRepositories\IRoleControllerActionRepository.cs" />
-    <Compile Include="InterfacesRepositories\IRoleRepository.cs" />
-    <Compile Include="InterfacesRepositories\IStatusTaskRepository.cs" />
-    <Compile Include="InterfacesRepositories\IUserRepository.cs" />
-    <Compile Include="InterfacesRepositories\IUserRoleRepository.cs" />
+    <Compile Include="Repositories\Artifact\Classes\ArtifactTypeRepository.cs" />
+    <Compile Include="Repositories\Artifact\Classes\HistoryProjectArtifactRepository.cs" />
+    <Compile Include="Repositories\Artifact\Interfaces\IHistoryProjectArtifactRepository.cs" />
+    <Compile Include="Repositories\Link\Classes\AttributeRepository.cs" />
+    <Compile Include="Repositories\Artifact\Interfaces\IArtifactTypeRepository.cs" />
+    <Compile Include="Repositories\Acess\Interfaces\IControllerActionRepository.cs" />
+    <Compile Include="Repositories\Acess\Interfaces\IRoleControllerActionRepository.cs" />
+    <Compile Include="Repositories\Acess\Interfaces\IRoleRepository.cs" />
+    <Compile Include="Repositories\Link\Classes\AttributesTypeLinkRepository.cs" />
+    <Compile Include="Repositories\Link\Classes\LinkArtifactAttributesRepository.cs" />
+    <Compile Include="Repositories\Link\Classes\LinkBetweenRequirementArtifactsRepository.cs" />
+    <Compile Include="Repositories\Link\Classes\LinkBetweenRequirementRepository.cs" />
+    <Compile Include="Repositories\Link\Classes\LinkRequirementAttributesRepository.cs" />
+    <Compile Include="Repositories\Link\Classes\TypeLinkRepository.cs" />
+    <Compile Include="Repositories\Link\Interfaces\IAttributeRepository.cs" />
+    <Compile Include="Repositories\Link\Interfaces\IAttributesTypeLinkRepository.cs" />
+    <Compile Include="Repositories\Link\Interfaces\ILinkArtifactAttributesRepository.cs" />
+    <Compile Include="Repositories\Link\Interfaces\ILinkBetweenRequirementArtifactsRepository.cs" />
+    <Compile Include="Repositories\Link\Interfaces\ILinkBetweenRequirementRepository.cs" />
+    <Compile Include="Repositories\Link\Interfaces\ILinkRequirementAttributesRepository.cs" />
+    <Compile Include="Repositories\Link\Interfaces\ITypeLinkRepository.cs" />
+    <Compile Include="Repositories\Project\Classes\HistoryProjectRepository.cs" />
+    <Compile Include="Repositories\Project\Classes\MeasureImportanceRepository.cs" />
+    <Compile Include="Repositories\Project\Classes\ProjectArtifactRepository.cs" />
+    <Compile Include="Repositories\Project\Classes\ProjectPhasesRepository.cs" />
+    <Compile Include="Repositories\Project\Classes\ProjectRepository.cs" />
+    <Compile Include="Repositories\Project\Classes\ProjectRequirementsRepository.cs" />
+    <Compile Include="Repositories\Project\Classes\StakeholderClassificationRepository.cs" />
+    <Compile Include="Repositories\Project\Classes\StakeholderRepository.cs" />
+    <Compile Include="Repositories\Project\Classes\StakeholderRequirementRepository.cs" />
+    <Compile Include="Repositories\Project\Classes\StakeholdersProjectRepository.cs" />
+    <Compile Include="Repositories\Project\Interfaces\IHistoryProjectRepository.cs" />
+    <Compile Include="Repositories\Project\Interfaces\IMeasureImportanceRepository.cs" />
+    <Compile Include="Repositories\Project\Interfaces\IProjectArtifactRepository.cs" />
+    <Compile Include="Repositories\Project\Interfaces\IProjectPhasesRepository.cs" />
+    <Compile Include="Repositories\Project\Interfaces\IProjectRepository.cs" />
+    <Compile Include="Repositories\Project\Interfaces\IProjectRequirementsRepository.cs" />
+    <Compile Include="Repositories\Project\Interfaces\IStakeholderClassificationRepository.cs" />
+    <Compile Include="Repositories\Project\Interfaces\IStakeholderRepository.cs" />
+    <Compile Include="Repositories\Project\Interfaces\IStakeholderRequirementRepository.cs" />
+    <Compile Include="Repositories\Project\Interfaces\IStakeholdersProjectRepository.cs" />
+    <Compile Include="Repositories\Requirements\Classes\RequirementActionHistoryRepository.cs" />
+    <Compile Include="Repositories\Requirements\Classes\RequirementRationaleRepository.cs" />
+    <Compile Include="Repositories\Requirements\Classes\RequirementRepository.cs" />
+    <Compile Include="Repositories\Requirements\Classes\RequirementStatusRepository.cs" />
+    <Compile Include="Repositories\Requirements\Classes\RequirementTemplateRepository.cs" />
+    <Compile Include="Repositories\Requirements\Interfaces\IRequirementActionHistoryRepository.cs" />
+    <Compile Include="Repositories\Requirements\Interfaces\IRequirementRationaleRepository.cs" />
+    <Compile Include="Repositories\Requirements\Interfaces\IRequirementRepository.cs" />
+    <Compile Include="Repositories\Requirements\Interfaces\IRequirementStatusRepository.cs" />
+    <Compile Include="Repositories\Requirements\Interfaces\IRequirementTemplateRepository.cs" />
+    <Compile Include="Repositories\Tasks\Classes\HistoryTaskRepository.cs" />
+    <Compile Include="Repositories\Tasks\Classes\SubtaskRepository.cs" />
+    <Compile Include="Repositories\Tasks\Classes\TaskRepository.cs" />
+    <Compile Include="Repositories\Tasks\Classes\TaskTypeRepository.cs" />
+    <Compile Include="Repositories\Tasks\Classes\TaskTypeTemplateRepository.cs" />
+    <Compile Include="Repositories\Tasks\Classes\UserTaskRepository.cs" />
+    <Compile Include="Repositories\Tasks\Interfaces\IHistoryTaskRepository.cs" />
+    <Compile Include="Repositories\Tasks\Interfaces\IStatusTaskRepository.cs" />
+    <Compile Include="Repositories\Acess\Interfaces\IUserRepository.cs" />
+    <Compile Include="Repositories\Acess\Interfaces\IUserRoleRepository.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\ControllerActionRepository.cs" />
-    <Compile Include="Repositories\RoleControllerActionRepository.cs" />
-    <Compile Include="Repositories\RoleRepository.cs" />
-    <Compile Include="Repositories\StatusTaskRepository.cs" />
-    <Compile Include="Repositories\UserRepository.cs" />
-    <Compile Include="Repositories\UserRoleRepository.cs" />
+    <Compile Include="Repositories\Acess\Classes\ControllerActionRepository.cs" />
+    <Compile Include="Repositories\Acess\Classes\RoleControllerActionRepository.cs" />
+    <Compile Include="Repositories\Acess\Classes\RoleRepository.cs" />
+    <Compile Include="Repositories\Tasks\Classes\StatusTaskRepository.cs" />
+    <Compile Include="Repositories\Acess\Classes\UserRepository.cs" />
+    <Compile Include="Repositories\Acess\Classes\UserRoleRepository.cs" />
+    <Compile Include="Repositories\Tasks\Interfaces\ISubtaskRepository.cs" />
+    <Compile Include="Repositories\Tasks\Interfaces\ITaskRepository.cs" />
+    <Compile Include="Repositories\Tasks\Interfaces\ITaskTypeRepository.cs" />
+    <Compile Include="Repositories\Tasks\Interfaces\ITaskTypeTemplateRepository.cs" />
+    <Compile Include="Repositories\Tasks\Interfaces\IUserTaskRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -88,6 +148,9 @@
       <Project>{7E758419-8F0D-4813-8207-5561EC69C932}</Project>
       <Name>ReqManager.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="InterfacesRepositories\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

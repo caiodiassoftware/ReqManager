@@ -36,7 +36,6 @@ namespace ReqManager.Controllers
             return View(stakeholderClassification);
         }
 
-        // GET: StakeholderClassifications/Create
         public ActionResult Create()
         {
             return View();

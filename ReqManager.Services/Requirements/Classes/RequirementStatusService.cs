@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ReqManager.Data.Repositories
+namespace ReqManager.Services.Requirements.Classes
 {
-    class RoleControllerActionRepository
+    class RequirementStatusService
     {
-
     }
 }

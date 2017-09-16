@@ -6,11 +6,22 @@
       <Author>Caio Dias</Author>
       <Description>Create basic code for Service Interface ReqManager</Description>
       <Shortcut>iService</Shortcut>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
     </Header>
     <Snippet>
+      <Imports>
+        <Import>
+          <Namespace>ReqManager.Model</Namespace>
+        </Import>
+        <Import>
+          <Namespace>ReqManager.Services.Estructure</Namespace>
+        </Import>
+      </Imports>
       <Declarations>
         <Literal>
-          <ID>iServiceClass</ID>
+          <ID>classname</ID>
           <Function>ClassName()</Function>
           <Default>Class</Default>
         </Literal>
@@ -20,13 +31,9 @@
         </Literal>
       </Declarations>
       <Code Language="CSharp">
-        <![CDATA[
-        
-      public interface $iServiceClass$ : IService<$iServiceModel$>
-      {
-          
+        <![CDATA[public interface $classname$ : IService<$iServiceModel$>
+      {          
       }
-        
         ]]>
       </Code>
     </Snippet>
@@ -37,11 +44,31 @@
       <Author>Caio Dias</Author>
       <Description>Create basic code for Service Concrete Class ReqManager</Description>
       <Shortcut>cService</Shortcut>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
     </Header>
     <Snippet>
+      <Imports>
+        <Import>
+          <Namespace>ReqManager.Services.Requirements.Interfaces</Namespace>
+        </Import>
+        <Import>
+          <Namespace>ReqManager.Data.Repositories.Requirements.Interfaces</Namespace>
+        </Import>
+        <Import>
+          <Namespace>ReqManager.Data.Infrastructure</Namespace>
+        </Import>
+        <Import>
+          <Namespace>ReqManager.Model</Namespace>
+        </Import>
+        <Import>
+          <Namespace>ReqManager.Services.Estructure</Namespace>
+        </Import>
+      </Imports>
       <Declarations>
         <Literal>
-          <ID>cServiceClass</ID>
+          <ID>classname</ID>
           <Function>ClassName()</Function>
           <Default>Class</Default>
         </Literal>
@@ -52,18 +79,14 @@
         </Literal>
       </Declarations>
       <Code Language="CSharp">
-        <![CDATA[
-        
-        public class $cServiceClass$ : ServiceBase<$cServiceModel$>, I$cServiceModel$Service
+        <![CDATA[public class $classname$ : ServiceBase<$cServiceModel$>, I$classname$
         {
-            public $cServiceClass$(I$cServiceModel$Repository repository, IUnitOfWork unit) : base(repository, unit)
+            public $classname$(I$cServiceModel$Repository repository, IUnitOfWork unit) : base(repository, unit)
             {
-
             }
         }
-        
         ]]>
       </Code>
     </Snippet>
-  </CodeSnippet>  
+  </CodeSnippet>
 </CodeSnippets>

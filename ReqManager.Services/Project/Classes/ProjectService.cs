@@ -1,4 +1,9 @@
-﻿using System;
+﻿using ReqManager.Data.Infrastructure;
+using ReqManager.Data.Repositories.Project.Interfaces;
+using ReqManager.Model;
+using ReqManager.Services.Estructure;
+using ReqManager.Services.Project.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +11,11 @@ using System.Threading.Tasks;
 
 namespace ReqManager.Services.Project.Classes
 {
-    class ProjectService
+
+    public class ProjectService : ServiceBase<Model.Project>, IProjectService
     {
+        public ProjectService(IProjectRepository repository, IUnitOfWork unit) : base(repository, unit)
+        {
+        }
     }
 }

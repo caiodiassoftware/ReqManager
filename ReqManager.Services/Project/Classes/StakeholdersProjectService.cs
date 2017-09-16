@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ReqManager.Data.Infrastructure;
+using ReqManager.Data.Repositories.Project.Interfaces;
+using ReqManager.Model;
+using ReqManager.Services.Estructure;
+using ReqManager.Services.Project.Interfaces;
 
 namespace ReqManager.Services.Project.Classes
 {
-    class StakeholdersProjectService
+
+    public class StakeholdersProjectService : ServiceBase<StakeholdersProject>, IStakeholdersProjectService
     {
+        public StakeholdersProjectService(IStakeholdersProjectRepository repository, IUnitOfWork unit) : base(repository, unit)
+        {
+        }
     }
 }

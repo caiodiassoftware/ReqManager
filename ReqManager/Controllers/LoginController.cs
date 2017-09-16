@@ -1,12 +1,8 @@
 ﻿using ReqManager.Data.DataAcess;
 using ReqManager.Services.Acess;
 using ReqManager.Services.Acess.Interfaces;
-using ReqManager.Services.InterfacesServices;
 using ReqManager.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ReqManager.Controllers

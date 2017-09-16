@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ReqManager.Data.Repositories.Acess.Classes
 {
-    public class AttributeRepository : RepositoryBase<Attribute>, IAttributeRepository
+    public class AttributeRepository : RepositoryBase<Attributes>, IAttributeRepository
     {
         public AttributeRepository(IDbFactory dbFactory) : base(dbFactory)
         {

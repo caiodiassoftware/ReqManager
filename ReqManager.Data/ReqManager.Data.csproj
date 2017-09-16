@@ -84,7 +84,7 @@
     <Compile Include="Repositories\Link\Interfaces\ITypeLinkRepository.cs" />
     <Compile Include="Repositories\Project\Classes\HistoryProjectRepository.cs" />
     <Compile Include="Repositories\Project\Classes\MeasureImportanceRepository.cs" />
-    <Compile Include="Repositories\Project\Classes\ProjectArtifactRepository.cs" />
+    <Compile Include="Repositories\Artifact\Classes\ProjectArtifactRepository.cs" />
     <Compile Include="Repositories\Project\Classes\ProjectPhasesRepository.cs" />
     <Compile Include="Repositories\Project\Classes\ProjectRepository.cs" />
     <Compile Include="Repositories\Project\Classes\ProjectRequirementsRepository.cs" />
@@ -94,7 +94,7 @@
     <Compile Include="Repositories\Project\Classes\StakeholdersProjectRepository.cs" />
     <Compile Include="Repositories\Project\Interfaces\IHistoryProjectRepository.cs" />
     <Compile Include="Repositories\Project\Interfaces\IMeasureImportanceRepository.cs" />
-    <Compile Include="Repositories\Project\Interfaces\IProjectArtifactRepository.cs" />
+    <Compile Include="Repositories\Artifact\Interfaces\IProjectArtifactRepository.cs" />
     <Compile Include="Repositories\Project\Interfaces\IProjectPhasesRepository.cs" />
     <Compile Include="Repositories\Project\Interfaces\IProjectRepository.cs" />
     <Compile Include="Repositories\Project\Interfaces\IProjectRequirementsRepository.cs" />
@@ -106,11 +106,13 @@
     <Compile Include="Repositories\Requirements\Classes\RequirementRationaleRepository.cs" />
     <Compile Include="Repositories\Requirements\Classes\RequirementRepository.cs" />
     <Compile Include="Repositories\Requirements\Classes\RequirementStatusRepository.cs" />
+    <Compile Include="Repositories\Requirements\Classes\RequirementTaskRepository.cs" />
     <Compile Include="Repositories\Requirements\Classes\RequirementTemplateRepository.cs" />
     <Compile Include="Repositories\Requirements\Interfaces\IRequirementActionHistoryRepository.cs" />
     <Compile Include="Repositories\Requirements\Interfaces\IRequirementRationaleRepository.cs" />
     <Compile Include="Repositories\Requirements\Interfaces\IRequirementRepository.cs" />
     <Compile Include="Repositories\Requirements\Interfaces\IRequirementStatusRepository.cs" />
+    <Compile Include="Repositories\Requirements\Interfaces\IRequirementTaskRepository.cs" />
     <Compile Include="Repositories\Requirements\Interfaces\IRequirementTemplateRepository.cs" />
     <Compile Include="Repositories\Tasks\Classes\HistoryTaskRepository.cs" />
     <Compile Include="Repositories\Tasks\Classes\SubtaskRepository.cs" />
@@ -149,9 +151,7 @@
       <Name>ReqManager.Model</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="InterfacesRepositories\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

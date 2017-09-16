@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ReqManager.Data.Repositories.Link.Interfaces
 {
-    public interface IAttributeRepository : IRepository<Attribute>
+    public interface IAttributeRepository : IRepository<Attributes>
     {
 
     }

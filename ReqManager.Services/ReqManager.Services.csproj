@@ -46,10 +46,12 @@
     <Compile Include="Acess\Classes\ControllerActionService.cs" />
     <Compile Include="Acess\Classes\RoleControllerActionService.cs" />
     <Compile Include="Acess\Classes\RoleService.cs" />
+    <Compile Include="Acess\Classes\UserRoleService.cs" />
     <Compile Include="Acess\Classes\UserService.cs" />
     <Compile Include="Acess\Interfaces\IControllerActionService.cs" />
     <Compile Include="Acess\Interfaces\IRoleControllerActionService.cs" />
     <Compile Include="Acess\Interfaces\IRoleService.cs" />
+    <Compile Include="Acess\Interfaces\IUserRoleService.cs" />
     <Compile Include="Acess\Interfaces\IUserService.cs" />
     <Compile Include="Estructure\IService.cs" />
     <Compile Include="Estructure\ServiceBase.cs" />
@@ -67,11 +69,11 @@
     <Compile Include="Link\Interfaces\ILinkBetweenRequirementsService.cs" />
     <Compile Include="Link\Interfaces\ILinkRequirementAttributesService.cs" />
     <Compile Include="Link\Interfaces\ITypeLinkService.cs" />
-    <Compile Include="Project\Classes\ArtifactTypeService.cs" />
-    <Compile Include="Project\Classes\HistoryProjectArtifactService.cs" />
+    <Compile Include="Artifact\Classes\ArtifactTypeService.cs" />
+    <Compile Include="Artifact\Classes\HistoryProjectArtifactService.cs" />
     <Compile Include="Project\Classes\HistoryProjectService.cs" />
     <Compile Include="Project\Classes\MeasureImportanceService.cs" />
-    <Compile Include="Project\Classes\ProjectArtifactService.cs" />
+    <Compile Include="Artifact\Classes\ProjectArtifactService.cs" />
     <Compile Include="Project\Classes\ProjectPhasesService.cs" />
     <Compile Include="Project\Classes\ProjectRequirementsService.cs" />
     <Compile Include="Project\Classes\ProjectService.cs" />
@@ -79,11 +81,11 @@
     <Compile Include="Project\Classes\StakeholderRequirementService.cs" />
     <Compile Include="Project\Classes\StakeholdersProjectService.cs" />
     <Compile Include="Project\Classes\StakeholdersService.cs" />
-    <Compile Include="Project\Interfaces\IArtifactTypeService.cs" />
-    <Compile Include="Project\Interfaces\IHistoryProjectArtifactService.cs" />
+    <Compile Include="Artifact\Interfaces\IArtifactTypeService.cs" />
+    <Compile Include="Artifact\Interfaces\IHistoryProjectArtifactService.cs" />
     <Compile Include="Project\Interfaces\IHistoryProjectService.cs" />
     <Compile Include="Project\Interfaces\IMeasureImportanceService.cs" />
-    <Compile Include="Project\Interfaces\IProjectArtifactService.cs" />
+    <Compile Include="Artifact\Interfaces\IProjectArtifactService.cs" />
     <Compile Include="Project\Interfaces\IProjectPhasesService.cs" />
     <Compile Include="Project\Interfaces\IProjectRequirementsService.cs" />
     <Compile Include="Project\Interfaces\IProjectService.cs" />
@@ -119,10 +121,7 @@
     <Compile Include="Task\Interfaces\ITaskTypeTemplateService.cs" />
     <Compile Include="Task\Interfaces\IUserTaskService.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Artifact\Classes\" />
-    <Folder Include="Artifact\Interfaces\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\ReqManager.Data\ReqManager.Data.csproj">
       <Project>{42F12746-0006-4655-A60D-18DF61050C10}</Project>

@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ReqManager.Data.Infrastructure;
+using ReqManager.Data.Repositories.Requirements.Interfaces;
+using ReqManager.Model;
+using ReqManager.Services.Estructure;
+using ReqManager.Services.Requirements.Interfaces;
 
 namespace ReqManager.Services.Requirements.Classes
 {
-    class RequirementActionHistoryService
+
+    public class RequirementActionHistoryService : ServiceBase<RequirementActionHistory>, IRequirementActionHistoryService
     {
+        public RequirementActionHistoryService(IRequirementActionHistoryRepository repository, IUnitOfWork unit) : base(repository, unit)
+        {
+        }
     }
 }

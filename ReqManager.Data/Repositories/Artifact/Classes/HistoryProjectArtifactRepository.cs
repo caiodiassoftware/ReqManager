@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ReqManager.Data.Infrastructure;
+using ReqManager.Data.Repositories.Artifact.Interfaces;
+using ReqManager.Model;
 
 namespace ReqManager.Data.Repositories.Artifact.Classes
 {
-    class HistoryProjectArtifactRepository
+    public class HistoryProjectArtifactRepository : RepositoryBase<HistoryProjectArtifact>, IHistoryProjectArtifactRepository
     {
+        public HistoryProjectArtifactRepository(IDbFactory dbFactory) : base(dbFactory)
+        {
+        }
     }
 }

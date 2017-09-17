@@ -10,7 +10,9 @@ namespace ReqManager.Model
     {
         [Key]
         public int RoleControllerActionID { get; set; }
-    
+        public int RoleID { get; set; }
+        public int ControllerActionID { get; set; }
+
         public virtual ControllerAction ControllerAction { get; set; }
         public virtual Role Role { get; set; }
     }

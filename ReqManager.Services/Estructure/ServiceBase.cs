@@ -22,8 +22,8 @@ namespace ReqManager.Services.Estructure
 
         #region Properties
 
-        private IRepository<T> repository { get; set; }
-        private IUnitOfWork unit { get; set; }
+        protected IRepository<T> repository { get; set; }
+        protected IUnitOfWork unit { get; set; }
 
         #endregion
 

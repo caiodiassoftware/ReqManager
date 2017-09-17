@@ -44,6 +44,12 @@ namespace ReqManager.Data.Infrastructure
             dbSet.Add(entity);
         }
 
+        public virtual void add(IEnumerable<T> entities)
+        {
+            foreach (T item in entities)
+                add(item);
+        }
+
         public virtual void update(T entity)
         {
             dbSet.Attach(entity);
@@ -55,9 +61,15 @@ namespace ReqManager.Data.Infrastructure
             dbSet.Remove(entity);
         }
 
+        public virtual void delete(IEnumerable<T> entities)
+        {
+            foreach (T item in entities)
+                delete(item);
+        }
+
         public virtual void delete(Expression<Func<T, bool>> where)
         {
-            IEnumerable<T> objects = dbSet.Where<T>(where).AsEnumerable();
+            IEnumerable<T> objects = dbSet.Where(where).AsEnumerable();
             foreach (T obj in objects)
                 dbSet.Remove(obj);
         }
@@ -69,7 +81,7 @@ namespace ReqManager.Data.Infrastructure
 
         public T get(Expression<Func<T, bool>> where)
         {
-            return dbSet.Where(where).FirstOrDefault<T>();
+            return dbSet.Where(where).FirstOrDefault();
         }
 
         public virtual IEnumerable<T> getAll()

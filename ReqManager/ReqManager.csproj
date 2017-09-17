@@ -173,13 +173,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ControllerActionsController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\RoleControllerActionsController.cs" />
+    <Compile Include="Controllers\RoleControllerActionController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\StakeholderClassificationsController.cs" />
     <Compile Include="Controllers\StatusTaskController.cs" />
-    <Compile Include="Controllers\UserRolesController.cs" />
+    <Compile Include="Controllers\UserRoleController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -189,7 +188,9 @@
     <Compile Include="Mappings\DomainToViewModelMappingProfile.cs" />
     <Compile Include="Mappings\ViewModelToDomainMappingProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ControllerActionViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -231,9 +232,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\StatusTask\Create.cshtml" />
     <Content Include="Views\StatusTask\Delete.cshtml" />
@@ -255,21 +253,17 @@
     <Content Include="Views\Roles\Details.cshtml" />
     <Content Include="Views\Roles\Edit.cshtml" />
     <Content Include="Views\Roles\Index.cshtml" />
-    <Content Include="Views\ControllerActions\Create.cshtml" />
-    <Content Include="Views\ControllerActions\Delete.cshtml" />
-    <Content Include="Views\ControllerActions\Details.cshtml" />
-    <Content Include="Views\ControllerActions\Edit.cshtml" />
     <Content Include="Views\ControllerActions\Index.cshtml" />
-    <Content Include="Views\RoleControllerActions\Create.cshtml" />
-    <Content Include="Views\RoleControllerActions\Delete.cshtml" />
-    <Content Include="Views\RoleControllerActions\Details.cshtml" />
-    <Content Include="Views\RoleControllerActions\Edit.cshtml" />
-    <Content Include="Views\RoleControllerActions\Index.cshtml" />
-    <Content Include="Views\UserRoles\Create.cshtml" />
-    <Content Include="Views\UserRoles\Delete.cshtml" />
-    <Content Include="Views\UserRoles\Details.cshtml" />
-    <Content Include="Views\UserRoles\Edit.cshtml" />
-    <Content Include="Views\UserRoles\Index.cshtml" />
+    <Content Include="Views\UserRole\Create.cshtml" />
+    <Content Include="Views\UserRole\Delete.cshtml" />
+    <Content Include="Views\UserRole\Details.cshtml" />
+    <Content Include="Views\UserRole\Edit.cshtml" />
+    <Content Include="Views\UserRole\Index.cshtml" />
+    <Content Include="Views\RoleControllerAction\Create.cshtml" />
+    <Content Include="Views\RoleControllerAction\Delete.cshtml" />
+    <Content Include="Views\RoleControllerAction\Details.cshtml" />
+    <Content Include="Views\RoleControllerAction\Edit.cshtml" />
+    <Content Include="Views\RoleControllerAction\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

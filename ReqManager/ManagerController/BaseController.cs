@@ -1,4 +1,6 @@
-﻿using ReqManager.Services.Estructure;
+﻿using ReqManager.Model;
+using ReqManager.Services.Estructure;
+using ReqManager.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +14,7 @@ namespace ReqManager.ManagerController
     {
         #region Attributes
 
-        private IService<T> service { get; set; }
+        protected IService<T> Service { get; set; }
 
         #endregion
 
@@ -20,25 +22,25 @@ namespace ReqManager.ManagerController
 
         public BaseController(IService<T> service)
         {
-            this.service = service;
+            this.Service = service;
         }
 
         #endregion
 
         #region GETS
 
-        public ActionResult Index()
+        public virtual ActionResult Index()
         {
-            return View(service.getAll());
+            return View(Service.getAll());
         }
 
-        public ActionResult Details(int? id)
+        public virtual ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            T model = service.get(id);
+            T model = Service.get(id);
             if (model == null)
             {
                 return HttpNotFound();
@@ -46,18 +48,18 @@ namespace ReqManager.ManagerController
             return View(model);
         }
 
-        public ActionResult Create()
+        public virtual ActionResult Create()
         {
             return View();
         }
 
-        public ActionResult Edit(int? id)
+        public virtual ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            T model = service.get(id);
+            T model = Service.get(id);
             if (model == null)
             {
                 return HttpNotFound();
@@ -65,13 +67,13 @@ namespace ReqManager.ManagerController
             return View(model);
         }
 
-        public ActionResult Delete(int? id)
+        public virtual ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            T model = service.get(id);
+            T model = Service.get(id);
             if (model == null)
             {
                 return HttpNotFound();
@@ -85,12 +87,12 @@ namespace ReqManager.ManagerController
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(T model)
+        public virtual ActionResult Create(T model)
         {
             if (ModelState.IsValid)
             {
-                service.add(model);
-                service.saveChanges();
+                Service.add(model);
+                Service.saveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -99,18 +101,18 @@ namespace ReqManager.ManagerController
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(BindAttribute bindAttribute)
+        public virtual ActionResult Edit(BindAttribute bindAttribute)
         {
             throw new NotImplementedException();
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public virtual ActionResult DeleteConfirmed(int id)
         {
-            T model = service.get(id);
-            service.delete(model);
-            service.saveChanges();
+            T model = Service.get(id);
+            Service.delete(model);
+            Service.saveChanges();
             return RedirectToAction("Index");
         }
 
@@ -120,9 +122,35 @@ namespace ReqManager.ManagerController
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            var actionName = filterContext.ActionDescriptor.ActionName;
-            var controllerName = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName;
-            base.OnActionExecuting(filterContext);
+            try
+            {
+                string actionName = filterContext.ActionDescriptor.ActionName;
+                string controllerName = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName;
+
+                if (Session["user"] != null)
+                {
+                    Users user = (Users)Session["user"];
+                    List<ControllerActionViewModel> controllerActions = (List<ControllerActionViewModel>)Session["controllerActions"];
+
+                    if (controllerActions.Where(x => x.Action.Equals(actionName) && x.Controller.Equals(controllerName + "Controller")).Count().Equals(0))
+                    {
+                        actionName = "Error";
+                        controllerName = "Shared";
+                    }
+                }
+                else
+                {
+                    actionName = "Login";
+                    controllerName = "Login";
+                }
+
+
+                Response.Redirect("~/" + controllerName + "/" + actionName, false);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         #endregion

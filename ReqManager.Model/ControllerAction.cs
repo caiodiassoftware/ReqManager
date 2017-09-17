@@ -21,7 +21,9 @@ namespace ReqManager.Model
         [Required]
         [MaxLength(255)]
         public string action { get; set; }
-    
+        [Required]
+        public bool IsGet { get; set; }
+
         public virtual ICollection<RoleControllerAction> roleControllerAction { get; set; }
     }
 }

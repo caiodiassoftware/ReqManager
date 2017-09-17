@@ -14,5 +14,15 @@ namespace ReqManager.Data.Repositories
         public UserRoleRepository(IDbFactory dbFactory) : base(dbFactory)
         {
         }
+
+        public IEnumerable<Role> GetRoles()
+        {
+            return DbContext.role.ToList();
+        }
+
+        public IEnumerable<Users> GetUsers()
+        {
+            return DbContext.user.ToList();
+        }
     }
 }

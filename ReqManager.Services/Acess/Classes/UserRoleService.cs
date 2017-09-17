@@ -1,4 +1,5 @@
-﻿using ReqManager.Data.Infrastructure;
+﻿using System.Collections.Generic;
+using ReqManager.Data.Infrastructure;
 using ReqManager.Data.InterfacesRepositories;
 using ReqManager.Model;
 using ReqManager.Services.Acess.Interfaces;
@@ -11,6 +12,16 @@ namespace ReqManager.Services.Acess.Classes
         public UserRoleService(IUserRoleRepository repository, IUnitOfWork unit) : base(repository, unit)
         {
 
+        }
+
+        public IEnumerable<Role> GetRoles()
+        {
+            return ((IUserRoleRepository)repository).GetRoles();
+        }
+
+        public IEnumerable<Users> GetUsers()
+        {
+            return ((IUserRoleRepository)repository).GetUsers();
         }
     }
 }

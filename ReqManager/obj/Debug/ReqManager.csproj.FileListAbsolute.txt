@@ -132,6 +132,15 @@ C:\Users\maquina06\Desktop\ReqManager\ReqManager\bin\Newtonsoft.Json.xml
 C:\Users\maquina06\Desktop\ReqManager\ReqManager\obj\Debug\ReqManager.csprojResolveAssemblyReference.cache
 C:\Users\maquina06\Desktop\ReqManager\ReqManager\obj\Debug\ReqManager.dll
 C:\Users\maquina06\Desktop\ReqManager\ReqManager\obj\Debug\ReqManager.pdb
+C:\Users\maquina06\Desktop\ReqManager\ReqManager\bin\ReqManager.Model.dll
+C:\Users\maquina06\Desktop\ReqManager\ReqManager\bin\ReqManager.Model.pdb
+C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\EntityFramework.SqlServer.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\ReqManager.Model.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\ReqManager.Data.dll.config
+C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\ReqManager.Model.pdb
+C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\EntityFramework.SqlServer.xml
+C:\Users\cdias\Desktop\ReqManager\ReqManager\obj\Debug\ReqManager.csproj.CoreCompileInputs.cache
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\obj\Debug\ReqManager.csprojResolveAssemblyReference.cache
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\ApplicationInsights.config
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\roslyn\csc.exe
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -198,14 +207,7 @@ C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\System.Web.WebPages.Depl
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\System.Web.WebPages.Razor.xml
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\Antlr3.Runtime.pdb
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\Newtonsoft.Json.xml
-C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\obj\Debug\ReqManager.csprojResolveAssemblyReference.cache
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\obj\Debug\ReqManager.dll
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\obj\Debug\ReqManager.pdb
-C:\Users\maquina06\Desktop\ReqManager\ReqManager\bin\ReqManager.Model.dll
-C:\Users\maquina06\Desktop\ReqManager\ReqManager\bin\ReqManager.Model.pdb
-C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\EntityFramework.SqlServer.dll
-C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\ReqManager.Model.dll
-C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\ReqManager.Data.dll.config
-C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\ReqManager.Model.pdb
-C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\EntityFramework.SqlServer.xml
-C:\Users\cdias\Desktop\ReqManager\ReqManager\obj\Debug\ReqManager.csproj.CoreCompileInputs.cache
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\ReqManager.Data.dll.config
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\obj\Debug\ReqManager.csproj.CoreCompileInputs.cache

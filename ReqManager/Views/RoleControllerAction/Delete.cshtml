@@ -11,6 +11,22 @@
     <h4>RoleControllerAction</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ControllerAction.controller)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ControllerAction.controller)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Role.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Role.description)
+        </dd>
+
     </dl>
 
     @using (Html.BeginForm()) {

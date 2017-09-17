@@ -10,6 +10,7 @@ namespace ReqManager.Services.Acess.Interfaces
 {
     public interface IUserRoleService : IService<UserRole>
     {
-
+        IEnumerable<Users> GetUsers();
+        IEnumerable<Role> GetRoles();
     }
 }

@@ -6,6 +6,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using ReqManager.Model;
+using System.Reflection;
+using System.Linq;
 
 namespace ReqManager.Services.Acess
 {
@@ -16,20 +18,22 @@ namespace ReqManager.Services.Acess
 
         }
 
-        public void refresh(IEnumerable controllerActionApplication)
+        public void Refresh(IEnumerable controllerActionApplication)
         {
             try
             {
-                //List<CONTROLLER_ACTION> listControllerActionApplication = controllerActionApplication.Cast<CONTROLLER_ACTION>().ToList();
-                //List<CONTROLLER_ACTION> listControllerActionDataBase = GetAll().Cast<CONTROLLER_ACTION>().ToList();
+                List<ControllerAction> listControllerActionApplication = controllerActionApplication.Cast<ControllerAction>().ToList();
+                List<ControllerAction> listControllerActionDataBase = ((IControllerActionRepository)repository).getAll().Cast<ControllerAction>().ToList();
 
-                //List<CONTROLLER_ACTION> newControllerActions = listControllerActionApplication.Where(ca => !listControllerActionDataBase.Any(db => db.action.Equals(ca.action) && db.controller.Equals(ca.controller))).Cast<CONTROLLER_ACTION>().ToList();
-                //List<CONTROLLER_ACTION> deletedControllerActions = listControllerActionDataBase.Where(ca => !listControllerActionApplication.Any(db => db.action.Equals(ca.action) && db.controller.Equals(ca.controller))).Cast<CONTROLLER_ACTION>().ToList();
+                List<ControllerAction> newControllerActions = listControllerActionApplication.
+                    Where(ca => !listControllerActionDataBase.Any(db => db.action.Equals(ca.action) &&
+                db.controller.Equals(ca.controller))).Cast<ControllerAction>().ToList();
+                List<ControllerAction> deletedControllerActions = listControllerActionDataBase.
+                    Where(ca => !listControllerActionApplication.Any(db => db.action.Equals(ca.action) &&
+                db.controller.Equals(ca.controller))).Cast<ControllerAction>().ToList();
 
-                //foreach (CONTROLLER_ACTION ca in newControllerActions)
-                //    repository.add(ca);
-                //foreach (CONTROLLER_ACTION ca in deletedControllerActions)
-                //    repository.delete(ca);
+                repository.add(newControllerActions);
+                repository.delete(deletedControllerActions);
             }
             catch (Exception ex)
             {

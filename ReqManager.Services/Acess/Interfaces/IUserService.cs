@@ -10,5 +10,6 @@ namespace ReqManager.Services.Acess.Interfaces
 {
     public interface IUserService : IService<Users>
     {
+        Users Login(String login, String senha);
     }
 }

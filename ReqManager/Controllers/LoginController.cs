@@ -1,9 +1,10 @@
-﻿using ReqManager.Data.DataAcess;
-using ReqManager.Services.Acess;
+﻿using ReqManager.Model;
 using ReqManager.Services.Acess.Interfaces;
 using ReqManager.ViewModels;
 using System;
 using System.Web.Mvc;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace ReqManager.Controllers
 {
@@ -13,33 +14,47 @@ namespace ReqManager.Controllers
 
         public LoginController(IUserService userService)
         {
-            ReqManagerEntities db = new ReqManagerEntities();
             this.userService = userService;
         }
 
         public ActionResult Login()
         {
-            var list = userService.getAll();
-
             return View();
         }
 
         [HttpPost]
-        public ActionResult Login([Bind(Include = "login,senha")] LoginViewModel model)
+        public void Login([Bind(Include = "login,senha")] LoginViewModel model)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    //var user = Mapper.Map<User>(model);
-                    //User user = userService.Get(model.login).FirstOrDefault();
-                    //if (!user.Equals(null))
-                    //{
-                    //    Session["user"] = user;
-                    //}
-                }
+                    List<ControllerActionViewModel> list = new List<ControllerActionViewModel>();
+                    Users user = userService.Login(model.login, model.senha);
+                    if (user != null)
+                    {
+                        Session["user"] = user;
 
-                return View();
+                        var roles = user.UserRole.Select(ur => ur.Role);
+                        var rca = roles.Select(r => r.RoleControllerAction);
+                        var ca = rca.Select(x => x.Select( xa => xa.ControllerAction));
+                        var teste = ca.Select(la => la.Select(l =>
+                            new ControllerActionViewModel
+                            {
+                                Action = l.action,
+                                Controller = l.controller,
+                                IsGet = l.IsGet,
+                                ControllerActionID = l.ControllerActionID                                
+                            }
+                        ));
+
+                        foreach (var item in teste)                        
+                            list.AddRange(item);
+
+                        Session["controllerActions"] = list;
+                        Response.Redirect(@"~/Users/Index", false);
+                    }                        
+                }
             }
             catch (Exception ex)
             {

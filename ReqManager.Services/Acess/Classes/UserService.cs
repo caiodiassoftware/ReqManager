@@ -14,14 +14,10 @@ namespace ReqManager.Services.Acess.Classes
         {
         }
 
-        private void teste()
-        {
-            repository.getAll().Select(u => u.UserRole);
-        }
-
         public Users Login(string login, string password)
         {
-            return repository.filter(u => u.login.Equals(login) && u.password.Equals(password)).FirstOrDefault();
+            return null;
+            //return repository.filter(u => u.login.Equals(login) && u.password.Equals(password)).FirstOrDefault();
         }
     }
 }

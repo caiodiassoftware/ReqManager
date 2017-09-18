@@ -1,10 +1,7 @@
-﻿using ReqManager.Model;
-using ReqManager.Services.Acess.Interfaces;
+﻿using ReqManager.Services.Acess.Interfaces;
 using ReqManager.ViewModels;
 using System;
 using System.Web.Mvc;
-using System.Linq;
-using System.Collections.Generic;
 
 namespace ReqManager.Controllers
 {
@@ -27,34 +24,34 @@ namespace ReqManager.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
-                {
-                    List<ControllerActionViewModel> list = new List<ControllerActionViewModel>();
-                    Users user = userService.Login(model.login, model.senha);
-                    if (user != null)
-                    {
-                        Session["user"] = user;
+                //if (ModelState.IsValid)
+                //{
+                //    List<ControllerActionViewModel> list = new List<ControllerActionViewModel>();
+                //    Users user = userService.Login(model.login, model.senha);
+                //    if (user != null)
+                //    {
+                //        Session["user"] = user;
 
-                        var roles = user.UserRole.Select(ur => ur.Role);
-                        var rca = roles.Select(r => r.RoleControllerAction);
-                        var ca = rca.Select(x => x.Select( xa => xa.ControllerAction));
-                        var teste = ca.Select(la => la.Select(l =>
-                            new ControllerActionViewModel
-                            {
-                                Action = l.action,
-                                Controller = l.controller,
-                                IsGet = l.IsGet,
-                                ControllerActionID = l.ControllerActionID                                
-                            }
-                        ));
+                //        var roles = user.UserRole.Select(ur => ur.Role);
+                //        var rca = roles.Select(r => r.RoleControllerAction);
+                //        var ca = rca.Select(x => x.Select( xa => xa.ControllerAction));
+                //        var teste = ca.Select(la => la.Select(l =>
+                //            new ControllerActionViewModel
+                //            {
+                //                Action = l.action,
+                //                Controller = l.controller,
+                //                IsGet = l.IsGet,
+                //                ControllerActionID = l.ControllerActionID                                
+                //            }
+                //        ));
 
-                        foreach (var item in teste)                        
-                            list.AddRange(item);
+                //        foreach (var item in teste)                        
+                //            list.AddRange(item);
 
-                        Session["controllerActions"] = list;
-                        Response.Redirect(@"~/Users/Index", false);
-                    }                        
-                }
+                //        Session["controllerActions"] = list;
+                //        Response.Redirect(@"~/Users/Index", false);
+                //    }                        
+                //}
             }
             catch (Exception ex)
             {

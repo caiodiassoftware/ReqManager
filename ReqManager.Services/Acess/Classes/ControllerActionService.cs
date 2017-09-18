@@ -8,10 +8,11 @@ using System.Collections.Generic;
 using ReqManager.Model;
 using System.Reflection;
 using System.Linq;
+using ReqManager.Entities;
 
 namespace ReqManager.Services.Acess
 {
-    public class ControllerActionService : ServiceBase<ControllerAction>, IControllerActionService
+    public class ControllerActionService : ServiceBase<ControllerActionEntity>, IControllerActionService
     {
         public ControllerActionService(IControllerActionRepository repository, IUnitOfWork unit) : base(repository, unit)
         {
@@ -32,8 +33,8 @@ namespace ReqManager.Services.Acess
                     Where(ca => !listControllerActionApplication.Any(db => db.action.Equals(ca.action) &&
                 db.controller.Equals(ca.controller))).Cast<ControllerAction>().ToList();
 
-                repository.add(newControllerActions);
-                repository.delete(deletedControllerActions);
+                //repository.add(newControllerActions);
+                //repository.delete(deletedControllerActions);
             }
             catch (Exception ex)
             {

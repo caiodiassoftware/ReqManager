@@ -127,6 +127,10 @@
       <Project>{42F12746-0006-4655-A60D-18DF61050C10}</Project>
       <Name>ReqManager.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ReqManager.Entities\ReqManager.Entities.csproj">
+      <Project>{0af1dce5-4f44-42b9-bfdd-e0dfbe3bc6ed}</Project>
+      <Name>ReqManager.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ReqManager.Model\ReqManager.Model.csproj">
       <Project>{7e758419-8f0d-4813-8207-5561ec69c932}</Project>
       <Name>ReqManager.Model</Name>

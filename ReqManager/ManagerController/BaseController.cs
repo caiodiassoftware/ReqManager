@@ -1,11 +1,9 @@
-﻿using ReqManager.Model;
-using ReqManager.Services.Estructure;
+﻿using ReqManager.Services.Estructure;
 using ReqManager.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ReqManager.ManagerController
@@ -129,7 +127,7 @@ namespace ReqManager.ManagerController
 
                 if (Session["user"] != null)
                 {
-                    Users user = (Users)Session["user"];
+                    //Users user = (Users)Session["user"];
                     List<ControllerActionViewModel> controllerActions = (List<ControllerActionViewModel>)Session["controllerActions"];
 
                     if (controllerActions.Where(x => x.Action.Equals(actionName) && x.Controller.Equals(controllerName + "Controller")).Count().Equals(0))
@@ -145,7 +143,7 @@ namespace ReqManager.ManagerController
                 }
 
 
-                Response.Redirect("~/" + controllerName + "/" + actionName, false);
+                //Response.Redirect("~/" + controllerName + "/" + actionName, false);
             }
             catch (Exception ex)
             {

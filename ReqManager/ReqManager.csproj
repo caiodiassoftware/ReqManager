@@ -54,10 +54,6 @@
       <HintPath>..\packages\Autofac.Mvc5.4.0.2\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -184,9 +180,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="ManagerController\BaseController.cs" />
-    <Compile Include="Mappings\AutoMapperConfiguration.cs" />
-    <Compile Include="Mappings\DomainToViewModelMappingProfile.cs" />
-    <Compile Include="Mappings\ViewModelToDomainMappingProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\ControllerActionViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
@@ -278,13 +271,9 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ReqManager.Data\ReqManager.Data.csproj">
-      <Project>{42F12746-0006-4655-A60D-18DF61050C10}</Project>
-      <Name>ReqManager.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ReqManager.Model\ReqManager.Model.csproj">
-      <Project>{7e758419-8f0d-4813-8207-5561ec69c932}</Project>
-      <Name>ReqManager.Model</Name>
+    <ProjectReference Include="..\ReqManager.Entities\ReqManager.Entities.csproj">
+      <Project>{0af1dce5-4f44-42b9-bfdd-e0dfbe3bc6ed}</Project>
+      <Name>ReqManager.Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\ReqManager.Services\ReqManager.Services.csproj">
       <Project>{8c9902b2-9c5c-4c2a-ad99-9d92bd4f970a}</Project>

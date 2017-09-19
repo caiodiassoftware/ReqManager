@@ -2,7 +2,6 @@
 using Autofac.Integration.Mvc;
 using ReqManager.Data.Infrastructure;
 using ReqManager.Data.Repositories;
-using ReqManager.Mappings;
 using ReqManager.Services.Acess.Classes;
 using ReqManager.Services.Task.Classes;
 using System.Linq;
@@ -16,7 +15,6 @@ namespace ReqManager.App_Start
         public static void Run()
         {
             SetAutofacContainer();
-            AutoMapperConfiguration.Configure();
         }
 
         private static void SetAutofacContainer()

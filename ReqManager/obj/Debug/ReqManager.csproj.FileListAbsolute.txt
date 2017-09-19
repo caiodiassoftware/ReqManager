@@ -83,7 +83,6 @@ C:\Users\maquina06\Desktop\ReqManager\ReqManager\bin\ReqManager.pdb
 C:\Users\maquina06\Desktop\ReqManager\ReqManager\bin\Antlr3.Runtime.dll
 C:\Users\maquina06\Desktop\ReqManager\ReqManager\bin\Autofac.dll
 C:\Users\maquina06\Desktop\ReqManager\ReqManager\bin\Autofac.Integration.Mvc.dll
-C:\Users\maquina06\Desktop\ReqManager\ReqManager\bin\AutoMapper.dll
 C:\Users\maquina06\Desktop\ReqManager\ReqManager\bin\EntityFramework.dll
 C:\Users\maquina06\Desktop\ReqManager\ReqManager\bin\EntityFramework.SqlServer.dll
 C:\Users\maquina06\Desktop\ReqManager\ReqManager\bin\Microsoft.AI.Agent.Intercept.dll
@@ -111,7 +110,6 @@ C:\Users\maquina06\Desktop\ReqManager\ReqManager\bin\ReqManager.Data.dll.config
 C:\Users\maquina06\Desktop\ReqManager\ReqManager\bin\ReqManager.Services.pdb
 C:\Users\maquina06\Desktop\ReqManager\ReqManager\bin\Autofac.xml
 C:\Users\maquina06\Desktop\ReqManager\ReqManager\bin\Autofac.Integration.Mvc.xml
-C:\Users\maquina06\Desktop\ReqManager\ReqManager\bin\AutoMapper.xml
 C:\Users\maquina06\Desktop\ReqManager\ReqManager\bin\EntityFramework.xml
 C:\Users\maquina06\Desktop\ReqManager\ReqManager\bin\EntityFramework.SqlServer.xml
 C:\Users\maquina06\Desktop\ReqManager\ReqManager\bin\Microsoft.AI.DependencyCollector.xml
@@ -211,3 +209,7 @@ C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\obj\Debug\ReqManager.dll
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\obj\Debug\ReqManager.pdb
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\ReqManager.Data.dll.config
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\obj\Debug\ReqManager.csproj.CoreCompileInputs.cache
+C:\Users\maquina06\Desktop\ReqManager\ReqManager\bin\ReqManager.Entities.dll
+C:\Users\maquina06\Desktop\ReqManager\ReqManager\bin\ReqManager.Entities.pdb
+C:\Users\maquina06\Desktop\ReqManager\ReqManager\bin\AutoMapper.dll
+C:\Users\maquina06\Desktop\ReqManager\ReqManager\bin\AutoMapper.xml

@@ -1,4 +1,5 @@
-﻿using ReqManager.Model;
+﻿using ReqManager.Entities.Task;
+using ReqManager.Model;
 using ReqManager.Services.Estructure;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ReqManager.Services.Task.Interfaces
 {
-    public interface ITaskTypeTemplateService : IService<TaskTypeTemplate>
+    public interface ITaskTypeTemplateService : IService<TaskTypeTemplateEntity>
     {
 
     }

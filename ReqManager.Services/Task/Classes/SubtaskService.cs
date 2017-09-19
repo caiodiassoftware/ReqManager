@@ -1,5 +1,6 @@
 ﻿using ReqManager.Data.Infrastructure;
 using ReqManager.Data.Repositories.Tasks.Interfaces;
+using ReqManager.Entities.Task;
 using ReqManager.Model;
 using ReqManager.Services.Estructure;
 using ReqManager.Services.Task.Interfaces;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 namespace ReqManager.Services.Task.Classes
 {
 
-    public class SubtaskService : ServiceBase<Subtask>, ISubtaskService
+    public class SubtaskService : ServiceBase<Subtask, SubtaskEntity>, ISubtaskService
     {
         public SubtaskService(ISubtaskRepository repository, IUnitOfWork unit) : base(repository, unit)
         {

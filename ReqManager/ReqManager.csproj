@@ -168,14 +168,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\ControllerActionsController.cs" />
+    <Compile Include="Controllers\ControllerActionController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\RoleControllerActionController.cs" />
-    <Compile Include="Controllers\RolesController.cs" />
-    <Compile Include="Controllers\StakeholderClassificationsController.cs" />
-    <Compile Include="Controllers\StatusTaskController.cs" />
-    <Compile Include="Controllers\UserRoleController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -226,37 +220,11 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
-    <Content Include="Views\StatusTask\Create.cshtml" />
-    <Content Include="Views\StatusTask\Delete.cshtml" />
-    <Content Include="Views\StatusTask\Details.cshtml" />
-    <Content Include="Views\StatusTask\Edit.cshtml" />
-    <Content Include="Views\StatusTask\Index.cshtml" />
-    <Content Include="Views\StakeholderClassifications\Create.cshtml" />
-    <Content Include="Views\StakeholderClassifications\Delete.cshtml" />
-    <Content Include="Views\StakeholderClassifications\Details.cshtml" />
-    <Content Include="Views\StakeholderClassifications\Edit.cshtml" />
-    <Content Include="Views\StakeholderClassifications\Index.cshtml" />
-    <Content Include="Views\Users\Create.cshtml" />
-    <Content Include="Views\Users\Delete.cshtml" />
-    <Content Include="Views\Users\Details.cshtml" />
-    <Content Include="Views\Users\Edit.cshtml" />
-    <Content Include="Views\Users\Index.cshtml" />
-    <Content Include="Views\Roles\Create.cshtml" />
-    <Content Include="Views\Roles\Delete.cshtml" />
-    <Content Include="Views\Roles\Details.cshtml" />
-    <Content Include="Views\Roles\Edit.cshtml" />
-    <Content Include="Views\Roles\Index.cshtml" />
-    <Content Include="Views\ControllerActions\Index.cshtml" />
-    <Content Include="Views\UserRole\Create.cshtml" />
-    <Content Include="Views\UserRole\Delete.cshtml" />
-    <Content Include="Views\UserRole\Details.cshtml" />
-    <Content Include="Views\UserRole\Edit.cshtml" />
-    <Content Include="Views\UserRole\Index.cshtml" />
-    <Content Include="Views\RoleControllerAction\Create.cshtml" />
-    <Content Include="Views\RoleControllerAction\Delete.cshtml" />
-    <Content Include="Views\RoleControllerAction\Details.cshtml" />
-    <Content Include="Views\RoleControllerAction\Edit.cshtml" />
-    <Content Include="Views\RoleControllerAction\Index.cshtml" />
+    <Content Include="Views\ControllerAction\Create.cshtml" />
+    <Content Include="Views\ControllerAction\Delete.cshtml" />
+    <Content Include="Views\ControllerAction\Details.cshtml" />
+    <Content Include="Views\ControllerAction\Edit.cshtml" />
+    <Content Include="Views\ControllerAction\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -271,6 +239,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ReqManager.Data\ReqManager.Data.csproj">
+      <Project>{42F12746-0006-4655-A60D-18DF61050C10}</Project>
+      <Name>ReqManager.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ReqManager.Entities\ReqManager.Entities.csproj">
       <Project>{0af1dce5-4f44-42b9-bfdd-e0dfbe3bc6ed}</Project>
       <Name>ReqManager.Entities</Name>

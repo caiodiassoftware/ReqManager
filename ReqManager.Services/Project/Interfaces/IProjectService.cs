@@ -1,4 +1,5 @@
-﻿using ReqManager.Model;
+﻿using ReqManager.Entities.Project;
+using ReqManager.Model;
 using ReqManager.Services.Estructure;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ReqManager.Services.Project.Interfaces
 {
-    public interface IProjectService : IService<Model.Project>
+    public interface IProjectService : IService<ProjectEntity>
     {
 
     }

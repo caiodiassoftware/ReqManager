@@ -1,4 +1,5 @@
-﻿using ReqManager.Model;
+﻿using ReqManager.Entities.Artifact;
+using ReqManager.Model;
 using ReqManager.Services.Estructure;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ReqManager.Services.Project.Interfaces
 {
-    public interface IHistoryProjectArtifactService : IService<HistoryProjectArtifact>
+    public interface IHistoryProjectArtifactService : IService<HistoryProjectArtifactEntity>
     {
 
     }

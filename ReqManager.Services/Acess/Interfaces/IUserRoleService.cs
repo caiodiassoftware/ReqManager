@@ -1,10 +1,11 @@
-﻿using ReqManager.Model;
+﻿using ReqManager.Entities.Task;
+using ReqManager.Model;
 using ReqManager.Services.Estructure;
 using System.Collections.Generic;
 
 namespace ReqManager.Services.Acess.Interfaces
 {
-    public interface IUserRoleService : IService<UserRole>
+    public interface IUserRoleService : IService<UserRoleEntity>
     {
         IEnumerable<Users> GetUsers();
         IEnumerable<Role> GetRoles();

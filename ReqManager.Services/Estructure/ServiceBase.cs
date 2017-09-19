@@ -1,4 +1,5 @@
-﻿using ReqManager.Data.Infrastructure;
+﻿using AutoMapper;
+using ReqManager.Data.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,70 +9,153 @@ using System.Threading.Tasks;
 
 namespace ReqManager.Services.Estructure
 {
-    public abstract class ServiceBase<T> where T : class
+    public abstract class ServiceBase<TModel, TEntity> where TModel : class where TEntity : class
     {
         #region Constructor
 
-        protected ServiceBase(IRepository<T> repository, IUnitOfWork unit)
+        protected ServiceBase(IRepository<TModel> repository, IUnitOfWork unit)
         {
             this.repository = repository;
             this.unit = unit;
+            Mapper.Initialize(cfg => cfg.CreateMap<TModel, TEntity>());
         }
 
         #endregion
 
         #region Properties
 
-        protected IRepository<T> repository { get; set; }
+        protected IRepository<TModel> repository { get; set; }
         protected IUnitOfWork unit { get; set; }
 
         #endregion
 
         #region Implementation
 
-        public virtual void add(T entity)
+        public virtual void add(TEntity entity)
         {
-            repository.add(entity);
+            try
+            {
+                repository.add(convertEntityToModel(entity));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
-        public virtual void update(T entity)
+        public virtual void update(TEntity entity)
         {
-            repository.update(entity);
+            try
+            {
+                repository.update(convertEntityToModel(entity));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
-        public virtual void delete(T entity)
+        public virtual void delete(TEntity entity)
         {
-            repository.delete(entity);
+            try
+            {
+                repository.delete(convertEntityToModel(entity));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
-        public virtual void delete(Expression<Func<T, bool>> where)
+        public virtual void delete(Expression<Func<TEntity, bool>> where)
         {
-            repository.delete(where);
+            try
+            {
+                Expression<Func<TModel, bool>> newWhere = Mapper.Map<Expression<Func<TModel, bool>>>(where);
+                repository.delete(newWhere);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
-        public virtual T get(int? id)
+        public virtual TEntity get(int? id)
         {
-            return repository.get(id);
+            try
+            {
+                return convertModelToEntity(repository.get(id));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
-        public virtual T get(Expression<Func<T, bool>> where)
+        public virtual TEntity get(Expression<Func<TEntity, bool>> where)
         {
-            return repository.get(where);
+            try
+            {
+                Expression<Func<TModel, bool>> newWhere = Mapper.Map<Expression<Func<TModel, bool>>>(where);
+                return Mapper.Map<TModel, TEntity>(repository.get(newWhere));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
-        public virtual IEnumerable<T> getAll()
+        public virtual IEnumerable<TEntity> getAll()
         {
-            return repository.getAll();
+            try
+            {
+                return Mapper.Map<IEnumerable<TModel>, IEnumerable<TEntity>>(repository.getAll());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
-        public virtual IEnumerable<T> filter(Expression<Func<T, bool>> where)
+        public virtual IEnumerable<TEntity> filter(Expression<Func<TEntity, bool>> where)
         {
-            return repository.filter(where);
+            try
+            {
+                Expression<Func<TModel, bool>> newWhere = Mapper.Map<Expression<Func<TModel, bool>>>(where);
+                return Mapper.Map<IEnumerable<TModel>, IEnumerable<TEntity>>(repository.filter(newWhere));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public virtual void saveChanges()
         {
-            unit.Commit();
+            try
+            {
+                unit.Commit();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        #endregion
+
+        #region Métodos Privados
+
+        private TModel convertEntityToModel(TEntity entity)
+        {
+            Mapper.Initialize(cfg => cfg.CreateMap<TEntity, TModel>());
+            return Mapper.Map<TEntity, TModel>(entity);
+        }
+
+        private TEntity convertModelToEntity(TModel model)
+        {
+            Mapper.Initialize(cfg => cfg.CreateMap<TModel, TEntity>());
+            return Mapper.Map<TModel, TEntity>(model);
         }
 
         #endregion

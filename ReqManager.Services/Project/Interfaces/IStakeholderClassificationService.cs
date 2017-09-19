@@ -1,4 +1,5 @@
-﻿using ReqManager.Model;
+﻿using ReqManager.Entities.Acess;
+using ReqManager.Model;
 using ReqManager.Services.Estructure;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ReqManager.Services.Project.Interfaces
 {
-    public interface IStakeholderClassificationService : IService<StakeholderClassification>
+    public interface IStakeholderClassificationService : IService<StakeholderClassificationEntity>
     {
 
     }

@@ -1,5 +1,6 @@
 ﻿using ReqManager.Data.Infrastructure;
 using ReqManager.Data.Repositories.Project.Interfaces;
+using ReqManager.Entities.Project;
 using ReqManager.Model;
 using ReqManager.Services.Estructure;
 using ReqManager.Services.Project.Interfaces;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace ReqManager.Services.Project.Classes
 {
-    public class StakeholdersService : ServiceBase<Stakeholders>, IStakeholdersService
+    public class StakeholdersService : ServiceBase<Stakeholders, StakeholdersEntity>, IStakeholdersService
     {
         public StakeholdersService(IStakeholderRepository repository, IUnitOfWork unit) : base(repository, unit)
         {

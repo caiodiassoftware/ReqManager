@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace ReqManager.Services.Estructure
 {
-    public interface IService<T> where T : class
+    public interface IService<TEntity> where TEntity : class
     {
-        void add(T entity);
-        void update(T entity);
-        void delete(T entity);
-        void delete(Expression<Func<T, bool>> where);
-        T get(int? id);
-        T get(Expression<Func<T, bool>> where);
-        IEnumerable<T> getAll();
-        IEnumerable<T> filter(Expression<Func<T, bool>> where);
+        void add(TEntity entity);
+        void update(TEntity entity);
+        void delete(TEntity entity);
+        void delete(Expression<Func<TEntity, bool>> where);
+        TEntity get(int? id);
+        TEntity get(Expression<Func<TEntity, bool>> where);
+        IEnumerable<TEntity> getAll();
+        IEnumerable<TEntity> filter(Expression<Func<TEntity, bool>> where);
         void saveChanges();
     }
 }

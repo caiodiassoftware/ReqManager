@@ -44,12 +44,42 @@
     <Compile Include="Acess\ControllerActionEntity.cs" />
     <Compile Include="Acess\RoleControllerActionEntity.cs" />
     <Compile Include="Acess\RoleEntity.cs" />
+    <Compile Include="Artifact\ArtifactTypeEntity.cs" />
+    <Compile Include="Artifact\HistoryProjectArtifactEntity.cs" />
+    <Compile Include="Artifact\ProjectArtifactEntity.cs" />
+    <Compile Include="Link\AttributesEntity.cs" />
+    <Compile Include="Link\AttributesTypeLinkEntity.cs" />
+    <Compile Include="Link\LinkArtifactAttributesEntity.cs" />
+    <Compile Include="Link\LinkBetweenRequirementsArtifactsEntity.cs" />
+    <Compile Include="Link\LinkBetweenRequirementsEntity.cs" />
+    <Compile Include="Link\LinkRequirementAttributesEntity.cs" />
+    <Compile Include="Link\TypeLinkEntity.cs" />
+    <Compile Include="Project\HistoryProjectEntity.cs" />
+    <Compile Include="Project\MeasureImportanceEntity.cs" />
+    <Compile Include="Project\ProjectEntity.cs" />
+    <Compile Include="Project\ProjectPhasesEntity.cs" />
+    <Compile Include="Project\ProjectRequirementsEntity.cs" />
     <Compile Include="Project\StakeholderClassificationEntity.cs" />
     <Compile Include="Acess\UserEntity.cs" />
+    <Compile Include="Project\StakeholderRequirementEntity.cs" />
+    <Compile Include="Project\StakeholdersEntity.cs" />
+    <Compile Include="Project\StakeholdersProjectEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Requirement\RequirementActionHistoryEntity.cs" />
+    <Compile Include="Requirement\RequirementEntity.cs" />
+    <Compile Include="Requirement\RequirementRationaleEntity.cs" />
+    <Compile Include="Requirement\RequirementStatusEntity.cs" />
+    <Compile Include="Requirement\RequirementTaskEntity.cs" />
+    <Compile Include="Requirement\RequirementTemplateEntity.cs" />
+    <Compile Include="Task\HistoryTaskEntity.cs" />
     <Compile Include="Task\StatusTaskEntity.cs" />
     <Compile Include="Acess\UserRoleEntity.cs" />
+    <Compile Include="Task\SubtaskEntity.cs" />
+    <Compile Include="Task\TaskEntity.cs" />
+    <Compile Include="Task\TaskTypeEntity.cs" />
+    <Compile Include="Task\TaskTypeTemplateEntity.cs" />
     <Compile Include="Task\UserTaskEntity.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

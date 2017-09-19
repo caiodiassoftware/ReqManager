@@ -12,7 +12,7 @@ using ReqManager.Entities.Acess;
 
 namespace ReqManager.Services.Acess.Classes
 {
-    public class RoleService : ServiceBase<Role>, IRoleService
+    public class RoleService : ServiceBase<Role, RoleEntity>, IRoleService
     {
         public RoleService(IRoleRepository repository, IUnitOfWork unit) : base(repository, unit)
         {

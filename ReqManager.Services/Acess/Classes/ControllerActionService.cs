@@ -12,7 +12,7 @@ using ReqManager.Entities;
 
 namespace ReqManager.Services.Acess
 {
-    public class ControllerActionService : ServiceBase<ControllerActionEntity>, IControllerActionService
+    public class ControllerActionService : ServiceBase<ControllerAction, ControllerActionEntity>, IControllerActionService
     {
         public ControllerActionService(IControllerActionRepository repository, IUnitOfWork unit) : base(repository, unit)
         {

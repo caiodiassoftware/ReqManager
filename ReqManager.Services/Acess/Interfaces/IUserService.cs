@@ -9,7 +9,7 @@ using ReqManager.Entities.Acess;
 
 namespace ReqManager.Services.Acess.Interfaces
 {
-    public interface IUserService : IService<Users>
+    public interface IUserService : IService<UserEntity>
     {
         Users Login(String login, String senha);
     }

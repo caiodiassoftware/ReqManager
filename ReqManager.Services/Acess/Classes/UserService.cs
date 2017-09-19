@@ -5,10 +5,11 @@ using ReqManager.Data.InterfacesRepositories;
 using ReqManager.Model;
 using System.Linq;
 using System.Collections.Generic;
+using ReqManager.Entities.Acess;
 
 namespace ReqManager.Services.Acess.Classes
 {
-    public class UserService : ServiceBase<Users>, IUserService
+    public class UserService : ServiceBase<Users, UserEntity>, IUserService
     {
         public UserService(IUserRepository repository, IUnitOfWork unit) : base(repository, unit)
         {

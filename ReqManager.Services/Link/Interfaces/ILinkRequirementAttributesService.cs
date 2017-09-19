@@ -1,4 +1,5 @@
-﻿using ReqManager.Model;
+﻿using ReqManager.Entities.Link;
+using ReqManager.Model;
 using ReqManager.Services.Estructure;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ReqManager.Services.Link.Interfaces
 {
-    public interface ILinkRequirementAttributesService : IService<LinkRequirementAttributes>
+    public interface ILinkRequirementAttributesService : IService<LinkRequirementAttributesEntity>
     {
 
     }

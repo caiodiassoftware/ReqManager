@@ -7,7 +7,7 @@ using ReqManager.Entities.Acess;
 
 namespace ReqManager.Services.Acess.Classes
 {
-    public class RoleControllerActionService : ServiceBase<RoleControllerActionEntity>, IRoleControllerActionService
+    public class RoleControllerActionService : ServiceBase<RoleControllerAction, RoleControllerActionEntity>, IRoleControllerActionService
     {
         public RoleControllerActionService(IRoleControllerActionRepository repository, IUnitOfWork unit) : base(repository, unit)
         {

@@ -1,4 +1,5 @@
-﻿using ReqManager.Model;
+﻿using ReqManager.Entities.Requirement;
+using ReqManager.Model;
 using ReqManager.Services.Estructure;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ReqManager.Services.Requirements.Interfaces
 {
-    public interface IRequirementService : IService<Requirement>
+    public interface IRequirementService : IService<RequirementEntity>
     {
 
     }

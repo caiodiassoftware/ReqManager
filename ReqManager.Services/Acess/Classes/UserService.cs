@@ -6,6 +6,7 @@ using ReqManager.Model;
 using System.Linq;
 using System.Collections.Generic;
 using ReqManager.Entities.Acess;
+using AutoMapper;
 
 namespace ReqManager.Services.Acess.Classes
 {

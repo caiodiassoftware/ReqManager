@@ -26,6 +26,8 @@ namespace ReqManager.Controllers
 
         public override ActionResult Create()
         {
+            var teste = roleService.getAll();
+
             ViewBag.RoleID = new SelectList(roleService.getAll(), "RoleID", "description");
             ViewBag.UserID = new SelectList(userService.getAll(), "UserID", "name");
             return View();

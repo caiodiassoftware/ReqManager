@@ -19,5 +19,18 @@ namespace ReqManager.Services.Acess.Classes
         {
 
         }
+
+        public override IEnumerable<RoleEntity> getAll()
+        {
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<Role, RoleEntity>();
+                cfg.CreateMap<RoleEntity, Role>().
+                ForMember(dest => dest.RoleControllerAction, opt => opt.Ignore()).
+                ForMember(x => x.UserRole, opt => opt.Ignore());
+            });
+
+            return Mapper.Map<IEnumerable<Role>, IEnumerable<RoleEntity>>(repository.getAll());
+        }
     }
 }

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ReqManager.Entities.Acess;
+using AutoMapper;
 
 namespace ReqManager.Services.Acess.Classes
 {

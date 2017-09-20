@@ -14,12 +14,5 @@ namespace ReqManager.Services.Acess.Classes
         {
 
         }
-
-        public override IEnumerable<UserRoleEntity> getAll()
-        {
-            repository.getAll();
-
-            return base.getAll();
-        }
     }
 }

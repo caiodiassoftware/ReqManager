@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ReqManager.Entities.Task;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -14,5 +15,6 @@ namespace ReqManager.Entities.Acess
         [MinLength(5)]
         [MaxLength(50)]
         public string description { get; set; }
+
     }
 }

@@ -19,8 +19,8 @@ namespace ReqManager.Services.Estructure
             this.unit = unit;
             Mapper.Initialize(cfg =>
             {
-                cfg.CreateMap<TModel, TEntity>();
-                cfg.CreateMap<TEntity, TModel>();
+                cfg.CreateMap<TModel, TEntity>().ForAllMembers(x => x.Ignore());
+                cfg.CreateMap<TEntity, TModel>().ForAllMembers(x => x.Ignore());
             });
         }
 

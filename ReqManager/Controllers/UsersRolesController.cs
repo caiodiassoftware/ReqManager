@@ -15,15 +15,19 @@ namespace ReqManager.Controllers
 {
     public class UsersRolesController : BaseController<UserRoleEntity>
     {
-        public UsersRolesController(IUserRoleService service) : base(service)
-        {
+        private IRoleService roleService { get; set; }
+        private IUserService userService { get; set; }
 
+        public UsersRolesController(IUserRoleService service, IRoleService roleService, IUserService userService) : base(service)
+        {
+            this.roleService = roleService;
+            this.userService = userService;
         }
 
         public override ActionResult Create()
         {
-            ViewBag.RoleID = new SelectList(Service.getAll().Select(r => r.Role), "RoleID", "description");
-            ViewBag.UserID = new SelectList(Service.getAll().Select(u => u.User), "UserID", "name");
+            ViewBag.RoleID = new SelectList(roleService.getAll(), "RoleID", "description");
+            ViewBag.UserID = new SelectList(userService.getAll(), "UserID", "name");
             return View();
         }
 

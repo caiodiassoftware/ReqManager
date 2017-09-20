@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ReqManager.Entities.Acess.RoleControllerActionEntity>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RoleID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ControllerActionID)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoleID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ControllerActionID)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.RoleControllerActionID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.RoleControllerActionID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.RoleControllerActionID })
+        </td>
+    </tr>
+}
+
+</table>

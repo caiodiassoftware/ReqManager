@@ -15,14 +15,11 @@ namespace ReqManager.Services.Acess.Classes
 
         }
 
-        public IEnumerable<Role> GetRoles()
+        public override IEnumerable<UserRoleEntity> getAll()
         {
-            return ((IUserRoleRepository)repository).GetRoles();
-        }
+            repository.getAll();
 
-        public IEnumerable<Users> GetUsers()
-        {
-            return ((IUserRoleRepository)repository).GetUsers();
+            return base.getAll();
         }
     }
 }

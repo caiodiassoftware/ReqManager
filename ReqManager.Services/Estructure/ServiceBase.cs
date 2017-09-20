@@ -17,7 +17,11 @@ namespace ReqManager.Services.Estructure
         {
             this.repository = repository;
             this.unit = unit;
-            Mapper.Initialize(cfg => cfg.CreateMap<TModel, TEntity>());
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<TModel, TEntity>();
+                cfg.CreateMap<TEntity, TModel>();
+            });
         }
 
         #endregion
@@ -144,7 +148,7 @@ namespace ReqManager.Services.Estructure
 
         #endregion
 
-        #region Métodos Privados
+        #region Privates Methods
 
         private TModel convertEntityToModel(TEntity entity)
         {

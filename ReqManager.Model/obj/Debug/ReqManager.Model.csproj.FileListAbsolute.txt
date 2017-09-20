@@ -7,3 +7,9 @@ C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Model\bin\Debug\ReqManager.M
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Model\obj\Debug\ReqManager.Model.csprojResolveAssemblyReference.cache
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Model\obj\Debug\ReqManager.Model.dll
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Model\obj\Debug\ReqManager.Model.pdb
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Model\bin\Debug\ReqManager.Model.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Model\bin\Debug\ReqManager.Model.pdb
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Model\obj\Debug\ReqManager.Model.csproj.CoreCompileInputs.cache
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Model\obj\Debug\ReqManager.Model.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Model\obj\Debug\ReqManager.Model.pdb
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Model\obj\Debug\ReqManager.Model.csprojResolveAssemblyReference.cache

@@ -99,9 +99,23 @@ namespace ReqManager.ManagerController
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public virtual ActionResult Edit(BindAttribute bindAttribute)
+        public virtual ActionResult Edit(T entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    Service.update(entity);
+                    Service.saveChanges();
+                    return RedirectToAction("Index");
+                }
+
+                return View(entity);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         [HttpPost, ActionName("Delete")]

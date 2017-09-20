@@ -170,6 +170,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ControllerActionController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\RoleControllerActionController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UsersRolesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -225,6 +229,26 @@
     <Content Include="Views\ControllerAction\Details.cshtml" />
     <Content Include="Views\ControllerAction\Edit.cshtml" />
     <Content Include="Views\ControllerAction\Index.cshtml" />
+    <Content Include="Views\Role\Create.cshtml" />
+    <Content Include="Views\Role\Delete.cshtml" />
+    <Content Include="Views\Role\Details.cshtml" />
+    <Content Include="Views\Role\Edit.cshtml" />
+    <Content Include="Views\Role\Index.cshtml" />
+    <Content Include="Views\RoleControllerAction\Create.cshtml" />
+    <Content Include="Views\RoleControllerAction\Delete.cshtml" />
+    <Content Include="Views\RoleControllerAction\Details.cshtml" />
+    <Content Include="Views\RoleControllerAction\Edit.cshtml" />
+    <Content Include="Views\RoleControllerAction\Index.cshtml" />
+    <Content Include="Views\User\Create.cshtml" />
+    <Content Include="Views\User\Delete.cshtml" />
+    <Content Include="Views\User\Details.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\UsersRoles\Create.cshtml" />
+    <Content Include="Views\UsersRoles\Delete.cshtml" />
+    <Content Include="Views\UsersRoles\Details.cshtml" />
+    <Content Include="Views\UsersRoles\Edit.cshtml" />
+    <Content Include="Views\UsersRoles\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -213,3 +213,5 @@ C:\Users\maquina06\Desktop\ReqManager\ReqManager\bin\ReqManager.Entities.dll
 C:\Users\maquina06\Desktop\ReqManager\ReqManager\bin\ReqManager.Entities.pdb
 C:\Users\maquina06\Desktop\ReqManager\ReqManager\bin\AutoMapper.dll
 C:\Users\maquina06\Desktop\ReqManager\ReqManager\bin\AutoMapper.xml
+C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\ReqManager.Entities.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\ReqManager.Entities.pdb

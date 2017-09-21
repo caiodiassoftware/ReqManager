@@ -11,6 +11,6 @@ namespace ReqManager.Services.Acess.Interfaces
 {
     public interface IUserService : IService<UserEntity>
     {
-        Users Login(String login, String senha);
+        UserEntity Login(String login, String senha);
     }
 }

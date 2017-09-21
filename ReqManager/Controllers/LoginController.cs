@@ -1,17 +1,33 @@
-﻿using ReqManager.Services.Acess.Interfaces;
+﻿using ReqManager.Entities.Acess;
+using ReqManager.Services.Acess.Interfaces;
+using ReqManager.Services.InterfacesServices;
 using ReqManager.ViewModels;
 using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
+using System.Linq;
 
 namespace ReqManager.Controllers
 {
     public class LoginController : Controller
     {
         private readonly IUserService userService;
+        private readonly IControllerActionService caService;
+        private readonly IRoleControllerActionService rcaService;
+        private readonly IRoleService roleService;
+        private readonly IUserRoleService urService;
 
-        public LoginController(IUserService userService)
+        public LoginController(IUserService userService, 
+            IControllerActionService caService, 
+            IRoleControllerActionService rcaService,
+            IRoleService roleService,
+            IUserRoleService urService)
         {
             this.userService = userService;
+            this.caService = caService;
+            this.rcaService = rcaService;
+            this.roleService = roleService;
+            this.urService = urService;
         }
 
         public ActionResult Login()
@@ -24,34 +40,39 @@ namespace ReqManager.Controllers
         {
             try
             {
-                //if (ModelState.IsValid)
-                //{
-                //    List<ControllerActionViewModel> list = new List<ControllerActionViewModel>();
-                //    Users user = userService.Login(model.login, model.senha);
-                //    if (user != null)
-                //    {
-                //        Session["user"] = user;
+                if (ModelState.IsValid)
+                {
+                    List<ControllerActionViewModel> list = new List<ControllerActionViewModel>();
+                    UserEntity user = userService.Login(model.login, model.senha);
+                    if (user != null)
+                    {
+                        Session["user"] = user;
 
-                //        var roles = user.UserRole.Select(ur => ur.Role);
-                //        var rca = roles.Select(r => r.RoleControllerAction);
-                //        var ca = rca.Select(x => x.Select( xa => xa.ControllerAction));
-                //        var teste = ca.Select(la => la.Select(l =>
-                //            new ControllerActionViewModel
-                //            {
-                //                Action = l.action,
-                //                Controller = l.controller,
-                //                IsGet = l.IsGet,
-                //                ControllerActionID = l.ControllerActionID                                
-                //            }
-                //        ));
+                        var roles = roleService.getAll().ToList();
+                        var rcas = rcaService.getAll().ToList();
+                        var cas = caService.getAll().ToList();
+                        var userroles = urService.getAll().ToList();
 
-                //        foreach (var item in teste)                        
-                //            list.AddRange(item);
+                        var controllerActions = from ur in userroles
+                                                join role in roles on ur.RoleID equals role.RoleID
+                                                join rca in rcas on role.RoleID equals rca.RoleID
+                                                join ca in cas on rca.ControllerActionID equals ca.ControllerActionID
+                                                where ur.UserID == user.UserID
+                                                select new ControllerActionViewModel
+                                                {
+                                                    Action = ca.action,
+                                                    Controller = ca.controller,
+                                                    IsGet = ca.IsGet,
+                                                    ControllerActionID = ca.ControllerActionID
+                                                };
 
-                //        Session["controllerActions"] = list;
-                //        Response.Redirect(@"~/Users/Index", false);
-                //    }                        
-                //}
+                        foreach (var item in controllerActions.ToList())
+                            list.Add(item);
+
+                        Session["controllerActions"] = list;
+                        Response.Redirect(@"~/Users/Index", false);
+                    }
+                }
             }
             catch (Exception ex)
             {

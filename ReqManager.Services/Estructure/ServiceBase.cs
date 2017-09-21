@@ -159,7 +159,7 @@ namespace ReqManager.Services.Estructure
 
         #region Privates Methods
 
-        private TModel convertEntityToModel(TEntity entity)
+        protected TModel convertEntityToModel(TEntity entity)
         {
             Mapper.Initialize(cfg =>
             {
@@ -171,7 +171,7 @@ namespace ReqManager.Services.Estructure
             return Mapper.Map<TEntity, TModel>(entity);
         }
 
-        private TEntity convertModelToEntity(TModel model)
+        protected TEntity convertModelToEntity(TModel model)
         {
             Mapper.Initialize(cfg =>
             {

@@ -16,10 +16,10 @@ namespace ReqManager.Services.Acess.Classes
         {
         }
 
-        public Users Login(string login, string password)
+        public UserEntity Login(string login, string password)
         {
-            return null;
-            //return repository.filter(u => u.login.Equals(login) && u.password.Equals(password)).FirstOrDefault();
+            Users user = repository.filter(u => u.login.Equals(login) && u.password.Equals(password)).FirstOrDefault();
+            return convertModelToEntity(user);
         }    
     }
 }

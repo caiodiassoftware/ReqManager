@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace ReqManager.ManagerController
 {
@@ -156,8 +157,11 @@ namespace ReqManager.ManagerController
                     controllerName = "Login";
                 }
 
-
-                //Response.Redirect("~/" + controllerName + "/" + actionName, false);
+                filterContext.Result = new RedirectToRouteResult(
+                    new RouteValueDictionary
+                    { { "Controller", controllerName },
+                        { "Action", actionName } });
+                base.OnActionExecuting(filterContext);
             }
             catch (Exception ex)
             {

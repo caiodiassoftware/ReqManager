@@ -20,6 +20,6 @@ namespace ReqManager.Services.Acess.Classes
         {
             return null;
             //return repository.filter(u => u.login.Equals(login) && u.password.Equals(password)).FirstOrDefault();
-        }
+        }    
     }
 }

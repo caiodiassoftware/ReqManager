@@ -1,4 +1,4 @@
-﻿@model ReqManager.Entities.Task.UserRoleEntity
+﻿@model ReqManager.ViewModels.UserRoleViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -11,19 +11,11 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Role.description)
+            @Html.DisplayNameFor(model => model.roleDescription)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Role.description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.User.name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.User.name)
+            @Html.DisplayFor(model => model.userName)
         </dd>
 
     </dl>

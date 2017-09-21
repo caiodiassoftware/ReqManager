@@ -10,6 +10,7 @@ using ReqManager.Data.DataAcess;
 using ReqManager.Entities.Task;
 using ReqManager.ManagerController;
 using ReqManager.Services.Acess.Interfaces;
+using ReqManager.ViewModels;
 
 namespace ReqManager.Controllers
 {
@@ -24,10 +25,24 @@ namespace ReqManager.Controllers
             this.userService = userService;
         }
 
+        public override ActionResult Index()
+        {
+            List<UserRoleViewModel> view = new List<UserRoleViewModel>();
+
+            foreach (var item in Service.getAll().ToList())
+            {
+                UserRoleViewModel ur = new UserRoleViewModel();
+                ur.UserRoleID = item.UserRoleID;
+                ur.roleDescription = roleService.get(item.RoleID).description;
+                ur.userName = userService.get(item.UserID).name;
+                view.Add(ur);
+            }
+
+            return View(view);
+        }
+
         public override ActionResult Create()
         {
-            var teste = roleService.getAll();
-
             ViewBag.RoleID = new SelectList(roleService.getAll(), "RoleID", "description");
             ViewBag.UserID = new SelectList(userService.getAll(), "UserID", "name");
             return View();
@@ -44,8 +59,8 @@ namespace ReqManager.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.RoleID = new SelectList(Service.getAll().Select(r => r.Role), "RoleID", "description");
-            ViewBag.UserID = new SelectList(Service.getAll().Select(u => u.User), "UserID", "name");
+            ViewBag.RoleID = new SelectList(roleService.getAll(), "RoleID", "description");
+            ViewBag.UserID = new SelectList(userService.getAll(), "UserID", "name");
             return View(userRoleEntity);
         }
 
@@ -64,14 +79,14 @@ namespace ReqManager.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.RoleID = new SelectList(Service.getAll().Select(r => r.Role), "RoleID", "description");
-            ViewBag.UserID = new SelectList(Service.getAll().Select(u => u.User), "UserID", "name");
+            ViewBag.RoleID = new SelectList(roleService.getAll(), "RoleID", "description");
+            ViewBag.UserID = new SelectList(userService.getAll(), "UserID", "name");
             return View(userRoleEntity);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserRoleID,RoleID,UserID")] UserRoleEntity userRoleEntity)
+        public override ActionResult Edit([Bind(Include = "UserRoleID,RoleID,UserID")] UserRoleEntity userRoleEntity)
         {
             if (ModelState.IsValid)
             {
@@ -80,8 +95,8 @@ namespace ReqManager.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.RoleID = new SelectList(Service.getAll().Select(r => r.Role), "RoleID", "description");
-            ViewBag.UserID = new SelectList(Service.getAll().Select(u => u.User), "UserID", "name");
+            ViewBag.RoleID = new SelectList(roleService.getAll(), "RoleID", "description");
+            ViewBag.UserID = new SelectList(userService.getAll(), "UserID", "name");
             return View(userRoleEntity);
         }
     }

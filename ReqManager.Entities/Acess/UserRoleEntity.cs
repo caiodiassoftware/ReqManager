@@ -16,8 +16,5 @@ namespace ReqManager.Entities.Task
         public int RoleID { get; set; }
         [Required]
         public int UserID { get; set; }
-
-        public virtual RoleEntity Role { get; set; }
-        public virtual UserEntity User { get; set; }
     }
 }

@@ -10,21 +10,21 @@ namespace ReqManager.Model
     {
         public Users()
         {
-            this.UserRole = new HashSet<UserRole>();
-            this.StakeHolders = new HashSet<Stakeholders>();
-            this.ProjectArtifact = new HashSet<ProjectArtifact>();
-            this.LinkRequirementsArtifacts = new HashSet<LinkBetweenRequirementsArtifacts>();
-            this.LinkRequirements = new HashSet<LinkBetweenRequirement>();
-            this.HistoryProject = new HashSet<HistoryProject>();
-            this.Project = new HashSet<Project>();
-            this.ProjectRequirement = new HashSet<ProjectRequirements>();
-            this.HistoryTask = new HashSet<HistoryTask>();
-            this.TaskTypeTemplate = new HashSet<TaskTypeTemplate>();
-            this.Requirement = new HashSet<Requirement>();
-            this.RequirementTemplate = new HashSet<RequirementTemplate>();
-            this.UserTask = new HashSet<UserTask>();
-            this.Task = new HashSet<Task>();
-            this.TypeLink = new HashSet<TypeLink>();
+            this.UserRoleModel = new HashSet<UserRole>();
+            this.StakeHoldersModel = new HashSet<Stakeholders>();
+            this.ProjectArtifactModel = new HashSet<ProjectArtifact>();
+            this.LinkRequirementsArtifactsModel = new HashSet<LinkBetweenRequirementsArtifacts>();
+            this.LinkRequirementsModel = new HashSet<LinkBetweenRequirement>();
+            this.HistoryProjectModel = new HashSet<HistoryProject>();
+            this.ProjectModel = new HashSet<Project>();
+            this.ProjectRequirementModel = new HashSet<ProjectRequirements>();
+            this.HistoryTaskModel = new HashSet<HistoryTask>();
+            this.TaskTypeTemplateModel = new HashSet<TaskTypeTemplate>();
+            this.RequirementModel = new HashSet<Requirement>();
+            this.RequirementTemplateModel = new HashSet<RequirementTemplate>();
+            this.UserTaskModel = new HashSet<UserTask>();
+            this.TaskModel = new HashSet<Task>();
+            this.TypeLinkModel = new HashSet<TypeLink>();
         }
 
         [Key]
@@ -59,20 +59,20 @@ namespace ReqManager.Model
         [Required]
         public Boolean active { get; set; }
 
-        public virtual ICollection<UserRole> UserRole { get; set; }
-        public virtual ICollection<Stakeholders> StakeHolders { get; set; }
-        public virtual ICollection<ProjectArtifact> ProjectArtifact { get; set; }
-        public virtual ICollection<LinkBetweenRequirementsArtifacts> LinkRequirementsArtifacts { get; set; }
-        public virtual ICollection<LinkBetweenRequirement> LinkRequirements { get; set; }
-        public virtual ICollection<HistoryProject> HistoryProject { get; set; }
-        public virtual ICollection<Project> Project { get; set; }
-        public virtual ICollection<ProjectRequirements> ProjectRequirement { get; set; }
-        public virtual ICollection<HistoryTask> HistoryTask { get; set; }
-        public virtual ICollection<TaskTypeTemplate> TaskTypeTemplate { get; set; }
-        public virtual ICollection<Requirement> Requirement { get; set; }
-        public virtual ICollection<RequirementTemplate> RequirementTemplate { get; set; }
-        public virtual ICollection<UserTask> UserTask { get; set; }
-        public virtual ICollection<Task> Task { get; set; }
-        public virtual ICollection<TypeLink> TypeLink { get; set; }
+        public virtual ICollection<UserRole> UserRoleModel { get; set; }
+        public virtual ICollection<Stakeholders> StakeHoldersModel { get; set; }
+        public virtual ICollection<ProjectArtifact> ProjectArtifactModel { get; set; }
+        public virtual ICollection<LinkBetweenRequirementsArtifacts> LinkRequirementsArtifactsModel { get; set; }
+        public virtual ICollection<LinkBetweenRequirement> LinkRequirementsModel { get; set; }
+        public virtual ICollection<HistoryProject> HistoryProjectModel { get; set; }
+        public virtual ICollection<Project> ProjectModel { get; set; }
+        public virtual ICollection<ProjectRequirements> ProjectRequirementModel { get; set; }
+        public virtual ICollection<HistoryTask> HistoryTaskModel { get; set; }
+        public virtual ICollection<TaskTypeTemplate> TaskTypeTemplateModel { get; set; }
+        public virtual ICollection<Requirement> RequirementModel { get; set; }
+        public virtual ICollection<RequirementTemplate> RequirementTemplateModel { get; set; }
+        public virtual ICollection<UserTask> UserTaskModel { get; set; }
+        public virtual ICollection<Task> TaskModel { get; set; }
+        public virtual ICollection<TypeLink> TypeLinkModel { get; set; }
     }
 }

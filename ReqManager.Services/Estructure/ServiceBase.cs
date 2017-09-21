@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ReqManager.Data.Infrastructure;
+using ReqManager.Utils.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace ReqManager.Services.Estructure
             {
                 cfg.CreateMap<TModel, TEntity>();
                 cfg.CreateMap<TEntity, TModel>();
+                cfg.AddGlobalIgnore("Model");
             });
         }
 
@@ -113,6 +115,13 @@ namespace ReqManager.Services.Estructure
         {
             try
             {
+                Mapper.Initialize(cfg =>
+                {
+                    cfg.CreateMap<TModel, TEntity>();
+                    cfg.CreateMap<TEntity, TModel>();
+                    cfg.AddGlobalIgnore("Model");
+                    cfg.IgnoreUnmapped();
+                });
                 return Mapper.Map<IEnumerable<TModel>, IEnumerable<TEntity>>(repository.getAll());
             }
             catch (Exception ex)
@@ -152,13 +161,25 @@ namespace ReqManager.Services.Estructure
 
         private TModel convertEntityToModel(TEntity entity)
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<TEntity, TModel>());
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<TModel, TEntity>();
+                cfg.CreateMap<TEntity, TModel>();
+                cfg.IgnoreUnmapped();
+            });
+            var obj = Mapper.Map<TEntity, TModel>(entity);
             return Mapper.Map<TEntity, TModel>(entity);
         }
 
         private TEntity convertModelToEntity(TModel model)
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<TModel, TEntity>());
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<TModel, TEntity>();
+                cfg.CreateMap<TEntity, TModel>();
+                cfg.IgnoreUnmapped();
+            });
+            var obj = Mapper.Map<TModel, TEntity>(model);
             return Mapper.Map<TModel, TEntity>(model);
         }
 

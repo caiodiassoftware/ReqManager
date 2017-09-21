@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ReqManager.Entities.Acess;
 using AutoMapper;
+using System.Reflection;
 
 namespace ReqManager.Services.Acess.Classes
 {
@@ -18,19 +19,6 @@ namespace ReqManager.Services.Acess.Classes
         public RoleService(IRoleRepository repository, IUnitOfWork unit) : base(repository, unit)
         {
 
-        }
-
-        public override IEnumerable<RoleEntity> getAll()
-        {
-            Mapper.Initialize(cfg =>
-            {
-                cfg.CreateMap<Role, RoleEntity>();
-                cfg.CreateMap<RoleEntity, Role>().
-                ForMember(dest => dest.RoleControllerAction, opt => opt.Ignore()).
-                ForMember(x => x.UserRole, opt => opt.Ignore());
-            });
-
-            return Mapper.Map<IEnumerable<Role>, IEnumerable<RoleEntity>>(repository.getAll());
         }
     }
 }

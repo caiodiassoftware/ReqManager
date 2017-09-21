@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ReqManager.Entities.Task.UserRoleEntity>
+﻿@model IEnumerable<ReqManager.ViewModels.UserRoleViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -12,10 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Role.description)
+            @Html.DisplayNameFor(model => model.roleDescription)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.User.name)
+            @Html.DisplayNameFor(model => model.userName)
         </th>
         <th></th>
     </tr>
@@ -23,10 +23,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Role.description)
+            @Html.DisplayFor(modelItem => item.roleDescription)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.User.name)
+            @Html.DisplayFor(modelItem => item.userName)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.UserRoleID }) |

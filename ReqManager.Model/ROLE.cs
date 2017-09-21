@@ -10,8 +10,8 @@ namespace ReqManager.Model
     {
         public Role()
         {
-            this.RoleControllerAction = new HashSet<RoleControllerAction>();
-            this.UserRole = new HashSet<UserRole>();
+            this.RoleControllerActionModel = new HashSet<RoleControllerAction>();
+            this.UserRoleModel = new HashSet<UserRole>();
         }
     
         [Key]
@@ -20,7 +20,7 @@ namespace ReqManager.Model
         [MaxLength(50)]
         public string description { get; set; }
     
-        public virtual ICollection<RoleControllerAction> RoleControllerAction { get; set; }
-        public virtual ICollection<UserRole> UserRole { get; set; }
+        public virtual ICollection<RoleControllerAction> RoleControllerActionModel { get; set; }
+        public virtual ICollection<UserRole> UserRoleModel { get; set; }
     }
 }

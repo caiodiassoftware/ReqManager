@@ -279,6 +279,10 @@
       <Project>{8c9902b2-9c5c-4c2a-ad99-9d92bd4f970a}</Project>
       <Name>ReqManager.Services</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ReqManager.Utils\ReqManager.Utils.csproj">
+      <Project>{1d612b68-4a04-4fd0-a09a-7816fbab867b}</Project>
+      <Name>ReqManager.Utils</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -72,6 +72,10 @@ namespace ReqManager.Controllers
                         Session["controllerActions"] = list;
                         Response.Redirect(@"~/Users/Index", false);
                     }
+                    else
+                    {
+                        Response.Redirect(@"~/Login/Login", false);
+                    }
                 }
             }
             catch (Exception ex)

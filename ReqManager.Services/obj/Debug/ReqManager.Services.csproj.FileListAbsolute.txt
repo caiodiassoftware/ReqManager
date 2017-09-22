@@ -57,3 +57,5 @@ C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Debug\ReqManager.Entit
 C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Debug\AutoMapper.xml
 C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Debug\ReqManager.Utils.dll
 C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Debug\ReqManager.Utils.pdb
+C:\Users\maquina06\Desktop\ReqManager\ReqManager.Services\bin\Debug\ReqManager.Utils.dll
+C:\Users\maquina06\Desktop\ReqManager\ReqManager.Services\bin\Debug\ReqManager.Utils.pdb

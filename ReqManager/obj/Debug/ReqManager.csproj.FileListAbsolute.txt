@@ -217,3 +217,5 @@ C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\ReqManager.Entities.dll
 C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\ReqManager.Entities.pdb
 C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\ReqManager.Utils.dll
 C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\ReqManager.Utils.pdb
+C:\Users\maquina06\Desktop\ReqManager\ReqManager\bin\ReqManager.Utils.dll
+C:\Users\maquina06\Desktop\ReqManager\ReqManager\bin\ReqManager.Utils.pdb

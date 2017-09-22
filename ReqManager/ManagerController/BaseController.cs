@@ -1,4 +1,5 @@
-﻿using ReqManager.Services.Estructure;
+﻿using ReqManager.Entities.Acess;
+using ReqManager.Services.Estructure;
 using ReqManager.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -142,10 +143,11 @@ namespace ReqManager.ManagerController
 
                 if (Session["user"] != null)
                 {
-                    //Users user = (Users)Session["user"];
+                    UserEntity user = (UserEntity)Session["user"];
                     List<ControllerActionViewModel> controllerActions = (List<ControllerActionViewModel>)Session["controllerActions"];
 
-                    if (controllerActions.Where(x => x.Action.Equals(actionName) && x.Controller.Equals(controllerName + "Controller")).Count().Equals(0))
+                    if (controllerActions.Where(x => x.Action.Equals(actionName) &&
+                    x.Controller.Equals(controllerName + "Controller")).Count().Equals(0))
                     {
                         actionName = "Error";
                         controllerName = "Shared";

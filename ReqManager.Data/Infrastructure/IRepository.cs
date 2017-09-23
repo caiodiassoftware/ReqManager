@@ -12,8 +12,8 @@ namespace ReqManager.Data.Infrastructure
         void add(T entity);
         void add(IEnumerable<T> entities);
         void update(T entity);
-        void delete(T entity);
-        void delete(IEnumerable<T> entities);
+        void delete(int? id);
+        void delete(List<int> entitiesID);
         void delete(Expression<Func<T, bool>> where);
         T get(int? id);
         T get(Expression<Func<T, bool>> where);

@@ -10,6 +10,8 @@ namespace ReqManager.Model
     {
         [Key]
         public int UserTaskID { get; set; }
+        public int UserID { get; set; }
+        public int TaskID { get; set; }
         public DateTime creationDate { get; set; }
     
         public virtual Users User { get; set; }

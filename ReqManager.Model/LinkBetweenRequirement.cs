@@ -15,6 +15,8 @@ namespace ReqManager.Model
     
         [Key]
         public int LinkRequirementsID { get; set; }
+        public int UserID { get; set; }
+        public int TypeLinkID { get; set; }
         [Required]  
         public DateTime creationDate { get; set; }
         [Required]

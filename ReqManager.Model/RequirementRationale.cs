@@ -10,6 +10,12 @@ namespace ReqManager.Model
     {
         [Key]
         public int RequirementRationaleID { get; set; }
+        public int UserID { get; set; }
+        public int StakeholdersProjectID { get; set; }
+        public int MeasureImportanceID { get; set; }
+        public int RequirementID { get; set; }
+        public int RequirementTypeID { get; set; }
+        public int RequirementStatusID { get; set; }
         [Required]
         public string description { get; set; }
         [Required]

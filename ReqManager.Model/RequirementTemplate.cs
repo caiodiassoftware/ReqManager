@@ -16,11 +16,13 @@ namespace ReqManager.Model
     
         [Key]
         public int RequirementTemplateID { get; set; }
+        public int UserID { get; set; }
         [Required]
         [MaxLength(50), MinLength(6)]
         public string description { get; set; }
         [Required]
         public string templateHtml { get; set; }
+        [Required]
         public DateTime createDate { get; set; }
     
         public virtual Users Users { get; set; }

@@ -10,21 +10,21 @@ using System.Threading.Tasks;
 
 namespace ReqManager.Data.Infrastructure
 {
-    public abstract class RepositoryBase<T> where T : class
+    public abstract class RepositoryBase<TModel> where TModel : class
     {
         #region Constructor
 
         protected RepositoryBase(IDbFactory dbFactory)
         {
             DbFactory = dbFactory;
-            dbSet = DbContext.Set<T>();
+            dbSet = DbContext.Set<TModel>();
         }
 
         #endregion
 
         #region Properties
         private ReqManagerEntities dataContext;
-        private readonly IDbSet<T> dbSet;
+        private readonly IDbSet<TModel> dbSet;
 
         protected IDbFactory DbFactory
         {
@@ -39,57 +39,65 @@ namespace ReqManager.Data.Infrastructure
         #endregion
 
         #region Implementation
-        public virtual void add(T entity)
+        public virtual void add(TModel model)
         {
-            dbSet.Add(entity);
+            dbSet.Add(model);
         }
 
-        public virtual void add(IEnumerable<T> entities)
+        public virtual void add(IEnumerable<TModel> entities)
         {
-            foreach (T item in entities)
+            foreach (TModel item in entities)
                 add(item);
         }
 
-        public virtual void update(T entity)
+        public virtual void update(TModel model)
         {
-            dbSet.Attach(entity);
-            dataContext.Entry(entity).State = System.Data.Entity.EntityState.Modified;
+            dbSet.Attach(model);
+            dataContext.Entry(model).State = System.Data.Entity.EntityState.Modified;
         }
 
-        public virtual void delete(T entity)
+        public virtual void delete(int? id)
         {
-            dbSet.Remove(entity);
+            try
+            {
+                TModel m = dbSet.Find(id);
+                dbSet.Remove(m);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }        
         }
 
-        public virtual void delete(IEnumerable<T> entities)
+        public virtual void delete(List<int> entitiesID)
         {
-            foreach (T item in entities)
-                delete(item);
+            foreach (int id in entitiesID)
+                delete(id);
         }
 
-        public virtual void delete(Expression<Func<T, bool>> where)
+        public virtual void delete(Expression<Func<TModel, bool>> where)
         {
-            IEnumerable<T> objects = dbSet.Where(where).AsEnumerable();
-            foreach (T obj in objects)
+            IEnumerable<TModel> objects = dbSet.Where(where).AsEnumerable();
+            foreach (TModel obj in objects)
                 dbSet.Remove(obj);
         }
 
-        public virtual T get(int? id)
+        public virtual TModel get(int? id)
         {
             return dbSet.Find(id);
         }
 
-        public T get(Expression<Func<T, bool>> where)
+        public TModel get(Expression<Func<TModel, bool>> where)
         {
             return dbSet.Where(where).FirstOrDefault();
         }
 
-        public virtual IEnumerable<T> getAll()
+        public virtual IEnumerable<TModel> getAll()
         {
-            return dbSet.ToList();
+            return dbSet.AsNoTracking().ToList();
         }
 
-        public virtual IEnumerable<T> filter(Expression<Func<T, bool>> where)
+        public virtual IEnumerable<TModel> filter(Expression<Func<TModel, bool>> where)
         {
             return dbSet.Where(where).ToList();
         }

@@ -10,6 +10,7 @@ namespace ReqManager.Model
     {
         [Key]
         public int HistoryArtefactID { get; set; }
+        public int ProjectArtifactID { get; set; }
         [Required]
         [MaxLength(50)]
         public string descriptionTypeArtifact { get; set; }

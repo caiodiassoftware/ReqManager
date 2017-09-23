@@ -15,6 +15,10 @@ namespace ReqManager.Model
     
         [Key]
         public int LinkArtifactRequirementID { get; set; }
+        public int UserID { get; set; }
+        public int ProjectArtifactID { get; set; }
+        public int RequirementID { get; set; }
+        public int TypeLinkID { get; set; }
         [Required]
         public DateTime creationDate { get; set; }
         [Required]

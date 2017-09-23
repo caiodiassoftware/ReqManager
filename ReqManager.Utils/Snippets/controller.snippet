@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Controller Writes</Title>
+      <Author>Caio Dias</Author>
+      <Description>Create basic code for Controller based in BaseController</Description>
+      <Shortcut>cController</Shortcut>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal>
+          <ID>EntityName</ID>
+          <Default>EntityName</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="CSharp">
+        <![CDATA[#region GETS
+
+        public override ActionResult Create()
+        {
+            return dropDowns();
+        }
+
+        public override ActionResult Edit(int? id)
+        {
+            base.Edit(id);
+            return dropDowns(Service.get(id));
+        }
+
+        public override ActionResult Delete(int? id)
+        {
+            base.Delete(id);
+            return dropDowns(Service.get(id));
+        }
+
+        #endregion
+
+        #region POST
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public override ActionResult Create($EntityName$Entity $EntityName$Entity)
+        {
+            base.Create($EntityName$Entity);
+            return dropDowns($EntityName$Entity);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public override ActionResult Edit($EntityName$Entity $EntityName$Entity)
+        {
+            base.Edit($EntityName$Entity);
+            return dropDowns($EntityName$Entity);
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private ActionResult dropDowns($EntityName$Entity entity = null)
+        {
+            ViewBag.ID = new SelectList(Service.getAll(), "ProjectID", "descrption");
+            ViewBag.ID = new SelectList(Service.getAll(), "", "");
+            return entity == null ? View() : View(entity);
+        }
+
+        #endregion
+        ]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+  </CodeSnippets>

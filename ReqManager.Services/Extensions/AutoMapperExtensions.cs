@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ReqManager.Utils.Extensions
+namespace ReqManager.Services.Extensions
 {
     public static class AutoMapperExtensions
     {
@@ -33,6 +33,14 @@ namespace ReqManager.Utils.Extensions
         public static void IgnoreUnmapped<TSrc, TDest>(this IProfileExpression profile)
         {
             profile.IgnoreUnmapped(typeof(TSrc), typeof(TDest));
+        }
+
+        public static void CreateAutomaticMapping<TSrc, TDest>(this IMapperConfigurationExpression cfg)
+        {
+            cfg.CreateMap<TSrc, TDest>();
+            cfg.CreateMap<TDest, TSrc>();
+            cfg.CreateMissingTypeMaps = true;
+            cfg.IgnoreUnmapped();
         }
 
         private static void IgnoreUnmappedProperties(TypeMap map, IMappingExpression expr)

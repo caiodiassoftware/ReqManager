@@ -11,7 +11,7 @@ namespace ReqManager.Services.Estructure
     {
         void add(TEntity entity);
         void update(TEntity entity);
-        void delete(TEntity entity);
+        void delete(int? id);
         void delete(Expression<Func<TEntity, bool>> where);
         TEntity get(int? id);
         TEntity get(Expression<Func<TEntity, bool>> where);

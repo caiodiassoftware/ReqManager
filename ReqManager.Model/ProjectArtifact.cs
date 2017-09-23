@@ -16,6 +16,10 @@ namespace ReqManager.Model
     
         [Key]
         public int ProjectArtifactID { get; set; }
+        public int UserID { get; set; }
+        public int ArtifactTypeID { get; set; }
+        public int MeasureImportanceID { get; set; }
+        public int ProjectID { get; set; }
         [Required]
         [MaxLength(25), MinLength(5)]
         public string code { get; set; }

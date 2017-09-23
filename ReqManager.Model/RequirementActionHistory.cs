@@ -10,6 +10,7 @@ namespace ReqManager.Model
     {
         [Key]
         public int RequirementActionHistoryID { get; set; }
+        public int RequirementID { get; set; }
         [Required]
         [MaxLength(15), MinLength(5)]
         public string UserLogin { get; set; }
@@ -19,6 +20,6 @@ namespace ReqManager.Model
         [Required]
         public DateTime changedDate { get; set; }
 
-        public virtual Requirement REQUIREMENT { get; set; }
+        public virtual Requirement Requirement { get; set; }
     }
 }

@@ -10,6 +10,9 @@ namespace ReqManager.Model
     {
         [Key]
         public int ArtefactAttributeID { get; set; }
+        public int AttributeID { get; set; }
+        public int LinkArtifactRequirementID { get; set; }
+        [Required]
         public string value { get; set; }
     
         public virtual Attributes Attributes { get; set; }

@@ -25,6 +25,9 @@ namespace ReqManager.Model
     
         [Key]
         public int ProjectRequirementID { get; set; }
+        public int UserID { get; set; }
+        public int ProjectID { get; set; }
+        public int RequirementID { get; set; }
         public DateTime creationDate { get; set; }
         public bool traceable { get; set; }
     

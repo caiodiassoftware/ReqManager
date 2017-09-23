@@ -124,8 +124,7 @@ namespace ReqManager.ManagerController
         [ValidateAntiForgeryToken]
         public virtual ActionResult DeleteConfirmed(int id)
         {
-            T model = Service.get(id);
-            Service.delete(model);
+            Service.delete(id);
             Service.saveChanges();
             return RedirectToAction("Index");
         }
@@ -159,10 +158,10 @@ namespace ReqManager.ManagerController
                     controllerName = "Login";
                 }
 
-                filterContext.Result = new RedirectToRouteResult(
-                    new RouteValueDictionary
-                    { { "Controller", controllerName },
-                        { "Action", actionName } });
+                //filterContext.Result = new RedirectToRouteResult(
+                    //new RouteValueDictionary
+                    //{ { "Controller", controllerName },
+                    //    { "Action", actionName } });
                 base.OnActionExecuting(filterContext);
             }
             catch (Exception ex)

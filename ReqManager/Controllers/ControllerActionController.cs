@@ -2,6 +2,7 @@
 using ReqManager.Entities;
 using ReqManager.ManagerController;
 using ReqManager.Services.Estructure;
+using ReqManager.Services.Extensions;
 using ReqManager.Services.InterfacesServices;
 using ReqManager.ViewModels;
 using System;
@@ -9,7 +10,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Web.Mvc;
-using ReqManager.Utils.Extensions;
 
 namespace ReqManager.Controllers
 {

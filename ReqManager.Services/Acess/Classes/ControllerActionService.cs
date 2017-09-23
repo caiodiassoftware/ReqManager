@@ -6,10 +6,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using ReqManager.Model;
-using ReqManager.Utils.Extensions;
 using System.Linq;
 using ReqManager.Entities;
 using AutoMapper;
+using ReqManager.Services.Extensions;
 
 namespace ReqManager.Services.Acess
 {
@@ -42,7 +42,7 @@ namespace ReqManager.Services.Acess
                 db.controller.Equals(ca.controller))).Cast<ControllerAction>().ToList();
 
                 repository.add(newControllerActions);
-                repository.delete(deletedControllerActions);
+                repository.delete(deletedControllerActions.Select(d => d.ControllerActionID).ToList());
             }
             catch (Exception ex)
             {

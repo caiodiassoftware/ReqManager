@@ -18,6 +18,8 @@ namespace ReqManager.Model
     
         [Key]
         public int ProjectID { get; set; }
+        public int UserID { get; set; }
+        public int ProjectPhasesID { get; set; }
         [Required]
         [MaxLength(255)]
         public string description { get; set; }

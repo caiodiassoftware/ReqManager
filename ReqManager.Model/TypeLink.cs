@@ -17,6 +17,7 @@ namespace ReqManager.Model
     
         [Key]
         public int TypeLinkID { get; set; }
+        public int UserID { get; set; }
         [Required]
         public string description { get; set; }
         [Required]

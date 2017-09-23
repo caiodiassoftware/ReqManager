@@ -10,6 +10,8 @@ namespace ReqManager.Model
     {
         [Key]
         public int RequirementAttributeID { get; set; }
+        public int AttributeID { get; set; }
+        public int LinkRequirementID { get; set; }
         [Required]
         public string value { get; set; }
     

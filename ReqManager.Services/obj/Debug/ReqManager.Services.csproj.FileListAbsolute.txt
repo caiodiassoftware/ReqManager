@@ -45,8 +45,6 @@ C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Services\bin\Debug\EntityFra
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Services\obj\Debug\ReqManager.Services.csprojResolveAssemblyReference.cache
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Services\obj\Debug\ReqManager.Services.dll
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Services\obj\Debug\ReqManager.Services.pdb
-C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Services\obj\Debug\ReqManager.Services.csproj.CoreCompileInputs.cache
-C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Services\bin\Debug\ReqManager.Data.dll.config
 C:\Users\maquina06\Desktop\ReqManager\ReqManager.Services\bin\Debug\ReqManager.Entities.dll
 C:\Users\maquina06\Desktop\ReqManager\ReqManager.Services\bin\Debug\ReqManager.Entities.pdb
 C:\Users\maquina06\Desktop\ReqManager\ReqManager.Services\bin\Debug\AutoMapper.dll
@@ -59,3 +57,9 @@ C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Debug\ReqManager.Utils
 C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Debug\ReqManager.Utils.pdb
 C:\Users\maquina06\Desktop\ReqManager\ReqManager.Services\bin\Debug\ReqManager.Utils.dll
 C:\Users\maquina06\Desktop\ReqManager\ReqManager.Services\bin\Debug\ReqManager.Utils.pdb
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Services\bin\Debug\AutoMapper.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Services\bin\Debug\ReqManager.Entities.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Services\bin\Debug\ReqManager.Utils.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Services\bin\Debug\ReqManager.Entities.pdb
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Services\bin\Debug\ReqManager.Utils.pdb
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Services\bin\Debug\AutoMapper.xml

@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace ReqManager.Services.Requirements.Classes
 {
 
-    public class RequirementService : ServiceBase<Requirement, RequirementEntity>, IRequirementService
+    public class RequirementService : ServiceBase<Requirement, RequirementEntity>, IProjectRequirementService
     {
         public RequirementService(IRequirementRepository repository, IUnitOfWork unit) : base(repository, unit)
         {

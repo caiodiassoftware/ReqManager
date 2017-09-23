@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ReqManager.Services.Requirements.Interfaces
 {
-    public interface IRequirementService : IService<RequirementEntity>
+    public interface IProjectRequirementService : IService<RequirementEntity>
     {
 
     }

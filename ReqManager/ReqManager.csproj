@@ -172,9 +172,15 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ControllerActionController.cs" />
+    <Compile Include="Controllers\HistoryProjectController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ProjectPhasesController.cs" />
+    <Compile Include="Controllers\ProjectRequirementsController.cs" />
+    <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\RoleControllerActionController.cs" />
+    <Compile Include="Controllers\StakeholderRequirementController.cs" />
+    <Compile Include="Controllers\StakeholdersProjectController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UsersRolesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -186,6 +192,8 @@
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\UserRoleViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
+    <Compile Include="Controllers\StakeholderClassificationController.cs" />
+    <Compile Include="Controllers\StakeholdersController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -253,6 +261,43 @@
     <Content Include="Views\UsersRoles\Details.cshtml" />
     <Content Include="Views\UsersRoles\Edit.cshtml" />
     <Content Include="Views\UsersRoles\Index.cshtml" />
+    <Content Include="Views\ProjectPhases\Create.cshtml" />
+    <Content Include="Views\ProjectPhases\Delete.cshtml" />
+    <Content Include="Views\ProjectPhases\Details.cshtml" />
+    <Content Include="Views\ProjectPhases\Edit.cshtml" />
+    <Content Include="Views\ProjectPhases\Index.cshtml" />
+    <Content Include="Views\HistoryProject\Details.cshtml" />
+    <Content Include="Views\HistoryProject\Index.cshtml" />
+    <Content Include="Views\StakeholderClassification\Create.cshtml" />
+    <Content Include="Views\StakeholderClassification\Delete.cshtml" />
+    <Content Include="Views\StakeholderClassification\Details.cshtml" />
+    <Content Include="Views\StakeholderClassification\Edit.cshtml" />
+    <Content Include="Views\StakeholderClassification\Index.cshtml" />
+    <Content Include="Views\Stakeholders\Create.cshtml" />
+    <Content Include="Views\Stakeholders\Delete.cshtml" />
+    <Content Include="Views\Stakeholders\Details.cshtml" />
+    <Content Include="Views\Stakeholders\Edit.cshtml" />
+    <Content Include="Views\Stakeholders\Index.cshtml" />
+    <Content Include="Views\ProjectRequirements\Create.cshtml" />
+    <Content Include="Views\ProjectRequirements\Delete.cshtml" />
+    <Content Include="Views\ProjectRequirements\Details.cshtml" />
+    <Content Include="Views\ProjectRequirements\Edit.cshtml" />
+    <Content Include="Views\ProjectRequirements\Index.cshtml" />
+    <Content Include="Views\Projects\Create.cshtml" />
+    <Content Include="Views\Projects\Delete.cshtml" />
+    <Content Include="Views\Projects\Details.cshtml" />
+    <Content Include="Views\Projects\Edit.cshtml" />
+    <Content Include="Views\Projects\Index.cshtml" />
+    <Content Include="Views\StakeholdersProject\Create.cshtml" />
+    <Content Include="Views\StakeholdersProject\Delete.cshtml" />
+    <Content Include="Views\StakeholdersProject\Details.cshtml" />
+    <Content Include="Views\StakeholdersProject\Edit.cshtml" />
+    <Content Include="Views\StakeholdersProject\Index.cshtml" />
+    <Content Include="Views\StakeholderRequirement\Create.cshtml" />
+    <Content Include="Views\StakeholderRequirement\Delete.cshtml" />
+    <Content Include="Views\StakeholderRequirement\Details.cshtml" />
+    <Content Include="Views\StakeholderRequirement\Edit.cshtml" />
+    <Content Include="Views\StakeholderRequirement\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

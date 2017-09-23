@@ -10,7 +10,9 @@ namespace ReqManager.Model
     {
         [Key]
         public int AttributesTypeLinkID { get; set; }
-    
+        public int AttributeID { get; set; }
+        public int TypeLinkID { get; set; }
+
         public virtual Attributes Attributes { get; set; }
         public virtual TypeLink TypeLink { get; set; }
     }

@@ -58,6 +58,7 @@
     <Compile Include="Acess\Interfaces\IUserService.cs" />
     <Compile Include="Estructure\IService.cs" />
     <Compile Include="Estructure\ServiceBase.cs" />
+    <Compile Include="Extensions\AutoMapperExtensions.cs" />
     <Compile Include="Link\Classes\AttributesService.cs" />
     <Compile Include="Link\Classes\AttributesTypeLinkService.cs" />
     <Compile Include="Link\Classes\LinkArtifactAttributesService.cs" />

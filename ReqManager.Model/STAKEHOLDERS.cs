@@ -25,7 +25,9 @@ namespace ReqManager.Model
     
         [Key]
         public int StakeholderID { get; set; }
-    
+        public int UserID { get; set; }        
+        public int ClassificationID { get; set; }
+
         public virtual Users Users { get; set; }
         public virtual ICollection<StakeholderRequirement> StakeHolderRequirement { get; set; }
         public virtual StakeholderClassification StakeHolderClassification { get; set; }

@@ -10,15 +10,17 @@ namespace ReqManager.Model
     {
         [Key]
         public int HistoryTaskID { get; set; }
-        public System.DateTime startDate { get; set; }
-        public System.DateTime endDate { get; set; }
+        public int UserID { get; set; }
+        public int TaskID { get; set; }
+        public DateTime startDate { get; set; }
+        public DateTime endDate { get; set; }
         [Required]
         [MaxLength(1000), MinLength(5)]
         public string description { get; set; }
         [Required]
         [MaxLength(50), MinLength(5)]
         public string descriptionMeasureImportance { get; set; }
-        public System.DateTime changedDate { get; set; }
+        public DateTime changedDate { get; set; }
     
         public virtual Users Users { get; set; }
         public virtual Task Task { get; set; }

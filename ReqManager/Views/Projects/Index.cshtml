@@ -1,0 +1,81 @@
+﻿@model IEnumerable<ReqManager.Entities.Project.ProjectEntity>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectPhases.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Users.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pathForTraceability)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.environmentalInformation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.managementInformation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.startDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.endDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.creationDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectPhases.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Users.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pathForTraceability)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.environmentalInformation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.managementInformation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.startDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.endDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.creationDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ProjectID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ProjectID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ProjectID })
+        </td>
+    </tr>
+}
+
+</table>

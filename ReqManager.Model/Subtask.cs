@@ -13,6 +13,10 @@ namespace ReqManager.Model
     {
         [Key]
         public int SubtaskID { get; set; }
+        public int StatusTaskID { get; set; }
+        public int TaskTypeID { get; set; }
+        public int UserTaskID { get; set; }
+        [Required]
         public System.DateTime creationDate { get; set; }
         [MinLength(3)]
         [MaxLength(1000)]

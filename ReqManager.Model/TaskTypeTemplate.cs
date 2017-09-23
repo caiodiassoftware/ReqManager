@@ -15,6 +15,8 @@ namespace ReqManager.Model
     
         [Key]
         public int TaskTypeTemplateID { get; set; }
+        public int UserID { get; set; }
+        public int TaskTypeID { get; set; }
         [Required]
         [MaxLength(1000)]
         public string templateHtml { get; set; }

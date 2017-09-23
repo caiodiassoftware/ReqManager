@@ -1,0 +1,58 @@
+﻿@model ReqManager.Entities.Project.ProjectRequirementsEntity
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ProjectRequirementsEntity</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Project.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Project.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RequirementID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequirementID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.creationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.creationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.traceable)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.traceable)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProjectRequirementID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

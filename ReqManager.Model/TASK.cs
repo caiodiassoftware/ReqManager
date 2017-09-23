@@ -16,12 +16,19 @@ namespace ReqManager.Model
     
         [Key]
         public int TaskID { get; set; }
+        public int UserID { get; set; }
+        public int ProjectRequirementID { get; set; }
+        public int MeasureImportanceID { get; set; }
+        public int StatusTaskID { get; set; }
+        public int TaskTypeTemplateID { get; set; }
+        public int TaskTypeID { get; set; }
+        [Required]
         public System.DateTime creationDate { get; set; }
         [MinLength(3)]
         [MaxLength(1000)]
         [Required]
         public string description { get; set; }
-        public System.DateTime startDate { get; set; }
+        public DateTime startDate { get; set; }
         public Nullable<DateTime> endDate { get; set; }
     
         public virtual Users Users { get; set; }

@@ -1,14 +1,9 @@
 ﻿@model IEnumerable<ReqManager.Entities.Artifact.HistoryProjectArtifactEntity>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Artifact History Listing";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -59,9 +54,7 @@
             @Html.DisplayFor(modelItem => item.login)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.HistoryArtefactID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.HistoryArtefactID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.HistoryArtefactID })
+            @Html.ActionLink("Details", "Details", new { id=item.HistoryArtefactID }) 
         </td>
     </tr>
 }

@@ -1,13 +1,11 @@
 ﻿@model IEnumerable<ReqManager.Entities.ControllerActionEntity>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "List of Controller/Actions";
 }
 
-<h2>Index</h2>
-
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Refresh", "Refresh")
 </p>
 <table class="table">
     <tr>
@@ -33,11 +31,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.IsGet)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ControllerActionID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ControllerActionID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ControllerActionID })
         </td>
     </tr>
 }

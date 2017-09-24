@@ -250,10 +250,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
-    <Content Include="Views\ControllerAction\Create.cshtml" />
-    <Content Include="Views\ControllerAction\Delete.cshtml" />
-    <Content Include="Views\ControllerAction\Details.cshtml" />
-    <Content Include="Views\ControllerAction\Edit.cshtml" />
     <Content Include="Views\ControllerAction\Index.cshtml" />
     <Content Include="Views\Role\Create.cshtml" />
     <Content Include="Views\Role\Delete.cshtml" />

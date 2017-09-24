@@ -65,7 +65,7 @@
     <Compile Include="RequirementRationale.cs" />
     <Compile Include="RequirementStatus.cs" />
     <Compile Include="RequirementTemplate.cs" />
-    <Compile Include="RequirementTask.cs" />
+    <Compile Include="RequirementType.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="RoleControllerAction.cs" />
     <Compile Include="Stakeholders.cs" />

@@ -69,7 +69,7 @@
     <Compile Include="Requirement\RequirementEntity.cs" />
     <Compile Include="Requirement\RequirementRationaleEntity.cs" />
     <Compile Include="Requirement\RequirementStatusEntity.cs" />
-    <Compile Include="Requirement\RequirementTaskEntity.cs" />
+    <Compile Include="Requirement\RequirementTypeEntity.cs" />
     <Compile Include="Requirement\RequirementTemplateEntity.cs" />
     <Compile Include="Task\HistoryTaskEntity.cs" />
     <Compile Include="Task\StatusTaskEntity.cs" />

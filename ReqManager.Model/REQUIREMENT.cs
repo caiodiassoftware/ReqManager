@@ -57,6 +57,6 @@ namespace ReqManager.Model
         public virtual ICollection<RequirementRationale> RequirementRationale { get; set; }
         public virtual RequirementTemplate RequirementTemplate { get; set; }
         public virtual RequirementStatus RequirementStatus { get; set; }
-        public virtual RequirementTask RequirementType { get; set; }
+        public virtual RequirementType RequirementType { get; set; }
     }
 }

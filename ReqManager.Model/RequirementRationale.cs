@@ -37,7 +37,7 @@ namespace ReqManager.Model
         public virtual StakeholdersProject StakeholdersProject { get; set; }
         public virtual MeasureImportance MeasureImportance { get; set; }
         public virtual Requirement Requirement { get; set; }
-        public virtual RequirementTask RequirementType { get; set; }
+        public virtual RequirementType RequirementType { get; set; }
         public virtual RequirementStatus RequirementStatus { get; set; }
     }
 }

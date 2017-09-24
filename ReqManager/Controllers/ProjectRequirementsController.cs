@@ -21,13 +21,13 @@ namespace ReqManager.Controllers
         private IProjectRequirementsService service { get; set; }
         private IProjectService projectService { get; set; }
         private IUserService userService { get; set; }
-        private IProjectRequirementService reqService { get; set; }
+        private IRequirementService reqService { get; set; }
 
         public ProjectRequirementsController(
             IProjectRequirementsService service,
             IProjectService projectService,
             IUserService userService,
-            IProjectRequirementService reqService)
+            IRequirementService reqService)
             : base(service)
         {
             this.service = service;

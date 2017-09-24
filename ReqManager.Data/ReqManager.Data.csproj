@@ -106,13 +106,13 @@
     <Compile Include="Repositories\Requirements\Classes\RequirementRationaleRepository.cs" />
     <Compile Include="Repositories\Requirements\Classes\RequirementRepository.cs" />
     <Compile Include="Repositories\Requirements\Classes\RequirementStatusRepository.cs" />
-    <Compile Include="Repositories\Requirements\Classes\RequirementTaskRepository.cs" />
+    <Compile Include="Repositories\Requirements\Classes\RequirementTypeRepository.cs" />
     <Compile Include="Repositories\Requirements\Classes\RequirementTemplateRepository.cs" />
     <Compile Include="Repositories\Requirements\Interfaces\IRequirementActionHistoryRepository.cs" />
     <Compile Include="Repositories\Requirements\Interfaces\IRequirementRationaleRepository.cs" />
     <Compile Include="Repositories\Requirements\Interfaces\IRequirementRepository.cs" />
     <Compile Include="Repositories\Requirements\Interfaces\IRequirementStatusRepository.cs" />
-    <Compile Include="Repositories\Requirements\Interfaces\IRequirementTaskRepository.cs" />
+    <Compile Include="Repositories\Requirements\Interfaces\IRequirementTypeRepository.cs" />
     <Compile Include="Repositories\Requirements\Interfaces\IRequirementTemplateRepository.cs" />
     <Compile Include="Repositories\Tasks\Classes\HistoryTaskRepository.cs" />
     <Compile Include="Repositories\Tasks\Classes\SubtaskRepository.cs" />

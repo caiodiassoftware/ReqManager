@@ -15,9 +15,9 @@ namespace ReqManager.Model
     using System.ComponentModel.DataAnnotations.Schema;
 
     [Table("REQUIREMENT_TYPE", Schema = "REQ")]
-    public class RequirementTask
+    public class RequirementType
     {
-        public RequirementTask()
+        public RequirementType()
         {
             this.Requirement = new HashSet<Requirement>();
             this.RequirementRationale = new HashSet<RequirementRationale>();

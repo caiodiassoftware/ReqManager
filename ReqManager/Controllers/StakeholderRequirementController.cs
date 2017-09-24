@@ -19,12 +19,12 @@ namespace ReqManager.Controllers
     {
         private IStakeholderRequirementService service { get; set; }
         private IStakeholdersService stakeholderService { get; set; }
-        private IProjectRequirementService projectReqService { get; set; }
+        private IRequirementService projectReqService { get; set; }
 
         public StakeholderRequirementController(
             IStakeholderRequirementService service,
             IStakeholdersService stakeholderService,
-            IProjectRequirementService projectReqService) : base(service)
+            IRequirementService projectReqService) : base(service)
         {
             this.service = service;
             this.stakeholderService = stakeholderService;

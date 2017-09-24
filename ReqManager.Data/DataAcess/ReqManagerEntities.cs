@@ -24,7 +24,6 @@ namespace ReqManager.Data.DataAcess
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
-            //modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
             base.OnModelCreating(modelBuilder);
         }
 
@@ -56,7 +55,7 @@ namespace ReqManager.Data.DataAcess
         public virtual DbSet<RequirementRationale> RequirementRationale { get; set; }
         public virtual DbSet<RequirementStatus> RequirementStatus { get; set; }
         public virtual DbSet<RequirementTemplate> RequirementTemplate { get; set; }
-        public virtual DbSet<RequirementTask> RequirementTask { get; set; }
+        public virtual DbSet<RequirementType> RequirementTask { get; set; }
         public virtual DbSet<StakeholderClassification> StakeholderClassification { get; set; }
         public virtual DbSet<HistoryTask> HistoryTask { get; set; }
         public virtual DbSet<StatusTask> StatusTask { get; set; }

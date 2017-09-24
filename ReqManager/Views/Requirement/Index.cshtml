@@ -1,0 +1,105 @@
+﻿@model IEnumerable<ReqManager.Entities.Requirement.RequirementEntity>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MeasureImportance.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RequirementStatus.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RequirementTemplate.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RequirementType.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Users.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StakeholderID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StakeholderProjectID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.creationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.input)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.output)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MeasureImportance.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RequirementStatus.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RequirementTemplate.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RequirementType.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Users.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StakeholderID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StakeholderProjectID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.creationDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.input)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.output)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.RequirementID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.RequirementID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.RequirementID })
+        </td>
+    </tr>
+}
+
+</table>

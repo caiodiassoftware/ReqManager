@@ -1,0 +1,122 @@
+﻿@model ReqManager.Entities.Requirement.RequirementEntity
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>RequirementEntity</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MeasureImportance.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MeasureImportance.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RequirementStatus.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequirementStatus.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RequirementTemplate.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequirementTemplate.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RequirementType.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequirementType.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Users.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Users.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StakeholderID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StakeholderID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StakeholderProjectID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StakeholderProjectID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.creationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.creationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.input)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.input)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.output)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.output)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RequirementID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -12,10 +12,9 @@ using System.Threading.Tasks;
 
 namespace ReqManager.Services.Requirements.Classes
 {
-
-    public class RequirementTaskService : ServiceBase<RequirementTask, RequirementTaskEntity>, IRequirementTaskService
+    public class RequirementTypeService : ServiceBase<RequirementType, RequirementTypeEntity>, IRequirementTypeService
     {
-        public RequirementTaskService(IRequirementTaskRepository repository, IUnitOfWork unit) : base(repository, unit)
+        public RequirementTypeService(IRequirementTypeRepository repository, IUnitOfWork unit) : base(repository, unit)
         {
         }
     }

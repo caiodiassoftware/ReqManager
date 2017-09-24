@@ -102,13 +102,13 @@
     <Compile Include="Requirements\Classes\RequirementRationaleService.cs" />
     <Compile Include="Requirements\Classes\RequirementService.cs" />
     <Compile Include="Requirements\Classes\RequirementStatusService.cs" />
-    <Compile Include="Requirements\Classes\RequirementTaskService.cs" />
+    <Compile Include="Requirements\Classes\RequirementTypeService.cs" />
     <Compile Include="Requirements\Classes\RequirementTemplateService.cs" />
     <Compile Include="Requirements\Interfaces\IRequirementActionHistoryService.cs" />
     <Compile Include="Requirements\Interfaces\IRequirementRationaleService.cs" />
     <Compile Include="Requirements\Interfaces\IRequirementService.cs" />
     <Compile Include="Requirements\Interfaces\IRequirementStatusService.cs" />
-    <Compile Include="Requirements\Interfaces\IRequirementTaskService.cs" />
+    <Compile Include="Requirements\Interfaces\IRequirementTypeService.cs" />
     <Compile Include="Requirements\Interfaces\IRequirementTemplateService.cs" />
     <Compile Include="Task\Classes\HistoryTaskService.cs" />
     <Compile Include="Task\Classes\StatusTaskService.cs" />

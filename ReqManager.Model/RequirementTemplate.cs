@@ -27,6 +27,6 @@ namespace ReqManager.Model
     
         public virtual Users Users { get; set; }
         public virtual ICollection<Requirement> Requirement { get; set; }
-        public virtual RequirementTask RequirementType { get; set; }
+        public virtual RequirementType RequirementType { get; set; }
     }
 }

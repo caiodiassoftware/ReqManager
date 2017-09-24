@@ -1,44 +1,105 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - ReqManager</title>
-    @Styles.Render("~/Content/css")
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>ReqManager</title>
+    @Styles.Render("~/Scripts/css/css")
     @Scripts.Render("~/bundles/modernizr")
+    <meta name="generator" content="Bootply" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+    @*TOP*@
+    <div id="top-nav" class="navbar navbar-inverse navbar-static-top">
+        <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <a class="navbar-brand" href="#">ReqManager</a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Users", "Index", "User")</li>
-                    <li>@Html.ActionLink("Roles", "Index", "Role")</li>
-                    <li>@Html.ActionLink("Users Roles", "Index", "UsersRoles")</li>                    
-                    <li>@Html.ActionLink("Role C.A.", "Index", "RoleControllerAction")</li>
-                    <li>@Html.ActionLink("C.A.", "Index", "ControllerAction")</li>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#"> Admin <span class="caret"></span></a>
+                        <ul id="g-account-menu" class="dropdown-menu" role="menu">
+                            <li><a href="#">My Profile</a></li>
+                            <li><a href="#">My Profile</a></li>
+                            <li><a href="#">My Profile</a></li>
+                            <li><a href="#">My Profile</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#"> Logout</a></li>
                 </ul>
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - ReqManager</p>
-        </footer>
+    @*SIDE BAR*@
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3">
+                <h2><b>Modules</b></h2>
+                <hr>
+                <ul class="nav nav-stacked">
+                    <li class="nav-header">
+                        <a href="#" data-toggle="collapse" data-target="#userMenu">ACESS</a>
+                        <ul class="nav nav-stacked collapse" style="margin-left:6%;" id="userMenu">
+                            <li class="active">@Html.ActionLink("Users", "Index", "User")</li>
+                            <li>@Html.ActionLink("Role", "Index", "Role")</li>
+                            <li>@Html.ActionLink("Actions", "Index", "ControllerAction")</li>
+                            <li>@Html.ActionLink("User's Roles", "Index", "UsersRoles")</li>
+                            <li>@Html.ActionLink("Role's Actions", "Index", "RoleControllerAction")</li>
+                        </ul>
+                    </li>
+                    <li class="nav-header">
+                        <a href="#" data-toggle="collapse" data-target="#menu2">ARTIFACTS</a>
+                        <ul class="nav nav-stacked collapse" style="margin-left:6%;" id="menu2">
+                            <li>@Html.ActionLink("Artifacts", "Index", "ProjectArtifact")</li>
+                            <li>@Html.ActionLink("Types", "Index", "ArtifactType")</li>
+                            <li>@Html.ActionLink("Artifacts History", "Index", "HistoryProjectArtifacts")</li>
+                        </ul>
+                    </li>
+                    <li class="nav-header">
+                        <a href="#" data-toggle="collapse" data-target="#menu3">PROJECT</a>
+                        <ul class="nav nav-stacked collapse" style="margin-left:6%;" id="menu3">
+                            <li>@Html.ActionLink("Projects", "Index", "Projects")</li>
+                            <li>@Html.ActionLink("Project Requirements ", "Index", "ProjectRequirements")</li>
+                            <li>@Html.ActionLink("Project Phases", "Index", "ProjectPhases")</li>
+                            <li>@Html.ActionLink("Measure Importance", "Index", "MeasureImportance")</li>
+                            <li>@Html.ActionLink("Projects History", "Index", "HistoryProject")</li>
+                        </ul>
+                    </li>
+                    <li class="nav-header">
+                        <a href="#" data-toggle="collapse" data-target="#menu4">REQUIREMENT</a>
+                        <ul class="nav nav-stacked collapse" style="margin-left:6%;" id="menu4">
+                            <li>@Html.ActionLink("Requirements", "Index", "Requirement")</li>
+                            <li>@Html.ActionLink("Types", "Index", "RequirementTypes")</li>
+                            <li>@Html.ActionLink("Status", "Index", "RequirementStatus")</li>
+                            <li>@Html.ActionLink("Templates", "Index", "RequirementTemplate")</li>                            
+                            <li>@Html.ActionLink("Requested Changes", "Index", "RequirementRationale")</li>
+                            <li>@Html.ActionLink("Requirements History", "Index", "RequirementActionHistory")</li>
+                        </ul>
+                    </li>
+                </ul>
+                <hr>
+            </div>
+            @*CENTER*@
+            <div class="col-sm-9">
+                <h2><b>@ViewBag.Title</b></h2>
+                <hr>
+                <div class="container-fluid">
+                    @RenderBody()
+                    <hr />
+                </div>
+            </div>
+        </div>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    @Scripts.Render("~/Scripts/css/js")
     @RenderSection("scripts", required: false)
 </body>
 </html>

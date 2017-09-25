@@ -25,79 +25,73 @@ namespace ReqManager.Controllers
             this.userService = userService;
         }
 
-        public override ActionResult Index()
-        {
-            List<UserRoleViewModel> view = new List<UserRoleViewModel>();
-
-            foreach (var item in Service.getAll().ToList())
-            {
-                UserRoleViewModel ur = new UserRoleViewModel();
-                ur.UserRoleID = item.UserRoleID;
-                ur.roleDescription = roleService.get(item.RoleID).description;
-                ur.userName = userService.get(item.UserID).name;
-                view.Add(ur);
-            }
-
-            return View(view);
-        }
+        #region GETS
 
         public override ActionResult Create()
         {
-            ViewBag.RoleID = new SelectList(roleService.getAll(), "RoleID", "description");
-            ViewBag.UserID = new SelectList(userService.getAll(), "UserID", "name");
-            return View();
+            return dropDowns();
         }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public override ActionResult Create([Bind(Include = "UserRoleID,RoleID,UserID")] UserRoleEntity userRoleEntity)
-        {
-            if (ModelState.IsValid)
-            {
-                Service.add(userRoleEntity);
-                Service.saveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.RoleID = new SelectList(roleService.getAll(), "RoleID", "description");
-            ViewBag.UserID = new SelectList(userService.getAll(), "UserID", "name");
-            return View(userRoleEntity);
-        }
-
 
         public override ActionResult Edit(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            base.Edit(id);
+            return dropDowns(Service.get(id));
+        }
 
-            UserRoleEntity userRoleEntity = Service.get(id);
+        public override ActionResult Delete(int? id)
+        {
+            base.Delete(id);
+            return dropDowns(Service.get(id));
+        }
 
-            if (userRoleEntity == null)
-            {
-                return HttpNotFound();
-            }
+        #endregion
 
-            ViewBag.RoleID = new SelectList(roleService.getAll(), "RoleID", "description");
-            ViewBag.UserID = new SelectList(userService.getAll(), "UserID", "name");
-            return View(userRoleEntity);
+        #region POST
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public override ActionResult Create(UserRoleEntity UserRoleEntity)
+        {
+            base.Create(UserRoleEntity);
+            return dropDowns(UserRoleEntity);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public override ActionResult Edit([Bind(Include = "UserRoleID,RoleID,UserID")] UserRoleEntity userRoleEntity)
+        public override ActionResult Edit(UserRoleEntity UserRoleEntity)
         {
-            if (ModelState.IsValid)
-            {
-                Service.update(userRoleEntity);
-                Service.saveChanges();
-                return RedirectToAction("Index");
-            }
+            base.Edit(UserRoleEntity);
+            return dropDowns(UserRoleEntity);
+        }
 
+        #endregion
+
+        #region Private Methods
+
+        private ActionResult dropDowns(UserRoleEntity entity = null)
+        {
             ViewBag.RoleID = new SelectList(roleService.getAll(), "RoleID", "description");
             ViewBag.UserID = new SelectList(userService.getAll(), "UserID", "name");
-            return View(userRoleEntity);
+            return entity == null ? View() : View(entity);
         }
+
+        #endregion
+
+
+        //public override ActionResult Index()
+        //{
+        //    List<UserRoleViewModel> view = new List<UserRoleViewModel>();
+
+        //    foreach (var item in Service.getAll().ToList())
+        //    {
+        //        UserRoleViewModel ur = new UserRoleViewModel();
+        //        ur.UserRoleID = item.UserRoleID;
+        //        ur.roleDescription = roleService.get(item.RoleID).description;
+        //        ur.userName = userService.get(item.UserID).name;
+        //        view.Add(ur);
+        //    }
+
+        //    return View(view);
+        //}
     }
 }

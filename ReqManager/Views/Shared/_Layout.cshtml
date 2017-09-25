@@ -41,6 +41,16 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-3">
+
+                @if (ViewBag.MessageReqManager != null)
+                {
+                    <script type="text/javascript">
+                            window.onload = function () {
+                                alert("@ViewBag.MessageReqManager");
+                            };
+                    </script>
+                }
+
                 <h2><b>Modules</b></h2>
                 <hr>
                 <ul class="nav nav-stacked">
@@ -78,7 +88,7 @@
                             <li>@Html.ActionLink("Requirements", "Index", "Requirement")</li>
                             <li>@Html.ActionLink("Types", "Index", "RequirementTypes")</li>
                             <li>@Html.ActionLink("Status", "Index", "RequirementStatus")</li>
-                            <li>@Html.ActionLink("Templates", "Index", "RequirementTemplate")</li>                            
+                            <li>@Html.ActionLink("Templates", "Index", "RequirementTemplate")</li>
                             <li>@Html.ActionLink("Requested Changes", "Index", "RequirementRationale")</li>
                             <li>@Html.ActionLink("Requirements History", "Index", "RequirementActionHistory")</li>
                         </ul>

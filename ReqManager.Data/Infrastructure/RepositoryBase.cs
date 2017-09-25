@@ -41,27 +41,55 @@ namespace ReqManager.Data.Infrastructure
         #region Implementation
         public virtual void add(TModel model)
         {
-            dbSet.Add(model);
+            try
+            {
+                dbSet.Add(model);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }            
         }
 
         public virtual void add(IEnumerable<TModel> entities)
         {
-            foreach (TModel item in entities)
-                add(item);
+            try
+            {
+                foreach (TModel item in entities)
+                    add(item);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public virtual void update(TModel model)
         {
-            dbSet.Attach(model);
-            dataContext.Entry(model).State = System.Data.Entity.EntityState.Modified;
+            try
+            {
+                dbSet.Attach(model);
+                dataContext.Entry(model).State = System.Data.Entity.EntityState.Modified;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }            
         }
 
         public virtual void delete(int? id)
         {
             try
             {
-                TModel m = dbSet.Find(id);
-                dbSet.Remove(m);
+                try
+                {
+                    TModel m = dbSet.Find(id);
+                    dbSet.Remove(m);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }                
             }
             catch (Exception ex)
             {
@@ -71,35 +99,77 @@ namespace ReqManager.Data.Infrastructure
 
         public virtual void delete(List<int> entitiesID)
         {
-            foreach (int id in entitiesID)
-                delete(id);
+            try
+            {
+                foreach (int id in entitiesID)
+                    delete(id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }            
         }
 
         public virtual void delete(Expression<Func<TModel, bool>> where)
         {
-            IEnumerable<TModel> objects = dbSet.Where(where).AsEnumerable();
-            foreach (TModel obj in objects)
-                dbSet.Remove(obj);
+            try
+            {
+                IEnumerable<TModel> objects = dbSet.Where(where).AsEnumerable();
+                foreach (TModel obj in objects)
+                    dbSet.Remove(obj);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public virtual TModel get(int? id)
         {
-            return dbSet.Find(id);
+            try
+            {
+                return dbSet.Find(id);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }            
         }
 
         public TModel get(Expression<Func<TModel, bool>> where)
         {
-            return dbSet.Where(where).FirstOrDefault();
+            try
+            {
+                return dbSet.Where(where).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }            
         }
 
         public virtual IEnumerable<TModel> getAll()
         {
-            return dbSet.AsNoTracking().ToList();
+            try
+            {
+                return dbSet.AsNoTracking().ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public virtual IEnumerable<TModel> filter(Expression<Func<TModel, bool>> where)
         {
-            return dbSet.Where(where).ToList();
+            try
+            {
+                return dbSet.Where(where).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }            
         }
 
         #endregion

@@ -3,6 +3,8 @@ using ReqManager.Services.Estructure;
 using ReqManager.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -31,54 +33,89 @@ namespace ReqManager.ManagerController
 
         public virtual ActionResult Index()
         {
-            return View(Service.getAll());
+            try
+            {
+                return View(Service.getAll());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public virtual ActionResult Details(int? id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                T model = Service.get(id);
+                if (model == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(model);
             }
-            T model = Service.get(id);
-            if (model == null)
+            catch (Exception ex)
             {
-                return HttpNotFound();
+                throw ex;
             }
-            return View(model);
         }
 
         public virtual ActionResult Create()
         {
-            return View();
+            try
+            {
+                return View();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public virtual ActionResult Edit(int? id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                T model = Service.get(id);
+                if (model == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(model);
             }
-            T model = Service.get(id);
-            if (model == null)
+            catch (Exception ex)
             {
-                return HttpNotFound();
+                throw ex;
             }
-            return View(model);
         }
 
         public virtual ActionResult Delete(int? id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                T model = Service.get(id);
+                if (model == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(model);
             }
-            T model = Service.get(id);
-            if (model == null)
+            catch (Exception ex)
             {
-                return HttpNotFound();
+                throw ex;
             }
-            return View(model);
         }
 
         #endregion
@@ -89,14 +126,22 @@ namespace ReqManager.ManagerController
         [ValidateAntiForgeryToken]
         public virtual ActionResult Create(T model)
         {
-            if (ModelState.IsValid)
+            try
             {
-                Service.add(model);
-                Service.saveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    Service.add(model);
+                    Service.saveChanges();
+                    return RedirectToAction("Index");
+                }
+                ViewBag.MessageReqManager = String.Format("Register was made with Success!");
+                return View(model);
             }
-
-            return View(model);
+            catch (Exception ex)
+            {
+                ViewBag.MessageReqManager = String.Format("Error Detected! " + ex.Message);                
+                return View(model);
+            }
         }
 
         [HttpPost]
@@ -124,9 +169,16 @@ namespace ReqManager.ManagerController
         [ValidateAntiForgeryToken]
         public virtual ActionResult DeleteConfirmed(int id)
         {
-            Service.delete(id);
-            Service.saveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                Service.delete(id);
+                Service.saveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         #endregion

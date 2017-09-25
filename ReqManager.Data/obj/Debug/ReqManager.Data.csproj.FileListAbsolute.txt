@@ -48,3 +48,4 @@ C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\obj\Debug\ReqManager.Da
 C:\Users\maquina06\Desktop\ReqManager\ReqManager.Data\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\maquina06\Desktop\ReqManager\ReqManager.Data\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\cdias\Desktop\ReqManager\ReqManager.Data\bin\Debug\ReqManager.Model.dll.config
+C:\Users\maquina06\Desktop\ReqManager\ReqManager.Data\bin\Debug\ReqManager.Model.dll.config

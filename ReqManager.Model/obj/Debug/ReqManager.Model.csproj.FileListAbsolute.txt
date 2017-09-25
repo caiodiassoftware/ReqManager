@@ -11,10 +11,14 @@ C:\Users\cdias\Desktop\ReqManager\ReqManager.Model\bin\Debug\ReqManager.Model.pd
 C:\Users\cdias\Desktop\ReqManager\ReqManager.Model\obj\Debug\ReqManager.Model.csproj.CoreCompileInputs.cache
 C:\Users\cdias\Desktop\ReqManager\ReqManager.Model\obj\Debug\ReqManager.Model.dll
 C:\Users\cdias\Desktop\ReqManager\ReqManager.Model\obj\Debug\ReqManager.Model.pdb
-C:\Users\maquina06\Desktop\ReqManager\ReqManager.Model\obj\Debug\ReqManager.Model.csprojResolveAssemblyReference.cache
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Model\obj\Debug\ReqManager.Model.csprojResolveAssemblyReference.cache
 C:\Users\cdias\Desktop\ReqManager\ReqManager.Model\bin\Debug\ReqManager.Model.dll.config
 C:\Users\cdias\Desktop\ReqManager\ReqManager.Model\bin\Debug\EntityFramework.dll
 C:\Users\cdias\Desktop\ReqManager\ReqManager.Model\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\cdias\Desktop\ReqManager\ReqManager.Model\bin\Debug\EntityFramework.xml
 C:\Users\cdias\Desktop\ReqManager\ReqManager.Model\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\maquina06\Desktop\ReqManager\ReqManager.Model\bin\Debug\ReqManager.Model.dll.config
+C:\Users\maquina06\Desktop\ReqManager\ReqManager.Model\bin\Debug\EntityFramework.dll
+C:\Users\maquina06\Desktop\ReqManager\ReqManager.Model\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\maquina06\Desktop\ReqManager\ReqManager.Model\bin\Debug\EntityFramework.xml
+C:\Users\maquina06\Desktop\ReqManager\ReqManager.Model\bin\Debug\EntityFramework.SqlServer.xml

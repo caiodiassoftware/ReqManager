@@ -14,23 +14,30 @@ namespace ReqManager.Entities.Artifact
         [Key]
         public int ProjectArtifactID { get; set; }
         [Required]
+        [Display(Name = "User")]
         public int UserID { get; set; }
         [Required]
+        [Display(Name = "Artifact Type")]
         public int ArtifactTypeID { get; set; }
         [Required]
+        [Display(Name = "Measure Importance")]
         public int MeasureImportanceID { get; set; }
         [Required]
+        [Display(Name = "Project")]
         public int ProjectID { get; set; }
         [Required]
         [MaxLength(25), MinLength(5)]
         public string code { get; set; }
         [Required]
         [MaxLength(500)]
+        [Display(Name = "Path")]
         public string path { get; set; }
         [Required]
         [MaxLength(500)]
+        [Display(Name = "Description")]
         public string description { get; set; }
         [Required]
+        [Display(Name = "Creation Data")]
         public DateTime creationDate { get; set; }
 
         public virtual UserEntity Users { get; set; }

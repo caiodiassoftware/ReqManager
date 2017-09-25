@@ -17,6 +17,7 @@ namespace ReqManager.Model
         public int TaskStatusID { get; set; }
         [MinLength(3)]
         [MaxLength(50)]
+        [Index(IsUnique = true)]
         public string description { get; set; }
     
         public virtual ICollection<Task> Task { get; set; }

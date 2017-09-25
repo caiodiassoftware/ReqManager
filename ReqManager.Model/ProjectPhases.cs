@@ -17,6 +17,7 @@ namespace ReqManager.Model
         public int ProjectPhasesID { get; set; }
         [Required]
         [MaxLength(50), MinLength(5)]
+        [Index(IsUnique = true)]
         public string description { get; set; }
     
         public virtual ICollection<Project> Project { get; set; }

@@ -18,6 +18,7 @@ namespace ReqManager.Model
         public int RoleID { get; set; }
         [MinLength(5)]
         [MaxLength(50)]
+        [Index(IsUnique = true)]
         public string description { get; set; }
     
         public virtual ICollection<RoleControllerAction> RoleControllerActionModel { get; set; }

@@ -29,6 +29,7 @@ namespace ReqManager.Model
         public int MeasureImportanceID { get; set; }
         [Required]
         [MaxLength(25)]
+        [Index(IsUnique = true)]
         public string code { get; set; }
         [Required]
         public string description { get; set; }

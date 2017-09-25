@@ -19,6 +19,8 @@ namespace ReqManager.Model
         public int TypeLinkID { get; set; }
         public int UserID { get; set; }
         [Required]
+        [Index(IsUnique = true)]
+        [MaxLength(50), MinLength(3)]
         public string description { get; set; }
         [Required]
         public DateTime creationDate { get; set; }

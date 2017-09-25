@@ -10,7 +10,9 @@ namespace ReqManager.Model
     {
         [Key]
         public int UserTaskID { get; set; }
+        [Index("IX_USER_TASK", 1, IsUnique = true)]
         public int UserID { get; set; }
+        [Index("IX_USER_TASK", 2, IsUnique = true)]
         public int TaskID { get; set; }
         public DateTime creationDate { get; set; }
     

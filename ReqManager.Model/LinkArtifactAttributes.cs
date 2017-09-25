@@ -10,7 +10,9 @@ namespace ReqManager.Model
     {
         [Key]
         public int ArtefactAttributeID { get; set; }
+        [Index("IX_attribute_requirement", 1, IsUnique = true)]
         public int AttributeID { get; set; }
+        [Index("IX_attribute_requirement", 2, IsUnique = true)]
         public int LinkArtifactRequirementID { get; set; }
         [Required]
         public string value { get; set; }

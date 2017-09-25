@@ -221,3 +221,4 @@ C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\ReqManager.Entities.dll
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\ReqManager.Utils.dll
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\ReqManager.Entities.pdb
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\ReqManager.Utils.pdb
+C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\ReqManager.Model.dll.config

@@ -25,7 +25,9 @@ namespace ReqManager.Model
     
         [Key]
         public int StakeholderID { get; set; }
-        public int UserID { get; set; }        
+        [Index("IX_STAKEHOLDERS", 1, IsUnique = true)]
+        public int UserID { get; set; }
+        [Index("IX_STAKEHOLDERS", 2, IsUnique = true)]
         public int ClassificationID { get; set; }
 
         public virtual Users Users { get; set; }

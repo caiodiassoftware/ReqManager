@@ -10,7 +10,9 @@ namespace ReqManager.Model
     {
         [Key]
         public int AttributesTypeLinkID { get; set; }
+        [Index("IX_attribute_type", 1, IsUnique = true)]
         public int AttributeID { get; set; }
+        [Index("IX_attribute_type", 2, IsUnique = true)]
         public int TypeLinkID { get; set; }
 
         public virtual Attributes Attributes { get; set; }

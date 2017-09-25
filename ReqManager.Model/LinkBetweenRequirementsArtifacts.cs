@@ -16,8 +16,11 @@ namespace ReqManager.Model
         [Key]
         public int LinkArtifactRequirementID { get; set; }
         public int UserID { get; set; }
+        [Index("IX_artifact_requirement", 1, IsUnique = true)]
         public int ProjectArtifactID { get; set; }
+        [Index("IX_artifact_requirement", 2, IsUnique = true)]
         public int RequirementID { get; set; }
+        [Index("IX_artifact_requirement", 3, IsUnique = true)]
         public int TypeLinkID { get; set; }
         [Required]
         public DateTime creationDate { get; set; }

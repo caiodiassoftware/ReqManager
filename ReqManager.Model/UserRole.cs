@@ -10,7 +10,9 @@ namespace ReqManager.Model
     {
         [Key]
         public int UserRoleID { get; set; }
+        [Index("IX_USER_ROLE", 1, IsUnique = true)]
         public int RoleID { get; set; }
+        [Index("IX_USER_ROLE", 2, IsUnique = true)]
         public int UserID { get; set; }
 
         public virtual Role Role { get; set; }

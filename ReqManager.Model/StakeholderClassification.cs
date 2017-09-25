@@ -26,6 +26,7 @@ namespace ReqManager.Model
         public int ClassificationID { get; set; }
         [MinLength(6)]
         [MaxLength(50)]
+        [Index(IsUnique = true)]
         public string description { get; set; }
     
         public virtual ICollection<Stakeholders> StakeHolders { get; set; }

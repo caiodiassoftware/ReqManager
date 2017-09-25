@@ -43,10 +43,12 @@ namespace ReqManager.Model
         public string password { get; set; }
         [Required]
         [MaxLength(50)]
+        [Index(IsUnique = true)]
         public string email { get; set; }
         [Required]
         [MaxLength(15)]
         [MinLength(6)]
+        [Index(IsUnique = true)]
         public string login { get; set; }
         [Required]
         public System.DateTime dateOfBirth { get; set; }
@@ -55,6 +57,7 @@ namespace ReqManager.Model
         public string profession { get; set; }
         [Required]
         [MaxLength(20)]
+        [Index(IsUnique = true)]
         public string document { get; set; }
         [Required]
         public Boolean active { get; set; }

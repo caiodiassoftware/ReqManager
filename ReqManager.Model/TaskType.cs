@@ -28,6 +28,7 @@ namespace ReqManager.Model
         [Required]
         [MinLength(5)]
         [MaxLength(50)]
+        [Index(IsUnique = true)]
         public string description { get; set; }
     
         public virtual ICollection<Task> Task { get; set; }

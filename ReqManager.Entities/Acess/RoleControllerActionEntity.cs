@@ -17,5 +17,8 @@ namespace ReqManager.Entities.Acess
         [Display(Name = "Controller/Action")]
         [Required]
         public int ControllerActionID { get; set; }
+
+        public virtual RoleEntity Roles { get; set; }
+        public virtual ControllerActionEntity ControllerAciton { get; set; }
     }
 }

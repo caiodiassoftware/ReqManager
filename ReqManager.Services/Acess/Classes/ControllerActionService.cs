@@ -10,6 +10,7 @@ using System.Linq;
 using ReqManager.Entities;
 using AutoMapper;
 using ReqManager.Services.Extensions;
+using MoreLinq;
 
 namespace ReqManager.Services.Acess
 {
@@ -41,7 +42,9 @@ namespace ReqManager.Services.Acess
                     Where(ca => !listControllerActionApplication.Any(db => db.action.Equals(ca.action) &&
                 db.controller.Equals(ca.controller))).Cast<ControllerAction>().ToList();
 
-                repository.add(newControllerActions);
+
+
+                repository.add(newControllerActions.GroupBy(ca => new { ca.controller , ca.action}).Select(group => group.First()).ToList());
                 repository.delete(deletedControllerActions.Select(d => d.ControllerActionID).ToList());
             }
             catch (Exception ex)

@@ -21,10 +21,12 @@ namespace ReqManager.Controllers
         private IUserService userService { get; set; }
         private IMeasureImportanceService measureService { get; set; }
         private IProjectService projectService { get; set; }
+        private IArtifactTypeService typeService { get; set; }
 
         public ProjectArtifactController(
             IProjectArtifactService service,
             IUserService userService,
+            IArtifactTypeService typeService,
             IMeasureImportanceService measureService,
             IProjectService projectService) : base(service)
         {
@@ -32,6 +34,7 @@ namespace ReqManager.Controllers
             this.userService = userService;
             this.measureService = measureService;
             this.projectService = projectService;
+            this.typeService = typeService;
         }
 
         #region GETS
@@ -79,6 +82,7 @@ namespace ReqManager.Controllers
 
         private ActionResult dropDowns(ProjectArtifactEntity entity = null)
         {
+            ViewBag.ArtefactTypeID = new SelectList(typeService.getAll(), "ArtefactTypeID", "description");
             ViewBag.MeasureImportanceID = new SelectList(measureService.getAll(), "MeasureImportanceID", "description");
             ViewBag.ProjectID = new SelectList(projectService.getAll(), "ProjectID", "description");
             ViewBag.UserID = new SelectList(userService.getAll(), "UserID", "name");

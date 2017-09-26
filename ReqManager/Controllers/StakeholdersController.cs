@@ -11,13 +11,21 @@ using ReqManager.Entities.Project;
 using ReqManager.ManagerController;
 using ReqManager.Services.Estructure;
 using ReqManager.Services.Project.Interfaces;
+using ReqManager.Services.Acess.Interfaces;
 
 namespace ReqManager.Views
 {
     public class StakeholdersController : BaseController<StakeholdersEntity>
     {
-        public StakeholdersController(IStakeholdersService service) : base(service)
+        private IStakeholderClassificationService classService { get; set; }
+        private IUserService userService { get; set; }
+        private IStakeholdersService service { get; set; }
+
+        public StakeholdersController(IStakeholdersService service, IStakeholderClassificationService classService, IUserService userService) : base(service)
         {
+            this.classService = classService;
+            this.userService = userService;
+            this.service = service;
         }
 
         public override ActionResult Create()
@@ -78,8 +86,8 @@ namespace ReqManager.Views
         private void dropDowns()
         {
             List<StakeholdersEntity> list = Service.getAll().ToList();
-            ViewBag.UserID = new SelectList(list.Select(u => u.Users), "UserID", "name");
-            ViewBag.ClassificationID = new SelectList(list.Select(s => s.StakeHolderClassification), "ClassificationID", "description");
+            ViewBag.UserID = new SelectList(userService.getAll(), "UserID", "name");
+            ViewBag.ClassificationID = new SelectList(classService.getAll(), "ClassificationID", "description");
         }
     }
 }

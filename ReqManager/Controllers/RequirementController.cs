@@ -24,6 +24,8 @@ namespace ReqManager.Controllers
         private IRequirementTemplateService templateService { get; set; }
         private IRequirementTypeService typeService { get; set; }
         private IUserService userService { get; set; }
+        private IStakeholdersService stakeholderService { get; set; }
+        private IStakeholdersProjectService stakeholderProjectService { get; set; }
 
         public RequirementController(
             IRequirementService service,
@@ -31,7 +33,9 @@ namespace ReqManager.Controllers
             IRequirementStatusService statusService,
             IRequirementTemplateService templateService,
             IRequirementTypeService typeService,
-            IUserService userService) : base(service)
+            IUserService userService,
+            IStakeholdersService stakeholderService,
+            IStakeholdersProjectService stakeholderProjectService) : base(service)
         {
             this.service = service;
             this.measureService = measureService;
@@ -39,6 +43,8 @@ namespace ReqManager.Controllers
             this.templateService = templateService;
             this.typeService = typeService;
             this.userService = userService;
+            this.stakeholderService = stakeholderService;
+            this.stakeholderProjectService = stakeholderProjectService;
         }
 
         #region GETS
@@ -69,7 +75,7 @@ namespace ReqManager.Controllers
         public override ActionResult Create(RequirementEntity RequirementEntity)
         {
             base.Create(RequirementEntity);
-            return dropDowns(RequirementEntity);
+            return dropDowns();
         }
 
         [HttpPost]
@@ -77,7 +83,7 @@ namespace ReqManager.Controllers
         public override ActionResult Edit(RequirementEntity RequirementEntity)
         {
             base.Edit(RequirementEntity);
-            return dropDowns(RequirementEntity);
+            return dropDowns();
         }
 
         #endregion
@@ -86,6 +92,9 @@ namespace ReqManager.Controllers
 
         private ActionResult dropDowns(RequirementEntity entity = null)
         {
+            ViewBag.StakeholdersProjectID = new SelectList(stakeholderProjectService.getAll(), "StakeholdersProjectID", "StakeholderID");
+            ViewBag.StakeholderID = new SelectList(stakeholderService.getAll(), "StakeholderID", "StakeholderID");
+
             ViewBag.MeasureImportanceID = new SelectList(measureService.getAll(), "MeasureImportanceID", "description");
             ViewBag.RequirementStatusID = new SelectList(statusService.getAll(), "RequirementStatusID", "description");
             ViewBag.RequirementTemplateID = new SelectList(templateService.getAll(), "RequirementTemplateID", "description");

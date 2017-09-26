@@ -65,3 +65,7 @@ C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Services\bin\Debug\ReqManage
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Services\bin\Debug\AutoMapper.xml
 C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Debug\ReqManager.Model.dll.config
 C:\Users\maquina06\Desktop\ReqManager\ReqManager.Services\bin\Debug\ReqManager.Model.dll.config
+C:\Users\maquina06\Desktop\ReqManager\ReqManager.Services\bin\Debug\MoreLinq.dll
+C:\Users\maquina06\Desktop\ReqManager\ReqManager.Services\bin\Debug\System.ValueTuple.dll
+C:\Users\maquina06\Desktop\ReqManager\ReqManager.Services\bin\Debug\MoreLinq.xml
+C:\Users\maquina06\Desktop\ReqManager\ReqManager.Services\bin\Debug\System.ValueTuple.xml

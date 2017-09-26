@@ -18,7 +18,7 @@ namespace ReqManager.Entities.Artifact
         public int UserID { get; set; }
         [Required]
         [Display(Name = "Artifact Type")]
-        public int ArtifactTypeID { get; set; }
+        public int ArtefactTypeID { get; set; }
         [Required]
         [Display(Name = "Measure Importance")]
         public int MeasureImportanceID { get; set; }

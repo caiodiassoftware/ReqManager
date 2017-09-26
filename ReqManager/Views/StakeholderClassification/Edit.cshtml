@@ -1,10 +1,8 @@
 ﻿@model ReqManager.Entities.Acess.StakeholderClassificationEntity
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edit Stakeholder Classification";
 }
-
-<h2>Edit</h2>
 
 
 @using (Html.BeginForm())
@@ -12,7 +10,6 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>StakeholderClassificationEntity</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.ClassificationID)

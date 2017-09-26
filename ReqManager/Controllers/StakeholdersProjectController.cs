@@ -49,7 +49,7 @@ namespace ReqManager.Controllers
         public override ActionResult Create(StakeholdersProjectEntity stakeholdersProjectEntity)
         {
             base.Create(stakeholdersProjectEntity);
-            return dropDowns(stakeholdersProjectEntity);
+            return dropDowns();
         }
 
         [HttpPost]
@@ -57,7 +57,7 @@ namespace ReqManager.Controllers
         public override ActionResult Edit(StakeholdersProjectEntity stakeholdersProjectEntity)
         {
             base.Edit(stakeholdersProjectEntity);
-            return dropDowns(stakeholdersProjectEntity);
+            return dropDowns();
         }
 
         #endregion

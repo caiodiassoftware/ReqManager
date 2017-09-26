@@ -83,8 +83,17 @@
                         </ul>
                     </li>
                     <li class="nav-header">
-                        <a href="#" data-toggle="collapse" data-target="#menu4">REQUIREMENT</a>
+                        <a href="#" data-toggle="collapse" data-target="#menu4">STAKEHOLDERS</a>
                         <ul class="nav nav-stacked collapse" style="margin-left:6%;" id="menu4">
+                            <li>@Html.ActionLink("Stakeholder", "Index", "Stakeholders")</li>
+                            <li>@Html.ActionLink("Classification", "Index", "StakeholderClassification")</li>
+                            <li>@Html.ActionLink("Stakeholder and Project", "Index", "StakeholdersProject")</li>
+                            <li>@Html.ActionLink("Stakeholders and Requirements ", "Index", "StakeholderRequirement")</li>                            
+                        </ul>
+                    </li>
+                    <li class="nav-header">
+                        <a href="#" data-toggle="collapse" data-target="#menu5">REQUIREMENT</a>
+                        <ul class="nav nav-stacked collapse" style="margin-left:6%;" id="menu5">
                             <li>@Html.ActionLink("Requirements", "Index", "Requirement")</li>
                             <li>@Html.ActionLink("Types", "Index", "RequirementTypes")</li>
                             <li>@Html.ActionLink("Status", "Index", "RequirementStatus")</li>

@@ -12,8 +12,10 @@ namespace ReqManager.Entities.Link
         [Key]
         public int ArtefactAttributeID { get; set; }
         [Required]
-        public int AttributeID { get; set; }
+        [Display(Name = "Attributo")]
+        public int AttributeID { get; set; }        
         [Required]
+        [Display(Name = "Artefact - Requirement")]
         public int LinkArtifactRequirementID { get; set; }
         [Required]
         [Display(Name = "Value")]

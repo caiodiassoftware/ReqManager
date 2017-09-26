@@ -13,13 +13,17 @@ namespace ReqManager.Entities.Task
         [Key]
         public int TaskTypeTemplateID { get; set; }
         [Required]
+        [Display(Name = "User")]
         public int UserID { get; set; }
         [Required]
+        [Display(Name = "Type")]
         public int TaskTypeID { get; set; }
         [Required]
         [MaxLength(1000)]
+        [Display(Name = "Template Html")]
         public string templateHtml { get; set; }
         [Required]
+        [Display(Name = "Creation Date")]
         public DateTime creationDate { get; set; }
 
         public virtual UserEntity Users { get; set; }

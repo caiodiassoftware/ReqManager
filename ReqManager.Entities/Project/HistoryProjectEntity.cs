@@ -13,14 +13,20 @@ namespace ReqManager.Entities.Project
         [Key]
         public int HistoryProjectID { get; set; }
         [Required]
+        [Display(Name = "Name")]
         public int UserID { get; set; }
         [Required]
+        [Display(Name = "Project")]
         public int ProjectID { get; set; }
         [Required]
         [MaxLength(50)]
+        [Display(Name = "Phases")]
         public string descriptionPhases { get; set; }
+        [Display(Name = "Start Date")]
         public DateTime startDate { get; set; }
+        [Display(Name = "End Date")]
         public DateTime endDate { get; set; }
+        [Display(Name = "Description")]
         public DateTime changedDate { get; set; }
 
         public virtual UserEntity Users { get; set; }

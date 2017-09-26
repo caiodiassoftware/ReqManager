@@ -14,13 +14,17 @@ namespace ReqManager.Entities.Link
         [Key]
         public int LinkRequirementsID { get; set; }
         [Required]
+        [Display(Name = "User")]
         public int UserID { get; set; }
         [Required]
+        [Display(Name = "Type Link")]
         public int TypeLinkID { get; set; }
         [Required]
+        [Display(Name = "Creation Data")]
         public DateTime creationDate { get; set; }
         [Required]
         [MaxLength(25), MinLength(5)]
+        [Display(Name = "Code")]
         public string code { get; set; }
 
         public virtual UserEntity Users { get; set; }

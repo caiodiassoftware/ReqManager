@@ -12,10 +12,13 @@ namespace ReqManager.Entities.Link
         [Key]
         public int RequirementAttributeID { get; set; }
         [Required]
+        [Display(Name = "Attribute")]
         public int AttributeID { get; set; }
         [Required]
+        [Display(Name = "Requeriment - Requirement")]
         public int LinkRequirementID { get; set; }
         [Required]
+        [Display(Name = "Value")]
         public string value { get; set; }
 
         public virtual AttributesEntity Attributes { get; set; }

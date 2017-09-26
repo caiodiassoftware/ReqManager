@@ -12,19 +12,26 @@ namespace ReqManager.Entities.Task
         [Key]
         public int SubtaskID { get; set; }
         [Required]
+        [Display(Name = "Status")]
         public int StatusTaskID { get; set; }
         [Required]
+        [Display(Name = "Type")]
         public int TaskTypeID { get; set; }
         [Required]
+        [Display(Name = "Task-User")]
         public int UserTaskID { get; set; }
         [Required]
+        [Display(Name = "Creation Date")]
         public System.DateTime creationDate { get; set; }
         [MinLength(3)]
         [MaxLength(1000)]
         [Required]
+        [Display(Name = "Description")]
         public string description { get; set; }
         [Required]
+        [Display(Name = "Start Date")]
         public DateTime startDate { get; set; }
+        [Display(Name = "End Date")]
         public Nullable<DateTime> endDate { get; set; }
 
         public virtual StatusTaskEntity StatusTask { get; set; }

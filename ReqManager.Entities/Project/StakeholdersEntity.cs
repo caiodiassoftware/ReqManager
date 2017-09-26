@@ -13,8 +13,10 @@ namespace ReqManager.Entities.Project
         [Key]
         public int StakeholderID { get; set; }
         [Required]
+        [Display(Name = "User")]
         public int UserID { get; set; }
         [Required]
+        [Display(Name = "Classification")]
         public int ClassificationID { get; set; }
 
         public virtual UserEntity Users { get; set; }

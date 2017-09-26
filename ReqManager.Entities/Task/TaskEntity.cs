@@ -14,25 +14,35 @@ namespace ReqManager.Entities.Task
         [Key]
         public int TaskID { get; set; }
         [Required]
+        [Display(Name = "User")]
         public int UserID { get; set; }
         [Required]
+        [Display(Name = "Requirement")]
         public int ProjectRequirementID { get; set; }
         [Required]
+        [Display(Name = "Importance")]
         public int MeasureImportanceID { get; set; }
         [Required]
+        [Display(Name = "Status")]
         public int StatusTaskID { get; set; }
         [Required]
+        [Display(Name = "Type Template")]
         public int TaskTypeTemplateID { get; set; }
         [Required]
+        [Display(Name = "Type")]
         public int TaskTypeID { get; set; }
         [Required]
+        [Display(Name = "Creation Date")]
         public System.DateTime creationDate { get; set; }
         [MinLength(3)]
         [MaxLength(1000)]
         [Required]
+        [Display(Name = "Description")]
         public string description { get; set; }
         [Required]
+        [Display(Name = "Start Date")]
         public DateTime startDate { get; set; }
+        [Display(Name = "End Date")]
         public Nullable<DateTime> endDate { get; set; }
 
         public virtual UserEntity Users { get; set; }

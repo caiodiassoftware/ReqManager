@@ -13,7 +13,8 @@ namespace ReqManager.Entities.Task
         public int TypeTaskID { get; set; }
         [Required]
         [MinLength(5)]
-        [MaxLength(50)]        
+        [MaxLength(50)]
+        [Display(Name = "Description")]
         public string description { get; set; }
     }
 }

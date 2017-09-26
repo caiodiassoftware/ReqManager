@@ -13,6 +13,7 @@ namespace ReqManager.Entities.Acess
         public int ClassificationID { get; set; }
         [MinLength(6)]
         [MaxLength(50)]
+        [Display(Name = "Description")]
         public string description { get; set; }
 
     }

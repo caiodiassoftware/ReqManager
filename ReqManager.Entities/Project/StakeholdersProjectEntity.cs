@@ -12,10 +12,13 @@ namespace ReqManager.Entities.Project
         [Key]
         public int StakeholdersProjectID { get; set; }
         [Required]
+        [Display(Name = "Project")]
         public int ProjectID { get; set; }
         [Required]
+        [Display(Name = "Stakeholder")]
         public int StakeholderID { get; set; }
         [Required]
+        [Display(Name = "Creation Date")]
         public DateTime creationDate { get; set; }
 
         public virtual ProjectEntity Project { get; set; }

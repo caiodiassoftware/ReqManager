@@ -13,10 +13,13 @@ namespace ReqManager.Entities.Task
         [Key]
         public int UserTaskID { get; set; }
         [Required]
+        [Display(Name = "User")]
         public int UserID { get; set; }
         [Required]
+        [Display(Name = "Task")]
         public int TaskID { get; set; }
         [Required]
+        [Display(Name = "Creation Date")]
         public DateTime creationDate { get; set; }
 
         public virtual UserEntity User { get; set; }

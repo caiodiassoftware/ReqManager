@@ -13,6 +13,7 @@ namespace ReqManager.Entities.Requirement
         public int RequirementTypeID { get; set; }
         [MinLength(5)]
         [MaxLength(50)]
+        [Display(Name = "Description")]
         public string description { get; set; }
     }
 }

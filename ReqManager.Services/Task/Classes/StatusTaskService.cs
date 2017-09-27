@@ -1,6 +1,6 @@
 ﻿using ReqManager.Data.Infrastructure;
 using ReqManager.Data.InterfacesRepositories;
-using ReqManager.Entities.Task;
+using ReqManager.Entities.Acess;
 using ReqManager.Model;
 using ReqManager.Services.Estructure;
 using ReqManager.Services.Task.Interfaces;

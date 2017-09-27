@@ -13,7 +13,8 @@ namespace ReqManager.Data.DataAcess
     {
         public ReqManagerEntities() : base("ReqManagerDataEntities")
         {
-
+            Configuration.LazyLoadingEnabled = false;
+            Configuration.ProxyCreationEnabled = false;
         }
 
         public virtual void Commit()

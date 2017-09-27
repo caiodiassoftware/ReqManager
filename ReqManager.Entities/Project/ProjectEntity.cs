@@ -42,6 +42,9 @@ namespace ReqManager.Entities.Project
         [Required]
         [Display(Name = "Creation Date")]
         public DateTime creationDate { get; set; }
+        [Required]
+        [MaxLength(25)]
+        public string code { get; set; }
 
         public virtual UserEntity Users { get; set; }
         public virtual ProjectPhasesEntity ProjectPhases { get; set; }

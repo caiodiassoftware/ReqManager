@@ -22,3 +22,4 @@ C:\Users\maquina06\Desktop\ReqManager\ReqManager.Model\bin\Debug\EntityFramework
 C:\Users\maquina06\Desktop\ReqManager\ReqManager.Model\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\maquina06\Desktop\ReqManager\ReqManager.Model\bin\Debug\EntityFramework.xml
 C:\Users\maquina06\Desktop\ReqManager\ReqManager.Model\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\maquina06\Desktop\ReqManager\ReqManager.Model\obj\Debug\ReqManager.Model.csprojResolveAssemblyReference.cache

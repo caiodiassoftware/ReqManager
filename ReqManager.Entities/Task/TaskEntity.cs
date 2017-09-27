@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ReqManager.Entities.Task
+namespace ReqManager.Entities.Acess
 {
     public class TaskEntity
     {
@@ -44,6 +44,9 @@ namespace ReqManager.Entities.Task
         public DateTime startDate { get; set; }
         [Display(Name = "End Date")]
         public Nullable<DateTime> endDate { get; set; }
+        [Required]
+        [MaxLength(25)]
+        public string code { get; set; }
 
         public String DisplayName
         {

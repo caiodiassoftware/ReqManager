@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ReqManager.Entities.Task
+namespace ReqManager.Entities.Acess
 {
     public class TaskTypeEntity
     {

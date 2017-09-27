@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ReqManager.Entities.Task.UserRoleEntity>
+﻿@model IEnumerable<ReqManager.Entities.Acess.UserRoleEntity>
 
 @{
     ViewBag.Title = "Listing of Relationships between Users and Roles";
@@ -21,7 +21,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Role.description)
+            @Html.DisplayFor(modelItem => item.DisplayName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.User.name)

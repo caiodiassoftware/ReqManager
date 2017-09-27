@@ -1,4 +1,4 @@
-﻿using ReqManager.Entities.Task;
+﻿using ReqManager.Entities.Acess;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

@@ -10,7 +10,6 @@ namespace ReqManager.Data.InterfacesRepositories
 {
     public interface IUserRoleRepository : IRepository<UserRole>
     {
-        IEnumerable<Users> GetUsers();
-        IEnumerable<Role> GetRoles();
+
     }
 }

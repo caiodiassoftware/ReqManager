@@ -7,7 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ReqManager.Data.DataAcess;
-using ReqManager.Entities.Task;
+using ReqManager.Entities.Acess;
 using ReqManager.ManagerController;
 using ReqManager.Services.Acess.Interfaces;
 using ReqManager.ViewModels;
@@ -76,22 +76,5 @@ namespace ReqManager.Controllers
         }
 
         #endregion
-
-
-        //public override ActionResult Index()
-        //{
-        //    List<UserRoleViewModel> view = new List<UserRoleViewModel>();
-
-        //    foreach (var item in Service.getAll().ToList())
-        //    {
-        //        UserRoleViewModel ur = new UserRoleViewModel();
-        //        ur.UserRoleID = item.UserRoleID;
-        //        ur.roleDescription = roleService.get(item.RoleID).description;
-        //        ur.userName = userService.get(item.UserID).name;
-        //        view.Add(ur);
-        //    }
-
-        //    return View(view);
-        //}
     }
 }

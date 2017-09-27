@@ -22,9 +22,14 @@ namespace ReqManager.Model
         [MaxLength(1000)]
         [Required]
         public string description { get; set; }
+        [Required]
         public System.DateTime startDate { get; set; }
         public Nullable<DateTime> endDate { get; set; }
-            
+        [Required]
+        [MaxLength(25)]
+        [Index(IsUnique = true)]
+        public string code { get; set; }
+
         public virtual StatusTask StatusTask { get; set; }
         public virtual TaskType TaskType { get; set; }
         public virtual UserTask UserTask { get; set; }

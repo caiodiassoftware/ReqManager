@@ -4,7 +4,7 @@ using ReqManager.Data.InterfacesRepositories;
 using ReqManager.Model;
 using ReqManager.Services.Acess.Interfaces;
 using ReqManager.Services.Estructure;
-using ReqManager.Entities.Task;
+using ReqManager.Entities.Acess;
 
 namespace ReqManager.Services.Acess.Classes
 {

@@ -28,7 +28,12 @@ namespace ReqManager.Model
         [MaxLength(1000)]
         [Required]
         public string description { get; set; }
+        [Required]
         public DateTime startDate { get; set; }
+        [Required]
+        [MaxLength(25)]
+        [Index(IsUnique = true)]
+        public string code { get; set; }
         public Nullable<DateTime> endDate { get; set; }
     
         public virtual Users Users { get; set; }

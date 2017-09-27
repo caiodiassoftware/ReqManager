@@ -21,6 +21,14 @@ namespace ReqManager.Entities.Link
         [Display(Name = "Value")]
         public string value { get; set; }
 
+        public String DisplayName
+        {
+            get
+            {
+                return this.Attributes.description + " - " + this.LinkRequirement.code + " - " + this.value;
+            }
+        }
+
         public virtual AttributesEntity Attributes { get; set; }
         public virtual LinkBetweenRequirementsEntity LinkRequirement { get; set; }
     }

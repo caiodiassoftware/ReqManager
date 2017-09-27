@@ -23,5 +23,14 @@ namespace ReqManager.Entities.Project
 
         public virtual ProjectRequirementsEntity ProjectRequirements { get; set; }
         public virtual StakeholdersEntity StakeHolders { get; set; }
+
+        public String DisplayName
+        {
+            get
+            {
+                return this.StakeHolders.Users.nickName + " - " + this.ProjectRequirements.Project.description;
+            }
+        }
+
     }
 }

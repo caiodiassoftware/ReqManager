@@ -19,12 +19,12 @@ namespace ReqManager.Controllers
     {
         private IStakeholderRequirementService service { get; set; }
         private IStakeholdersService stakeholderService { get; set; }
-        private IRequirementService projectReqService { get; set; }
+        private IProjectRequirementsService projectReqService { get; set; }
 
         public StakeholderRequirementController(
             IStakeholderRequirementService service,
             IStakeholdersService stakeholderService,
-            IRequirementService projectReqService) : base(service)
+            IProjectRequirementsService projectReqService) : base(service)
         {
             this.service = service;
             this.stakeholderService = stakeholderService;
@@ -59,7 +59,7 @@ namespace ReqManager.Controllers
         public override ActionResult Create(StakeholderRequirementEntity StakeholderRequirementEntity)
         {
             base.Create(StakeholderRequirementEntity);
-            return dropDowns(StakeholderRequirementEntity);
+            return dropDowns();
         }
 
         [HttpPost]
@@ -67,7 +67,7 @@ namespace ReqManager.Controllers
         public override ActionResult Edit(StakeholderRequirementEntity StakeholderRequirementEntity)
         {
             base.Edit(StakeholderRequirementEntity);
-            return dropDowns(StakeholderRequirementEntity);
+            return dropDowns();
         }
 
         #endregion
@@ -76,8 +76,8 @@ namespace ReqManager.Controllers
 
         private ActionResult dropDowns(StakeholderRequirementEntity entity = null)
         {
-            ViewBag.ProjectRequirementID = new SelectList(projectReqService.getAll(), "ProjectRequirementID", "ProjectRequirementID");
-            ViewBag.StakeHolderID = new SelectList(stakeholderService.getAll(), "StakeholderID", "StakeholderID");
+            ViewBag.ProjectRequirementID = new SelectList(projectReqService.getAll(), "ProjectRequirementID", "DisplayName");
+            ViewBag.StakeHolderID = new SelectList(stakeholderService.getAll(), "StakeholderID", "DisplayName");
             return entity == null ? View() : View(entity);
         }
 

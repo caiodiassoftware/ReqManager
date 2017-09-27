@@ -8,19 +8,19 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.RoleID)
+            @Html.DisplayNameFor(model => model.Role.description)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.RoleID)
+            @Html.DisplayFor(model => model.Role.description)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ControllerActionID)
+            @Html.Label("Controller/Action")
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ControllerActionID)
+            @Html.DisplayFor(model => model.ControllerAction.DisplayName)
         </dd>
 
     </dl>

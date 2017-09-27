@@ -22,6 +22,14 @@ namespace ReqManager.Entities.Task
         [Display(Name = "Creation Date")]
         public DateTime creationDate { get; set; }
 
+        public String DisplayName
+        {
+            get
+            {
+                return this.User.nickName + " - " + this.Task.DisplayName;
+            }
+        }
+
         public virtual UserEntity User { get; set; }
         public virtual TaskEntity Task { get; set; }
     }

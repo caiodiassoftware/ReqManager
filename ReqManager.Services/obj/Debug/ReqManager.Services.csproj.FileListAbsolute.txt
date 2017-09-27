@@ -69,3 +69,7 @@ C:\Users\maquina06\Desktop\ReqManager\ReqManager.Services\bin\Debug\MoreLinq.dll
 C:\Users\maquina06\Desktop\ReqManager\ReqManager.Services\bin\Debug\System.ValueTuple.dll
 C:\Users\maquina06\Desktop\ReqManager\ReqManager.Services\bin\Debug\MoreLinq.xml
 C:\Users\maquina06\Desktop\ReqManager\ReqManager.Services\bin\Debug\System.ValueTuple.xml
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Debug\MoreLinq.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Debug\System.ValueTuple.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Debug\MoreLinq.xml
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Debug\System.ValueTuple.xml

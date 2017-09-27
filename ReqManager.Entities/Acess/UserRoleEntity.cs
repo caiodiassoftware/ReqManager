@@ -17,6 +17,14 @@ namespace ReqManager.Entities.Task
         [Required]
         public int UserID { get; set; }
 
+        public String DisplayName
+        {
+            get
+            {
+                return this.Role.description + " - " + User.nickName;
+            }
+        }
+
         public virtual RoleEntity Role { get; set; }
         public virtual UserEntity User { get; set; }
 

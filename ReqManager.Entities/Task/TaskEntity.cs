@@ -45,6 +45,14 @@ namespace ReqManager.Entities.Task
         [Display(Name = "End Date")]
         public Nullable<DateTime> endDate { get; set; }
 
+        public String DisplayName
+        {
+            get
+            {
+                return this.description;
+            }
+        }
+
         public virtual UserEntity Users { get; set; }
         public virtual ProjectRequirementsEntity ProjectRequirements { get; set; }
         public virtual MeasureImportanceEntity MeasureImportance { get; set; }

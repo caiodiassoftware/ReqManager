@@ -34,6 +34,14 @@ namespace ReqManager.Entities.Task
         [Display(Name = "End Date")]
         public Nullable<DateTime> endDate { get; set; }
 
+        public String DisplayName
+        {
+            get
+            {
+                return this.UserTask.Task.DisplayName + "." + this.SubtaskID;
+            }
+        }
+
         public virtual StatusTaskEntity StatusTask { get; set; }
         public virtual TaskTypeEntity TaskType { get; set; }
         public virtual UserTaskEntity UserTask { get; set; }

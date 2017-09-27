@@ -266,7 +266,6 @@
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\UsersRoles\Create.cshtml" />
-    <Content Include="Views\UsersRoles\Delete.cshtml" />
     <Content Include="Views\UsersRoles\Details.cshtml" />
     <Content Include="Views\UsersRoles\Edit.cshtml" />
     <Content Include="Views\ProjectPhases\Create.cshtml" />
@@ -349,6 +348,7 @@
     <Content Include="Views\HistoryProjectArtifacts\Index.cshtml" />
     <Content Include="Views\UsersRoles\Index.cshtml" />
     <Content Include="Views\RoleControllerAction\Create.cshtml" />
+    <Content Include="Views\UsersRoles\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

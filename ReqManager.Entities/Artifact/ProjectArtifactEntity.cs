@@ -40,6 +40,14 @@ namespace ReqManager.Entities.Artifact
         [Display(Name = "Creation Data")]
         public DateTime creationDate { get; set; }
 
+        public String DisplayName
+        {
+            get
+            {
+                return this.description + " - " + this.code;
+            }
+        }
+
         public virtual UserEntity Users { get; set; }
         public virtual ArtifactTypeEntity ArtifactType { get; set; }
         public virtual MeasureImportanceEntity MeasureImportance { get; set; }

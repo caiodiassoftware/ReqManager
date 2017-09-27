@@ -18,7 +18,15 @@ namespace ReqManager.Entities.Acess
         [Required]
         public int ControllerActionID { get; set; }
 
-        public virtual RoleEntity Roles { get; set; }
-        public virtual ControllerActionEntity ControllerAciton { get; set; }
+        public String DisplayName
+        {
+            get
+            {
+                return this.Role.description + " - " + ControllerAction.controller + "/" + ControllerAction.action;
+            }
+        }
+
+        public virtual ControllerActionEntity ControllerAction { get; set; }
+        public virtual RoleEntity Role { get; set; }        
     }
 }

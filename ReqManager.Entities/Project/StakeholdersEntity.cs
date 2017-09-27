@@ -19,6 +19,14 @@ namespace ReqManager.Entities.Project
         [Display(Name = "Classification")]
         public int ClassificationID { get; set; }
 
+        public String DisplayName
+        {
+            get
+            {
+                return this.Users.nickName + " - " + this.StakeHolderClassification.description;
+            }
+        }
+
         public virtual UserEntity Users { get; set; }
         public virtual StakeholderClassificationEntity StakeHolderClassification { get; set; }
     }

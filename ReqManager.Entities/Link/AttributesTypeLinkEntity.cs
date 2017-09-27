@@ -18,6 +18,14 @@ namespace ReqManager.Entities.Link
         [Display(Name = "Link Type")]
         public int TypeLinkID { get; set; }
 
+        public String DisplayName
+        {
+            get
+            {
+                return this.Attributes.description + " - " + this.TypeLink.description;
+            }
+        }
+
         public virtual AttributesEntity Attributes { get; set; }
         public virtual TypeLinkEntity TypeLink { get; set; }
     }

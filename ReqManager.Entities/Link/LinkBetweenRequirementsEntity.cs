@@ -27,6 +27,14 @@ namespace ReqManager.Entities.Link
         [Display(Name = "Code")]
         public string code { get; set; }
 
+        public String DisplayName
+        {
+            get
+            {
+                return this.RequirementOriginID.code + " to " + this.RequirementTargetID.code + " - " + this.TypeLink.description;
+            }
+        }
+
         public virtual UserEntity Users { get; set; }
         public virtual RequirementEntity RequirementOriginID { get; set; }
         public virtual RequirementEntity RequirementTargetID { get; set; }

@@ -65,7 +65,7 @@ namespace ReqManager.Controllers
 
         private ActionResult dropDowns(RoleControllerActionEntity entity = null)
         {
-            ViewBag.ControllerActionID = new SelectList(caService.getAll(), "ControllerActionID", "action");
+            ViewBag.ControllerActionID = new SelectList(caService.getAll(), "ControllerActionID", "DisplayName");
             ViewBag.RoleID = new SelectList(roleService.getAll(), "RoleID", "description");
             return entity == null ? View() : View(entity);
         }

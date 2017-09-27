@@ -21,6 +21,14 @@ namespace ReqManager.Entities.Project
         [Display(Name = "Creation Date")]
         public DateTime creationDate { get; set; }
 
+        public String DisplayName
+        {
+            get
+            {
+                return this.Project.description + " - " + this.Stakeholders.DisplayName;
+            }
+        }
+
         public virtual ProjectEntity Project { get; set; }
         public virtual StakeholdersEntity Stakeholders { get; set; }
     }

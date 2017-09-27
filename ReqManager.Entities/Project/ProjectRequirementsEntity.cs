@@ -29,6 +29,14 @@ namespace ReqManager.Entities.Project
         [Display(Name = "Traceable")]
         public bool traceable { get; set; }
 
+        public String DisplayName
+        {
+            get
+            {
+                return this.Project.description + " - " + Requirement.code;
+            }
+        }
+
         public virtual UserEntity User { get; set; }
         public virtual ProjectEntity Project { get; set; }
         public virtual RequirementEntity Requirement { get; set; }

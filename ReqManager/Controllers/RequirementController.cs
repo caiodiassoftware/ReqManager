@@ -92,8 +92,8 @@ namespace ReqManager.Controllers
 
         private ActionResult dropDowns(RequirementEntity entity = null)
         {
-            ViewBag.StakeholdersProjectID = new SelectList(stakeholderProjectService.getAll(), "StakeholdersProjectID", "StakeholderID");
-            ViewBag.StakeholderID = new SelectList(stakeholderService.getAll(), "StakeholderID", "StakeholderID");
+            ViewBag.StakeholdersProjectID = new SelectList(stakeholderProjectService.getAll(), "StakeholdersProjectID", "DisplayName");
+            ViewBag.StakeholderID = new SelectList(stakeholderService.getAll(), "StakeholderID", "DisplayName");
 
             ViewBag.MeasureImportanceID = new SelectList(measureService.getAll(), "MeasureImportanceID", "description");
             ViewBag.RequirementStatusID = new SelectList(statusService.getAll(), "RequirementStatusID", "description");

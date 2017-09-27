@@ -23,6 +23,14 @@ namespace ReqManager.Entities.Link
         [Display(Name = "Creation Date")]
         public DateTime creationDate { get; set; }
 
+        public String DisplayName
+        {
+            get
+            {
+                return this.description;
+            }
+        }
+
         public virtual UserEntity Users { get; set; }
     }
 }

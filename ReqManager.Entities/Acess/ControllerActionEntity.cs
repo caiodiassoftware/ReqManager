@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace ReqManager.Entities
 {
@@ -17,5 +18,13 @@ namespace ReqManager.Entities
         [Required]
         [Display(Name = "HttpGet/HttpPost")]
         public bool IsGet { get; set; }
+
+        public String DisplayName
+        {
+            get
+            {
+                return this.controller + "/" + action;
+            }
+        }
     }
 }

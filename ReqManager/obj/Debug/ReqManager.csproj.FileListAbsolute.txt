@@ -134,10 +134,8 @@ C:\Users\maquina06\Desktop\ReqManager\ReqManager\bin\ReqManager.Model.dll
 C:\Users\maquina06\Desktop\ReqManager\ReqManager\bin\ReqManager.Model.pdb
 C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\EntityFramework.SqlServer.dll
 C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\ReqManager.Model.dll
-C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\ReqManager.Data.dll.config
 C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\ReqManager.Model.pdb
 C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\EntityFramework.SqlServer.xml
-C:\Users\cdias\Desktop\ReqManager\ReqManager\obj\Debug\ReqManager.csproj.CoreCompileInputs.cache
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\obj\Debug\ReqManager.csprojResolveAssemblyReference.cache
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\ApplicationInsights.config
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\roslyn\csc.exe
@@ -221,5 +219,4 @@ C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\ReqManager.Entities.dll
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\ReqManager.Utils.dll
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\ReqManager.Entities.pdb
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\ReqManager.Utils.pdb
-C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\ReqManager.Model.dll.config
 C:\Users\maquina06\Desktop\ReqManager\ReqManager\bin\ReqManager.Model.dll.config

@@ -33,6 +33,8 @@ namespace ReqManager.Entities.Acess
         public int TaskTypeID { get; set; }
         [Required]
         [Display(Name = "Creation Date")]
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [StringLength(10, MinimumLength = 10, ErrorMessage = "Invalid Date")]
         public System.DateTime creationDate { get; set; }
         [MinLength(3)]
         [MaxLength(1000)]
@@ -41,8 +43,12 @@ namespace ReqManager.Entities.Acess
         public string description { get; set; }
         [Required]
         [Display(Name = "Start Date")]
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [StringLength(10, MinimumLength = 10, ErrorMessage = "Invalid Date")]
         public DateTime startDate { get; set; }
         [Display(Name = "End Date")]
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [StringLength(10, MinimumLength = 10, ErrorMessage = "Invalid Date")]
         public Nullable<DateTime> endDate { get; set; }
         [Required]
         [MaxLength(25)]

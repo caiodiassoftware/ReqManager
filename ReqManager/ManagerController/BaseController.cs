@@ -12,17 +12,17 @@ using System.Web.Routing;
 
 namespace ReqManager.ManagerController
 {
-    public class BaseController<T> : Controller where T : class
+    public class BaseController<TEntity> : Controller where TEntity : class
     {
         #region Attributes
 
-        protected IService<T> Service { get; set; }
+        protected IService<TEntity> Service { get; set; }
 
         #endregion
 
         #region Constructor
 
-        public BaseController(IService<T> service)
+        public BaseController(IService<TEntity> service)
         {
             this.Service = service;
         }
@@ -35,6 +35,7 @@ namespace ReqManager.ManagerController
         {
             try
             {
+                var test = Service.getAll();
                 return View(Service.getAll());
             }
             catch (Exception ex)
@@ -51,7 +52,7 @@ namespace ReqManager.ManagerController
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                T model = Service.get(id);
+                TEntity model = Service.get(id);
                 if (model == null)
                 {
                     return HttpNotFound();
@@ -84,7 +85,7 @@ namespace ReqManager.ManagerController
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                T model = Service.get(id);
+                TEntity model = Service.get(id);
                 if (model == null)
                 {
                     return HttpNotFound();
@@ -105,7 +106,7 @@ namespace ReqManager.ManagerController
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                T model = Service.get(id);
+                TEntity model = Service.get(id);
                 if (model == null)
                 {
                     return HttpNotFound();
@@ -124,7 +125,7 @@ namespace ReqManager.ManagerController
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public virtual ActionResult Create(T model)
+        public virtual ActionResult Create(TEntity model)
         {
             try
             {
@@ -146,7 +147,7 @@ namespace ReqManager.ManagerController
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public virtual ActionResult Edit(T entity)
+        public virtual ActionResult Edit(TEntity entity)
         {
             try
             {

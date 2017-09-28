@@ -14,7 +14,7 @@ namespace ReqManager.Model
         }
     
         [Key]
-        public int ArtefactTypeID { get; set; }
+        public int ArtifactTypeID { get; set; }
         [Required]
         [MaxLength(50), MinLength(5)]
         [Index(IsUnique = true)]

@@ -36,6 +36,8 @@ namespace ReqManager.Entities.Requirement
         public string title { get; set; }
         [Required]
         [Display(Name = "Changed Date")]
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [StringLength(10, MinimumLength = 10, ErrorMessage = "Invalid Date")]
         public DateTime changedDate { get; set; }
         [Required]
         [MaxLength(1000), MinLength(5)]

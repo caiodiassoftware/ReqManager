@@ -18,7 +18,7 @@ namespace ReqManager.Entities.Artifact
         public int UserID { get; set; }
         [Required]
         [Display(Name = "Artifact Type")]
-        public int ArtefactTypeID { get; set; }
+        public int ArtifactTypeID { get; set; }
         [Required]
         [Display(Name = "Measure Importance")]
         public int MeasureImportanceID { get; set; }
@@ -38,6 +38,8 @@ namespace ReqManager.Entities.Artifact
         public string description { get; set; }
         [Required]
         [Display(Name = "Creation Data")]
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [StringLength(10, MinimumLength = 10, ErrorMessage = "Invalid Date")]
         public DateTime creationDate { get; set; }
 
         public String DisplayName

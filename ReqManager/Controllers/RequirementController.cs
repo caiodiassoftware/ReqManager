@@ -24,7 +24,6 @@ namespace ReqManager.Controllers
         private IRequirementTemplateService templateService { get; set; }
         private IRequirementTypeService typeService { get; set; }
         private IUserService userService { get; set; }
-        private IStakeholdersService stakeholderService { get; set; }
         private IStakeholdersProjectService stakeholderProjectService { get; set; }
 
         public RequirementController(
@@ -34,7 +33,6 @@ namespace ReqManager.Controllers
             IRequirementTemplateService templateService,
             IRequirementTypeService typeService,
             IUserService userService,
-            IStakeholdersService stakeholderService,
             IStakeholdersProjectService stakeholderProjectService) : base(service)
         {
             this.service = service;
@@ -43,7 +41,6 @@ namespace ReqManager.Controllers
             this.templateService = templateService;
             this.typeService = typeService;
             this.userService = userService;
-            this.stakeholderService = stakeholderService;
             this.stakeholderProjectService = stakeholderProjectService;
         }
 
@@ -93,8 +90,6 @@ namespace ReqManager.Controllers
         private ActionResult dropDowns(RequirementEntity entity = null)
         {
             ViewBag.StakeholdersProjectID = new SelectList(stakeholderProjectService.getAll(), "StakeholdersProjectID", "DisplayName");
-            ViewBag.StakeholderID = new SelectList(stakeholderService.getAll(), "StakeholderID", "DisplayName");
-
             ViewBag.MeasureImportanceID = new SelectList(measureService.getAll(), "MeasureImportanceID", "description");
             ViewBag.RequirementStatusID = new SelectList(statusService.getAll(), "RequirementStatusID", "description");
             ViewBag.RequirementTemplateID = new SelectList(templateService.getAll(), "RequirementTemplateID", "description");

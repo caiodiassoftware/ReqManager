@@ -152,7 +152,8 @@ namespace ReqManager.Data.Infrastructure
         {
             try
             {
-                return dbSet.AsNoTracking().ToList();
+                var teste = dbSet.ToList();
+                return dbSet.ToList();
             }
             catch (Exception ex)
             {

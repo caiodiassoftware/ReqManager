@@ -21,11 +21,10 @@ namespace ReqManager.Model
         [Key]
         public int RequirementID { get; set; }
         public Nullable<int> RequirementTemplateID { get; set; }
-        public int StakeholderID { get; set; }
         public int UserID { get; set; }
         public int RequirementStatusID { get; set; }
         public int RequirementTypeID { get; set; }
-        public int StakeholderProjectID { get; set; }
+        public int StakeholdersProjectID { get; set; }
         public int MeasureImportanceID { get; set; }
         [Required]
         [MaxLength(25)]

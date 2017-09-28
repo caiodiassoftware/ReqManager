@@ -25,10 +25,7 @@
             @Html.DisplayNameFor(model => model.Users.name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.StakeholderID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StakeholderProjectID)
+            @Html.DisplayNameFor(model => model.StakeholdersProjectID)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.code)
@@ -69,10 +66,10 @@
             @Html.DisplayFor(modelItem => item.Users.name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.StakeholderID)
+            @Html.DisplayFor(modelItem => item.StakeholdersProjectID)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.StakeholderProjectID)
+            @Html.DisplayFor(modelItem => item.StakeholderProject.DisplayName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.code)

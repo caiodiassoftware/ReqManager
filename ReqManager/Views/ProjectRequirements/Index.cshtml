@@ -13,7 +13,7 @@
             @Html.DisplayNameFor(model => model.Project.description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.User.name)
+            @Html.DisplayNameFor(model => model.Users.name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.RequirementID)
@@ -24,9 +24,6 @@
         <th>
             @Html.DisplayNameFor(model => model.traceable)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Requirement)
-        </th>
         <th></th>
     </tr>
 
@@ -36,19 +33,16 @@
             @Html.DisplayFor(modelItem => item.Project.description)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.User.name)
+            @Html.DisplayFor(modelItem => item.Users.nickName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.RequirementID)
+            @Html.DisplayFor(modelItem => item.Requirement.code)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.creationDate)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.traceable)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Requirement)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ProjectRequirementID }) |

@@ -27,6 +27,8 @@ namespace ReqManager.Entities.Project
         [Display(Name = "End Date")]
         public DateTime endDate { get; set; }
         [Display(Name = "Description")]
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [StringLength(10, MinimumLength = 10, ErrorMessage = "Invalid Date")]
         public DateTime changedDate { get; set; }
 
         public virtual UserEntity Users { get; set; }

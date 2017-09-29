@@ -27,13 +27,14 @@ namespace ReqManager.Entities.Link
         [Display(Name = "Type Link")]
         public int TypeLinkID { get; set; }
         [Required]
-        [Display(Name = "Creation Date")]
-        public DateTime creationDate { get; set; }
-        [Required]
         [MaxLength(25)]
         [Display(Name = "Code")]
         public string code { get; set; }
+        [Required]
+        [Display(Name = "Creation Date")]
+        public System.DateTime creationDate { get; set; }       
 
+        [ScaffoldColumn(false)]
         public String DisplayName
         {
             get

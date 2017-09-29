@@ -178,6 +178,7 @@
     <Compile Include="Controllers\HistoryProjectArtifactsController.cs" />
     <Compile Include="Controllers\HistoryProjectController.cs" />
     <Compile Include="Controllers\LinkBetweenRequirementsController.cs" />
+    <Compile Include="Controllers\LinkRequirementAttributesController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MeasureImportanceController.cs" />
     <Compile Include="Controllers\ProjectArtifactController.cs" />
@@ -373,6 +374,11 @@
     <Content Include="Views\LinkBetweenRequirements\Details.cshtml" />
     <Content Include="Views\LinkBetweenRequirements\Edit.cshtml" />
     <Content Include="Views\LinkBetweenRequirements\Index.cshtml" />
+    <Content Include="Views\LinkRequirementAttributes\Create.cshtml" />
+    <Content Include="Views\LinkRequirementAttributes\Delete.cshtml" />
+    <Content Include="Views\LinkRequirementAttributes\Details.cshtml" />
+    <Content Include="Views\LinkRequirementAttributes\Edit.cshtml" />
+    <Content Include="Views\LinkRequirementAttributes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

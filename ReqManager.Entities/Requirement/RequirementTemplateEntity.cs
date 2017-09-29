@@ -23,7 +23,7 @@ namespace ReqManager.Entities.Requirement
         public string templateHtml { get; set; }
         [Required]
         [Display(Name = "Creation Date")]
-        public DateTime createDate { get; set; }
+        public System.DateTime createDate { get; set; }
 
         public virtual UserEntity Users { get; set; }
         public virtual RequirementTypeEntity RequirementType { get; set; }

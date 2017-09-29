@@ -28,7 +28,7 @@ namespace ReqManager.Entities.Link
         public int RequirementTargetID { get; set; }
         [Required]
         [Display(Name = "Creation Data")]
-        public DateTime creationDate { get; set; }
+        public System.DateTime creationDate { get; set; }
         [Required]
         [MaxLength(25), MinLength(5)]
         [Display(Name = "Code")]

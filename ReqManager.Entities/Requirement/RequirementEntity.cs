@@ -42,7 +42,7 @@ namespace ReqManager.Entities.Requirement
         public string title { get; set; }
         [Required]
         [Display(Name = "Creation Date")]
-        public DateTime creationDate { get; set; }
+        public System.DateTime creationDate { get; set; }
         [Required]
         [MaxLength(1000), MinLength(5)]
         [Display(Name = "Input")]

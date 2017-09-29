@@ -36,7 +36,7 @@ namespace ReqManager.Entities.Requirement
         public string title { get; set; }
         [Required]
         [Display(Name = "Changed Date")]
-        public DateTime changedDate { get; set; }
+        public System.DateTime changedDate { get; set; }
         [Required]
         [MaxLength(1000), MinLength(5)]
         [Display(Name = "Input")]

@@ -21,7 +21,7 @@ namespace ReqManager.Entities.Link
         public string description { get; set; }
         [Required]
         [Display(Name = "Creation Date")]
-        public DateTime creationDate { get; set; }
+        public System.DateTime creationDate { get; set; }
 
         public String DisplayName
         {

@@ -70,3 +70,10 @@ C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Debug\MoreLinq.dll
 C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Debug\System.ValueTuple.dll
 C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Debug\MoreLinq.xml
 C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Debug\System.ValueTuple.xml
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Services\bin\Debug\MoreLinq.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Services\bin\Debug\System.ValueTuple.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Services\bin\Debug\ReqManager.Data.dll.config
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Services\bin\Debug\ReqManager.Model.dll.config
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Services\bin\Debug\MoreLinq.xml
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Services\bin\Debug\System.ValueTuple.xml
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Services\obj\Debug\ReqManager.Services.csproj.CoreCompileInputs.cache

@@ -57,32 +57,13 @@ namespace ReqManager.Controllers
         }
 
         #endregion
-
-        #region POST
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public override ActionResult Create(ProjectArtifactEntity ProjectArtifactEntity)
-        {
-            base.Create(ProjectArtifactEntity);
-            return dropDowns();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public override ActionResult Edit(ProjectArtifactEntity ProjectArtifactEntity)
-        {
-            base.Edit(ProjectArtifactEntity);
-            return dropDowns();
-        }
-
-        #endregion
+        
 
         #region Private Methods
 
         private ActionResult dropDowns(ProjectArtifactEntity entity = null)
         {
-            ViewBag.ArtifactTypeID = new SelectList(typeService.getAll(), "ArtefactTypeID", "description");
+            ViewBag.ArtifactTypeID = new SelectList(typeService.getAll(), "ArtifactTypeID", "description");
             ViewBag.MeasureImportanceID = new SelectList(measureService.getAll(), "MeasureImportanceID", "description");
             ViewBag.ProjectID = new SelectList(projectService.getAll(), "ProjectID", "description");
             ViewBag.UserID = new SelectList(userService.getAll(), "UserID", "name");

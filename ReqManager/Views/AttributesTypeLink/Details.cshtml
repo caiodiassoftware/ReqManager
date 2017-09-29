@@ -1,0 +1,34 @@
+﻿@model ReqManager.Entities.Link.AttributesTypeLinkEntity
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AttributesTypeLinkEntity</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Attributes.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Attributes.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeLink.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypeLink.description)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AttributesTypeLinkID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

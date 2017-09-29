@@ -23,7 +23,7 @@ namespace ReqManager.Entities
         {
             get
             {
-                return this.controller + "/" + action;
+                return this.controller + "  /  " + action + "  -  " + (IsGet ? "HttpGet" : "HttpPost");
             }
         }
     }

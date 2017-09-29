@@ -41,14 +41,6 @@ namespace ReqManager.Controllers
             return dropDowns();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public override ActionResult Create([Bind(Include = "ProjectRequirementID,UserID,ProjectID,RequirementID,creationDate,traceable")] ProjectRequirementsEntity projectRequirementsEntity)
-        {
-            base.Create(projectRequirementsEntity);
-            return dropDowns(projectRequirementsEntity);
-        }
-
         public override ActionResult Edit(int? id)
         {
             if (id == null)
@@ -60,14 +52,7 @@ namespace ReqManager.Controllers
             {
                 return HttpNotFound();
             }
-            return dropDowns(projectRequirementsEntity);
-        }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public override ActionResult Edit([Bind(Include = "ProjectRequirementID,UserID,ProjectID,RequirementID,creationDate,traceable")] ProjectRequirementsEntity projectRequirementsEntity)
-        {
-            base.Edit(projectRequirementsEntity);
             return dropDowns(projectRequirementsEntity);
         }
 

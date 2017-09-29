@@ -29,28 +29,6 @@ namespace ReqManager.Controllers
             this.historyProjectService = historyProjectService;
             this.projectService = projectService;
             this.userService = userService;
-        }
-
-        // GET: HistoryProject
-        public override ActionResult Index()
-        {
-            var historyProjectEntities = historyProjectService.getAll();
-            return View(historyProjectEntities.ToList());
-        }
-
-        // GET: HistoryProject/Details/5
-        public override ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            HistoryProjectEntity historyProjectEntity = historyProjectService.get(id);
-            if (historyProjectEntity == null)
-            {
-                return HttpNotFound();
-            }
-            return View(historyProjectEntity);
-        }
+        }        
     }
 }

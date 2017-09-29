@@ -42,26 +42,6 @@ namespace ReqManager.Controllers
 
         #endregion
 
-        #region POST
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public override ActionResult Create(StakeholdersProjectEntity stakeholdersProjectEntity)
-        {
-            base.Create(stakeholdersProjectEntity);
-            return dropDowns();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public override ActionResult Edit(StakeholdersProjectEntity stakeholdersProjectEntity)
-        {
-            base.Edit(stakeholdersProjectEntity);
-            return dropDowns();
-        }
-
-        #endregion
-
         #region Private Methods
 
         private ActionResult dropDowns(StakeholdersProjectEntity entity = null)

@@ -24,8 +24,6 @@ namespace ReqManager.Entities.Project
         public int RequirementID { get; set; }
         [Required]
         [Display(Name = "Creation Date")]
-        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        [StringLength(10, MinimumLength = 10, ErrorMessage = "Invalid Date")]
         public DateTime creationDate { get; set; }
         [Required]
         [Display(Name = "Traceable")]

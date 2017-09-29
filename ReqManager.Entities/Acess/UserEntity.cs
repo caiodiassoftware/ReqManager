@@ -24,6 +24,7 @@ namespace ReqManager.Entities.Acess
         [Required]
         [MinLength(10)]
         [MaxLength(1000)]
+        [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string password { get; set; }
         [Required]
@@ -37,8 +38,6 @@ namespace ReqManager.Entities.Acess
         public string login { get; set; }
         [Required]
         [Display(Name = "B-Day")]
-        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        [StringLength(10, MinimumLength = 10, ErrorMessage = "Invalid Date")]
         public System.DateTime dateOfBirth { get; set; }
         [Required]
         [MaxLength(30)]

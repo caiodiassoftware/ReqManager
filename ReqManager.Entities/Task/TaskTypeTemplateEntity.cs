@@ -24,8 +24,6 @@ namespace ReqManager.Entities.Acess
         public string templateHtml { get; set; }
         [Required]
         [Display(Name = "Creation Date")]
-        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        [StringLength(10, MinimumLength = 10, ErrorMessage = "Invalid Date")]
         public DateTime creationDate { get; set; }
 
         public virtual UserEntity Users { get; set; }

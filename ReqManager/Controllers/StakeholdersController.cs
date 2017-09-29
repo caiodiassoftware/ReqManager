@@ -30,64 +30,15 @@ namespace ReqManager.Views
 
         public override ActionResult Create()
         {
-            dropDowns();
-            return View();
+            return dropDowns();            
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public override ActionResult Create([Bind(Include = "ClassificationID,UserID")] StakeholdersEntity entity)
-        {
-            if (ModelState.IsValid)
-            {
-                Service.add(entity);
-                Service.saveChanges();
-                return RedirectToAction("Index");
-            }
-
-            dropDowns();
-            return View(entity);
-        }
-
-
-        public override ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            StakeholdersEntity entity = Service.get(id);
-
-            if (entity == null)
-            {
-                return HttpNotFound();
-            }
-
-            dropDowns();
-            return View(entity);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public override ActionResult Edit([Bind(Include = "UserID, ClassificationID")] StakeholdersEntity entity)
-        {
-            if (ModelState.IsValid)
-            {
-                Service.update(entity);
-                Service.saveChanges();
-                return RedirectToAction("Index");
-            }
-
-            dropDowns();
-            return View(entity);
-        }
-
-        private void dropDowns()
+        private ActionResult dropDowns()
         {
             List<StakeholdersEntity> list = Service.getAll().ToList();
             ViewBag.UserID = new SelectList(userService.getAll(), "UserID", "name");
             ViewBag.ClassificationID = new SelectList(classService.getAll(), "ClassificationID", "description");
+            return View();
         }
     }
 }

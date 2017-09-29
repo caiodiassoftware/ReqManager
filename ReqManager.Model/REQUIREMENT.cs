@@ -45,9 +45,7 @@ namespace ReqManager.Model
         public string output { get; set; }
 
         public virtual Users Users { get; set; }
-        [InverseProperty("RequirementOriginID")]
         public virtual ICollection<LinkBetweenRequirement> LinkRequirementsOrigin { get; set; }
-        [InverseProperty("RequirementTargetID")]
         public virtual ICollection<LinkBetweenRequirement> LinkRequirementsTarget { get; set; }
         public virtual ICollection<LinkBetweenRequirementsArtifacts> LinkRequirementsArtifacts { get; set; }
         public virtual ICollection<ProjectRequirements> ProjectRequirements { get; set; }

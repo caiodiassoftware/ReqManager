@@ -52,25 +52,7 @@ namespace ReqManager.Controllers
 
         #endregion
 
-        #region POST
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public override ActionResult Create(StakeholderRequirementEntity StakeholderRequirementEntity)
-        {
-            base.Create(StakeholderRequirementEntity);
-            return dropDowns();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public override ActionResult Edit(StakeholderRequirementEntity StakeholderRequirementEntity)
-        {
-            base.Edit(StakeholderRequirementEntity);
-            return dropDowns();
-        }
-
-        #endregion
+        
 
         #region Private Methods
 

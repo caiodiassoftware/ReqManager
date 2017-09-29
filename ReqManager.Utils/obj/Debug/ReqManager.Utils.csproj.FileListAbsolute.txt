@@ -12,9 +12,9 @@ C:\Users\maquina06\Desktop\ReqManager\ReqManager.Utils\obj\Debug\ReqManager.Util
 C:\Users\maquina06\Desktop\ReqManager\ReqManager.Utils\obj\Debug\ReqManager.Utils.pdb
 C:\Users\cdias\Desktop\ReqManager\ReqManager.Utils\bin\Debug\AutoMapper.dll
 C:\Users\cdias\Desktop\ReqManager\ReqManager.Utils\bin\Debug\AutoMapper.xml
-C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Utils\bin\Debug\AutoMapper.dll
-C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Utils\bin\Debug\AutoMapper.xml
-C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Utils\obj\Debug\ReqManager.Utils.csprojResolveAssemblyReference.cache
 C:\Users\maquina06\Desktop\ReqManager\ReqManager.Utils\bin\Debug\AutoMapper.dll
 C:\Users\maquina06\Desktop\ReqManager\ReqManager.Utils\bin\Debug\AutoMapper.xml
 C:\Users\cdias\Desktop\ReqManager\ReqManager.Utils\obj\Debug\ReqManager.Utils.csprojResolveAssemblyReference.cache
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Utils\obj\Debug\ReqManager.Utils.csproj.CoreCompileInputs.cache
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Utils\bin\Debug\AutoMapper.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Utils\bin\Debug\AutoMapper.xml

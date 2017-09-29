@@ -41,25 +41,6 @@ namespace ReqManager.Controllers
 
         #endregion
 
-        #region POST
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public override ActionResult Create(RoleControllerActionEntity RoleControllerActionEntity)
-        {
-            base.Create(RoleControllerActionEntity);
-            return dropDowns();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public override ActionResult Edit(RoleControllerActionEntity RoleControllerActionEntity)
-        {
-            base.Edit(RoleControllerActionEntity);
-            return dropDowns();
-        }
-
-        #endregion
 
         #region Private Methods
 

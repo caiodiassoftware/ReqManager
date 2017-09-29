@@ -36,26 +36,10 @@ namespace ReqManager.Controllers
             return dropDowns();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public override ActionResult Create([Bind(Include = "ProjectID,UserID,ProjectPhasesID,description,pathForTraceability,environmentalInformation,managementInformation,startDate,endDate,creationDate")] ProjectEntity projectEntity)
-        {
-            base.Create(projectEntity);
-            return dropDowns();
-        }
-
         public override ActionResult Edit(int? id)
         {
             base.Edit(id);
             return dropDowns(Service.get(id));
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public override ActionResult Edit([Bind(Include = "ProjectID,UserID,ProjectPhasesID,description,pathForTraceability,environmentalInformation,managementInformation,startDate,endDate,creationDate")] ProjectEntity projectEntity)
-        {
-            base.Edit(projectEntity);
-            return dropDowns();
         }
 
         public override ActionResult Delete(int? id)

@@ -44,27 +44,7 @@ namespace ReqManager.Controllers
             return dropDowns(Service.get(id));
         }
 
-        #endregion
-
-        #region POST
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public override ActionResult Create(RequirementActionHistoryEntity RequirementActionHistoryEntity)
-        {
-            base.Create(RequirementActionHistoryEntity);
-            return dropDowns(RequirementActionHistoryEntity);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public override ActionResult Edit(RequirementActionHistoryEntity RequirementActionHistoryEntity)
-        {
-            base.Edit(RequirementActionHistoryEntity);
-            return dropDowns(RequirementActionHistoryEntity);
-        }
-
-        #endregion
+        #endregion        
 
         #region Private Methods
 

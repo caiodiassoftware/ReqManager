@@ -12,11 +12,15 @@ namespace ReqManager.Model
         {
             this.linkRequirementAttributes = new HashSet<LinkRequirementAttributes>();
         }
-    
+
         [Key]
         public int LinkRequirementsID { get; set; }
         public int UserID { get; set; }
         public int TypeLinkID { get; set; }
+        [Index("IX_LINK_BETWEEN_REQUIREMENT", 1, IsUnique = true)]
+        public int RequirementOriginID { get; set; }
+        [Index("IX_LINK_BETWEEN_REQUIREMENT", 2, IsUnique = true)]
+        public int RequirementTargetID { get; set; }
         [Required]  
         public DateTime creationDate { get; set; }
         [Required]
@@ -25,8 +29,12 @@ namespace ReqManager.Model
     
         public virtual Users Users { get; set; }
         public virtual ICollection<LinkRequirementAttributes> linkRequirementAttributes { get; set; }
-        public virtual Requirement RequirementOriginID { get; set; }        
-        public virtual Requirement RequirementTargetID { get; set; }
+        [ForeignKey("RequirementOriginID")]
+        [InverseProperty("LinkRequirementsOrigin")]
+        public virtual Requirement RequirementOrigin { get; set; }
+        [ForeignKey("RequirementTargetID")]
+        [InverseProperty("LinkRequirementsTarget")]
+        public virtual Requirement RequirementTarget { get; set; }
         public virtual TypeLink TypeLink { get; set; }
     }
 }

@@ -16,7 +16,7 @@ namespace ReqManager.Entities.Link
         public int AttributeID { get; set; }
         [Required]
         [Display(Name = "Requeriment - Requirement")]
-        public int LinkRequirementID { get; set; }
+        public int LinkRequirementsID { get; set; }
         [Required]
         [Display(Name = "Value")]
         public string value { get; set; }

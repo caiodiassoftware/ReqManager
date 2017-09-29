@@ -3,6 +3,7 @@ using ReqManager.Entities.Requirement;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,13 @@ namespace ReqManager.Entities.Link
         [Display(Name = "Type Link")]
         public int TypeLinkID { get; set; }
         [Required]
+        [Display(Name = "Req. Origin")]
+        public int RequirementOriginID { get; set; }
+        [Required]
+        [Display(Name = "Req. Target")]
+        public int RequirementTargetID { get; set; }
+        [Required]
         [Display(Name = "Creation Data")]
-        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        [StringLength(10, MinimumLength = 10, ErrorMessage = "Invalid Date")]
         public DateTime creationDate { get; set; }
         [Required]
         [MaxLength(25), MinLength(5)]
@@ -33,13 +38,15 @@ namespace ReqManager.Entities.Link
         {
             get
             {
-                return this.RequirementOriginID.code + " to " + this.RequirementTargetID.code + " - " + this.TypeLink.description;
+                return this.RequirementOrigin.code + " to " + this.RequirementTarget.code + " using " + this.TypeLink.description;
             }
         }
 
         public virtual UserEntity Users { get; set; }
-        public virtual RequirementEntity RequirementOriginID { get; set; }
-        public virtual RequirementEntity RequirementTargetID { get; set; }
+        [ForeignKey("RequirementOriginID")]
+        public virtual RequirementEntity RequirementOrigin { get; set; }
+        [ForeignKey("RequirementTargetID")]
+        public virtual RequirementEntity RequirementTarget { get; set; }
         public virtual TypeLinkEntity TypeLink { get; set; }
     }
 }

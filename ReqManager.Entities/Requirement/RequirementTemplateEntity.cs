@@ -16,14 +16,13 @@ namespace ReqManager.Entities.Requirement
         public int UserID { get; set; }
         [Required]
         [MaxLength(50), MinLength(6)]
-        [Display(Name = "Description")]
+        [Display(Name = "Template")]
         public string description { get; set; }
         [Required]
         [Display(Name = "Template Html")]
         public string templateHtml { get; set; }
-        [Required]
         [Display(Name = "Creation Date")]
-        public System.DateTime createDate { get; set; }
+        public System.DateTime createDate { get; set; } = DateTime.Now;
 
         public virtual UserEntity Users { get; set; }
         public virtual RequirementTypeEntity RequirementType { get; set; }

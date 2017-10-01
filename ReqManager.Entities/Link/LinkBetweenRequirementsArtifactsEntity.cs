@@ -3,6 +3,7 @@ using ReqManager.Entities.Artifact;
 using ReqManager.Entities.Requirement;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -26,16 +27,14 @@ namespace ReqManager.Entities.Link
         [Required]
         [Display(Name = "Type Link")]
         public int TypeLinkID { get; set; }
-        [Required]
         [MaxLength(25)]
-        [Display(Name = "Code")]
+        [Display(Name = "R-A Code")]
+        [ReadOnly(true)]
         public string code { get; set; }
-        [Required]
         [Display(Name = "Creation Date")]
-        public System.DateTime creationDate { get; set; }       
+        public System.DateTime creationDate { get; set; } = DateTime.Now;
 
-        [ScaffoldColumn(false)]
-        public String DisplayName
+        public string DisplayName
         {
             get
             {

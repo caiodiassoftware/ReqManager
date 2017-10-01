@@ -30,7 +30,6 @@ namespace ReqManager.Model
         public string description { get; set; }
         [Required]
         public DateTime startDate { get; set; }
-        [Required]
         [MaxLength(25)]
         [Index(IsUnique = true)]
         public string code { get; set; }

@@ -1,0 +1,646 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\Users\Familia Dias\Desktop</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="ApplicationInsights.config">
+      <publishTime>09/07/2017 09:36:54</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>09/07/2017 09:36:55</publishTime>
+    </File>
+    <File Include="bin/ApplicationInsights.config">
+      <publishTime>09/07/2017 09:36:54</publishTime>
+    </File>
+    <File Include="bin/Autofac.dll">
+      <publishTime>09/07/2017 09:36:55</publishTime>
+    </File>
+    <File Include="bin/Autofac.Integration.Mvc.dll">
+      <publishTime>09/07/2017 09:36:55</publishTime>
+    </File>
+    <File Include="bin/AutoMapper.dll">
+      <publishTime>09/23/2017 09:01:52</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>03/02/2015 09:32:26</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.SqlServer.dll">
+      <publishTime>03/02/2015 09:32:26</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
+      <publishTime>09/07/2017 09:36:55</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.DependencyCollector.dll">
+      <publishTime>09/07/2017 09:36:56</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.PerfCounterCollector.dll">
+      <publishTime>09/07/2017 09:36:56</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.ServerTelemetryChannel.dll">
+      <publishTime>09/07/2017 09:36:56</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.Web.dll">
+      <publishTime>09/07/2017 09:36:56</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.WindowsServer.dll">
+      <publishTime>09/07/2017 09:36:56</publishTime>
+    </File>
+    <File Include="bin/Microsoft.ApplicationInsights.dll">
+      <publishTime>09/07/2017 09:36:55</publishTime>
+    </File>
+    <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
+      <publishTime>09/07/2017 09:36:56</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>09/07/2017 09:36:56</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>09/07/2017 09:36:57</publishTime>
+    </File>
+    <File Include="bin/ReqManager.Data.dll">
+      <publishTime>10/01/2017 09:31:35</publishTime>
+    </File>
+    <File Include="bin/ReqManager.dll">
+      <publishTime>10/01/2017 09:31:41</publishTime>
+    </File>
+    <File Include="bin/ReqManager.Entities.dll">
+      <publishTime>10/01/2017 09:31:35</publishTime>
+    </File>
+    <File Include="bin/ReqManager.Model.dll">
+      <publishTime>10/01/2017 09:31:35</publishTime>
+    </File>
+    <File Include="bin/ReqManager.Services.dll">
+      <publishTime>10/01/2017 09:31:36</publishTime>
+    </File>
+    <File Include="bin/ReqManager.Utils.dll">
+      <publishTime>10/01/2017 09:31:35</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.exe">
+      <publishTime>09/07/2017 09:36:56</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll">
+      <publishTime>09/07/2017 09:36:56</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll">
+      <publishTime>09/07/2017 09:36:56</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.dll">
+      <publishTime>09/07/2017 09:36:56</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll">
+      <publishTime>09/07/2017 09:36:56</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CSharp.Core.targets">
+      <publishTime>09/07/2017 09:36:56</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.VisualBasic.Core.targets">
+      <publishTime>09/07/2017 09:36:56</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Collections.Immutable.dll">
+      <publishTime>09/07/2017 09:36:56</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Reflection.Metadata.dll">
+      <publishTime>09/07/2017 09:36:56</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.exe">
+      <publishTime>09/07/2017 09:36:56</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe">
+      <publishTime>09/07/2017 09:36:56</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe.config">
+      <publishTime>09/07/2017 09:36:56</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>09/07/2017 09:36:56</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>09/07/2017 09:36:56</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>09/07/2017 09:36:56</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>09/07/2017 09:36:56</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>09/07/2017 09:36:56</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>09/07/2017 09:36:56</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>09/07/2017 09:36:56</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>09/07/2017 09:36:57</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css">
+      <publishTime>09/07/2017 09:36:54</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css">
+      <publishTime>09/07/2017 09:36:54</publishTime>
+    </File>
+    <File Include="Content/Site.css">
+      <publishTime>09/07/2017 09:36:54</publishTime>
+    </File>
+    <File Include="favicon.ico">
+      <publishTime>09/07/2017 09:36:55</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.eot">
+      <publishTime>09/07/2017 09:36:55</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.svg">
+      <publishTime>09/07/2017 09:36:55</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>09/07/2017 09:36:55</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff">
+      <publishTime>09/07/2017 09:36:55</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>09/07/2017 09:36:54</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>09/23/2017 09:01:52</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.js">
+      <publishTime>09/30/2017 20:26:24</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.min.js">
+      <publishTime>09/30/2017 20:25:44</publishTime>
+    </File>
+    <File Include="Scripts/css/bootstrap.min.css">
+      <publishTime>09/28/2017 19:59:14</publishTime>
+    </File>
+    <File Include="Scripts/css/styles.css">
+      <publishTime>09/24/2017 11:50:25</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.js">
+      <publishTime>09/07/2017 09:36:54</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.min.js">
+      <publishTime>09/07/2017 09:36:54</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.min.map">
+      <publishTime>09/07/2017 09:36:54</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.js">
+      <publishTime>09/07/2017 09:36:54</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.min.js">
+      <publishTime>09/07/2017 09:36:54</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.js">
+      <publishTime>09/07/2017 09:36:54</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.min.js">
+      <publishTime>09/07/2017 09:36:54</publishTime>
+    </File>
+    <File Include="Scripts/js/bootstrap.min.js">
+      <publishTime>09/24/2017 11:50:33</publishTime>
+    </File>
+    <File Include="Scripts/js/scripts.js">
+      <publishTime>09/24/2017 11:50:33</publishTime>
+    </File>
+    <File Include="Scripts/modernizr-2.6.2.js">
+      <publishTime>09/07/2017 09:36:54</publishTime>
+    </File>
+    <File Include="Scripts/respond.js">
+      <publishTime>09/07/2017 09:36:54</publishTime>
+    </File>
+    <File Include="Scripts/respond.min.js">
+      <publishTime>09/07/2017 09:36:54</publishTime>
+    </File>
+    <File Include="Scripts/_references.js">
+      <publishTime>09/24/2017 11:50:43</publishTime>
+    </File>
+    <File Include="Views/ArtifactType/Create.cshtml">
+      <publishTime>09/24/2017 19:38:39</publishTime>
+    </File>
+    <File Include="Views/ArtifactType/Delete.cshtml">
+      <publishTime>09/24/2017 19:39:58</publishTime>
+    </File>
+    <File Include="Views/ArtifactType/Details.cshtml">
+      <publishTime>09/29/2017 23:09:51</publishTime>
+    </File>
+    <File Include="Views/ArtifactType/Edit.cshtml">
+      <publishTime>09/28/2017 19:59:14</publishTime>
+    </File>
+    <File Include="Views/ArtifactType/Index.cshtml">
+      <publishTime>09/28/2017 19:59:14</publishTime>
+    </File>
+    <File Include="Views/Attributes/Create.cshtml">
+      <publishTime>10/01/2017 07:22:05</publishTime>
+    </File>
+    <File Include="Views/Attributes/Delete.cshtml">
+      <publishTime>10/01/2017 07:21:47</publishTime>
+    </File>
+    <File Include="Views/Attributes/Details.cshtml">
+      <publishTime>09/28/2017 21:34:49</publishTime>
+    </File>
+    <File Include="Views/Attributes/Edit.cshtml">
+      <publishTime>10/01/2017 07:27:34</publishTime>
+    </File>
+    <File Include="Views/Attributes/Index.cshtml">
+      <publishTime>10/01/2017 07:22:17</publishTime>
+    </File>
+    <File Include="Views/AttributesTypeLink/Create.cshtml">
+      <publishTime>09/30/2017 18:36:58</publishTime>
+    </File>
+    <File Include="Views/AttributesTypeLink/Delete.cshtml">
+      <publishTime>09/30/2017 18:37:13</publishTime>
+    </File>
+    <File Include="Views/AttributesTypeLink/Details.cshtml">
+      <publishTime>09/30/2017 18:37:34</publishTime>
+    </File>
+    <File Include="Views/AttributesTypeLink/Edit.cshtml">
+      <publishTime>09/30/2017 18:37:34</publishTime>
+    </File>
+    <File Include="Views/AttributesTypeLink/Index.cshtml">
+      <publishTime>09/30/2017 18:37:48</publishTime>
+    </File>
+    <File Include="Views/ControllerAction/Index.cshtml">
+      <publishTime>09/24/2017 19:45:59</publishTime>
+    </File>
+    <File Include="Views/HistoryProject/Details.cshtml">
+      <publishTime>09/24/2017 19:45:46</publishTime>
+    </File>
+    <File Include="Views/HistoryProject/Index.cshtml">
+      <publishTime>09/24/2017 19:45:29</publishTime>
+    </File>
+    <File Include="Views/HistoryProjectArtifacts/Details.cshtml">
+      <publishTime>10/01/2017 07:54:32</publishTime>
+    </File>
+    <File Include="Views/HistoryProjectArtifacts/Index.cshtml">
+      <publishTime>09/24/2017 19:46:39</publishTime>
+    </File>
+    <File Include="Views/LinkArtifactAttributes/Create.cshtml">
+      <publishTime>09/30/2017 18:05:46</publishTime>
+    </File>
+    <File Include="Views/LinkArtifactAttributes/Delete.cshtml">
+      <publishTime>09/30/2017 18:05:46</publishTime>
+    </File>
+    <File Include="Views/LinkArtifactAttributes/Details.cshtml">
+      <publishTime>09/30/2017 18:05:46</publishTime>
+    </File>
+    <File Include="Views/LinkArtifactAttributes/Edit.cshtml">
+      <publishTime>09/30/2017 18:05:32</publishTime>
+    </File>
+    <File Include="Views/LinkArtifactAttributes/Index.cshtml">
+      <publishTime>09/30/2017 18:05:23</publishTime>
+    </File>
+    <File Include="Views/LinkBetweenRequirements/Create.cshtml">
+      <publishTime>09/30/2017 21:23:35</publishTime>
+    </File>
+    <File Include="Views/LinkBetweenRequirements/Delete.cshtml">
+      <publishTime>09/30/2017 18:20:25</publishTime>
+    </File>
+    <File Include="Views/LinkBetweenRequirements/Details.cshtml">
+      <publishTime>09/30/2017 18:20:36</publishTime>
+    </File>
+    <File Include="Views/LinkBetweenRequirements/Edit.cshtml">
+      <publishTime>09/30/2017 21:33:02</publishTime>
+    </File>
+    <File Include="Views/LinkBetweenRequirements/Index.cshtml">
+      <publishTime>09/30/2017 18:21:08</publishTime>
+    </File>
+    <File Include="Views/LinkBetweenRequirementsArtifact/Create.cshtml">
+      <publishTime>09/30/2017 21:24:40</publishTime>
+    </File>
+    <File Include="Views/LinkBetweenRequirementsArtifact/Delete.cshtml">
+      <publishTime>09/30/2017 18:25:17</publishTime>
+    </File>
+    <File Include="Views/LinkBetweenRequirementsArtifact/Details.cshtml">
+      <publishTime>09/30/2017 18:25:38</publishTime>
+    </File>
+    <File Include="Views/LinkBetweenRequirementsArtifact/Edit.cshtml">
+      <publishTime>09/30/2017 21:33:43</publishTime>
+    </File>
+    <File Include="Views/LinkBetweenRequirementsArtifact/Index.cshtml">
+      <publishTime>09/30/2017 18:26:13</publishTime>
+    </File>
+    <File Include="Views/LinkRequirementAttributes/Create.cshtml">
+      <publishTime>09/30/2017 18:27:47</publishTime>
+    </File>
+    <File Include="Views/LinkRequirementAttributes/Delete.cshtml">
+      <publishTime>09/30/2017 18:27:59</publishTime>
+    </File>
+    <File Include="Views/LinkRequirementAttributes/Details.cshtml">
+      <publishTime>09/30/2017 18:28:17</publishTime>
+    </File>
+    <File Include="Views/LinkRequirementAttributes/Edit.cshtml">
+      <publishTime>09/30/2017 18:28:25</publishTime>
+    </File>
+    <File Include="Views/LinkRequirementAttributes/Index.cshtml">
+      <publishTime>09/30/2017 18:28:35</publishTime>
+    </File>
+    <File Include="Views/Login/Login.cshtml">
+      <publishTime>09/07/2017 09:36:54</publishTime>
+    </File>
+    <File Include="Views/MeasureImportance/Create.cshtml">
+      <publishTime>09/24/2017 19:47:47</publishTime>
+    </File>
+    <File Include="Views/MeasureImportance/Delete.cshtml">
+      <publishTime>09/24/2017 19:48:09</publishTime>
+    </File>
+    <File Include="Views/MeasureImportance/Details.cshtml">
+      <publishTime>09/24/2017 19:48:23</publishTime>
+    </File>
+    <File Include="Views/MeasureImportance/Edit.cshtml">
+      <publishTime>09/24/2017 19:48:52</publishTime>
+    </File>
+    <File Include="Views/MeasureImportance/Index.cshtml">
+      <publishTime>09/24/2017 19:49:05</publishTime>
+    </File>
+    <File Include="Views/ProjectArtifact/Create.cshtml">
+      <publishTime>09/30/2017 21:25:32</publishTime>
+    </File>
+    <File Include="Views/ProjectArtifact/Delete.cshtml">
+      <publishTime>09/28/2017 19:59:14</publishTime>
+    </File>
+    <File Include="Views/ProjectArtifact/Details.cshtml">
+      <publishTime>09/30/2017 20:06:21</publishTime>
+    </File>
+    <File Include="Views/ProjectArtifact/Edit.cshtml">
+      <publishTime>10/01/2017 07:46:10</publishTime>
+    </File>
+    <File Include="Views/ProjectArtifact/Index.cshtml">
+      <publishTime>09/28/2017 19:59:14</publishTime>
+    </File>
+    <File Include="Views/ProjectPhases/Create.cshtml">
+      <publishTime>09/24/2017 19:52:54</publishTime>
+    </File>
+    <File Include="Views/ProjectPhases/Delete.cshtml">
+      <publishTime>09/24/2017 19:53:15</publishTime>
+    </File>
+    <File Include="Views/ProjectPhases/Details.cshtml">
+      <publishTime>09/24/2017 19:53:41</publishTime>
+    </File>
+    <File Include="Views/ProjectPhases/Edit.cshtml">
+      <publishTime>09/24/2017 19:54:23</publishTime>
+    </File>
+    <File Include="Views/ProjectPhases/Index.cshtml">
+      <publishTime>09/24/2017 19:54:38</publishTime>
+    </File>
+    <File Include="Views/ProjectRequirements/Create.cshtml">
+      <publishTime>09/30/2017 21:25:53</publishTime>
+    </File>
+    <File Include="Views/ProjectRequirements/Delete.cshtml">
+      <publishTime>09/28/2017 19:59:14</publishTime>
+    </File>
+    <File Include="Views/ProjectRequirements/Details.cshtml">
+      <publishTime>09/30/2017 20:53:58</publishTime>
+    </File>
+    <File Include="Views/ProjectRequirements/Edit.cshtml">
+      <publishTime>09/30/2017 21:25:53</publishTime>
+    </File>
+    <File Include="Views/ProjectRequirements/Index.cshtml">
+      <publishTime>09/28/2017 19:59:14</publishTime>
+    </File>
+    <File Include="Views/Projects/Create.cshtml">
+      <publishTime>09/30/2017 21:26:11</publishTime>
+    </File>
+    <File Include="Views/Projects/Delete.cshtml">
+      <publishTime>09/28/2017 19:59:14</publishTime>
+    </File>
+    <File Include="Views/Projects/Details.cshtml">
+      <publishTime>09/28/2017 19:59:14</publishTime>
+    </File>
+    <File Include="Views/Projects/Edit.cshtml">
+      <publishTime>10/01/2017 08:36:47</publishTime>
+    </File>
+    <File Include="Views/Projects/Index.cshtml">
+      <publishTime>10/01/2017 08:35:41</publishTime>
+    </File>
+    <File Include="Views/Requirement/Create.cshtml">
+      <publishTime>09/30/2017 21:29:13</publishTime>
+    </File>
+    <File Include="Views/Requirement/Delete.cshtml">
+      <publishTime>09/28/2017 19:59:14</publishTime>
+    </File>
+    <File Include="Views/Requirement/Details.cshtml">
+      <publishTime>09/28/2017 19:59:14</publishTime>
+    </File>
+    <File Include="Views/Requirement/Edit.cshtml">
+      <publishTime>10/01/2017 09:07:00</publishTime>
+    </File>
+    <File Include="Views/Requirement/Index.cshtml">
+      <publishTime>09/30/2017 19:57:04</publishTime>
+    </File>
+    <File Include="Views/RequirementActionHistory/Details.cshtml">
+      <publishTime>09/28/2017 19:59:14</publishTime>
+    </File>
+    <File Include="Views/RequirementActionHistory/Index.cshtml">
+      <publishTime>09/28/2017 19:59:14</publishTime>
+    </File>
+    <File Include="Views/RequirementRationale/Details.cshtml">
+      <publishTime>09/28/2017 19:59:14</publishTime>
+    </File>
+    <File Include="Views/RequirementRationale/Index.cshtml">
+      <publishTime>09/28/2017 19:59:14</publishTime>
+    </File>
+    <File Include="Views/RequirementStatus/Create.cshtml">
+      <publishTime>09/28/2017 19:59:14</publishTime>
+    </File>
+    <File Include="Views/RequirementStatus/Delete.cshtml">
+      <publishTime>09/28/2017 19:59:14</publishTime>
+    </File>
+    <File Include="Views/RequirementStatus/Details.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/RequirementStatus/Edit.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/RequirementStatus/Index.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/RequirementTemplate/Create.cshtml">
+      <publishTime>09/30/2017 21:29:45</publishTime>
+    </File>
+    <File Include="Views/RequirementTemplate/Delete.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/RequirementTemplate/Details.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/RequirementTemplate/Edit.cshtml">
+      <publishTime>09/30/2017 21:29:45</publishTime>
+    </File>
+    <File Include="Views/RequirementTemplate/Index.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/RequirementTypes/Create.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/RequirementTypes/Delete.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/RequirementTypes/Details.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/RequirementTypes/Edit.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/RequirementTypes/Index.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/Role/Create.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/Role/Delete.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/Role/Details.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/Role/Edit.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/Role/Index.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/RoleControllerAction/Create.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/RoleControllerAction/Delete.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/RoleControllerAction/Details.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/RoleControllerAction/Edit.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/RoleControllerAction/Index.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/Shared/Error.cshtml">
+      <publishTime>09/07/2017 09:36:54</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>09/30/2017 20:31:01</publishTime>
+    </File>
+    <File Include="Views/StakeholderClassification/Create.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/StakeholderClassification/Delete.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/StakeholderClassification/Details.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/StakeholderClassification/Edit.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/StakeholderClassification/Index.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/StakeholderRequirement/Create.cshtml">
+      <publishTime>09/30/2017 21:04:55</publishTime>
+    </File>
+    <File Include="Views/StakeholderRequirement/Delete.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/StakeholderRequirement/Details.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/StakeholderRequirement/Edit.cshtml">
+      <publishTime>09/30/2017 21:04:55</publishTime>
+    </File>
+    <File Include="Views/StakeholderRequirement/Index.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/Stakeholders/Create.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/Stakeholders/Delete.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/Stakeholders/Details.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/Stakeholders/Edit.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/Stakeholders/Index.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/StakeholdersProject/Create.cshtml">
+      <publishTime>09/30/2017 21:05:35</publishTime>
+    </File>
+    <File Include="Views/StakeholdersProject/Delete.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/StakeholdersProject/Details.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/StakeholdersProject/Edit.cshtml">
+      <publishTime>09/30/2017 21:05:35</publishTime>
+    </File>
+    <File Include="Views/StakeholdersProject/Index.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/TypeLink/Create.cshtml">
+      <publishTime>09/30/2017 21:31:21</publishTime>
+    </File>
+    <File Include="Views/TypeLink/Delete.cshtml">
+      <publishTime>09/30/2017 18:29:10</publishTime>
+    </File>
+    <File Include="Views/TypeLink/Details.cshtml">
+      <publishTime>09/30/2017 18:29:20</publishTime>
+    </File>
+    <File Include="Views/TypeLink/Edit.cshtml">
+      <publishTime>09/30/2017 21:31:21</publishTime>
+    </File>
+    <File Include="Views/TypeLink/Index.cshtml">
+      <publishTime>09/30/2017 18:30:00</publishTime>
+    </File>
+    <File Include="Views/User/Create.cshtml">
+      <publishTime>09/30/2017 20:49:11</publishTime>
+    </File>
+    <File Include="Views/User/Delete.cshtml">
+      <publishTime>09/30/2017 20:45:20</publishTime>
+    </File>
+    <File Include="Views/User/Details.cshtml">
+      <publishTime>09/30/2017 20:45:04</publishTime>
+    </File>
+    <File Include="Views/User/Edit.cshtml">
+      <publishTime>09/30/2017 20:44:46</publishTime>
+    </File>
+    <File Include="Views/User/Index.cshtml">
+      <publishTime>09/30/2017 20:44:26</publishTime>
+    </File>
+    <File Include="Views/UsersRoles/Create.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/UsersRoles/Delete.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/UsersRoles/Details.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/UsersRoles/Edit.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/UsersRoles/Index.cshtml">
+      <publishTime>09/28/2017 19:59:15</publishTime>
+    </File>
+    <File Include="Views/Web.config">
+      <publishTime>09/07/2017 09:36:54</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>09/07/2017 09:36:54</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>10/01/2017 09:31:42</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

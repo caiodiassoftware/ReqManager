@@ -37,7 +37,6 @@ namespace ReqManager.Model
         public DateTime? endDate { get; set; }
         [Required]
         public System.DateTime creationDate { get; set; }
-        [Required]
         [MaxLength(25)]
         [Index(IsUnique = true)]
         public string code { get; set; }

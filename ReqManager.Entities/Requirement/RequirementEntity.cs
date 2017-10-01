@@ -2,6 +2,7 @@
 using ReqManager.Entities.Project;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -29,9 +30,8 @@ namespace ReqManager.Entities.Requirement
         [Required]
         [Display(Name = "Importance")]
         public int MeasureImportanceID { get; set; }
-        [Required]
-        [MaxLength(25)]
-        [Display(Name = "Code")]
+        [ReadOnly(true)]
+        [Display(Name = "Req. Code")]
         public string code { get; set; }
         [Required]
         [Display(Name = "Description")]
@@ -42,7 +42,7 @@ namespace ReqManager.Entities.Requirement
         public string title { get; set; }
         [Required]
         [Display(Name = "Creation Date")]
-        public System.DateTime creationDate { get; set; }
+        public System.DateTime creationDate { get; set; } = DateTime.Now;
         [Required]
         [MaxLength(1000), MinLength(5)]
         [Display(Name = "Input")]

@@ -26,8 +26,8 @@ namespace ReqManager.Entities.Project
         public DateTime startDate { get; set; }
         [Display(Name = "End Date")]
         public DateTime endDate { get; set; }
-        [Display(Name = "Description")]
-        public DateTime changedDate { get; set; }
+        [Display(Name = "Changed Date")]
+        public DateTime changedDate { get; set; } = DateTime.Now;
 
         public virtual UserEntity Users { get; set; }
         public virtual ProjectEntity Project { get; set; }

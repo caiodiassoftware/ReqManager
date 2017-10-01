@@ -1,6 +1,7 @@
 ﻿using ReqManager.Entities.Acess;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,7 @@ namespace ReqManager.Entities.Project
         public int ProjectPhasesID { get; set; }
         [Required]
         [MaxLength(255)]
-        [Display(Name = "Description")]
+        [Display(Name = "Project Description")]
         public string description { get; set; }
         [Required]
         [MaxLength(300)]
@@ -39,12 +40,19 @@ namespace ReqManager.Entities.Project
         public DateTime startDate { get; set; }
         [Display(Name = "End Date")]
         public DateTime? endDate { get; set; }
-        [Required]
         [Display(Name = "Creation Date")]
-        public DateTime creationDate { get; set; }
-        [Required]
-        [MaxLength(25)]
+        public DateTime creationDate { get; set; } = DateTime.Now;
+        [Display(Name = "Prj. Code")]
+        [ReadOnly(true)]
         public string code { get; set; }
+
+        public String DisplayName
+        {
+            get
+            {
+                return this.code;
+            }
+        }
 
         public virtual UserEntity Users { get; set; }
         public virtual ProjectPhasesEntity ProjectPhases { get; set; }

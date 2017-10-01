@@ -2,6 +2,7 @@
 using ReqManager.Entities.Project;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -31,21 +32,20 @@ namespace ReqManager.Entities.Acess
         [Required]
         [Display(Name = "Type")]
         public int TaskTypeID { get; set; }
-        [Required]
         [Display(Name = "Creation Date")]
-        public System.DateTime creationDate { get; set; }
+        public System.DateTime creationDate { get; set; } = DateTime.Now;
         [MinLength(3)]
         [MaxLength(1000)]
         [Required]
-        [Display(Name = "Description")]
+        [Display(Name = "Task Description")]
         public string description { get; set; }
         [Required]
         [Display(Name = "Start Date")]
         public DateTime startDate { get; set; }
         [Display(Name = "End Date")]
         public Nullable<DateTime> endDate { get; set; }
-        [Required]
-        [MaxLength(25)]
+        [Display(Name = "Task Code")]
+        [ReadOnly(true)]
         public string code { get; set; }
 
         public String DisplayName

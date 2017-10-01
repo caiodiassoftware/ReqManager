@@ -25,7 +25,6 @@ namespace ReqManager.Model
         [Required]
         public System.DateTime startDate { get; set; }
         public Nullable<DateTime> endDate { get; set; }
-        [Required]
         [MaxLength(25)]
         [Index(IsUnique = true)]
         public string code { get; set; }

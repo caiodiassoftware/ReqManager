@@ -13,7 +13,7 @@ namespace ReqManager.Entities.Acess
         public int TaskStatusID { get; set; }
         [MinLength(3)]
         [MaxLength(50)]
-        [Display(Name = "Description")]
+        [Display(Name = "Status Task")]
         public string description { get; set; }
     }
 }

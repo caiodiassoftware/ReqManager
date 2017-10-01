@@ -1,0 +1,9 @@
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Model\bin\Release\ReqManager.Model.dll.config
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Model\bin\Release\ReqManager.Model.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Model\bin\Release\ReqManager.Model.pdb
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Model\bin\Release\EntityFramework.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Model\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Model\bin\Release\EntityFramework.xml
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Model\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Model\obj\Release\ReqManager.Model.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Model\obj\Release\ReqManager.Model.pdb

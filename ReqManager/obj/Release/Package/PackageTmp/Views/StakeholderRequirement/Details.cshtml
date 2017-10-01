@@ -1,0 +1,39 @@
+﻿@model ReqManager.Entities.Project.StakeholderRequirementEntity
+
+@{
+    ViewBag.Title = "Details Stakeholder - Requirement";
+}
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProjectRequirements.ProjectRequirementID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProjectRequirements.DisplayName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StakeHolders.StakeholderID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StakeHolders.DisplayName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.creationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.creationDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.StakeHolderRequirementID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

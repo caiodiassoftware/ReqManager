@@ -22,9 +22,8 @@ namespace ReqManager.Entities.Project
         [Required]
         [Display(Name = "Requirement")]
         public int RequirementID { get; set; }
-        [Required]
         [Display(Name = "Creation Date")]
-        public DateTime creationDate { get; set; }
+        public DateTime creationDate { get; set; } = DateTime.Now;
         [Required]
         [Display(Name = "Traceable")]
         public bool traceable { get; set; }

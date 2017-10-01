@@ -177,6 +177,8 @@
     <Compile Include="Controllers\ControllerActionController.cs" />
     <Compile Include="Controllers\HistoryProjectArtifactsController.cs" />
     <Compile Include="Controllers\HistoryProjectController.cs" />
+    <Compile Include="Controllers\LinkArtifactAttributesController.cs" />
+    <Compile Include="Controllers\LinkBetweenRequirementsArtifactController.cs" />
     <Compile Include="Controllers\LinkBetweenRequirementsController.cs" />
     <Compile Include="Controllers\LinkRequirementAttributesController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -223,6 +225,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
+    <None Include="Properties\PublishProfiles\caiodias.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\css\bootstrap.min.css" />
     <Content Include="Scripts\css\styles.css" />
@@ -379,6 +382,16 @@
     <Content Include="Views\LinkRequirementAttributes\Details.cshtml" />
     <Content Include="Views\LinkRequirementAttributes\Edit.cshtml" />
     <Content Include="Views\LinkRequirementAttributes\Index.cshtml" />
+    <Content Include="Views\LinkArtifactAttributes\Create.cshtml" />
+    <Content Include="Views\LinkArtifactAttributes\Delete.cshtml" />
+    <Content Include="Views\LinkArtifactAttributes\Details.cshtml" />
+    <Content Include="Views\LinkArtifactAttributes\Edit.cshtml" />
+    <Content Include="Views\LinkArtifactAttributes\Index.cshtml" />
+    <Content Include="Views\LinkBetweenRequirementsArtifact\Create.cshtml" />
+    <Content Include="Views\LinkBetweenRequirementsArtifact\Delete.cshtml" />
+    <Content Include="Views\LinkBetweenRequirementsArtifact\Details.cshtml" />
+    <Content Include="Views\LinkBetweenRequirementsArtifact\Edit.cshtml" />
+    <Content Include="Views\LinkBetweenRequirementsArtifact\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

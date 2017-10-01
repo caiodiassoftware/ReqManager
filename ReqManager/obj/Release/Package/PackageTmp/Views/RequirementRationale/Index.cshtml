@@ -1,0 +1,95 @@
+﻿@model IEnumerable<ReqManager.Entities.Requirement.RequirementRationaleEntity>
+
+@{
+    ViewBag.Title = "Listing of Requirements Changed";
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MeasureImportance.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Requirement.code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RequirementStatus.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RequirementType.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StakeholdersProject.StakeholdersProjectID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.changedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.input)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.output)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.rationale)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MeasureImportance.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Requirement.code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RequirementStatus.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RequirementType.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StakeholdersProject.StakeholdersProjectID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.changedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.input)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.output)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.rationale)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id=item.RequirementRationaleID }) 
+        </td>
+    </tr>
+}
+
+</table>

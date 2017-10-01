@@ -23,8 +23,8 @@ namespace ReqManager.Model
         public int RequirementTargetID { get; set; }
         [Required]  
         public DateTime creationDate { get; set; }
-        [Required]
-        [MaxLength(25), MinLength(5)]
+        [MaxLength(25), MinLength(4)]
+        [Index(IsUnique = true)]
         public string code { get; set; }
     
         public virtual Users Users { get; set; }

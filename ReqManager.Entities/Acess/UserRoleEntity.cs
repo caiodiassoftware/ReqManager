@@ -13,8 +13,10 @@ namespace ReqManager.Entities.Acess
         [Key]
         public int UserRoleID { get; set; }
         [Required]
+        [Display(Name = "Role")]
         public int RoleID { get; set; }
         [Required]
+        [Display(Name = "User")]
         public int UserID { get; set; }
 
         public String DisplayName

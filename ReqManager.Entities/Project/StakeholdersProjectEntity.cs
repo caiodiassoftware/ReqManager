@@ -17,15 +17,15 @@ namespace ReqManager.Entities.Project
         [Required]
         [Display(Name = "Stakeholder")]
         public int StakeholderID { get; set; }
-        [Required]
         [Display(Name = "Creation Date")]
-        public DateTime creationDate { get; set; }
+        public DateTime creationDate { get; set; } = DateTime.Now;
 
+        [Display(Name = "Stakeholder")]
         public String DisplayName
         {
             get
             {
-                return this.Project.description + " - " + this.Stakeholders.DisplayName;
+                return this.Project.code + " - " + this.Stakeholders.DisplayName;
             }
         }
 

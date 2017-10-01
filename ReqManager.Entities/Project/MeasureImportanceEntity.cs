@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ReqManager.Entities.Project
 {
@@ -13,7 +8,7 @@ namespace ReqManager.Entities.Project
         public int MeasureImportanceID { get; set; }
         [Required]
         [MaxLength(50), MinLength(5)]
-        [Display(Name = "Description")]
+        [Display(Name = "Measure Importance")]
         public string description { get; set; }
     }
 }

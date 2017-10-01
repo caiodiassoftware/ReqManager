@@ -17,9 +17,8 @@ namespace ReqManager.Entities.Project
         [Required]
         [Display(Name = "Stakeholders")]
         public int StakeHolderID { get; set; }
-        [Required]
         [Display(Name = "Creation Date")]
-        public DateTime creationDate { get; set; }
+        public DateTime creationDate { get; set; } = DateTime.Now;
 
         public virtual ProjectRequirementsEntity ProjectRequirements { get; set; }
         public virtual StakeholdersEntity StakeHolders { get; set; }

@@ -28,12 +28,10 @@ namespace ReqManager.Entities.Artifact
         public string path { get; set; }
         [Required]
         [MaxLength(500)]
-        [Display(Name = "Description")]
+        [Display(Name = "Artifact Description")]
         public string description { get; set; }
-        [Required]
         [Display(Name = "Creation Date")]
-        [StringLength(10, MinimumLength = 10, ErrorMessage = "Invalid Date")]
-        public DateTime creationDate { get; set; }
+        public DateTime creationDate { get; set; } = DateTime.Now;
         [Required]
         [MaxLength(25), MinLength(5)]
         [Display(Name = "Login")]

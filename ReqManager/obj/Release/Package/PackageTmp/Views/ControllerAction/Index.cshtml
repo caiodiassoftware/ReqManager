@@ -1,0 +1,38 @@
+﻿@model IEnumerable<ReqManager.Entities.ControllerActionEntity>
+
+@{
+    ViewBag.Title = "List of Controller/Actions";
+}
+
+<p>
+    @Html.ActionLink("Refresh", "Refresh")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.controller)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.action)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsGet)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.controller)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.action)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsGet)
+        </td>
+    </tr>
+}
+
+</table>

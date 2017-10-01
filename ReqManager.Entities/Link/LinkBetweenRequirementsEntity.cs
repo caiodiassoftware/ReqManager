@@ -2,6 +2,7 @@
 using ReqManager.Entities.Requirement;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -26,12 +27,10 @@ namespace ReqManager.Entities.Link
         [Required]
         [Display(Name = "Req. Target")]
         public int RequirementTargetID { get; set; }
-        [Required]
         [Display(Name = "Creation Data")]
-        public System.DateTime creationDate { get; set; }
-        [Required]
-        [MaxLength(25), MinLength(5)]
-        [Display(Name = "Code")]
+        public System.DateTime creationDate { get; set; } = DateTime.Now;
+        [Display(Name = "R-R Code")]
+        [ReadOnly(true)]
         public string code { get; set; }
 
         public String DisplayName

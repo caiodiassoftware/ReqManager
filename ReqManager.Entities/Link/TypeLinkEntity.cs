@@ -17,11 +17,10 @@ namespace ReqManager.Entities.Link
         public int UserID { get; set; }
         [Required]
         [MaxLength(50), MinLength(3)]
-        [Display(Name = "Description")]
+        [Display(Name = "Type Link Description")]
         public string description { get; set; }
-        [Required]
         [Display(Name = "Creation Date")]
-        public System.DateTime creationDate { get; set; }
+        public System.DateTime creationDate { get; set; } = DateTime.Now;
 
         public String DisplayName
         {

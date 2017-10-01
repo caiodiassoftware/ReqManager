@@ -1,0 +1,6 @@
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Utils\bin\Release\ReqManager.Utils.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Utils\bin\Release\ReqManager.Utils.pdb
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Utils\bin\Release\AutoMapper.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Utils\bin\Release\AutoMapper.xml
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Utils\obj\Release\ReqManager.Utils.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Utils\obj\Release\ReqManager.Utils.pdb

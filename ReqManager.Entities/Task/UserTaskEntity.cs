@@ -18,9 +18,8 @@ namespace ReqManager.Entities.Acess
         [Required]
         [Display(Name = "Task")]
         public int TaskID { get; set; }
-        [Required]
         [Display(Name = "Creation Date")]
-        public DateTime creationDate { get; set; }
+        public DateTime creationDate { get; set; } = DateTime.Now;
 
         public String DisplayName
         {

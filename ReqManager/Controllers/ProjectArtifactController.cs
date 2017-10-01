@@ -1,76 +1,77 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using ReqManager.Data.DataAcess;
 using ReqManager.Entities.Artifact;
 using ReqManager.ManagerController;
-using ReqManager.Services.Estructure;
 using ReqManager.Services.Project.Interfaces;
 using ReqManager.Services.Acess.Interfaces;
+using System.Data.Entity.Validation;
+using System.Data.Entity.Infrastructure;
 
 namespace ReqManager.Controllers
 {
     public class ProjectArtifactController : BaseController<ProjectArtifactEntity>
     {
-        private IProjectArtifactService service { get; set; }
-        private IUserService userService { get; set; }
-        private IMeasureImportanceService measureService { get; set; }
-        private IProjectService projectService { get; set; }
-        private IArtifactTypeService typeService { get; set; }
+        private IHistoryProjectArtifactService historyServiceArtifact { get; set; }
 
         public ProjectArtifactController(
             IProjectArtifactService service,
             IUserService userService,
             IArtifactTypeService typeService,
             IMeasureImportanceService measureService,
-            IProjectService projectService) : base(service)
+            IProjectService projectService,
+            IHistoryProjectArtifactService historyServiceArtifact) : base(service)
         {
-            this.service = service;
-            this.userService = userService;
-            this.measureService = measureService;
-            this.projectService = projectService;
-            this.typeService = typeService;
+            this.historyServiceArtifact = historyServiceArtifact;
+
+            ViewData.Add("ArtifactTypeID", new SelectList(typeService.getAll(), "ArtifactTypeID", "description"));
+            ViewData.Add("MeasureImportanceID", new SelectList(measureService.getAll(), "MeasureImportanceID", "description"));
+            ViewData.Add("ProjectID", new SelectList(projectService.getAll(), "ProjectID", "description"));
+            ViewData.Add("UserID", new SelectList(userService.getAll(), "UserID", "name"));
         }
 
-        #region GETS
-
-        public override ActionResult Create()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public override ActionResult Edit(ProjectArtifactEntity entity)
         {
-            return dropDowns();
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    Service.update(entity);
+
+                    HistoryProjectArtifactEntity history = new HistoryProjectArtifactEntity();
+                    ProjectArtifactEntity artifact = Service.get(entity.ProjectArtifactID);
+                    history.ProjectArtifactID = artifact.ProjectArtifactID;
+                    history.description = artifact.description;
+                    history.descriptionMeasureImportance = artifact.MeasureImportance.description;
+                    history.descriptionTypeArtifact = artifact.ArtifactType.description;
+                    history.login = getLoginUser();
+                    history.path = artifact.path;
+
+                    historyServiceArtifact.add(history);
+
+                    Service.saveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    getModelStateValidations();
+                }
+
+                return View(entity);
+            }
+            catch (DbEntityValidationException ex)
+            {
+                return getMessageDbValidation(entity, ex);
+            }
+            catch (DbUpdateException ex)
+            {
+                return getMessageDbUpdateException(entity, ex);
+            }
+            catch (Exception ex)
+            {
+                return getMessageGeralException(entity, ex);
+            }
         }
-
-        public override ActionResult Edit(int? id)
-        {
-            base.Edit(id);
-            return dropDowns(Service.get(id));
-        }
-
-        public override ActionResult Delete(int? id)
-        {
-            base.Delete(id);
-            return dropDowns(Service.get(id));
-        }
-
-        #endregion
-        
-
-        #region Private Methods
-
-        private ActionResult dropDowns(ProjectArtifactEntity entity = null)
-        {
-            ViewBag.ArtifactTypeID = new SelectList(typeService.getAll(), "ArtifactTypeID", "description");
-            ViewBag.MeasureImportanceID = new SelectList(measureService.getAll(), "MeasureImportanceID", "description");
-            ViewBag.ProjectID = new SelectList(projectService.getAll(), "ProjectID", "description");
-            ViewBag.UserID = new SelectList(userService.getAll(), "UserID", "name");
-            return entity == null ? View() : View(entity);
-        }
-
-        #endregion
-
     }
 }

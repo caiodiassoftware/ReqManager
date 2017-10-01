@@ -4,11 +4,12 @@ using ReqManager.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
-using System.Data.SqlClient;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Net;
+using System.Reflection;
+using System.Text;
 using System.Web.Mvc;
-using System.Web.Routing;
 
 namespace ReqManager.ManagerController
 {
@@ -17,7 +18,7 @@ namespace ReqManager.ManagerController
         #region Attributes
 
         protected IService<TEntity> Service { get; set; }
-
+        protected List<ControllerBase> viewBags { get; set; }
         #endregion
 
         #region Constructor
@@ -35,7 +36,6 @@ namespace ReqManager.ManagerController
         {
             try
             {
-                var test = Service.getAll();
                 return View(Service.getAll());
             }
             catch (Exception ex)
@@ -125,23 +125,37 @@ namespace ReqManager.ManagerController
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public virtual ActionResult Create(TEntity model)
+        public virtual ActionResult Create(TEntity entity)
         {
             try
             {
+                setIdUser(ref entity);
+
                 if (ModelState.IsValid)
                 {
-                    Service.add(model);
+                    Service.add(entity);
                     Service.saveChanges();
+                    ViewBag.MessageReqManager = String.Format("Register was made with Success!");
                     return RedirectToAction("Index");
                 }
-                ViewBag.MessageReqManager = String.Format("Register was made with Success!");
-                return View(model);
+                else
+                {
+                    getModelStateValidations();
+                }
+
+                return View();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                return getMessageDbValidation(entity, ex);
+            }
+            catch (DbUpdateException ex)
+            {
+                return getMessageDbUpdateException(entity, ex);
             }
             catch (Exception ex)
             {
-                ViewBag.MessageReqManager = String.Format("Error Detected! " + ex.Message);                
-                return View(model);
+                return getMessageGeralException(entity, ex);
             }
         }
 
@@ -157,12 +171,24 @@ namespace ReqManager.ManagerController
                     Service.saveChanges();
                     return RedirectToAction("Index");
                 }
+                else
+                {
+                    getModelStateValidations();
+                }
 
                 return View(entity);
             }
+            catch (DbEntityValidationException ex)
+            {
+                return getMessageDbValidation(entity, ex);
+            }
+            catch (DbUpdateException ex)
+            {
+                return getMessageDbUpdateException(entity, ex);
+            }
             catch (Exception ex)
             {
-                throw ex;
+                return getMessageGeralException(entity, ex);
             }
         }
 
@@ -178,13 +204,14 @@ namespace ReqManager.ManagerController
             }
             catch (Exception ex)
             {
-                throw ex;
+                ViewBag.MessageReqManager = String.Format("Error Detected! " + ex.Message);
+                return RedirectToAction("Index");
             }
         }
 
         #endregion
 
-        #region Private Methods
+        #region Protected and Private Methods
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
@@ -212,15 +239,85 @@ namespace ReqManager.ManagerController
                 }
 
                 //filterContext.Result = new RedirectToRouteResult(
-                    //new RouteValueDictionary
-                    //{ { "Controller", controllerName },
-                    //    { "Action", actionName } });
+                //new RouteValueDictionary
+                //{ { "Controller", controllerName },
+                //    { "Action", actionName } });
                 base.OnActionExecuting(filterContext);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+        }
+
+        protected int getIdUser()
+        {
+            return 1;
+        }
+
+        protected void setIdUser(ref TEntity entity)
+        {
+            try
+            {
+                PropertyInfo prop = entity.GetType().GetProperty("UserID", BindingFlags.Public | BindingFlags.Instance);
+                if (null != prop && prop.CanWrite)                
+                    prop.SetValue(entity, getIdUser(), null);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        protected string getLoginUser()
+        {
+            return "caiodias";
+        }
+
+        protected ActionResult getMessageDbValidation(TEntity entity, DbEntityValidationException ex)
+        {
+            var errorMessages = ex.EntityValidationErrors
+                                .SelectMany(x => x.ValidationErrors)
+                                .Select(x => x.ErrorMessage);
+
+            var fullErrorMessage = string.Join("; ", errorMessages);
+            //var exceptionMessage = string.Concat(ex.Message, " The validation errors are: ", fullErrorMessage);
+            ViewBag.MessageReqManager = String.Format("Error Detected in DataBase validation! " + fullErrorMessage);
+            return View(entity);
+        }
+
+        protected ActionResult getMessageDbUpdateException(TEntity entity, DbUpdateException ex)
+        {
+            var builder = new StringBuilder("Erro was detected while saving changes. ");
+
+            try
+            {
+                foreach (var result in ex.Entries)
+                {
+                    builder.AppendFormat("Type: {0} was part of the problem. ", result.Entity.GetType().Name);
+                }
+            }
+            catch (Exception e)
+            {
+                builder.Append("Error parsing DbUpdateException: " + e.ToString());
+            }
+
+            string message = builder.ToString();
+            ViewBag.MessageReqManager = message;
+            return View(entity);
+        }
+
+        protected ActionResult getMessageGeralException(TEntity entity, Exception ex)
+        {
+            ViewBag.MessageReqManager = String.Format("Error Detected! " + ex.Message);
+            return View(entity);
+        }
+
+        protected void getModelStateValidations()
+        {
+            ViewBag.MessageReqManager = String.Concat("Error Detected in View validation! ", string.Join("; ", ModelState.Values
+                                                    .SelectMany(x => x.Errors)
+                                                    .Select(x => x.ErrorMessage)));
         }
 
         #endregion

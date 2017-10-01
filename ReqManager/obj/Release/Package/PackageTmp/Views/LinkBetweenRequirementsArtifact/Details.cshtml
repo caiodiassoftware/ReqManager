@@ -1,0 +1,63 @@
+﻿@model ReqManager.Entities.Link.LinkBetweenRequirementsArtifactsEntity
+
+@{
+    ViewBag.Title = "Details Link between Req. and Art.";
+}
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProjectArtifact.code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProjectArtifact.code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Requirement.code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Requirement.code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeLink.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypeLink.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Users.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Users.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.creationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.creationDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.LinkArtifactRequirementID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

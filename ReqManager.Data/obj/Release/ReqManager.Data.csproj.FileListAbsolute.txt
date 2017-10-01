@@ -1,0 +1,14 @@
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\bin\Release\ReqManager.Data.dll.config
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\bin\Release\ReqManager.Data.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\bin\Release\ReqManager.Data.pdb
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\bin\Release\EntityFramework.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\bin\Release\ReqManager.Model.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\bin\Release\ReqManager.Model.pdb
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\bin\Release\EntityFramework.xml
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\obj\Release\ReqManager.Data.csprojResolveAssemblyReference.cache
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\obj\Release\ReqManager.Data.Migrations.GenerateCodesTriggers.resources
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\obj\Release\ReqManager.Data.csproj.GenerateResource.Cache
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\obj\Release\ReqManager.Data.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\obj\Release\ReqManager.Data.pdb

@@ -1,58 +1,72 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using ReqManager.Data.DataAcess;
 using ReqManager.Entities.Project;
 using ReqManager.ManagerController;
-using ReqManager.Services.Estructure;
 using ReqManager.Services.Project.Interfaces;
 using ReqManager.Services.Acess.Interfaces;
+using System.Data.Entity.Validation;
+using System.Data.Entity.Infrastructure;
 
 namespace ReqManager.Controllers
 {
     public class ProjectsController : BaseController<ProjectEntity>
     {
-        private IProjectService service { get; set; }
-        private IUserService userService { get; set; }
-        private IProjectPhasesService phasesService { get; set; }
+        private IHistoryProjectService historyProjectService { get; set; }
 
         public ProjectsController(
             IProjectService service,
             IUserService userService,
-            IProjectPhasesService phasesService) : base(service)
+            IProjectPhasesService phasesService,
+            IHistoryProjectService historyProjectService) : base(service)
         {
-            this.service = service;
-            this.userService = userService;
-            this.phasesService = phasesService;
+            this.historyProjectService = historyProjectService;
+
+            ViewData.Add("ProjectPhasesID", new SelectList(phasesService.getAll(), "ProjectPhasesID", "description"));
+            ViewData.Add("UserID", new SelectList(userService.getAll(), "UserID", "name"));
         }
 
-        public override ActionResult Create()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public override ActionResult Edit(ProjectEntity entity)
         {
-            return dropDowns();
-        }
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    Service.update(entity);
 
-        public override ActionResult Edit(int? id)
-        {
-            base.Edit(id);
-            return dropDowns(Service.get(id));
-        }
+                    HistoryProjectEntity history = new HistoryProjectEntity();
+                    ProjectEntity project = Service.get(entity.ProjectID);
+                    history.ProjectID = project.ProjectID;
+                    history.UserID = getIdUser();
+                    history.descriptionPhases = project.ProjectPhases.description;
+                    history.endDate = Convert.ToDateTime(project.endDate);
+                    history.startDate = Convert.ToDateTime(project.startDate);
 
-        public override ActionResult Delete(int? id)
-        {
-            base.Delete(id);
-            return dropDowns(Service.get(id));
-        }
+                    historyProjectService.add(history);
 
-        private ActionResult dropDowns(ProjectEntity entity = null)
-        {
-            ViewBag.ProjectPhasesID = new SelectList(phasesService.getAll(), "ProjectPhasesID", "description");
-            ViewBag.UserID = new SelectList(userService.getAll(), "UserID", "name");
-            return entity == null ? View() : View(entity);
+                    Service.saveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    getModelStateValidations();
+                }
+
+                return View(entity);
+            }
+            catch (DbEntityValidationException ex)
+            {
+                return getMessageDbValidation(entity, ex);
+            }
+            catch (DbUpdateException ex)
+            {
+                return getMessageDbUpdateException(entity, ex);
+            }
+            catch (Exception ex)
+            {
+                return getMessageGeralException(entity, ex);
+            }
         }
     }
 }

@@ -20,8 +20,8 @@ namespace ReqManager.Model
         public int ArtifactTypeID { get; set; }
         public int MeasureImportanceID { get; set; }
         public int ProjectID { get; set; }
-        [Required]
-        [MaxLength(25), MinLength(5)]
+        [MaxLength(25), MinLength(4)]
+        [Index(IsUnique = true)]
         public string code { get; set; }
         [Required]
         [MaxLength(500)]

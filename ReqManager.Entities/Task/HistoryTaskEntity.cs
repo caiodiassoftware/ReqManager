@@ -33,7 +33,7 @@ namespace ReqManager.Entities.Acess
         [Display(Name = "Importance")]
         public string descriptionMeasureImportance { get; set; }
         [Display(Name = "Changed Date")]
-        public DateTime changedDate { get; set; }
+        public DateTime changedDate { get; set; } = DateTime.Now;
 
         public virtual UserEntity Users { get; set; }
         public virtual TaskEntity Task { get; set; }

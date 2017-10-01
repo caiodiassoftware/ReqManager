@@ -1,0 +1,49 @@
+﻿@model IEnumerable<ReqManager.Entities.Requirement.RequirementTemplateEntity>
+
+@{
+    ViewBag.Title = "Listing of Requirement Templates";
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Users.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.templateHtml)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.createDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Users.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.templateHtml)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.createDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.RequirementTemplateID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.RequirementTemplateID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.RequirementTemplateID })
+        </td>
+    </tr>
+}
+
+</table>

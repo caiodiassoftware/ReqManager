@@ -26,7 +26,6 @@ namespace ReqManager.Model
         public int RequirementTypeID { get; set; }
         public int StakeholdersProjectID { get; set; }
         public int MeasureImportanceID { get; set; }
-        [Required]
         [MaxLength(25)]
         [Index(IsUnique = true)]
         public string code { get; set; }

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ReqManager.Entities.Requirement.RequirementActionHistoryEntity>
+
+@{
+    ViewBag.Title = "Listing of Requirement Actions History";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Requirement.code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserLogin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DescriptionStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.changedDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Requirement.code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserLogin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DescriptionStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.changedDate)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id=item.RequirementActionHistoryID })
+        </td>
+    </tr>
+}
+
+</table>

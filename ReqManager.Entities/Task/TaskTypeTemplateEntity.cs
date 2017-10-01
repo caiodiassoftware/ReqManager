@@ -22,9 +22,8 @@ namespace ReqManager.Entities.Acess
         [MaxLength(1000)]
         [Display(Name = "Template Html")]
         public string templateHtml { get; set; }
-        [Required]
         [Display(Name = "Creation Date")]
-        public DateTime creationDate { get; set; }
+        public DateTime creationDate { get; set; } = DateTime.Now;
 
         public virtual UserEntity Users { get; set; }
         public virtual TaskTypeEntity TaskType { get; set; }

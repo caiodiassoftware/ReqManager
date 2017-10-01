@@ -17,18 +17,12 @@ namespace ReqManager.Controllers
 {
     public class HistoryProjectController : BaseController<HistoryProjectEntity>
     {
-        private IHistoryProjectService historyProjectService { get; set; }
-        private IProjectService projectService { get; set; }
-        private IUserService userService { get; set; }
-
         public HistoryProjectController(
             IHistoryProjectService historyProjectService,
             IProjectService projectService,
             IUserService userService) : base(historyProjectService)
         {
-            this.historyProjectService = historyProjectService;
-            this.projectService = projectService;
-            this.userService = userService;
+
         }        
     }
 }

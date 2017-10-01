@@ -1,0 +1,4 @@
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Entities\bin\Release\ReqManager.Entities.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Entities\bin\Release\ReqManager.Entities.pdb
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Entities\obj\Release\ReqManager.Entities.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Entities\obj\Release\ReqManager.Entities.pdb

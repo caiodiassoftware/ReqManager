@@ -1,30 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
-using ReqManager.Data.DataAcess;
+﻿using System.Web.Mvc;
 using ReqManager.Entities.Requirement;
 using ReqManager.ManagerController;
-using ReqManager.Services.Estructure;
 using ReqManager.Services.Requirements.Interfaces;
 using ReqManager.Services.Project.Interfaces;
 using ReqManager.Services.Acess.Interfaces;
+using System.Data.Entity.Validation;
+using System.Data.Entity.Infrastructure;
+using System;
 
 namespace ReqManager.Controllers
 {
     public class RequirementController : BaseController<RequirementEntity>
     {
-        private IRequirementService service { get; set; }
-        private IMeasureImportanceService measureService { get; set; }
-        private IRequirementStatusService statusService { get; set; }
-        private IRequirementTemplateService templateService { get; set; }
-        private IRequirementTypeService typeService { get; set; }
-        private IUserService userService { get; set; }
-        private IStakeholdersProjectService stakeholderProjectService { get; set; }
+        private IRequirementRationaleService rationaleService { get; set; }
+        private IRequirementActionHistoryService reqActionHistoryService {get;set;}
 
         public RequirementController(
             IRequirementService service,
@@ -33,54 +22,61 @@ namespace ReqManager.Controllers
             IRequirementTemplateService templateService,
             IRequirementTypeService typeService,
             IUserService userService,
-            IStakeholdersProjectService stakeholderProjectService) : base(service)
+            IStakeholdersProjectService stakeholderProjectService,
+            IRequirementRationaleService rationaleService,
+            IRequirementActionHistoryService reqActionHistoryService) : base(service)
         {
-            this.service = service;
-            this.measureService = measureService;
-            this.statusService = statusService;
-            this.templateService = templateService;
-            this.typeService = typeService;
-            this.userService = userService;
-            this.stakeholderProjectService = stakeholderProjectService;
+            this.rationaleService = rationaleService;
+            this.reqActionHistoryService = reqActionHistoryService;
+
+            ViewData.Add("StakeholdersProjectID", new SelectList(stakeholderProjectService.getAll(), "StakeholdersProjectID", "DisplayName"));
+            ViewData.Add("MeasureImportanceID",new SelectList(measureService.getAll(), "MeasureImportanceID", "description"));
+            ViewData.Add("RequirementStatusID" , new SelectList(statusService.getAll(), "RequirementStatusID", "description"));
+            ViewData.Add("RequirementTemplateID", new SelectList(templateService.getAll(), "RequirementTemplateID", "description"));
+            ViewData.Add("RequirementTypeID" ,new SelectList(typeService.getAll(), "RequirementTypeID", "description"));
+            ViewData.Add("UserID", new SelectList(userService.getAll(), "UserID", "name"));
         }
 
-        #region GETS
-
-        public override ActionResult Create()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public override ActionResult Edit(RequirementEntity entity)
         {
-            return dropDowns();
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    Service.update(entity);
+
+                    RequirementActionHistoryEntity reqAction = new RequirementActionHistoryEntity();
+                    RequirementEntity req = Service.get(entity.RequirementID);
+                    reqAction.RequirementID = req.RequirementID;
+                    reqAction.DescriptionStatus = req.RequirementStatus.description;
+                    reqAction.UserLogin = getLoginUser();
+
+                    reqActionHistoryService.add(reqAction);
+
+                    Service.saveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    getModelStateValidations();
+                }
+
+                return View(entity);
+            }
+            catch (DbEntityValidationException ex)
+            {
+                return getMessageDbValidation(entity, ex);
+            }
+            catch (DbUpdateException ex)
+            {
+                return getMessageDbUpdateException(entity, ex);
+            }
+            catch (Exception ex)
+            {
+                return getMessageGeralException(entity, ex);
+            }
         }
-
-        public override ActionResult Edit(int? id)
-        {
-            base.Edit(id);
-            return dropDowns(Service.get(id));
-        }
-
-        public override ActionResult Delete(int? id)
-        {
-            base.Delete(id);
-            return dropDowns(Service.get(id));
-        }
-
-        #endregion
-
-        
-
-        #region Private Methods
-
-        private ActionResult dropDowns(RequirementEntity entity = null)
-        {
-            ViewBag.StakeholdersProjectID = new SelectList(stakeholderProjectService.getAll(), "StakeholdersProjectID", "DisplayName");
-            ViewBag.MeasureImportanceID = new SelectList(measureService.getAll(), "MeasureImportanceID", "description");
-            ViewBag.RequirementStatusID = new SelectList(statusService.getAll(), "RequirementStatusID", "description");
-            ViewBag.RequirementTemplateID = new SelectList(templateService.getAll(), "RequirementTemplateID", "description");
-            ViewBag.RequirementTypeID = new SelectList(typeService.getAll(), "RequirementTypeID", "description");
-            ViewBag.UserID = new SelectList(userService.getAll(), "UserID", "name");
-            return entity == null ? View() : View(entity);
-        }
-
-        #endregion
-
     }
 }

@@ -61,6 +61,10 @@
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
+    <Compile Include="Migrations\201709301423377_GenerateCodesTriggers.cs" />
+    <Compile Include="Migrations\201709301423377_GenerateCodesTriggers.Designer.cs">
+      <DependentUpon>201709301423377_GenerateCodesTriggers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Repositories\Artifact\Classes\ArtifactTypeRepository.cs" />
     <Compile Include="Repositories\Artifact\Classes\HistoryProjectArtifactRepository.cs" />
     <Compile Include="Repositories\Artifact\Interfaces\IHistoryProjectArtifactRepository.cs" />
@@ -150,6 +154,11 @@
       <Project>{7E758419-8F0D-4813-8207-5561EC69C932}</Project>
       <Name>ReqManager.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201709301423377_GenerateCodesTriggers.resx">
+      <DependentUpon>201709301423377_GenerateCodesTriggers.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

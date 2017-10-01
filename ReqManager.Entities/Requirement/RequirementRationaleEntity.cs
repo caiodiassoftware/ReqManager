@@ -16,7 +16,7 @@ namespace ReqManager.Entities.Requirement
         [Display(Name = "Stakeholder")]
         public int StakeholdersProjectID { get; set; }
         [Required]
-        [Display(Name = "Importance")]
+        [Display(Name = "Measure Importance")]
         public int MeasureImportanceID { get; set; }
         [Required]
         [Display(Name = "Requirement")]
@@ -34,9 +34,8 @@ namespace ReqManager.Entities.Requirement
         [MaxLength(100), MinLength(10)]
         [Display(Name = "Title")]
         public string title { get; set; }
-        [Required]
         [Display(Name = "Changed Date")]
-        public System.DateTime changedDate { get; set; }
+        public System.DateTime changedDate { get; set; } = DateTime.Now;
         [Required]
         [MaxLength(1000), MinLength(5)]
         [Display(Name = "Input")]

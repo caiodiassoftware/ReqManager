@@ -22,9 +22,8 @@ namespace ReqManager.Entities.Requirement
         [MaxLength(50), MinLength(5)]
         [Display(Name = "Status")]
         public string DescriptionStatus { get; set; }
-        [Required]
         [Display(Name = "Changed Date")]
-        public DateTime changedDate { get; set; }
+        public DateTime changedDate { get; set; } = DateTime.Now;
 
         public virtual RequirementEntity Requirement { get; set; }
     }

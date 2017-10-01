@@ -1,0 +1,35 @@
+﻿@model ReqManager.Entities.Acess.UserRoleEntity
+
+@{
+    ViewBag.Title = "Delete the User Role relationship";
+}
+<div>
+    <h4>UserRoleEntity</h4>
+    <hr />
+        <dt>
+            @Html.DisplayNameFor(model => model.Role.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Role.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.nickName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

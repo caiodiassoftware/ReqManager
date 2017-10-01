@@ -13,7 +13,7 @@ namespace ReqManager.Entities.Artifact
         public int ArtifactTypeID { get; set; }
         [Required]
         [MaxLength(50), MinLength(5)]
-        [Display(Name = "Description")]
+        [Display(Name = "Artifact Type Description")]
         public string description { get; set; }
     }
 }

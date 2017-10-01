@@ -13,7 +13,7 @@ namespace ReqManager.Entities.Link
         public int AttributeID { get; set; }
         [Required]
         [MaxLength(50), MinLength(5)]
-        [Display(Name = "Description")]
+        [Display(Name = "Attribute Description")]
         public string description { get; set; }
     }
 }

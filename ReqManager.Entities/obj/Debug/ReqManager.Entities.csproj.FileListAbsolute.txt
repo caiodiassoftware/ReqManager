@@ -10,6 +10,4 @@ C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Entities\bin\Debug\ReqManage
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Entities\bin\Debug\ReqManager.Entities.pdb
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Entities\obj\Debug\ReqManager.Entities.dll
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Entities\obj\Debug\ReqManager.Entities.pdb
-C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Entities\obj\Debug\ReqManager.Entities.csprojResolveAssemblyReference.cache
 C:\Users\maquina06\Desktop\ReqManager\ReqManager.Entities\obj\Debug\ReqManager.Entities.csprojResolveAssemblyReference.cache
-C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Entities\obj\Debug\ReqManager.Entities.csproj.CoreCompileInputs.cache

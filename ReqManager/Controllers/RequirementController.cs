@@ -7,6 +7,12 @@ using ReqManager.Services.Acess.Interfaces;
 using System.Data.Entity.Validation;
 using System.Data.Entity.Infrastructure;
 using System;
+using ReqManager.Services.Link.Interfaces;
+using AutoMapper;
+using ReqManager.Services.Extensions;
+using ReqManager.ViewModels;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ReqManager.Controllers
 {
@@ -14,6 +20,8 @@ namespace ReqManager.Controllers
     {
         private IRequirementRationaleService rationaleService { get; set; }
         private IRequirementActionHistoryService reqActionHistoryService {get;set;}
+        private ILinkBetweenRequirementsService linkRequirementService { get; set; }
+        private ILinkBetweenRequirementsArtifactsService linkReqArtifactService { get; set; }
 
         public RequirementController(
             IRequirementService service,
@@ -24,8 +32,12 @@ namespace ReqManager.Controllers
             IUserService userService,
             IStakeholdersProjectService stakeholderProjectService,
             IRequirementRationaleService rationaleService,
-            IRequirementActionHistoryService reqActionHistoryService) : base(service)
+            IRequirementActionHistoryService reqActionHistoryService,
+            ILinkBetweenRequirementsService linkRequirementService,
+            ILinkBetweenRequirementsArtifactsService linkReqArtifactService) : base(service)
         {
+            this.linkRequirementService = linkRequirementService;
+            this.linkReqArtifactService = linkReqArtifactService;
             this.rationaleService = rationaleService;
             this.reqActionHistoryService = reqActionHistoryService;
 
@@ -35,6 +47,15 @@ namespace ReqManager.Controllers
             ViewData.Add("RequirementTemplateID", new SelectList(templateService.getAll(), "RequirementTemplateID", "description"));
             ViewData.Add("RequirementTypeID" ,new SelectList(typeService.getAll(), "RequirementTypeID", "description"));
             ViewData.Add("UserID", new SelectList(userService.getAll(), "UserID", "name"));
+        }
+
+        public override ActionResult Details(int? id)
+        {
+            RequirementViewModel req = new RequirementViewModel();
+            req.requirement = Service.get(id);
+            req.linkReq = linkRequirementService.getAll().Where(r => r.RequirementOriginID.Equals(id)).ToList();
+            req.linkReqArt = linkReqArtifactService.getAll().Where(r => r.RequirementID.Equals(id)).ToList();
+            return View(req);
         }
 
         [HttpPost]

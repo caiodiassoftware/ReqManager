@@ -1,111 +1,174 @@
-﻿@model ReqManager.Entities.Requirement.RequirementEntity
+﻿@model ReqManager.ViewModels.RequirementViewModel
 
 @{
     ViewBag.Title = "Requirement Details";
 }
 
 <div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.MeasureImportance.description)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.MeasureImportance.description)
-        </dd>
+    <div id="tabs">
+        <ul>
+            <li><a href="#req">Requirement</a></li>
+            <li><a href="#rr">R-R Traceability</a></li>
+            <li><a href="#ra">R-A Traceability</a></li>
+        </ul>
+        <div id="req">
+            <dl class="dl-horizontal">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.RequirementStatus.description)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.requirement.MeasureImportance.description)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.RequirementStatus.description)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.requirement.MeasureImportance.description)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.RequirementTemplate.description)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.requirement.RequirementStatus.description)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.RequirementTemplate.description)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.requirement.RequirementStatus.description)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.RequirementType.description)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.requirement.RequirementTemplate.description)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.RequirementType.description)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.requirement.RequirementTemplate.description)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Users.name)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.requirement.RequirementType.description)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Users.name)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.requirement.RequirementType.description)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.StakeholdersProjectID)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.requirement.Users.name)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.StakeholdersProjectID)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.requirement.Users.name)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.code)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.requirement.StakeholdersProjectID)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.code)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.requirement.StakeholdersProjectID)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.description)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.requirement.code)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.description)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.requirement.code)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.title)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.requirement.description)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.title)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.requirement.description)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.creationDate)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.requirement.title)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.creationDate)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.requirement.title)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.input)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.requirement.creationDate)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.input)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.requirement.creationDate)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.output)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.requirement.input)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.output)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.requirement.input)
+                </dd>
 
-    </dl>
+                <dt>
+                    @Html.DisplayNameFor(model => model.requirement.output)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.requirement.output)
+                </dd>
+
+            </dl>
+        </div>
+        <div id="rr">
+            <table class="table">
+                <tr>
+                    <th>
+                        Origin Code
+                    </th>
+                    <th>
+                        Target Code
+                    </th>
+                    <th>
+                        Type
+                    </th>
+                    <th>
+                        User
+                    </th>
+                    <th>
+                        Date
+                    </th>
+                    <th>
+                        Link Code
+                    </th>
+                    <th></th>
+                </tr>
+                @foreach (var item in Model.linkReq)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RequirementOrigin.code)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RequirementTarget.code)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TypeLink.description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Users.name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.creationDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.code)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <div id="ra">
+
+        </div>
+    </div>
+
+    
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.RequirementID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.requirement.RequirementID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

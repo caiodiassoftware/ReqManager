@@ -6,8 +6,9 @@
     <title>ReqManager</title>
     @Styles.Render("~/Scripts/css/css")
     @Scripts.Render("~/bundles/modernizr")
-    <meta name="generator" content="Bootply" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>  
 </head>
 <body>
     @*TOP*@
@@ -131,8 +132,31 @@
         </div>
     </div>
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+
     @Scripts.Render("~/Scripts/css/js")
+    @Scripts.Render("~/bundles/jquery")
     @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+        $('#tabs').tabs({
+            beforeLoad: function (event, ui) {
+                ui.panel.html('loading...');
+                ui.jqXHR.error(function () {
+                    ui.panel.html('load page failed');
+                });
+            },
+            show: { effect: 'fade', duration: 200 },
+            hide: { effect: 'fade', duration: 200 },
+            active: 0,
+            collapsible: false
+        });
+        $('#tabs > ul > li > a').each(function (index, element) {
+            $(element).click(function () {
+                var href = $(this).attr('href');
+                if (!href.match(/^#.*$/)) {
+                    $('#mainTab > div:eq(' + $(this).closest('li').index() + ')').load(href);
+                }
+            })
+        });        
+    </script>
 </body>
 </html>

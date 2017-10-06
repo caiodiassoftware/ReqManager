@@ -18,7 +18,6 @@ namespace ReqManager.Entities.Requirement
         [MaxLength(50), MinLength(6)]
         [Display(Name = "Template")]
         public string description { get; set; }
-        [Required]
         [Display(Name = "Template Html")]
         public string templateHtml { get; set; }
         [Display(Name = "Creation Date")]

@@ -51,11 +51,20 @@ namespace ReqManager.Controllers
 
         public override ActionResult Details(int? id)
         {
-            RequirementViewModel req = new RequirementViewModel();
-            req.requirement = Service.get(id);
-            req.linkReq = linkRequirementService.getAll().Where(r => r.RequirementOriginID.Equals(id)).ToList();
-            req.linkReqArt = linkReqArtifactService.getAll().Where(r => r.RequirementID.Equals(id)).ToList();
-            return View(req);
+            try
+            {
+                RequirementViewModel req = new RequirementViewModel
+                {
+                    requirement = Service.get(id),
+                    linkReq = linkRequirementService.getAll().Where(r => r.RequirementOriginID.Equals(id) || r.RequirementTargetID.Equals(id)).ToList(),
+                    linkReqArt = linkReqArtifactService.getAll().Where(r => r.RequirementID.Equals(id)).ToList()
+                };
+                return View(req);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         [HttpPost]

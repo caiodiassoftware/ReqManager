@@ -6,6 +6,7 @@ namespace ReqManager.Controllers
 {
     public class AttributesController : BaseController<AttributesEntity>
     {
+
         public AttributesController(IAttributesService service) : base(service)
         {
 

@@ -41,6 +41,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
@@ -107,15 +108,19 @@
     <Compile Include="Repositories\Project\Interfaces\IStakeholderRequirementRepository.cs" />
     <Compile Include="Repositories\Project\Interfaces\IStakeholdersProjectRepository.cs" />
     <Compile Include="Repositories\Requirements\Classes\RequirementActionHistoryRepository.cs" />
+    <Compile Include="Repositories\Requirements\Classes\RequirementArtifactTraceabilityMatrixRepository.cs" />
     <Compile Include="Repositories\Requirements\Classes\RequirementRationaleRepository.cs" />
     <Compile Include="Repositories\Requirements\Classes\RequirementRepository.cs" />
     <Compile Include="Repositories\Requirements\Classes\RequirementStatusRepository.cs" />
+    <Compile Include="Repositories\Requirements\Classes\RequirementTraceabilityMatrixRepository.cs" />
     <Compile Include="Repositories\Requirements\Classes\RequirementTypeRepository.cs" />
     <Compile Include="Repositories\Requirements\Classes\RequirementTemplateRepository.cs" />
     <Compile Include="Repositories\Requirements\Interfaces\IRequirementActionHistoryRepository.cs" />
+    <Compile Include="Repositories\Requirements\Interfaces\IRequirementArtifactTraceabilityMatrixRepository.cs" />
     <Compile Include="Repositories\Requirements\Interfaces\IRequirementRationaleRepository.cs" />
     <Compile Include="Repositories\Requirements\Interfaces\IRequirementRepository.cs" />
     <Compile Include="Repositories\Requirements\Interfaces\IRequirementStatusRepository.cs" />
+    <Compile Include="Repositories\Requirements\Interfaces\IRequirementTraceabilityMatrixRepository.cs" />
     <Compile Include="Repositories\Requirements\Interfaces\IRequirementTypeRepository.cs" />
     <Compile Include="Repositories\Requirements\Interfaces\IRequirementTemplateRepository.cs" />
     <Compile Include="Repositories\Tasks\Classes\HistoryTaskRepository.cs" />

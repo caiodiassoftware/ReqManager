@@ -11,14 +11,15 @@ using System.Threading.Tasks;
 using ReqManager.Entities.Acess;
 using AutoMapper;
 using System.Reflection;
+using ReqManager.Data.Repositories.Requirements.Interfaces;
 
 namespace ReqManager.Services.Acess.Classes
 {
     public class RoleService : ServiceBase<Role, RoleEntity>, IRoleService
     {
-        public RoleService(IRoleRepository repository, IUnitOfWork unit) : base(repository, unit)
+        public RoleService(IRoleRepository repository, IRequirementTraceabilityMatrixRepository traceability, IUnitOfWork unit) : base(repository, unit)
         {
-
+            traceability.getMatrix();
         }
     }
 }

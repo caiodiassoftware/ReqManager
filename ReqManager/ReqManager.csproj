@@ -206,6 +206,7 @@
     <Compile Include="ManagerController\BaseController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\ControllerActionViewModel.cs" />
+    <Compile Include="ViewModels\DataTableViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\RequirementTemplateViewModel.cs" />
     <Compile Include="ViewModels\RequirementViewModel.cs" />
@@ -589,6 +590,7 @@
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-mobile.woff" />
     <Content Include="Scripts\tinymce\langs\readme.md" />
     <Content Include="Views\RequirementTemplate\Create.cshtml" />
+    <Content Include="Views\LinkBetweenRequirements\RequirementTraceabilityMatrix.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

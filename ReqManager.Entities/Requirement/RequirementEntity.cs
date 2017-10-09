@@ -52,6 +52,14 @@ namespace ReqManager.Entities.Requirement
         [Display(Name = "Output")]
         public string output { get; set; }
 
+        public String DisplayName
+        {
+            get
+            {
+                return code + " - " + MeasureImportance.description;
+            }
+        }
+
         public virtual UserEntity Users { get; set; }
         public virtual StakeholdersProjectEntity StakeholderProject { get; set; }
         public virtual MeasureImportanceEntity MeasureImportance { get; set; }

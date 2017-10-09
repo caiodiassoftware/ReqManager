@@ -13,7 +13,7 @@ using System.Web.Mvc;
 
 namespace ReqManager.ManagerController
 {
-    public class BaseController<TEntity> : Controller where TEntity : class
+    public class BaseController<TEntity> : ControlAcessController where TEntity : class
     {
         #region Attributes
 
@@ -212,43 +212,6 @@ namespace ReqManager.ManagerController
         #endregion
 
         #region Protected and Private Methods
-
-        protected override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            try
-            {
-                string actionName = filterContext.ActionDescriptor.ActionName;
-                string controllerName = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName;
-
-                if (Session["user"] != null)
-                {
-                    UserEntity user = (UserEntity)Session["user"];
-                    List<ControllerActionViewModel> controllerActions = (List<ControllerActionViewModel>)Session["controllerActions"];
-
-                    if (controllerActions.Where(x => x.Action.Equals(actionName) &&
-                    x.Controller.Equals(controllerName + "Controller")).Count().Equals(0))
-                    {
-                        actionName = "Error";
-                        controllerName = "Shared";
-                    }
-                }
-                else
-                {
-                    actionName = "Login";
-                    controllerName = "Login";
-                }
-
-                //filterContext.Result = new RedirectToRouteResult(
-                //new RouteValueDictionary
-                //{ { "Controller", controllerName },
-                //    { "Action", actionName } });
-                base.OnActionExecuting(filterContext);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
 
         protected int getIdUser()
         {

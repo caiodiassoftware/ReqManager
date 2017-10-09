@@ -62,6 +62,8 @@
     <Compile Include="Acess\Interfaces\IRoleService.cs" />
     <Compile Include="Acess\Interfaces\IUserRoleService.cs" />
     <Compile Include="Acess\Interfaces\IUserService.cs" />
+    <Compile Include="Directories\Classes\ScanDirectoryService.cs" />
+    <Compile Include="Directories\Interfaces\IScanDirectoryService.cs" />
     <Compile Include="Estructure\IService.cs" />
     <Compile Include="Estructure\ServiceBase.cs" />
     <Compile Include="Extensions\AutoMapperExtensions.cs" />

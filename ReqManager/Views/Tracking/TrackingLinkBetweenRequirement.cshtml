@@ -1,0 +1,55 @@
+﻿@model ReqManager.ViewModels.TrackingViewModel
+
+@{
+    ViewBag.Title = "Tracking Link Between Requirement";
+}
+
+<div class="form-horizontal">
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.Label("LinkBetweenRequirement", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("LinkBetweenRequirement", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessage("LinkBetweenRequirement", "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Path", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("Path", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessage("Path", "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div id="folders"></div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button id="track" class="btn btn-default">Track</button>
+        </div>
+    </div>
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $('#track').click(function () {
+            $.ajax({
+                url: '@Url.Action("TrackingLinkBetweenRequirements", "Tracking")',
+                data: { item: $("#LinkBetweenRequirement").val(), Path: $("#Path").val() },
+                cache: false,
+                type: "POST",
+                dataType: "html",
+                success: function (data, textStatus, XMLHttpRequest) {
+                    $("#folders").html(data);
+                }
+            });
+        })
+    </script>
+}

@@ -1,0 +1,19 @@
+﻿@model IEnumerable<string>
+
+@foreach (var item in Model)
+{
+    <ul>
+        <li>
+            @Html.ActionLink(
+                        item,
+                        "OpenFile",
+                        "Tracking",
+                        new
+                        {
+                            file = item
+                        },
+                        htmlAttributes: new { @target = "_blank", @class = "linkTracking"}
+                        )
+    </li>
+</ul>
+}

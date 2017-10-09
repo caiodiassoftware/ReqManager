@@ -216,6 +216,7 @@
     
 </div>
 <p>
+    @Html.ActionLink("Tracking", "TrackingRequirement", "Tracking", new { id = Model.requirement.RequirementID }, null) |
     @Html.ActionLink("Change Requirement", "Rationale", "RequirementRationale", new { id = Model.requirement.RequirementID }, null) |
     @Html.ActionLink("Edit", "Edit", new { id = Model.requirement.RequirementID }) |
     @Html.ActionLink("Back to List", "Index")

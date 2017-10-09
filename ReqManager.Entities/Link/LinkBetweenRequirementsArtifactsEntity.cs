@@ -38,7 +38,7 @@ namespace ReqManager.Entities.Link
         {
             get
             {
-                return this.Requirement.code + " - " + this.ProjectArtifact.code + " - " + this.TypeLink.description;
+                return this.Requirement.code + " to " + this.ProjectArtifact.code + " using " + this.TypeLink.description;
             }
         }
 

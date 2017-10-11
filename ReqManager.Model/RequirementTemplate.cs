@@ -17,6 +17,7 @@ namespace ReqManager.Model
         [Key]
         public int RequirementTemplateID { get; set; }
         public int UserID { get; set; }
+        public int RequirementTypeID { get; set; }
         [Required]
         [MaxLength(50), MinLength(6)]
         public string description { get; set; }

@@ -16,101 +16,84 @@
             <dl class="dl-horizontal">
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.requirement.MeasureImportance.description)
+                    @Html.DisplayNameFor(model => model.MeasureImportance.description)
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.requirement.MeasureImportance.description)
+                    @Html.DisplayFor(model => model.MeasureImportance.description)
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.requirement.RequirementStatus.description)
+                    @Html.DisplayNameFor(model => model.RequirementStatus.description)
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.requirement.RequirementStatus.description)
+                    @Html.DisplayFor(model => model.RequirementStatus.description)
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.requirement.RequirementTemplate.description)
+                    @Html.DisplayNameFor(model => model.RequirementTemplate.description)
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.requirement.RequirementTemplate.description)
+                    @Html.DisplayFor(model => model.RequirementTemplate.description)
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.requirement.RequirementType.description)
+                    @Html.DisplayNameFor(model => model.RequirementType.description)
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.requirement.RequirementType.description)
+                    @Html.DisplayFor(model => model.RequirementType.description)
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.requirement.Users.name)
+                    @Html.DisplayNameFor(model => model.Users.name)
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.requirement.Users.name)
+                    @Html.DisplayFor(model => model.Users.name)
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.requirement.StakeholdersProjectID)
+                    @Html.DisplayNameFor(model => model.StakeholdersProjectID)
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.requirement.StakeholdersProjectID)
+                    @Html.DisplayFor(model => model.StakeholdersProjectID)
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.requirement.code)
+                    @Html.DisplayNameFor(model => model.code)
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.requirement.code)
+                    @Html.DisplayFor(model => model.code)
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.requirement.description)
+                    @Html.DisplayNameFor(model => model.description)
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.requirement.description)
+                    @Html.DisplayFor(model => model.description)
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.requirement.title)
+                    @Html.DisplayNameFor(model => model.title)
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.requirement.title)
+                    @Html.DisplayFor(model => model.title)
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.requirement.creationDate)
+                    @Html.DisplayNameFor(model => model.creationDate)
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.requirement.creationDate)
+                    @Html.DisplayFor(model => model.creationDate)
                 </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.requirement.input)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.requirement.input)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.requirement.output)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.requirement.output)
-                </dd>
-
             </dl>
         </div>
         <div id="rr">
@@ -216,8 +199,8 @@
     
 </div>
 <p>
-    @Html.ActionLink("Tracking", "TrackingRequirement", "Tracking", new { id = Model.requirement.RequirementID }, null) |
-    @Html.ActionLink("Change Requirement", "Rationale", "RequirementRationale", new { id = Model.requirement.RequirementID }, null) |
-    @Html.ActionLink("Edit", "Edit", new { id = Model.requirement.RequirementID }) |
+    @Html.ActionLink("Tracking", "TrackingRequirement", "Tracking", new { id = Model.RequirementID }, null) |
+    @Html.ActionLink("Change Requirement", "Rationale", "RequirementRationale", new { id = Model.RequirementID }, null) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RequirementID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

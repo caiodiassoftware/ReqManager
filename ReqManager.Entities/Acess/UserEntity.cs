@@ -50,5 +50,13 @@ namespace ReqManager.Entities.Acess
         [Required]
         [Display(Name = "Active")]
         public Boolean active { get; set; }
+
+        public String DisplayName
+        {
+            get
+            {
+                return nickName + " - " + login;
+            }
+        }
     }
 }

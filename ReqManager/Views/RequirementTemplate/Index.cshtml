@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ReqManager.Entities.Requirement.RequirementTemplateEntity>
+﻿@model IEnumerable<ReqManager.ViewModels.RequirementTemplateViewModel>
 
 @{
     ViewBag.Title = "Listing of Requirement Templates";
@@ -16,9 +16,6 @@
             @Html.DisplayNameFor(model => model.description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.templateHtml)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.createDate)
         </th>
         <th></th>
@@ -31,9 +28,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.templateHtml)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.createDate)

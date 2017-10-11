@@ -14,6 +14,8 @@ namespace ReqManager.Entities.Requirement
         public int RequirementTemplateID { get; set; }
         [Display(Name = "User")]
         public int UserID { get; set; }
+        [Display(Name = "Type")]
+        public int RequirementTypeID { get; set; }
         [Required]
         [MaxLength(50), MinLength(6)]
         [Display(Name = "Template")]

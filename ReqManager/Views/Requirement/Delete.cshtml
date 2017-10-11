@@ -1,4 +1,4 @@
-﻿@model ReqManager.Entities.Requirement.RequirementEntity
+﻿@model ReqManager.ViewModels.RequirementViewModel
 
 @{
     ViewBag.Title = "Delete a Requirement";
@@ -86,22 +86,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.creationDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.input)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.input)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.output)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.output)
         </dd>
 
     </dl>

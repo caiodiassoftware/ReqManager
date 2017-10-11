@@ -36,22 +36,16 @@ namespace ReqManager.Model
         public string title { get; set; }
         [Required]
         public DateTime creationDate { get; set; }
-        [Required]
-        [MaxLength(1000), MinLength(5)]
-        public string input { get; set; }
-        [Required]
-        [MaxLength(1000), MinLength(5)]
-        public string output { get; set; }
 
-        public virtual Users Users { get; set; }
         public virtual ICollection<LinkBetweenRequirement> LinkRequirementsOrigin { get; set; }
         public virtual ICollection<LinkBetweenRequirement> LinkRequirementsTarget { get; set; }
         public virtual ICollection<LinkBetweenRequirementsArtifacts> LinkRequirementsArtifacts { get; set; }
         public virtual ICollection<ProjectRequirements> ProjectRequirements { get; set; }
-        public virtual StakeholdersProject StakeholderProject { get; set; }
-        public virtual MeasureImportance MeasureImportance { get; set; }
         public virtual ICollection<RequirementActionHistory> RequirementActionHistory { get; set; }
         public virtual ICollection<RequirementRationale> RequirementRationale { get; set; }
+        public virtual StakeholdersProject StakeholderProject { get; set; }
+        public virtual MeasureImportance MeasureImportance { get; set; }
+        public virtual Users Users { get; set; }
         public virtual RequirementTemplate RequirementTemplate { get; set; }
         public virtual RequirementStatus RequirementStatus { get; set; }
         public virtual RequirementType RequirementType { get; set; }

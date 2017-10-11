@@ -43,14 +43,6 @@ namespace ReqManager.Entities.Requirement
         [Required]
         [Display(Name = "Creation Date")]
         public System.DateTime creationDate { get; set; } = DateTime.Now;
-        [Required]
-        [MaxLength(1000), MinLength(5)]
-        [Display(Name = "Input")]
-        public string input { get; set; }
-        [Required]
-        [MaxLength(1000), MinLength(5)]
-        [Display(Name = "Output")]
-        public string output { get; set; }
 
         public String DisplayName
         {

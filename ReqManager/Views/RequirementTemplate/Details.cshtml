@@ -1,4 +1,4 @@
-﻿@model ReqManager.Entities.Requirement.RequirementTemplateEntity
+﻿@model ReqManager.ViewModels.RequirementTemplateViewModel
 
 @{
     ViewBag.Title = "Requirement Template Details";
@@ -28,7 +28,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.templateHtml)
+            @Html.Raw(@Html.DisplayFor(model => model.templateHtml))
         </dd>
 
         <dt>

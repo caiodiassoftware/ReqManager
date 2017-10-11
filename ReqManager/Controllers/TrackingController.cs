@@ -7,6 +7,7 @@ using ReqManager.Services.Link.Classes;
 using ReqManager.Services.Link.Interfaces;
 using ReqManager.Services.Project.Interfaces;
 using ReqManager.Services.Requirements.Interfaces;
+using ReqManager.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ using System.Web.Mvc;
 
 namespace ReqManager.Controllers
 {
-    public class TrackingController : ControlAcessController
+    public class TrackingController : ControlAcessController<TrackingViewModel>
     {
         #region Propriets
 

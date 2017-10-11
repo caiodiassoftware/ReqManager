@@ -14,6 +14,7 @@ using ReqManager.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using System.Net;
 
 namespace ReqManager.Controllers
 {
@@ -21,50 +22,152 @@ namespace ReqManager.Controllers
     //R-R1
     //R-A1
     //PRJ4
-    public class RequirementController : BaseController<RequirementEntity>
+    public class RequirementController : ControlAcessController<RequirementEntity>
     {
         private IRequirementRationaleService rationaleService { get; set; }
-        private IRequirementActionHistoryService reqActionHistoryService {get;set;}
+        private IRequirementActionHistoryService reqActionHistoryService { get; set; }
         private ILinkBetweenRequirementsService linkRequirementService { get; set; }
         private ILinkBetweenRequirementsArtifactsService linkReqArtifactService { get; set; }
+        private IRequirementService Service { get; set; }
 
         public RequirementController(
             IRequirementService service,
             IMeasureImportanceService measureService,
             IRequirementStatusService statusService,
-            IRequirementTemplateService templateService,
             IRequirementTypeService typeService,
             IUserService userService,
             IStakeholdersProjectService stakeholderProjectService,
             IRequirementRationaleService rationaleService,
             IRequirementActionHistoryService reqActionHistoryService,
             ILinkBetweenRequirementsService linkRequirementService,
-            ILinkBetweenRequirementsArtifactsService linkReqArtifactService) : base(service)
+            ILinkBetweenRequirementsArtifactsService linkReqArtifactService)
         {
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateAutomaticMapping<RequirementViewModel, RequirementEntity>();
+                cfg.CreateAutomaticMapping<RequirementEntity, RequirementViewModel>();
+            });
+
+            Service = service;
             this.linkRequirementService = linkRequirementService;
             this.linkReqArtifactService = linkReqArtifactService;
             this.rationaleService = rationaleService;
             this.reqActionHistoryService = reqActionHistoryService;
 
             ViewData.Add("StakeholdersProjectID", new SelectList(stakeholderProjectService.getAll(), "StakeholdersProjectID", "DisplayName"));
-            ViewData.Add("MeasureImportanceID",new SelectList(measureService.getAll(), "MeasureImportanceID", "description"));
-            ViewData.Add("RequirementStatusID" , new SelectList(statusService.getAll(), "RequirementStatusID", "description"));
-            ViewData.Add("RequirementTemplateID", new SelectList(templateService.getAll(), "RequirementTemplateID", "description"));
-            ViewData.Add("RequirementTypeID" ,new SelectList(typeService.getAll(), "RequirementTypeID", "description"));
+            ViewData.Add("MeasureImportanceID", new SelectList(measureService.getAll(), "MeasureImportanceID", "description"));
+            ViewData.Add("RequirementStatusID", new SelectList(statusService.getAll(), "RequirementStatusID", "description"));
+            ViewData.Add("RequirementTypeID", new SelectList(typeService.getAll(), "RequirementTypeID", "description"));
             ViewData.Add("UserID", new SelectList(userService.getAll(), "UserID", "name"));
         }
 
-        public override ActionResult Details(int? id)
+        #region GETS
+
+        public ActionResult Index()
         {
             try
             {
-                RequirementViewModel req = new RequirementViewModel
+                return View(Mapper.Map<IEnumerable<RequirementEntity>, IEnumerable<RequirementViewModel>>(Service.getAll()));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public ActionResult Details(int? id)
+        {
+            try
+            {
+                RequirementViewModel vm = Mapper.Map<RequirementEntity, RequirementViewModel>(Service.get(id));
+                vm.linkReq = linkRequirementService.getAll().Where(r => r.RequirementOriginID.Equals(id) || r.RequirementTargetID.Equals(id)).ToList();
+                vm.linkReqArt = linkReqArtifactService.getAll().Where(r => r.RequirementID.Equals(id)).ToList();
+
+                return View(vm);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public ActionResult Create()
+        {
+            try
+            {
+                return View();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public ActionResult Edit(int? id)
+        {
+            try
+            {
+                if (id == null)
                 {
-                    requirement = Service.get(id),
-                    linkReq = linkRequirementService.getAll().Where(r => r.RequirementOriginID.Equals(id) || r.RequirementTargetID.Equals(id)).ToList(),
-                    linkReqArt = linkReqArtifactService.getAll().Where(r => r.RequirementID.Equals(id)).ToList()
-                };
-                return View(req);
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                RequirementEntity entity = Service.get(id);
+                RequirementViewModel vm = Mapper.Map<RequirementEntity, RequirementViewModel>(entity);
+                if (vm == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(vm);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public ActionResult Delete(int? id)
+        {
+            try
+            {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                RequirementEntity entity = Service.get(id);
+                RequirementViewModel vm = Mapper.Map<RequirementEntity, RequirementViewModel>(entity);
+                if (vm == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(vm);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        #endregion
+
+        #region POST
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(RequirementViewModel vm)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    RequirementEntity entity = Mapper.Map<RequirementViewModel, RequirementEntity>(vm);
+                    setIdUser(ref entity);
+                    Service.add(entity);
+                    Service.saveChanges();
+                    ViewBag.MessageReqManager = String.Format("Register was made with Success!");
+                    return RedirectToAction("Index");
+                }
+
+                return View();
             }
             catch (Exception ex)
             {
@@ -74,10 +177,12 @@ namespace ReqManager.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public override ActionResult Edit(RequirementEntity entity)
+        public ActionResult Edit(RequirementViewModel vm)
         {
             try
             {
+                RequirementEntity entity = Mapper.Map<RequirementViewModel, RequirementEntity>(vm);
+
                 if (ModelState.IsValid)
                 {
                     Service.update(entity);
@@ -100,18 +205,29 @@ namespace ReqManager.Controllers
 
                 return View(entity);
             }
-            catch (DbEntityValidationException ex)
+            catch (Exception ex)
             {
-                return getMessageDbValidation(entity, ex);
+                throw ex;
             }
-            catch (DbUpdateException ex)
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            try
             {
-                return getMessageDbUpdateException(entity, ex);
+                Service.delete(id);
+                Service.saveChanges();
+                return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
-                return getMessageGeralException(entity, ex);
+                ViewBag.MessageReqManager = String.Format("Error Detected! " + ex.Message);
+                return RedirectToAction("Index");
             }
         }
+
+        #endregion
     }
 }

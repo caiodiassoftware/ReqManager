@@ -66,8 +66,10 @@
     <Compile Include="Migrations\201709301423377_GenerateCodesTriggers.Designer.cs">
       <DependentUpon>201709301423377_GenerateCodesTriggers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Repositories\Artifact\Classes\ArtifactRequirementTraceabilityMatrixRepository.cs" />
     <Compile Include="Repositories\Artifact\Classes\ArtifactTypeRepository.cs" />
     <Compile Include="Repositories\Artifact\Classes\HistoryProjectArtifactRepository.cs" />
+    <Compile Include="Repositories\Artifact\Interfaces\IArtifactRequirementTraceabilityMatrixRepository.cs" />
     <Compile Include="Repositories\Artifact\Interfaces\IHistoryProjectArtifactRepository.cs" />
     <Compile Include="Repositories\Link\Classes\AttributeRepository.cs" />
     <Compile Include="Repositories\Artifact\Interfaces\IArtifactTypeRepository.cs" />

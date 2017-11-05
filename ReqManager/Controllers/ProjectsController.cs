@@ -33,7 +33,7 @@ namespace ReqManager.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    Service.update(entity);
+                    Service.update(ref entity);
 
                     HistoryProjectEntity history = new HistoryProjectEntity();
                     ProjectEntity project = Service.get(entity.ProjectID);
@@ -43,7 +43,7 @@ namespace ReqManager.Controllers
                     history.endDate = Convert.ToDateTime(project.endDate);
                     history.startDate = Convert.ToDateTime(project.startDate);
 
-                    historyProjectService.add(history);
+                    historyProjectService.add(ref history);
 
                     Service.saveChanges();
                     return RedirectToAction("Index");

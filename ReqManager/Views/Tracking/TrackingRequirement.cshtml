@@ -8,29 +8,49 @@
 
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.Label("Requirements", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("Requirements", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessage("Requirements", "", new { @class = "text-danger" })
+
+    <div id="tabs">
+        <ul>
+            <li><a href="#path">Tracking</a></li>
+            <li><a href="#tabFiles">Files Found</a></li>
+        </ul>
+
+    <div id="path">
+        <div class="form-group">
+            @Html.Label("Requirements", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Requirements", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessage("Requirements", "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Path", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Path", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessage("Path", "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button id="track" class="btn btn-default">Track</button>
+            </div>
         </div>
     </div>
-
-    <div class="form-group">
-        @Html.Label("Path", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("Path", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessage("Path", "", new { @class = "text-danger" })
-        </div>
+    <div id="tabFiles">
+        @using (Html.BeginForm("OpenFile", "Tracking", FormMethod.Post))
+        {
+            <div id="files" class="form-group">
+                @Html.Label("Files", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("Files", Enumerable.Empty<SelectListItem>(), "SELECT THE FILE PATH", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessage("Files", "", new { @class = "text-danger" })
+                </div>
+            </div>
+        }
     </div>
-
-    <div id="folders"></div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <button id="track" class="btn btn-default">Track</button>
-        </div>
-    </div>
+</div>
 </div>
 
 <div>
@@ -38,18 +58,34 @@
 </div>
 
 @section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
     <script type="text/javascript">
-        $('#track').click(function () {
+        $("#track").click(function () {
+            var Requirements = $('#Requirements').val();
+            var Path = $('#Path').val();
+            $.getJSON('@Url.Action("TrackingRequirements", "Tracking")', { Requirements: Requirements, Path: Path }, function (response) {
+                $.each(response, function (index, item) {
+                    var values = $('#Files').children('option').map(function (i, e) {
+                        return e.value || e.innerText;
+                    }).get();
+                    for (var i = 0; i < values.length; i++)
+                        if (values[i] != item.AttributeID)
+                            $('#Files').append("<option value='" + item + "'>" + item + "</option>");
+
+                });
+            });
+        });
+
+        $("#Files").change(function () {
             $.ajax({
-                url: '@Url.Action("TrackingRequirements", "Tracking")',
-                data: { item: $("#Requirements").val(), Path: $("#Path").val() },
                 cache: false,
                 type: "POST",
-                dataType: "html",
-                success: function (data, textStatus, XMLHttpRequest) {
-                    $("#folders").html(data);
+                url: "@Url.Action("OpenFile", "Tracking")",
+                data: {
+                    file: $("#Files").val()
                 }
             });
-        })
+        });
     </script>
+
 }

@@ -9,9 +9,9 @@ namespace ReqManager.Services.Estructure
 {
     public interface IService<TEntity> where TEntity : class
     {
-        void add(TEntity entity);
-        void update(TEntity entity);
-        void delete(int? id);
+        void add(ref TEntity entity, bool persistir = true);
+        void update(ref TEntity entity, bool persistir = true);
+        void delete(int? id, bool persistir = true);
         void delete(Expression<Func<TEntity, bool>> where);
         TEntity get(int? id);
         TEntity get(Expression<Func<TEntity, bool>> where);

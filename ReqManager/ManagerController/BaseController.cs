@@ -133,8 +133,7 @@ namespace ReqManager.ManagerController
 
                 if (ModelState.IsValid)
                 {
-                    Service.add(entity);
-                    Service.saveChanges();
+                    Service.add(ref entity);
                     ViewBag.MessageReqManager = String.Format("Register was made with Success!");
                     return RedirectToAction("Index");
                 }
@@ -167,8 +166,7 @@ namespace ReqManager.ManagerController
             {
                 if (ModelState.IsValid)
                 {
-                    Service.update(entity);
-                    Service.saveChanges();
+                    Service.update(ref entity);
                     return RedirectToAction("Index");
                 }
                 else

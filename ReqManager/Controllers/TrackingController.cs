@@ -70,17 +70,17 @@ namespace ReqManager.Controllers
             }
         }
 
-        [HttpPost]
-        public ActionResult TrackingRequirements(string item, string Path)
+        public JsonResult TrackingRequirements(string Requirements, string Path)
         {
             try
             {
-                RequirementEntity req = requirement.get(Convert.ToInt32(item));
+                RequirementEntity req = requirement.get(Convert.ToInt32(Requirements));
 
                 string[] requirements = { req.code };
                 List<string> files = directory.findFile(requirements, Path);
 
-                return PartialView("~/Views/Shared/List.cshtml", files);
+                JsonResult json = Json(files, JsonRequestBehavior.AllowGet);
+                return json;
             }
             catch (Exception ex)
             {
@@ -223,6 +223,7 @@ namespace ReqManager.Controllers
 
         #region Others
 
+        [HttpPost]
         public void OpenFile(string file)
         {
             try

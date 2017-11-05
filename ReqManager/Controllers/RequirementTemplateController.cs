@@ -161,8 +161,7 @@ namespace ReqManager.Controllers
                 {
                     RequirementTemplateEntity entity = Mapper.Map<RequirementTemplateViewModel, RequirementTemplateEntity>(vm);
                     setIdUser(ref entity);
-                    Service.add(entity);
-                    Service.saveChanges();
+                    Service.add(ref entity);
                     ViewBag.MessageReqManager = String.Format("Register was made with Success!");
                     return RedirectToAction("Index");
                 }
@@ -186,8 +185,7 @@ namespace ReqManager.Controllers
                 if (ModelState.IsValid)
                 {
                     entity = Mapper.Map<RequirementTemplateViewModel, RequirementTemplateEntity>(vm);
-                    Service.update(entity);
-                    Service.saveChanges();
+                    Service.update(ref entity);
                     return RedirectToAction("Index");
                 }
 

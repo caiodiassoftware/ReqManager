@@ -35,11 +35,14 @@ namespace ReqManager.Services.Estructure
 
         #region Implementation
 
-        public virtual void add(TEntity entity)
+        public virtual void add(ref TEntity entity, bool persistir = true)
         {
             try
             {
-                repository.add(convertEntityToModel(entity));
+                TModel model = convertEntityToModel(entity);
+                repository.add(model);
+                commit(persistir);
+                entity = convertModelToEntity(model);
             }
             catch (Exception ex)
             {
@@ -47,11 +50,14 @@ namespace ReqManager.Services.Estructure
             }
         }
 
-        public virtual void update(TEntity entity)
+        public virtual void update(ref TEntity entity, bool persistir = true)
         {
             try
             {
+                TModel model = convertEntityToModel(entity);
                 repository.update(convertEntityToModel(entity));
+                commit(persistir);
+                entity = convertModelToEntity(model);                
             }
             catch (Exception ex)
             {
@@ -59,7 +65,7 @@ namespace ReqManager.Services.Estructure
             }
         }
 
-        public virtual void delete(int? id)
+        public virtual void delete(int? id, bool persistir = true)
         {
             try
             {
@@ -158,6 +164,14 @@ namespace ReqManager.Services.Estructure
         protected TEntity convertModelToEntity(TModel model)
         {
             return Mapper.Map<TModel, TEntity>(model);
+        }
+
+        private void commit(bool persistir)
+        {
+            if (persistir)
+                unit.Commit();
+            else
+                unit.SaveChanges();
         }
 
         #endregion

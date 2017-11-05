@@ -161,8 +161,7 @@ namespace ReqManager.Controllers
                 {
                     RequirementEntity entity = Mapper.Map<RequirementViewModel, RequirementEntity>(vm);
                     setIdUser(ref entity);
-                    Service.add(entity);
-                    Service.saveChanges();
+                    Service.add(ref entity);
                     ViewBag.MessageReqManager = String.Format("Register was made with Success!");
                     return RedirectToAction("Index");
                 }
@@ -185,7 +184,7 @@ namespace ReqManager.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    Service.update(entity);
+                    Service.update(ref entity);
 
                     RequirementActionHistoryEntity reqAction = new RequirementActionHistoryEntity();
                     RequirementEntity req = Service.get(entity.RequirementID);
@@ -193,7 +192,7 @@ namespace ReqManager.Controllers
                     reqAction.DescriptionStatus = req.RequirementStatus.description;
                     reqAction.UserLogin = getLoginUser();
 
-                    reqActionHistoryService.add(reqAction);
+                    reqActionHistoryService.add(ref reqAction);
 
                     Service.saveChanges();
                     return RedirectToAction("Index");

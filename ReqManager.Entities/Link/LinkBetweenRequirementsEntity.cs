@@ -23,6 +23,7 @@ namespace ReqManager.Entities.Link
         public int TypeLinkID { get; set; }
         [Required]
         [Display(Name = "Req. Origin")]
+        [DisplayName("Req. Origin")]
         public int RequirementOriginID { get; set; }
         [Required]
         [Display(Name = "Req. Target")]

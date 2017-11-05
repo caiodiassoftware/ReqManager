@@ -6,14 +6,19 @@
         <li>
             @Html.ActionLink(
                         item,
-                        "OpenFile",
-                        "Tracking",
-                        new
-                        {
-                            file = item
-                        },
-                        htmlAttributes: new { @target = "_blank", @class = "linkTracking"}
+                        null,
+                        null,
+                        htmlAttributes: new { @class = "linkTracking" }
                         )
-    </li>
-</ul>
+        </li>
+    </ul>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+       
+    </script>
+
 }

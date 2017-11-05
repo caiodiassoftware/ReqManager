@@ -37,7 +37,7 @@ namespace ReqManager.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    Service.update(entity);
+                    Service.update(ref entity);
 
                     HistoryProjectArtifactEntity history = new HistoryProjectArtifactEntity();
                     ProjectArtifactEntity artifact = Service.get(entity.ProjectArtifactID);
@@ -48,7 +48,7 @@ namespace ReqManager.Controllers
                     history.login = getLoginUser();
                     history.path = artifact.path;
 
-                    historyServiceArtifact.add(history);
+                    historyServiceArtifact.add(ref history);
 
                     Service.saveChanges();
                     return RedirectToAction("Index");

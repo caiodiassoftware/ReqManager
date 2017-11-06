@@ -37,7 +37,6 @@ namespace ReqManager.Model
         [MinLength(3)]
         [MaxLength(10)]
         public string nickName { get; set; }
-        [Required]
         [MinLength(10)]
         [MaxLength(1000)]
         public string password { get; set; }

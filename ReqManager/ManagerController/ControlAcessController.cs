@@ -98,6 +98,7 @@ namespace ReqManager.ManagerController
                 foreach (var result in ex.Entries)
                 {
                     builder.AppendFormat("Type: {0} was part of the problem. ", result.Entity.GetType().Name);
+                    builder.AppendFormat(!string.IsNullOrEmpty(ex.InnerException.Message) ? ex.InnerException.Message : ex.Message);
                 }
             }
             catch (Exception e)

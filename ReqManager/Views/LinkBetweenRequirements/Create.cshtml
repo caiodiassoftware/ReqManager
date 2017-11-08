@@ -1,9 +1,7 @@
 ﻿@model ReqManager.Entities.Link.LinkBetweenRequirementsEntity
-
 @{
     ViewBag.Title = "Register a new Link between Requirements";
 }
-
 
 @using (Html.BeginForm())
 {
@@ -16,10 +14,8 @@
         </ul>
         <div id="link">
             <div class="form-horizontal">
-
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
                 <div class="form-group">
                     @Html.LabelFor(model => model.TypeLinkID, "TypeLinkID", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
@@ -27,7 +23,6 @@
                         @Html.ValidationMessageFor(model => model.TypeLinkID, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
                 <div class="form-group">
                     @Html.LabelFor(model => model.RequirementOriginID, "RequirementOriginID", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
@@ -35,7 +30,6 @@
                         @Html.ValidationMessageFor(model => model.RequirementOriginID, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
                 <div class="form-group">
                     @Html.LabelFor(model => model.RequirementTargetID, "RequirementTargetID", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
@@ -43,7 +37,6 @@
                         @Html.ValidationMessageFor(model => model.RequirementTargetID, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <input type="submit" value="Create" class="btn btn-default" />
@@ -60,7 +53,6 @@
                         @Html.ValidationMessage("AttributeID", "", new { @class = "text-danger" })
                     </div>
                 </div>
-
                 <div class="form-group">
                     @Html.Label("Value", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
@@ -68,22 +60,18 @@
                         @Html.ValidationMessage("value", "", new { @class = "text-danger" })
                     </div>
                 </div>
-
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <input id="AddAttribute" value="Add" class="btn btn-default" />
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 }
-
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script type="text/javascript">
@@ -117,5 +105,4 @@
             });
         });
     </script>
-
-    }
+}

@@ -21,7 +21,6 @@ namespace ReqManager.Entities.Acess
         [MaxLength(10)]
         [Display(Name = "Nick Name")]
         public string nickName { get; set; }
-        [Required]
         [MinLength(10)]
         [MaxLength(1000)]
         [DataType(DataType.Password)]

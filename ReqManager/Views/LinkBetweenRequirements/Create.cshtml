@@ -89,15 +89,18 @@
     <script type="text/javascript">
         $("#TypeLinkID").change(function () {
             var id = $(this).val();
+            var select = document.getElementById("AttributeID");
+            var i;
+            for (i = select.options.length - 1 ; i >= 0 ; i--) 
+                select.remove(i);
+
+            $('#AttributeID').append("<option value='" + 0 + "'>SELECT THE TYPE LINK ATTRIBUTE</option>");
+
             $.getJSON('@Url.Action("GetAttributesOfTypeLink", "AttributesTypeLink")', { type: id }, function (response) {
                 $.each(response, function (index, item) {
-                    var values = $('#AttributeID').children('option').map(function (i, e) {
-                        return e.value || e.innerText;
-                    }).get();
-                    for (var i = 0; i < values.length; i++)
-                        if (values[i] != item.AttributeID)
-                            $('#AttributeID').append("<option value='" + item.AttributeID + "'>" + item.description + "</option>");
-
+                    var optionExists = ($('#AttributeID option[value=' + item.AttributeID + ']').length > 0);
+                    if (!optionExists) 
+                        $('#AttributeID').append("<option value='" + item.AttributeID + "'>" + item.description + "</option>");                    
                 });
             });
         });

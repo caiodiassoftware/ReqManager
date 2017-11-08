@@ -63,15 +63,19 @@
         $("#track").click(function () {
             var Requirements = $('#Requirements').val();
             var Path = $('#Path').val();
+
+            var select = document.getElementById("Files");
+            var i;
+            for (i = select.options.length - 1 ; i >= 0 ; i--)
+                select.remove(i);
+
+            $('#Files').append("<option value='" + 0 + "'>SELECT THE PATH</option>");
+
             $.getJSON('@Url.Action("TrackingRequirements", "Tracking")', { Requirements: Requirements, Path: Path }, function (response) {
                 $.each(response, function (index, item) {
-                    var values = $('#Files').children('option').map(function (i, e) {
-                        return e.value || e.innerText;
-                    }).get();
-                    for (var i = 0; i < values.length; i++)
-                        if (values[i] != item.AttributeID)
-                            $('#Files').append("<option value='" + item + "'>" + item + "</option>");
-
+                    var optionExists = ($('#Files option[value=' + item.AttributeID + ']').length > 0);
+                    if (!optionExists)
+                        $('#Files').append("<option value='" + item + "'>" + item + "</option>");
                 });
             });
         });

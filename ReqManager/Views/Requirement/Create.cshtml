@@ -89,16 +89,20 @@
 
         $("#RequirementTypeID").change(function () {
             var id = $(this).val();
+
+            var select = document.getElementById("RequirementTemplateID");
+            var i;
+            for (i = select.options.length - 1 ; i >= 0 ; i--)
+                select.remove(i);
+
+            $('#RequirementTemplateID').append("<option value='" + 0 + "'>SELECT THE REQUIREMENT TEMPLATE</option>");
+
             $.getJSON('@Url.Action("GetTemplatesOfRequirementType", "RequirementTemplate")', { type: id }, function (response) {
                 $.each(response, function (index, item) {
-                    var values = $('#RequirementTemplateID').children('option').map(function (i, e) {
-                        return e.value || e.innerText;
-                    }).get();
-
-                    for (var i = 0; i < values.length; i++)
-                        if (values[i] == item.RequirementTemplateID)
-                            $('#RequirementTemplateID').append("<option value='" + item.RequirementTemplateID + "'>" + item.description + "</option>");
-
+                    console.log(item);
+                    var optionExists = ($('#RequirementTemplateID option[value=' + item.RequirementTemplateID + ']').length > 0);
+                    if (!optionExists)
+                        $('#RequirementTemplateID').append("<option value='" + item.RequirementTemplateID + "'>" + item.description + "</option>");
                 });
             });
         });

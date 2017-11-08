@@ -36,7 +36,8 @@ namespace ReqManager.Controllers
         {
             try
             {
-                return Json(Service.getAll().Where(t => t.RequirementType.RequirementTypeID.Equals(type)).Select(t => t.RequirementTemplateID), JsonRequestBehavior.AllowGet);
+                JsonResult json = Json(Service.getAll().Where(t => t.RequirementType.RequirementTypeID.Equals(type)), JsonRequestBehavior.AllowGet);
+                return json;
             }
             catch (Exception ex)
             {

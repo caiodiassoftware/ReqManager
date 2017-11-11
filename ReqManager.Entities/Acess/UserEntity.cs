@@ -10,6 +10,7 @@ namespace ReqManager.Entities.Acess
     public class UserEntity
     {
         [Key]
+        [Display(Name = "User")]
         public int UserID { get; set; }
         [Required]
         [MinLength(3)]

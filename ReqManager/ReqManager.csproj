@@ -596,7 +596,6 @@
     <Content Include="Views\LinkBetweenRequirements\RequirementTraceabilityMatrix.cshtml" />
     <Content Include="Views\Tracking\TrackingRequirement.cshtml" />
     <Content Include="Views\Shared\List.cshtml" />
-    <Content Include="Views\Tracking\OpenFile.cshtml" />
     <Content Include="Views\Tracking\TrackingArtifact.cshtml" />
     <Content Include="Views\Tracking\TrackingLinkBetweenRequirement.cshtml" />
     <Content Include="Views\Tracking\TrackingLinkBetweenRequirementArtifact.cshtml" />

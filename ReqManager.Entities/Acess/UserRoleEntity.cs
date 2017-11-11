@@ -11,6 +11,7 @@ namespace ReqManager.Entities.Acess
     public class UserRoleEntity
     {
         [Key]
+        [Display(Name = "User/Role")]
         public int UserRoleID { get; set; }
         [Required]
         [Display(Name = "Role")]

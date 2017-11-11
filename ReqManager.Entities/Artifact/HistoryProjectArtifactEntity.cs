@@ -10,6 +10,7 @@ namespace ReqManager.Entities.Artifact
     public class HistoryProjectArtifactEntity
     {
         [Key]
+        [Display(Name = "History Artifact")]
         public int HistoryArtefactID { get; set; }
         [Required]
         [Display(Name = "Artifact")]

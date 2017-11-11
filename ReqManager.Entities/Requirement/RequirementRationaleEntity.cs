@@ -8,6 +8,7 @@ namespace ReqManager.Entities.Requirement
     public class RequirementRationaleEntity
     {
         [Key]
+        [Display(Name = "Rationale")]
         public int RequirementRationaleID { get; set; }
         [Required]
         [Display(Name = "User")]

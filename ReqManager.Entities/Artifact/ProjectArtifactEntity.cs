@@ -13,6 +13,7 @@ namespace ReqManager.Entities.Artifact
     public class ProjectArtifactEntity
     {
         [Key]
+        [Display(Name = "Artifact")]
         public int ProjectArtifactID { get; set; }
         [Required]
         [Display(Name = "User")]

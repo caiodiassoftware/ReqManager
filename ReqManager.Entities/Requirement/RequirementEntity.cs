@@ -1,19 +1,17 @@
 ﻿using ReqManager.Entities.Acess;
 using ReqManager.Entities.Project;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReqManager.Entities.Requirement
 {
     public class RequirementEntity
     {
         [Key]
+        [Display(Name = "Requirement")]
         public int RequirementID { get; set; }
+        [Display(Name = "Template")]
         public Nullable<int> RequirementTemplateID { get; set; }
         [Required]
         [Display(Name = "User")]
@@ -25,7 +23,7 @@ namespace ReqManager.Entities.Requirement
         [Display(Name = "Type")]
         public int RequirementTypeID { get; set; }
         [Required]
-        [Display(Name = "StakeholderProject")]
+        [Display(Name = "Stakeholder Project")]
         public int StakeholdersProjectID { get; set; }
         [Required]
         [Display(Name = "Importance")]

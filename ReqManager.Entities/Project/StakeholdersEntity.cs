@@ -11,6 +11,7 @@ namespace ReqManager.Entities.Project
     public class StakeholdersEntity
     {
         [Key]
+        [Display(Name = "Stakeholder")]
         public int StakeholderID { get; set; }
         [Required]
         [Display(Name = "User")]

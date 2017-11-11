@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ReqManager.Entities.Requirement
 {
     public class RequirementTypeEntity
     {
         [Key]
+        [Display(Name = "Requirement Type")]
         public int RequirementTypeID { get; set; }
         [MinLength(5)]
         [MaxLength(50)]

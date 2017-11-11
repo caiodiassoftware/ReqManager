@@ -1,16 +1,13 @@
 ﻿using ReqManager.Entities.Acess;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReqManager.Entities.Requirement
 {
     public class RequirementTemplateEntity
     {
         [Key]
+        [Display(Name = "Requirement Template")]
         public int RequirementTemplateID { get; set; }
         [Display(Name = "User")]
         public int UserID { get; set; }

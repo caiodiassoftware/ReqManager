@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ReqManager.Entities.Artifact
 {
     public class ArtifactTypeEntity
     {
         [Key]
+        [Display(Name = "Artifact Type")]
         public int ArtifactTypeID { get; set; }
         [Required]
         [MaxLength(50), MinLength(5)]

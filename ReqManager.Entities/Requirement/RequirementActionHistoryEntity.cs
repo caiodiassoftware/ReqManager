@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReqManager.Entities.Requirement
 {
     public class RequirementActionHistoryEntity
     {
         [Key]
+        [Display(Name = "Requirement History")]
         public int RequirementActionHistoryID { get; set; }
         [Required]
         [Display(Name = "Requirement")]

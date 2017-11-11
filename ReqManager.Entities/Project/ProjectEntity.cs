@@ -1,17 +1,14 @@
 ﻿using ReqManager.Entities.Acess;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReqManager.Entities.Project
 {
     public class ProjectEntity
     {
         [Key]
+        [Display(Name = "Project")]
         public int ProjectID { get; set; }
         [Required]
         [Display(Name = "User")]

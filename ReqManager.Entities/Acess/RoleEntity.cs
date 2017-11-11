@@ -11,6 +11,7 @@ namespace ReqManager.Entities.Acess
     public class RoleEntity
     {
         [Key]
+        [Display(Name = "Role")]
         public int RoleID { get; set; }
         [MinLength(5)]
         [MaxLength(50)]

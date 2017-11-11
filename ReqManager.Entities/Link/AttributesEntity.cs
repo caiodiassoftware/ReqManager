@@ -10,6 +10,7 @@ namespace ReqManager.Entities.Link
     public class AttributesEntity
     {
         [Key]
+        [Display(Name = "Attribute")]
         public int AttributeID { get; set; }
         [Required]
         [MaxLength(50), MinLength(5)]

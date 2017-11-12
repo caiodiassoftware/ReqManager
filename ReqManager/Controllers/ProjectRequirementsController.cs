@@ -4,6 +4,8 @@ using ReqManager.ManagerController;
 using ReqManager.Services.Project.Interfaces;
 using ReqManager.Services.Acess.Interfaces;
 using ReqManager.Services.Requirements.Interfaces;
+using System;
+using System.Linq;
 
 namespace ReqManager.Controllers
 {
@@ -19,6 +21,18 @@ namespace ReqManager.Controllers
             ViewData.Add("ProjectID", new SelectList(projectService.getAll(), "ProjectID", "description"));
             ViewData.Add("UserID", new SelectList(userService.getAll(), "UserID", "name"));
             ViewData.Add("RequirementID", new SelectList(reqService.getAll(), "RequirementID", "code"));
+        }
+
+        public JsonResult GetRequirementsFromProject(int ProjectID)
+        {
+            try
+            {
+                return Json(Service.getAll().Where(r => r.Project.ProjectID.Equals(ProjectID)).Select(r => r.Requirement), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

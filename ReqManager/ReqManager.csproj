@@ -600,6 +600,8 @@
     <Content Include="Views\Tracking\TrackingLinkBetweenRequirement.cshtml" />
     <Content Include="Views\Tracking\TrackingLinkBetweenRequirementArtifact.cshtml" />
     <Content Include="Views\LinkBetweenRequirementsArtifact\ArtifactRequirementTraceabilityMatrix.cshtml" />
+    <Content Include="Views\Tracking\TrackingProjectRequirement.cshtml" />
+    <Content Include="Views\Tracking\TrackingProjectArtifact.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

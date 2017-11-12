@@ -1,5 +1,6 @@
 ﻿using ReqManager.Entities.Artifact;
 using ReqManager.Entities.Link;
+using ReqManager.Entities.Project;
 using ReqManager.Entities.Requirement;
 using ReqManager.ManagerController;
 using ReqManager.Services.Directories.Interfaces;
@@ -26,6 +27,7 @@ namespace ReqManager.Controllers
         private ILinkBetweenRequirementsService linkReq { get; set; }
         private ILinkBetweenRequirementsArtifactsService linkArt { get; set; }
         private IProjectRequirementsService reqProj { get; set; }
+        private IProjectService project { get; set; }
         private string path { get; set; }
 
         #endregion
@@ -38,6 +40,7 @@ namespace ReqManager.Controllers
             ILinkBetweenRequirementsService linkReq,
             ILinkBetweenRequirementsArtifactsService linkArt,
             IScanDirectoryService directory,
+            IProjectService project,
             IProjectRequirementsService reqProj)
         {
             this.reqProj = reqProj;
@@ -46,21 +49,19 @@ namespace ReqManager.Controllers
             this.artifact = artifact;
             this.linkReq = linkReq;
             this.linkArt = linkArt;
+            this.project = project;
         }
 
         #endregion
 
         #region Requirements
 
-        public ActionResult TrackingRequirement(int? id)
+        public ActionResult TrackingProjectRequirement()
         {
             try
             {
-                RequirementEntity req = requirement.get(Convert.ToInt32(id));
-                path = reqProj.getAll().Where(pr => pr.RequirementID.Equals(req.RequirementID)).FirstOrDefault().Project.pathForTraceability;
-
-                ViewData.Add("Requirements", new SelectList(requirement.getAll(), "RequirementID", "DisplayName"));
-                ViewData.Add("Path", new SelectList(directory.getFolders(path)));
+                ViewData.Add("Requirements", Enumerable.Empty<SelectListItem>());
+                ViewData.Add("Project", new SelectList(project.getAll(), "ProjectID", "DisplayName"));
 
                 return View();
             }
@@ -70,17 +71,51 @@ namespace ReqManager.Controllers
             }
         }
 
-        public JsonResult TrackingRequirements(string Requirements, string Path)
+        public ActionResult TrackingRequirement(int? id)
         {
             try
             {
-                RequirementEntity req = requirement.get(Convert.ToInt32(Requirements));
+                RequirementEntity req = requirement.get(Convert.ToInt32(id));
 
-                string[] requirements = { req.code };
-                List<string> files = directory.findFile(requirements, Path);
+                List<RequirementEntity> reqList = new List<RequirementEntity>()
+                    {
+                        req
+                    };
 
-                JsonResult json = Json(files, JsonRequestBehavior.AllowGet);
-                return json;
+                ViewBag.Title = "Track Project Requirement " + req.code;
+
+                ViewData.Add("Requirements", new SelectList(reqList.AsEnumerable(), "RequirementID", "DisplayName", id));
+                ViewData.Add("Project", new SelectList(reqProj.getAll().Where(pr => pr.RequirementID.Equals(req.RequirementID)).Select(p => p.Project), "ProjectID", "DisplayName"));
+
+                return View();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public JsonResult TrackingRequirements(string Requirements, string Path, string Project)
+        {
+            try
+            {
+                if (reqProj.isTraceable(Convert.ToInt32(Project), Convert.ToInt32(Requirements)))
+                {
+                    RequirementEntity req = requirement.get(Convert.ToInt32(Requirements));
+                    reqProj.isTraceable(Convert.ToInt32(Project), Convert.ToInt32(Requirements));
+
+
+
+                    string[] requirements = { req.code };
+                    List<string> files = directory.findFile(requirements, Path);
+
+                    JsonResult json = Json(files, JsonRequestBehavior.AllowGet);
+                    return json;
+                }
+                else
+                {
+                    throw new Exception("This Requirement is not traceable for that Project!");
+                }
             }
             catch (Exception ex)
             {
@@ -92,13 +127,40 @@ namespace ReqManager.Controllers
 
         #region Artifacts
 
+        public ActionResult TrackingProjectArtifact()
+        {
+            try
+            {
+                ViewData.Add("ProjectID", new SelectList(project.getAll(), "ProjectID", "DisplayName"));
+
+                return View();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public ActionResult TrackingArtifact(int? id)
         {
             try
             {
                 ProjectArtifactEntity art = artifact.get(id);
 
-                ViewData.Add("Artifacts", new SelectList(artifact.getAll(), "ProjectArtifactID", "DisplayName"));
+                List<ProjectArtifactEntity> artList = new List<ProjectArtifactEntity>()
+                    {
+                        art
+                    };
+
+                List<ProjectEntity> prjList = new List<ProjectEntity>()
+                    {
+                        art.Project
+                    };
+
+                ViewBag.Title = "Track Project Requirement " + art.code;
+
+                ViewData.Add("Artifacts", new SelectList(artList.AsEnumerable(), "ProjectArtifactID", "DisplayName", id));
+                ViewData.Add("ProjectID", new SelectList(prjList.AsEnumerable(), "ProjectID", "DisplayName", art.ProjectID));
                 ViewData.Add("Path", new SelectList(directory.getFolders(art.Project.pathForTraceability)));
 
                 return View();
@@ -109,15 +171,17 @@ namespace ReqManager.Controllers
             }
         }
 
-        [HttpPost]
-        public ActionResult TrackingArtifacts(string item, string Path)
+        public JsonResult TrackingArtifacts(string item, string Path)
         {
             try
             {
-                string[] itens = { artifact.get(Convert.ToInt32(item)).code };
-                List<string> files = directory.findFile(itens, Path);
+                ProjectArtifactEntity art = artifact.get(Convert.ToInt32(item));
 
-                return PartialView("~/Views/Shared/List.cshtml", files);
+                string[] artifacts = { art.code };
+                List<string> files = directory.findFile(artifacts, Path);
+
+                JsonResult json = Json(files, JsonRequestBehavior.AllowGet);
+                return json;
             }
             catch (Exception ex)
             {
@@ -232,6 +296,7 @@ namespace ReqManager.Controllers
                 proc.EnableRaisingEvents = false;
                 proc.StartInfo.FileName = file;
                 proc.Start();
+                proc.Close();
             }
             catch (Exception ex)
             {

@@ -1,0 +1,97 @@
+﻿@model ReqManager.ViewModels.TrackingViewModel
+
+@{
+    ViewBag.Title = "Track Project Artifacts";
+}
+
+<div class="form-horizontal">
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.Label("Project", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("ProjectID", null, "SELECT THE PROJECT", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessage("ProjectID", "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Artifacts", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("Artifacts", Enumerable.Empty<SelectListItem>(), "SELECT THE ARTIFACT", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessage("Artifacts", "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Path", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("Path", Enumerable.Empty<SelectListItem>(), "SELECT THE PATH", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessage("Path", "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div id="folders"></div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button id="track" class="btn btn-default">Track</button>
+        </div>
+    </div>
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+
+        function clearDropDown(dropDown) {
+            var select = document.getElementById(dropDown);
+            var i;
+            for (i = select.options.length - 1 ; i >= 0 ; i--)
+                select.remove(i);
+        }
+
+        $("#ProjectID").change(function () {
+            var id = $(this).val();
+
+            clearDropDown("Artifacts");
+            clearDropDown("Path");
+
+            $('#Artifacts').append("<option value='" + 0 + "'>SELECT THE ARTIFACT</option>");
+            $('#Path').append("<option value='" + 0 + "'>SELECT THE PATH</option>");
+
+            $.getJSON('@Url.Action("GetArtifactsFromProject", "ProjectArtifact")', { ProjectID: id }, function (response) {
+                $.each(response, function (index, item) {
+                    var optionExists = ($('#Artifacts option[value=' + item.ProjectArtifactID + ']').length > 0);
+                    if (!optionExists)
+                        $('#Artifacts').append("<option value='" + item.ProjectArtifactID + "'>" + item.DisplayName + "</option>");
+                });
+            });
+
+            $.getJSON('@Url.Action("GetFolders", "Projects")', { ProjectID: id }, function (response) {
+                $.each(response, function (index, item) {
+                    $('#Path').append("<option value='" + item + "'>" + item + "</option>");
+                });
+            });
+        });
+
+        $('#track').click(function () {
+            $.ajax({
+                url: '@Url.Action("TrackingArtifacts", "Tracking")',
+                data: { item: $("#Artifacts").val(), Path: $("#Path").val() },
+                cache: false,
+                type: "POST",
+                dataType: "html",
+                success: function (data, textStatus, XMLHttpRequest) {
+                    $("#folders").html(data);
+                }
+            });
+        })
+    </script>
+}
+

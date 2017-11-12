@@ -6,23 +6,40 @@ using ReqManager.Services.Project.Interfaces;
 using ReqManager.Services.Acess.Interfaces;
 using System.Data.Entity.Validation;
 using System.Data.Entity.Infrastructure;
+using ReqManager.Services.Directories.Interfaces;
 
 namespace ReqManager.Controllers
 {
     public class ProjectsController : BaseController<ProjectEntity>
     {
         private IHistoryProjectService historyProjectService { get; set; }
+        private IScanDirectoryService directory { get; set; }
 
         public ProjectsController(
             IProjectService service,
             IUserService userService,
             IProjectPhasesService phasesService,
-            IHistoryProjectService historyProjectService) : base(service)
+            IHistoryProjectService historyProjectService,
+            IScanDirectoryService directory) : base(service)
         {
             this.historyProjectService = historyProjectService;
+            this.directory = directory;
 
             ViewData.Add("ProjectPhasesID", new SelectList(phasesService.getAll(), "ProjectPhasesID", "description"));
             ViewData.Add("UserID", new SelectList(userService.getAll(), "UserID", "name"));
+        }
+
+        public JsonResult GetFolders(int ProjectID)
+        {
+            try
+            {
+                ProjectEntity prj = Service.get(ProjectID);
+                return Json(directory.getFolders(prj.pathForTraceability), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         [HttpPost]

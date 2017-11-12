@@ -1,12 +1,7 @@
 ﻿using ReqManager.Entities.Acess;
 using ReqManager.Entities.Project;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReqManager.Entities.Artifact
 {
@@ -44,7 +39,7 @@ namespace ReqManager.Entities.Artifact
         {
             get
             {
-                return this.description + " - " + this.code;
+                return this.description + " - " + this.code + " : " + this.ArtifactType.description;
             }
         }
 

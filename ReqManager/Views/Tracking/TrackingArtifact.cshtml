@@ -1,34 +1,61 @@
 ﻿@model ReqManager.ViewModels.TrackingViewModel
 
 @{
-    ViewBag.Title = "Tracking Artifact";
+    ViewBag.Title = "Track Artifacts";
 }
 
 <div class="form-horizontal">
 
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.Label("Artifacts", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("Artifacts", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessage("Artifacts", "", new { @class = "text-danger" })
+
+    <div id="tabs">
+        <ul>
+            <li><a href="#path">Tracking</a></li>
+            <li><a href="#tabFiles">Files Found</a></li>
+        </ul>
+
+        <div id="path">
+            <div class="form-group">
+                @Html.Label("Project", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("ProjectID", null, "SELECT THE PROJECT", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessage("ProjectID", "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Artifacts", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("Artifacts", null, "SELECT THE ARTIFACT", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessage("Artifacts", "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Path", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("Path", null, "SELECT THE PATH", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessage("Path", "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button id="track" class="btn btn-default">Track</button>
+                </div>
+            </div>
         </div>
-    </div>
-
-    <div class="form-group">
-        @Html.Label("Path", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("Path", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessage("Path", "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div id="folders"></div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <button id="track" class="btn btn-default">Track</button>
+        <div id="tabFiles">
+            @using (Html.BeginForm("OpenFile", "Tracking", FormMethod.Post))
+            {
+                <div id="files" class="form-group">
+                    @Html.Label("Files", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("Files", Enumerable.Empty<SelectListItem>(), "SELECT THE FILE PATH", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessage("Files", "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            }
         </div>
     </div>
 </div>
@@ -39,18 +66,49 @@
 
 @section Scripts {
     <script type="text/javascript">
+
+        function clearDropDown(dropDown) {
+            var select = document.getElementById(dropDown);
+            var i;
+            for (i = select.options.length - 1 ; i >= 0 ; i--)
+                select.remove(i);
+        }
+
+        $("#Project").change(function () {
+            clearDropDown('Path');
+            $.getJSON('@Url.Action("GetFolders", "Projects")', { ProjectID: id }, function (response) {
+                $.each(response, function (index, item) {
+                    $('#Path').append("<option value='" + item + "'>" + item + "</option>");
+                });
+            });
+
+        });
+
         $('#track').click(function () {
+            var artifact = $('#Artifacts').val();
+            var path = $('#Path').val();
+
+            clearDropDown('Files');
+
+            $('#Files').append("<option value='" + 0 + "'>SELECT THE PATH</option>");
+
+            $.getJSON('@Url.Action("TrackingArtifacts", "Tracking")', { item: artifact, Path: path }, function (response) {
+                $.each(response, function (index, item) {
+                    $('#Files').append("<option value='" + item + "'>" + item + "</option>");
+                });
+            });
+        });
+
+        $("#Files").change(function () {
             $.ajax({
-                url: '@Url.Action("TrackingArtifacts", "Tracking")',
-                data: { item: $("#Artifacts").val(), Path: $("#Path").val() },
                 cache: false,
                 type: "POST",
-                dataType: "html",
-                success: function (data, textStatus, XMLHttpRequest) {
-                    $("#folders").html(data);
+                url: "@Url.Action("OpenFile", "Tracking")",
+                data: {
+                    file: $("#Files").val()
                 }
             });
-        })
+        });
     </script>
 }
 

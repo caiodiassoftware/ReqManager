@@ -6,8 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ReqManager.ViewModels
@@ -24,6 +22,9 @@ namespace ReqManager.ViewModels
         public int RequirementID { get; set; }
         [Display(Name = "Template")]
         public int RequirementTemplateID { get; set; }
+        [Required]
+        [Display(Name = "Project")]
+        public int ProjectID { get; set; }
         [Required]
         [Display(Name = "User")]
         public int UserID { get; set; }
@@ -48,7 +49,7 @@ namespace ReqManager.ViewModels
         public string description { get; set; }
         [Required]
         [MaxLength(100), MinLength(10)]
-        [Display(Name = "Title")]
+        [Display(Name = "Requirement Title")]
         public string title { get; set; }
         [Required]
         [Display(Name = "Creation Date")]
@@ -63,6 +64,7 @@ namespace ReqManager.ViewModels
         }
 
         public virtual UserEntity Users { get; set; }
+        public virtual ProjectEntity Project { get; set; }
         public virtual StakeholdersProjectEntity StakeholderProject { get; set; }
         public virtual MeasureImportanceEntity MeasureImportance { get; set; }
         public virtual RequirementTemplateEntity RequirementTemplate { get; set; }

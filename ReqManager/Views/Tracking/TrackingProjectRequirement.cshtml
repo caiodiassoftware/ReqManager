@@ -1,7 +1,7 @@
 ﻿@model ReqManager.ViewModels.TrackingViewModel
 
 @{
-    ViewBag.Title = "Track Requirements";
+    ViewBag.Title = "Track Project Requirements";
 }
 
 <div class="form-horizontal">
@@ -78,11 +78,21 @@
         }
 
         $("#Project").change(function () {
-            clearDropDown('Path');
 
             var id = $(this).val();
 
-            $('#Path').append("<option value='" + 0 + "'>SELECT THE PATH</option>");
+            clearDropDown("Requirements");
+            clearDropDown("Path");
+
+            $('#Requirements').append("<option value='" + 0 + "'>SELECT THE REQUIREMENTS</option>");
+
+            $.getJSON('@Url.Action("GetRequirementsFromProject", "ProjectRequirements")', { ProjectID: id }, function (response) {
+                $.each(response, function (index, item) {
+                    var optionExists = ($('#Requirements option[value=' + item.RequirementID + ']').length > 0);
+                    if (!optionExists)
+                        $('#Requirements').append("<option value='" + item.RequirementID + "'>" + item.DisplayName + "</option>");
+                });
+            });
 
             $.getJSON('@Url.Action("GetFolders", "Projects")', { ProjectID: id }, function (response) {
                 $.each(response, function (index, item) {
@@ -93,24 +103,23 @@
         });
 
         $("#track").click(function () {
-            var Project = $('#Project').val();
             var Requirements = $('#Requirements').val();
             var Path = $('#Path').val();
 
-            clearDropDown('Files');
+            var select = document.getElementById("Files");
+            var i;
+            for (i = select.options.length - 1 ; i >= 0 ; i--)
+                select.remove(i);
 
             $('#Files').append("<option value='" + 0 + "'>SELECT THE PATH</option>");
 
-            $.getJSON(
-                '@Url.Action("TrackingRequirements", "Tracking")',
-                { Requirements: Requirements, Path: Path, Project: Project },
-                function (response) {
-                    $.each(response, function (index, item) {
+            $.getJSON('@Url.Action("TrackingRequirements", "Tracking")', { Requirements: Requirements, Path: Path }, function (response) {
+                $.each(response, function (index, item) {
+                    var optionExists = ($('#Files option[value=' + item.AttributeID + ']').length > 0);
+                    if (!optionExists)
                         $('#Files').append("<option value='" + item + "'>" + item + "</option>");
-                    });
-                }).error(function() {
-                    alert('Error');
                 });
+            });
         });
 
         $("#Files").change(function () {
@@ -126,3 +135,4 @@
     </script>
 
 }
+

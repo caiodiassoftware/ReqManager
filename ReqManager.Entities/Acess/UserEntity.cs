@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReqManager.Entities.Acess
 {
@@ -15,7 +11,7 @@ namespace ReqManager.Entities.Acess
         [Required]
         [MinLength(3)]
         [MaxLength(100)]
-        [Display(Name = "Full Name")]
+        [Display(Name = "Name/Maker")]
         public string name { get; set; }
         [Required]
         [MinLength(3)]

@@ -10,6 +10,7 @@ namespace ReqManager.Entities.Acess
     public class RoleControllerActionEntity
     {
         [Key]
+        [Display(Name = "Role - Controller/Action")]
         public int RoleControllerActionID { get; set; }
         [Required]
         [Display(Name = "Role")]

@@ -1,21 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReqManager.Entities.Link
 {
     public class LinkRequirementAttributesEntity
     {
         [Key]
+        [Display(Name = "R to R Attributes")]
         public int RequirementAttributeID { get; set; }
         [Required]
         [Display(Name = "Attribute")]
         public int AttributeID { get; set; }
         [Required]
-        [Display(Name = "Requeriment - Requirement")]
+        [Display(Name = "R to R")]
         public int LinkRequirementsID { get; set; }
         [Required]
         [Display(Name = "Value")]

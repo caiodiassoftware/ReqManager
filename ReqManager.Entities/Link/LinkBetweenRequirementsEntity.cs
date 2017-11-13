@@ -14,6 +14,7 @@ namespace ReqManager.Entities.Link
     public class LinkBetweenRequirementsEntity
     {
         [Key]
+        [Display(Name = "Requirements Link")]
         public int LinkRequirementsID { get; set; }
         [Required]
         [Display(Name = "User")]

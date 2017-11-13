@@ -29,6 +29,7 @@ namespace ReqManager.Controllers
         private ILinkBetweenRequirementsService linkRequirementService { get; set; }
         private ILinkBetweenRequirementsArtifactsService linkReqArtifactService { get; set; }
         private IRequirementService Service { get; set; }
+        public IProjectService projectService { get; set; }
 
         public RequirementController(
             IRequirementService service,
@@ -36,11 +37,11 @@ namespace ReqManager.Controllers
             IRequirementStatusService statusService,
             IRequirementTypeService typeService,
             IUserService userService,
-            IStakeholdersProjectService stakeholderProjectService,
             IRequirementRationaleService rationaleService,
             IRequirementActionHistoryService reqActionHistoryService,
             ILinkBetweenRequirementsService linkRequirementService,
-            ILinkBetweenRequirementsArtifactsService linkReqArtifactService)
+            ILinkBetweenRequirementsArtifactsService linkReqArtifactService,
+            IProjectService projectService)
         {
             Mapper.Initialize(cfg =>
             {
@@ -49,16 +50,17 @@ namespace ReqManager.Controllers
             });
 
             Service = service;
+            this.projectService = projectService;
             this.linkRequirementService = linkRequirementService;
             this.linkReqArtifactService = linkReqArtifactService;
             this.rationaleService = rationaleService;
             this.reqActionHistoryService = reqActionHistoryService;
 
-            ViewData.Add("StakeholdersProjectID", new SelectList(stakeholderProjectService.getAll(), "StakeholdersProjectID", "DisplayName"));
             ViewData.Add("MeasureImportanceID", new SelectList(measureService.getAll(), "MeasureImportanceID", "description"));
             ViewData.Add("RequirementStatusID", new SelectList(statusService.getAll(), "RequirementStatusID", "description"));
             ViewData.Add("RequirementTypeID", new SelectList(typeService.getAll(), "RequirementTypeID", "description"));
             ViewData.Add("UserID", new SelectList(userService.getAll(), "UserID", "name"));
+            ViewData.Add("ProjectID", new SelectList(projectService.getAll(), "ProjectID", "DisplayName"));
         }
 
         #region GETS

@@ -6,6 +6,7 @@ namespace ReqManager.Entities
     public class ControllerActionEntity
     {
         [Key]
+        [Display(Name = "Controller/Action")]
         public int ControllerActionID { get; set; }
         [Required]
         [MaxLength(100)]

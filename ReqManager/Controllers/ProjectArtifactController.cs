@@ -6,9 +6,11 @@ using ReqManager.Services.Project.Interfaces;
 using ReqManager.Services.Acess.Interfaces;
 using System.Data.Entity.Validation;
 using System.Data.Entity.Infrastructure;
+using System.Linq;
 
 namespace ReqManager.Controllers
 {
+    //ART2
     public class ProjectArtifactController : BaseController<ProjectArtifactEntity>
     {
         private IHistoryProjectArtifactService historyServiceArtifact { get; set; }
@@ -27,6 +29,18 @@ namespace ReqManager.Controllers
             ViewData.Add("MeasureImportanceID", new SelectList(measureService.getAll(), "MeasureImportanceID", "description"));
             ViewData.Add("ProjectID", new SelectList(projectService.getAll(), "ProjectID", "description"));
             ViewData.Add("UserID", new SelectList(userService.getAll(), "UserID", "name"));
+        }
+
+        public JsonResult GetArtifactsFromProject(int ProjectID)
+        {
+            try
+            {
+                return Json(Service.getAll().Where(a => a.ProjectID.Equals(ProjectID)), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         [HttpPost]

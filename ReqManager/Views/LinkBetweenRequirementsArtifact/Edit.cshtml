@@ -17,7 +17,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.UserID, "UserID", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("UserID", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownList("UserID", null, "SELECT THE USER", htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.UserID, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -26,7 +26,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ProjectArtifactID, "ProjectArtifactID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("ProjectArtifactID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("ProjectArtifactID", null, "SELECT THE ARTIFACT", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ProjectArtifactID, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -34,7 +34,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.RequirementID, "RequirementID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("RequirementID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("RequirementID", null, "SELECT THE REQUIREMENT", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.RequirementID, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -42,19 +42,12 @@
         <div class="form-group">
             @Html.LabelFor(model => model.TypeLinkID, "TypeLinkID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("TypeLinkID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("TypeLinkID", null, "SELECT THE TYPE LINK", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.TypeLinkID, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <fieldset disabled>
-            <div class="form-group">
-                @Html.LabelFor(model => model.creationDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.creationDate, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.creationDate, "", new { @class = "text-danger" })
-                </div>
-            </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.code, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">

@@ -1,21 +1,31 @@
-﻿using ReqManager.Data.Infrastructure;
+﻿using System;
+using ReqManager.Data.Infrastructure;
 using ReqManager.Data.Repositories.Project.Interfaces;
 using ReqManager.Entities.Project;
 using ReqManager.Model;
 using ReqManager.Services.Estructure;
 using ReqManager.Services.Project.Interfaces;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReqManager.Services.Project.Classes
 {
-    public class ProjectRequirementsService : ServiceBase<ProjectRequirements, ProjectRequirementsEntity>, IProjectRequirementsService
+    public class ProjectRequirementsService : 
+        ServiceBase<ProjectRequirements, ProjectRequirementsEntity>, IProjectRequirementsService
     {
         public ProjectRequirementsService(IProjectRequirementsRepository repository, IUnitOfWork unit) : base(repository, unit)
         {
+        }
+
+        public bool isTraceable(int ProjectID, int RequirementID)
+        {
+            try
+            {
+                return getAll().Where(r => r.ProjectID.Equals(ProjectID) && r.RequirementID.Equals(RequirementID)).SingleOrDefault().traceable;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

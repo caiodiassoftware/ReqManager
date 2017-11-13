@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReqManager.Entities.Link
 {
     public class LinkArtifactAttributesEntity
     {
         [Key]
+        [Display(Name = "Artifact Attribute")]
         public int ArtefactAttributeID { get; set; }
         [Required]
         [Display(Name = "Attribute")]

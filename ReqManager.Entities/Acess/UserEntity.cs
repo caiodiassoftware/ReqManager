@@ -1,20 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReqManager.Entities.Acess
 {
     public class UserEntity
     {
         [Key]
+        [Display(Name = "User")]
         public int UserID { get; set; }
         [Required]
         [MinLength(3)]
         [MaxLength(100)]
-        [Display(Name = "Full Name")]
+        [Display(Name = "Name/Maker")]
         public string name { get; set; }
         [Required]
         [MinLength(3)]

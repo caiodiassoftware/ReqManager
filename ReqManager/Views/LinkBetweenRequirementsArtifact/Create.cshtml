@@ -19,25 +19,25 @@
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.TypeLinkID, "TypeLinkID", htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.TypeLinkID, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.DropDownList("TypeLinkID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.DropDownList("TypeLinkID", null, "SELECT THE TYPE LINK", htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.TypeLinkID, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.ProjectArtifactID, "ProjectArtifactID", htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.ProjectArtifactID, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.DropDownList("ProjectArtifactID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.DropDownList("ProjectArtifactID", null, "SELECT THE PROJECT ARTIFACT", htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.ProjectArtifactID, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.RequirementID, "RequirementID", htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.RequirementID, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.DropDownList("RequirementID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.DropDownList("RequirementID", null, "SELECT THE REQUIREMENT", htmlAttributes: new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.RequirementID, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -47,32 +47,6 @@
                         <input type="submit" value="Create" class="btn btn-default" />
                     </div>
                 </div>
-            </div>
-        </div>
-        <div id="attributes">
-            <div class="form-horizontal">
-                <div class="form-group">
-                    @Html.Label("Attribute", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DropDownList("AttributeID", Enumerable.Empty<SelectListItem>(), "SELECT THE TYPE LINK ATTRIBUTE", htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessage("AttributeID", "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.Label("Value", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.Editor("value", new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessage("value", "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input id="AddAttribute" value="Add" class="btn btn-default" />
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>
@@ -85,7 +59,7 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 <script type="text/javascript">
-        $("#TypeLinkID").change(function () {
+        @*$("#TypeLinkID").change(function () {
             var id = $(this).val();
             var select = document.getElementById("AttributeID");
             var i;
@@ -113,6 +87,6 @@
                     value: $("#value").val()
                 }
             });
-        });
+        });*@
 </script>
 }

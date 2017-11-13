@@ -106,7 +106,8 @@ namespace ReqManager.Services.Estructure
         {
             try
             {
-                Expression<Func<TModel, bool>> newWhere = Mapper.Map<Expression<Func<TModel, bool>>>(where);
+                Expression<Func<TModel, bool>> newWhere = 
+                    Mapper.Map<Expression<Func<TEntity, bool>>, Expression<Func<TModel, bool>>>(where);
                 return Mapper.Map<TModel, TEntity>(repository.get(newWhere));
             }
             catch (Exception ex)

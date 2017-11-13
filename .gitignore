@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/ReqManager/v15/sqlite3/storage.ide
+/.vs/ReqManager/v15/sqlite3
+/.vs/ReqManager/v15/.suo
+/.vs/ReqManager/v15
+/.vs/ReqManager/v14/.suo
+/.vs/ReqManager/v14
+/.vs/ReqManager
+/.vs/config/applicationhost.config

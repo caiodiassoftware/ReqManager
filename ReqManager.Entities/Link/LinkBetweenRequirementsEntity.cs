@@ -32,7 +32,6 @@ namespace ReqManager.Entities.Link
         [Display(Name = "Creation Data")]
         public System.DateTime creationDate { get; set; } = DateTime.Now;
         [Display(Name = "R-R Code")]
-        [ReadOnly(true)]
         public string code { get; set; }
 
         public String DisplayName

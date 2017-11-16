@@ -40,7 +40,6 @@ namespace ReqManager.Entities.Project
         [Display(Name = "Creation Date")]
         public DateTime creationDate { get; set; } = DateTime.Now;
         [Display(Name = "Prj. Code")]
-        [ReadOnly(true)]
         public string code { get; set; }
 
         public String DisplayName

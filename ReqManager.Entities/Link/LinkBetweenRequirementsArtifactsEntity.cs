@@ -25,7 +25,6 @@ namespace ReqManager.Entities.Link
         public int TypeLinkID { get; set; }
         [MaxLength(25)]
         [Display(Name = "R-A Code")]
-        [ReadOnly(true)]
         public string code { get; set; }
         [Display(Name = "Creation Date")]
         public System.DateTime creationDate { get; set; } = DateTime.Now;

@@ -45,7 +45,6 @@ namespace ReqManager.Entities.Acess
         [Display(Name = "End Date")]
         public Nullable<DateTime> endDate { get; set; }
         [Display(Name = "Task Code")]
-        [ReadOnly(true)]
         public string code { get; set; }
 
         public String DisplayName

@@ -6,6 +6,7 @@ using ReqManager.Model;
 using ReqManager.Services.Estructure;
 using ReqManager.Services.Project.Interfaces;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace ReqManager.Services.Project.Classes
 {
@@ -14,6 +15,18 @@ namespace ReqManager.Services.Project.Classes
     {
         public ProjectRequirementsService(IProjectRequirementsRepository repository, IUnitOfWork unit) : base(repository, unit)
         {
+        }
+
+        public IEnumerable<ProjectRequirementsEntity> getRequirementsByProject(int ProjectID)
+        {
+            try
+            {
+                return getAll().Where(r => r.ProjectID.Equals(ProjectID));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public bool isTraceable(int ProjectID, int RequirementID)

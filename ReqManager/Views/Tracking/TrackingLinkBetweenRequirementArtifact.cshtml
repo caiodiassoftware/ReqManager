@@ -8,6 +8,15 @@
 
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.Label("Project", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("Project", null, "SELECT THE PROJECT", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessage("Project", "", new { @class = "text-danger" })
+        </div>
+    </div>
+
     <div class="form-group">
         @Html.Label("R to A", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -39,17 +48,69 @@
 
 @section Scripts {
     <script type="text/javascript">
-        $('#track').click(function () {
+
+        function clearDropDown(dropDown) {
+            var select = document.getElementById(dropDown);
+            var i;
+            for (i = select.options.length - 1 ; i >= 0 ; i--)
+                select.remove(i);
+        }
+
+        $("#Project").change(function () {
+
+            var id = $(this).val();
+
+            clearDropDown("Requirements");
+            clearDropDown("Path");
+
+            $('#Requirements').append("<option value='" + 0 + "'>SELECT THE REQUIREMENTS</option>");
+
+            $.getJSON('@Url.Action("GetRequirementsFromProject", "ProjectRequirements")', { ProjectID: id }, function (response) {
+                $.each(response, function (index, item) {
+                    var optionExists = ($('#Requirements option[value=' + item.RequirementID + ']').length > 0);
+                    if (!optionExists)
+                        $('#Requirements').append("<option value='" + item.RequirementID + "'>" + item.DisplayName + "</option>");
+                });
+            });
+
+            $.getJSON('@Url.Action("GetFolders", "Projects")', { ProjectID: id }, function (response) {
+                $.each(response, function (index, item) {
+                    $('#Path').append("<option value='" + item + "'>" + item + "</option>");
+                });
+            });
+
+        });
+
+        $("#track").click(function () {
+            var Requirements = $('#Requirements').val();
+            var Path = $('#Path').val();
+
+            var select = document.getElementById("Files");
+            var i;
+            for (i = select.options.length - 1 ; i >= 0 ; i--)
+                select.remove(i);
+
+            $('#Files').append("<option value='" + 0 + "'>SELECT THE PATH</option>");
+
+            $.getJSON('@Url.Action("TrackingRequirements", "Tracking")', { Requirements: Requirements, Path: Path }, function (response) {
+                $.each(response, function (index, item) {
+                    var optionExists = ($('#Files option[value=' + item.AttributeID + ']').length > 0);
+                    if (!optionExists)
+                        $('#Files').append("<option value='" + item + "'>" + item + "</option>");
+                });
+            });
+        });
+
+        $("#Files").change(function () {
             $.ajax({
-                url: '@Url.Action("TrackingLinkBetweenRequirementArtifacts", "Tracking")',
-                data: { item: $("#LinkBetweenArtifactRequirement").val(), Path: $("#Path").val() },
                 cache: false,
                 type: "POST",
-                dataType: "html",
-                success: function (data, textStatus, XMLHttpRequest) {
-                    $("#folders").html(data);
+                url: "@Url.Action("OpenFile", "Tracking")",
+                data: {
+                    file: $("#Files").val()
                 }
             });
-        })
+        });
+
     </script>
 }

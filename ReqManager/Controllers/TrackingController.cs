@@ -4,7 +4,6 @@ using ReqManager.Entities.Project;
 using ReqManager.Entities.Requirement;
 using ReqManager.ManagerController;
 using ReqManager.Services.Directories.Interfaces;
-using ReqManager.Services.Link.Classes;
 using ReqManager.Services.Link.Interfaces;
 using ReqManager.Services.Project.Interfaces;
 using ReqManager.Services.Requirements.Interfaces;
@@ -12,7 +11,6 @@ using ReqManager.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ReqManager.Controllers
@@ -193,25 +191,11 @@ namespace ReqManager.Controllers
 
         #region Link between Requirements
 
-        public ActionResult TrackingLinkBetweenRequirement(int? id)
+        public ActionResult TrackingLinkBetweenRequirement()
         {
             try
             {
-                LinkBetweenRequirementsEntity link = linkReq.get(id);
-
-                string pathOrigin = reqProj.getAll().Where(pr => pr.RequirementID.Equals(link.RequirementOrigin.RequirementID)).FirstOrDefault().Project.pathForTraceability;
-                string pathTarget = reqProj.getAll().Where(pr => pr.RequirementID.Equals(link.RequirementTarget.RequirementID)).FirstOrDefault().Project.pathForTraceability;
-
-                List<string> paths = new List<string>();
-                paths.AddRange(directory.getFolders(pathOrigin));
-                paths.AddRange(directory.getFolders(pathTarget));
-
-                HashSet<string> hashPath = new HashSet<string>();
-                paths.ForEach(p => hashPath.Add(p));
-
-                ViewData.Add("LinkBetweenRequirement", new SelectList(linkReq.getAll(), "LinkRequirementsID", "DisplayName"));
-                ViewData.Add("Path", new SelectList(hashPath));
-
+                ViewData.Add("Project", new SelectList(project.getAll(), "ProjectID", "DisplayName"));
                 return View();
             }
             catch (Exception ex)
@@ -220,15 +204,15 @@ namespace ReqManager.Controllers
             }
         }
 
-        [HttpPost]
-        public ActionResult TrackingLinkBetweenRequirements(string item, string Path)
+        public JsonResult TrackingLinkBetweenRequirements(string Link, string Path)
         {
             try
             {
-                string[] itens = { linkReq.get(Convert.ToInt32(item)).code };
+                string[] itens = { linkReq.get(Convert.ToInt32(Link)).code };
                 List<string> files = directory.findFile(itens, Path);
 
-                return PartialView("~/Views/Shared/List.cshtml", files);
+                JsonResult json = Json(files, JsonRequestBehavior.AllowGet);
+                return json;
             }
             catch (Exception ex)
             {
@@ -256,6 +240,7 @@ namespace ReqManager.Controllers
                 HashSet<string> hashPath = new HashSet<string>();
                 paths.ForEach(p => hashPath.Add(p));
 
+                ViewData.Add("Project", new SelectList(project.getAll(), "ProjectID", "DisplayName"));
                 ViewData.Add("LinkBetweenArtifactRequirement", new SelectList(linkArt.getAll(), "LinkArtifactRequirementID", "DisplayName"));
                 ViewData.Add("Path", new SelectList(hashPath));
 

@@ -16,6 +16,8 @@
         @Html.HiddenFor(model => model.UserID)
         @Html.HiddenFor(model => model.creationDate)
         @Html.HiddenFor(model => model.code)
+        @Html.HiddenFor(model => model.StakeholdersProjectID)
+        @Html.HiddenFor(model => model.RequirementTemplateID)
 
         <fieldset disabled>
             <div class="form-group">
@@ -46,7 +48,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.RequirementTemplateID, "RequirementTemplateID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("RequirementTemplateID", Enumerable.Empty<SelectListItem>(), "SELECT THE TEMPLATE", htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("RequirementTemplateID", null, "SELECT THE TEMPLATE", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.RequirementTemplateID, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -67,13 +69,15 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.StakeholdersProjectID, "StakeholdersProjectID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("StakeholdersProjectID", null, "SELECT THE STAKEHOLDERS", htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.StakeholdersProjectID, "", new { @class = "text-danger" })
+        <fieldset disabled>
+            <div class="form-group">
+                @Html.LabelFor(model => model.StakeholdersProjectID, "StakeholdersProjectID", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("StakeholdersProjectID", null, "SELECT THE STAKEHOLDERS", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.StakeholdersProjectID, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
+        </fieldset>
 
         <div class="form-group">
             @Html.LabelFor(model => model.MeasureImportanceID, "MeasureImportanceID", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -111,14 +115,14 @@
             height: 350,
             menubar: false,
             plugins: [
-              'advlist autolink lists link image charmap print preview anchor textcolor',
-              'searchreplace visualblocks code fullscreen',
-              'insertdatetime media table contextmenu paste code help'
+                'advlist autolink lists link image charmap print preview anchor textcolor',
+                'searchreplace visualblocks code fullscreen',
+                'insertdatetime media table contextmenu paste code help'
             ],
             toolbar: 'insert | undo redo |  formatselect | bold italic backcolor  | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
             content_css: [
-              '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
-              '//www.tinymce.com/css/codepen.min.css']
+                '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+                '//www.tinymce.com/css/codepen.min.css']
         });
     </script>
 

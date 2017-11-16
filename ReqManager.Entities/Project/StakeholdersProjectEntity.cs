@@ -6,7 +6,7 @@ namespace ReqManager.Entities.Project
     public class StakeholdersProjectEntity
     {
         [Key]
-        [Display(Name = "Stakeholder Project")]
+        [Display(Name = "Stakeholder Project", Description = "Stakeholder Project")]
         public int StakeholdersProjectID { get; set; }
         [Required]
         [Display(Name = "Project")]

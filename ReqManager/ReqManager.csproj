@@ -213,8 +213,6 @@
     <Compile Include="ViewModels\RequirementTemplateViewModel.cs" />
     <Compile Include="ViewModels\RequirementViewModel.cs" />
     <Compile Include="ViewModels\TrackingViewModel.cs" />
-    <Compile Include="ViewModels\UserRoleViewModel.cs" />
-    <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="Controllers\StakeholderClassificationController.cs" />
     <Compile Include="Controllers\StakeholdersController.cs" />
   </ItemGroup>

@@ -10,16 +10,20 @@ namespace ReqManager.Entities.Artifact
         [Key]
         [Display(Name = "Artifact")]
         public int ProjectArtifactID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "This field is Required")]
+        [Range(1, Double.PositiveInfinity)]
         [Display(Name = "User")]
         public int UserID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "This field is Required")]
+        [Range(1, Double.PositiveInfinity)]
         [Display(Name = "Artifact Type")]
         public int ArtifactTypeID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "This field is Required")]
+        [Range(1, Double.PositiveInfinity)]
         [Display(Name = "Measure Importance")]
         public int MeasureImportanceID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "This field is Required")]
+        [Range(1, Double.PositiveInfinity)]
         [Display(Name = "Project")]
         public int ProjectID { get; set; }
         [Display(Name = "Art. Code")]

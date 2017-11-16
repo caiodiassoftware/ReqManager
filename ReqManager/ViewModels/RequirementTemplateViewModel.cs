@@ -1,10 +1,7 @@
 ﻿using ReqManager.Entities.Acess;
 using ReqManager.Entities.Requirement;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ReqManager.ViewModels
@@ -14,7 +11,11 @@ namespace ReqManager.ViewModels
         [Key]
         public int RequirementTemplateID { get; set; }
         [Display(Name = "User")]
+        [Required(ErrorMessage = "This field is Required")]
+        [Range(1, Double.PositiveInfinity)]
         public int UserID { get; set; }
+        [Required(ErrorMessage = "This field is Required")]
+        [Range(1, Double.PositiveInfinity)]
         public int RequirementTypeID { get; set; }
         [Required]
         [MaxLength(50), MinLength(6)]

@@ -9,6 +9,9 @@ using System;
 using System.Data.Entity.Validation;
 using System.Data.Entity.Infrastructure;
 using System.Collections.Generic;
+using ReqManager.Services.Project.Interfaces;
+using System.Linq;
+using ReqManager.Entities.Requirement;
 
 namespace ReqManager.Controllers
 {
@@ -16,16 +19,19 @@ namespace ReqManager.Controllers
     {
         private IRequirementTraceabilityMatrixService matrixService { get; set; }
         private ILinkBetweenRequirementsService linkService { get; set; }
+        private IProjectRequirementsService projectRequirements { get; set; }
 
         public LinkBetweenRequirementsController(
             ILinkBetweenRequirementsService linkService,
             IRequirementService requirementService,
+            IProjectRequirementsService projectRequirements,
             ITypeLinkService typeLinkService,
             IUserService userService,
             IRequirementTraceabilityMatrixService matrixService) : base(linkService)
         {
             this.matrixService = matrixService;
             this.linkService = linkService;
+            this.projectRequirements = projectRequirements;
 
             ViewData.Add("RequirementOriginID", new SelectList(requirementService.getAll(), "RequirementID", "code"));
             ViewData.Add("RequirementTargetID", new SelectList(requirementService.getAll(), "RequirementID", "code"));
@@ -104,9 +110,33 @@ namespace ReqManager.Controllers
             return View(dt);
         }
 
-        public void ShowLink(string origin, string target)
+        public JsonResult GetLinkRequirementsFromProject(string ProjectID)
         {
+            try
+            {
+                IEnumerable<RequirementEntity> requirements =
+                    projectRequirements.getRequirementsByProject(Convert.ToInt32(ProjectID)).Select(r => r.Requirement);
 
+                HashSet<LinkBetweenRequirementsEntity> links = new HashSet<LinkBetweenRequirementsEntity>();
+
+                foreach (RequirementEntity req in requirements)
+                {
+                    IEnumerable<LinkBetweenRequirementsEntity> linksFilter = 
+                        linkService.filter(l => l.RequirementOriginID.Equals(req.RequirementID) 
+                        || l.RequirementTargetID.Equals(req.RequirementID));
+                    foreach (LinkBetweenRequirementsEntity link in linksFilter)
+                    {
+                        links.Add(link);
+                    }
+                }
+
+                return Json(links, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
+
     }
 }

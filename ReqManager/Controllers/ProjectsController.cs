@@ -34,7 +34,8 @@ namespace ReqManager.Controllers
             try
             {
                 ProjectEntity prj = Service.get(ProjectID);
-                return Json(directory.getFolders(prj.pathForTraceability), JsonRequestBehavior.AllowGet);
+                var path = directory.getFolders(prj.pathForTraceability);
+                return Json(path, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

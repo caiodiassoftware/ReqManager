@@ -11,21 +11,24 @@ namespace ReqManager.Entities.Link
         [Key]
         [Display(Name = "Requirement Artifact Link")]
         public int LinkArtifactRequirementID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "This field is Required")]
+        [Range(1, Double.PositiveInfinity)]
         [Display(Name = "User")]
         public int UserID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "This field is Required")]
+        [Range(1, Double.PositiveInfinity)]
         [Display(Name = "Artifact")]
         public int ProjectArtifactID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "This field is Required")]
+        [Range(1, Double.PositiveInfinity)]
         [Display(Name = "Requirement")]
         public int RequirementID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "This field is Required")]
+        [Range(1, Double.PositiveInfinity)]
         [Display(Name = "Type Link")]
         public int TypeLinkID { get; set; }
         [MaxLength(25)]
         [Display(Name = "R-A Code")]
-        [ReadOnly(true)]
         public string code { get; set; }
         [Display(Name = "Creation Date")]
         public System.DateTime creationDate { get; set; } = DateTime.Now;

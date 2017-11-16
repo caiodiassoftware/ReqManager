@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReqManager.Entities.Acess
 {
@@ -12,13 +7,16 @@ namespace ReqManager.Entities.Acess
     {
         [Key]
         public int SubtaskID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "This field is Required")]
+        [Range(1, Double.PositiveInfinity)]
         [Display(Name = "Status")]
         public int StatusTaskID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "This field is Required")]
+        [Range(1, Double.PositiveInfinity)]
         [Display(Name = "Type")]
         public int TaskTypeID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "This field is Required")]
+        [Range(1, Double.PositiveInfinity)]
         [Display(Name = "Task-User")]
         public int UserTaskID { get; set; }
         [Display(Name = "Creation Date")]
@@ -34,7 +32,6 @@ namespace ReqManager.Entities.Acess
         [Display(Name = "End Date")]
         public Nullable<DateTime> endDate { get; set; }
         [Display(Name = "Subtask Code")]
-        [ReadOnly(true)]
         public string code { get; set; }
 
         public String DisplayName

@@ -10,13 +10,16 @@ namespace ReqManager.Entities.Project
         [Key]
         [Display(Name = "Project Requirement")]
         public int ProjectRequirementID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "This field is Required")]
+        [Range(1, Double.PositiveInfinity)]
         [Display(Name = "User")]
         public int UserID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "This field is Required")]
+        [Range(1, Double.PositiveInfinity)]
         [Display(Name = "Project")]
         public int ProjectID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "This field is Required")]
+        [Range(1, Double.PositiveInfinity)]
         [Display(Name = "Requirement")]
         public int RequirementID { get; set; }
         [Display(Name = "Creation Date")]

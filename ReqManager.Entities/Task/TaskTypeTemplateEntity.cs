@@ -1,21 +1,17 @@
-﻿using ReqManager.Entities.Acess;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace ReqManager.Entities.Acess
 {
     public class TaskTypeTemplateEntity
     {
         [Key]
         public int TaskTypeTemplateID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "This field is Required")]
+        [Range(1, Double.PositiveInfinity)]
         [Display(Name = "User")]
         public int UserID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "This field is Required")]
+        [Range(1, Double.PositiveInfinity)]
         [Display(Name = "Type")]
         public int TaskTypeID { get; set; }
         [Required]

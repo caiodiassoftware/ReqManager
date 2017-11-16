@@ -1,10 +1,5 @@
-﻿using ReqManager.Entities.Acess;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReqManager.Entities.Acess
 {
@@ -12,10 +7,12 @@ namespace ReqManager.Entities.Acess
     {
         [Key]
         public int UserTaskID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "This field is Required")]
+        [Range(1, Double.PositiveInfinity)]
         [Display(Name = "User")]
         public int UserID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "This field is Required")]
+        [Range(1, Double.PositiveInfinity)]
         [Display(Name = "Task")]
         public int TaskID { get; set; }
         [Display(Name = "Creation Date")]

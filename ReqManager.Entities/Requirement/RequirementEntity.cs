@@ -28,7 +28,6 @@ namespace ReqManager.Entities.Requirement
         [Required]
         [Display(Name = "Importance")]
         public int MeasureImportanceID { get; set; }
-        [ReadOnly(true)]
         [Display(Name = "Req. Code")]
         public string code { get; set; }
         [Required]

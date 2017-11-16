@@ -34,13 +34,13 @@ namespace ReqManager.ViewModels
         [Required]
         [Display(Name = "Type")]
         public int RequirementTypeID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "This field is Required")]
+        [Range(1, Double.PositiveInfinity)]
         [Display(Name = "Stakeholder Project")]
         public int StakeholdersProjectID { get; set; }
         [Required]
         [Display(Name = "Importance")]
         public int MeasureImportanceID { get; set; }
-        [ReadOnly(true)]
         [Display(Name = "Req. Code")]
         public string code { get; set; }
         [Required]

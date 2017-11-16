@@ -11,7 +11,8 @@ namespace ReqManager.Entities.Link
         [Required]
         [Display(Name = "Attribute")]
         public int AttributeID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "This field is Required")]
+        [Range(1, Double.PositiveInfinity)]
         [Display(Name = "Link Type")]
         public int TypeLinkID { get; set; }
 

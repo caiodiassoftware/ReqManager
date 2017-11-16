@@ -8,10 +8,12 @@ namespace ReqManager.Entities.Acess
         [Key]
         [Display(Name = "User/Role")]
         public int UserRoleID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "This field is Required")]
+        [Range(1, Double.PositiveInfinity)]
         [Display(Name = "Role")]
         public int RoleID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "This field is Required")]
+        [Range(1, Double.PositiveInfinity)]
         [Display(Name = "User")]
         public int UserID { get; set; }
 

@@ -9,9 +9,13 @@ namespace ReqManager.Entities.Requirement
         [Key]
         [Display(Name = "Requirement Template")]
         public int RequirementTemplateID { get; set; }
+        [Required(ErrorMessage = "This field is Required")]
+        [Range(1, Double.PositiveInfinity)]
         [Display(Name = "User")]
         public int UserID { get; set; }
         [Display(Name = "Type")]
+        [Required(ErrorMessage = "This field is Required")]
+        [Range(1, Double.PositiveInfinity)]
         public int RequirementTypeID { get; set; }
         [Required]
         [MaxLength(50), MinLength(6)]

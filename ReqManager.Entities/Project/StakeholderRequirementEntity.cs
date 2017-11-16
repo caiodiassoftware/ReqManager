@@ -8,10 +8,12 @@ namespace ReqManager.Entities.Project
         [Key]
         [Display(Name = "StakeHolder Requirement")]
         public int StakeHolderRequirementID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "This field is Required")]
+        [Range(1, Double.PositiveInfinity)]
         [Display(Name = "Project Requirements")]
         public int ProjectRequirementID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "This field is Required")]
+        [Range(1, Double.PositiveInfinity)]
         [Display(Name = "Stakeholders")]
         public int StakeHolderID { get; set; }
         [Display(Name = "Creation Date")]

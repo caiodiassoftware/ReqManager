@@ -16,17 +16,21 @@ namespace ReqManager.Entities.Link
         [Key]
         [Display(Name = "Requirements Link")]
         public int LinkRequirementsID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "This field is Required")]
+        [Range(1, Double.PositiveInfinity)]
         [Display(Name = "User")]
         public int UserID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "This field is Required")]
+        [Range(1, Double.PositiveInfinity)]
         [Display(Name = "Type Link")]
         public int TypeLinkID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "This field is Required")]
+        [Range(1, Double.PositiveInfinity)]
         [Display(Name = "Req. Origin")]
         [DisplayName("Req. Origin")]
         public int RequirementOriginID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "This field is Required")]
+        [Range(1, Double.PositiveInfinity)]
         [Display(Name = "Req. Target")]
         public int RequirementTargetID { get; set; }
         [Display(Name = "Creation Data")]

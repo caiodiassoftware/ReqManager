@@ -224,26 +224,11 @@ namespace ReqManager.Controllers
 
         #region Link between Requirements and Artifacts
 
-        public ActionResult TrackingLinkBetweenRequirementArtifact(int? id)
+        public ActionResult TrackingLinkBetweenRequirementArtifact()
         {
             try
             {
-                LinkBetweenRequirementsArtifactsEntity art = linkArt.get(id);
-
-                string artPath = art.ProjectArtifact.path;
-                string pathOrigin = reqProj.getAll().Where(pr => pr.RequirementID.Equals(art.Requirement.RequirementID)).FirstOrDefault().Project.pathForTraceability;
-
-                List<string> paths = new List<string>();
-                paths.AddRange(directory.getFolders(pathOrigin));
-                paths.AddRange(directory.getFolders(artPath));
-
-                HashSet<string> hashPath = new HashSet<string>();
-                paths.ForEach(p => hashPath.Add(p));
-
                 ViewData.Add("Project", new SelectList(project.getAll(), "ProjectID", "DisplayName"));
-                ViewData.Add("LinkBetweenArtifactRequirement", new SelectList(linkArt.getAll(), "LinkArtifactRequirementID", "DisplayName"));
-                ViewData.Add("Path", new SelectList(hashPath));
-
                 return View();
             }
             catch (Exception ex)
@@ -252,15 +237,15 @@ namespace ReqManager.Controllers
             }
         }
 
-        [HttpPost]
-        public ActionResult TrackingLinkBetweenRequirementArtifacts(string item, string Path)
+        public JsonResult TrackingLinkBetweenRequirementArtifacts(string item, string Path)
         {
             try
             {
                 string[] itens = { linkArt.get(Convert.ToInt32(item)).code };
                 List<string> files = directory.findFile(itens, Path);
 
-                return PartialView("~/Views/Shared/List.cshtml", files);
+                JsonResult json = Json(files, JsonRequestBehavior.AllowGet);
+                return json;
             }
             catch (Exception ex)
             {

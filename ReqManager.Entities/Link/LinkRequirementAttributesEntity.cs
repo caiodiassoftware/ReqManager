@@ -8,10 +8,12 @@ namespace ReqManager.Entities.Link
         [Key]
         [Display(Name = "R to R Attributes")]
         public int RequirementAttributeID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "This field is Required")]
+        [Range(1, Double.PositiveInfinity)]
         [Display(Name = "Attribute")]
         public int AttributeID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "This field is Required")]
+        [Range(1, Double.PositiveInfinity)]
         [Display(Name = "R to R")]
         public int LinkRequirementsID { get; set; }
         [Required]

@@ -10,7 +10,6 @@ namespace ReqManager.Entities.Project
         [Display(Name = "Stakeholder")]
         public int StakeholderID { get; set; }
         [Required(ErrorMessage = "This field is Required")]
-        [Range(1, Double.PositiveInfinity)]
         [Display(Name = "User")]
         public int UserID { get; set; }
         [Required(ErrorMessage = "This field is Required")]

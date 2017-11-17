@@ -10,7 +10,6 @@ namespace ReqManager.Entities.Requirement
         [Display(Name = "Requirement Template")]
         public int RequirementTemplateID { get; set; }
         [Required(ErrorMessage = "This field is Required")]
-        [Range(1, Double.PositiveInfinity)]
         [Display(Name = "User")]
         public int UserID { get; set; }
         [Display(Name = "Type")]

@@ -1,13 +1,9 @@
 ﻿using ReqManager.Entities.Acess;
 using ReqManager.Entities.Requirement;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReqManager.Entities.Link
 {
@@ -17,7 +13,6 @@ namespace ReqManager.Entities.Link
         [Display(Name = "Requirements Link")]
         public int LinkRequirementsID { get; set; }
         [Required(ErrorMessage = "This field is Required")]
-        [Range(1, Double.PositiveInfinity)]
         [Display(Name = "User")]
         public int UserID { get; set; }
         [Required(ErrorMessage = "This field is Required")]

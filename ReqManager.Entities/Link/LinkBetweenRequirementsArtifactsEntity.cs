@@ -12,7 +12,6 @@ namespace ReqManager.Entities.Link
         [Display(Name = "Requirement Artifact Link")]
         public int LinkArtifactRequirementID { get; set; }
         [Required(ErrorMessage = "This field is Required")]
-        [Range(1, Double.PositiveInfinity)]
         [Display(Name = "User")]
         public int UserID { get; set; }
         [Required(ErrorMessage = "This field is Required")]

@@ -7,7 +7,6 @@ namespace ReqManager.Entities.Acess
         [Key]
         public int TaskTypeTemplateID { get; set; }
         [Required(ErrorMessage = "This field is Required")]
-        [Range(1, Double.PositiveInfinity)]
         [Display(Name = "User")]
         public int UserID { get; set; }
         [Required(ErrorMessage = "This field is Required")]

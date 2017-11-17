@@ -11,7 +11,6 @@ namespace ReqManager.Entities.Artifact
         [Display(Name = "Artifact")]
         public int ProjectArtifactID { get; set; }
         [Required(ErrorMessage = "This field is Required")]
-        [Range(1, Double.PositiveInfinity)]
         [Display(Name = "User")]
         public int UserID { get; set; }
         [Required(ErrorMessage = "This field is Required")]

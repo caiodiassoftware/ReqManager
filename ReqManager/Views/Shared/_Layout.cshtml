@@ -104,7 +104,7 @@
                         </ul>
                     </li>
                     <li class="nav-header">
-                        <a href="#" data-toggle="collapse" data-target="#menu6">TRACEABILITY</a>
+                        <a href="#" data-toggle="collapse" data-target="#menu6">LINK</a>
                         <ul class="nav nav-stacked collapse" style="margin-left:6%;" id="menu6">
                             <li>@Html.ActionLink("Attributes", "Index", "Attributes")</li>
                             <li>@Html.ActionLink("Type Link", "Index", "TypeLink")</li>
@@ -117,6 +117,22 @@
                             <li>@Html.ActionLink("Artifacts to Requirement Traceability Matrix", "ArtifactRequirementTraceabilityMatrix", "LinkBetweenRequirementsArtifact")</li>
                         </ul>
                     </li>
+                    <li class="nav-header">
+                        <a href="#" data-toggle="collapse" data-target="#menu7">MATRIX</a>
+                        <ul class="nav nav-stacked collapse" style="margin-left:6%;" id="menu7">
+                            <li>@Html.ActionLink("Requirement Traceability Matrix", "RequirementTraceabilityMatrix", "LinkBetweenRequirements")</li>
+                            <li>@Html.ActionLink("Artifacts to Requirement Traceability Matrix", "ArtifactRequirementTraceabilityMatrix", "LinkBetweenRequirementsArtifact")</li>
+                        </ul>
+                    </li>
+                    <li class="nav-header">
+                        <a href="#" data-toggle="collapse" data-target="#menu8">TRACEABILITY</a>
+                        <ul class="nav nav-stacked collapse" style="margin-left:6%;" id="menu8">
+                            <li>@Html.ActionLink("Artifacts", "TrackingProjectArtifact", "Tracking")</li>
+                            <li>@Html.ActionLink("Requirements", "TrackingProjectRequirement", "Tracking")</li>
+                            <li>@Html.ActionLink("Between Requirements", "TrackingLinkBetweenRequirement", "Tracking")</li>
+                            <li>@Html.ActionLink("Requirements and Artifacts", "TrackingLinkBetweenRequirementArtifact", "Tracking")</li>
+                        </ul>
+                    </li>
                 </ul>
                 <hr>
             </div>
@@ -127,7 +143,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         @RenderBody()
-                    </div>                    
+                    </div>
                     <hr />
                 </div>
             </div>

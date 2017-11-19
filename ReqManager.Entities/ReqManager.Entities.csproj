@@ -54,6 +54,7 @@
     <Compile Include="Link\LinkBetweenRequirementsEntity.cs" />
     <Compile Include="Link\LinkRequirementAttributesEntity.cs" />
     <Compile Include="Link\TypeLinkEntity.cs" />
+    <Compile Include="Requirement\CharacteristicsEntity.cs" />
     <Compile Include="Project\HistoryProjectEntity.cs" />
     <Compile Include="Project\MeasureImportanceEntity.cs" />
     <Compile Include="Project\ProjectEntity.cs" />
@@ -65,10 +66,12 @@
     <Compile Include="Project\StakeholdersEntity.cs" />
     <Compile Include="Project\StakeholdersProjectEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Requirement\RequirementActionHistoryEntity.cs" />
+    <Compile Include="Requirement\RequirementCharacteristicsEntity.cs" />
     <Compile Include="Requirement\RequirementEntity.cs" />
     <Compile Include="Requirement\RequirementRationaleEntity.cs" />
+    <Compile Include="Requirement\RequirementRequestForChangesEntity.cs" />
     <Compile Include="Requirement\RequirementStatusEntity.cs" />
+    <Compile Include="Requirement\RequirementSubTypeEntity.cs" />
     <Compile Include="Requirement\RequirementTypeEntity.cs" />
     <Compile Include="Requirement\RequirementTemplateEntity.cs" />
     <Compile Include="Task\HistoryTaskEntity.cs" />

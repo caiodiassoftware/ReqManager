@@ -1,11 +1,6 @@
 ﻿using ReqManager.Model;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReqManager.Data.DataAcess
 {
@@ -49,9 +44,8 @@ namespace ReqManager.Data.DataAcess
         public virtual DbSet<StakeholderRequirement> StakeholderRequirement { get; set; }
         public virtual DbSet<Stakeholders> Stakeholders { get; set; }
         public virtual DbSet<StakeholdersProject> StakeholdersProject { get; set; }
-        public virtual DbSet<MeasureImportance> MeasureImportance { get; set; }
+        public virtual DbSet<Importance> MeasureImportance { get; set; }
         public virtual DbSet<Requirement> Requirement { get; set; }
-        public virtual DbSet<RequirementActionHistory> RequirementActionHistory { get; set; }
         public virtual DbSet<RequirementRationale> RequirementRationale { get; set; }
         public virtual DbSet<RequirementStatus> RequirementStatus { get; set; }
         public virtual DbSet<RequirementTemplate> RequirementTemplate { get; set; }
@@ -64,5 +58,9 @@ namespace ReqManager.Data.DataAcess
         public virtual DbSet<TaskType> TaskType { get; set; }
         public virtual DbSet<TaskTypeTemplate> TaskTypeTemplate { get; set; }
         public virtual DbSet<UserTask> UserTask { get; set; }
+        public virtual DbSet<Characteristics> Characteristics { get; set; }
+        public virtual DbSet<RequirementSubType> RequirementSubType { get; set; }
+        public virtual DbSet<RequirementCharacteristics> RequirementCharacteristics { get; set; }
+        public virtual DbSet<RequirementRequestForChanges> RequirementRequestForChanges { get; set; }
     }
 }

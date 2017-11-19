@@ -187,7 +187,6 @@
     <Compile Include="Controllers\ProjectPhasesController.cs" />
     <Compile Include="Controllers\ProjectRequirementsController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
-    <Compile Include="Controllers\RequirementActionHistoryController.cs" />
     <Compile Include="Controllers\RequirementController.cs" />
     <Compile Include="Controllers\RequirementRationaleController.cs" />
     <Compile Include="Controllers\RequirementStatusController.cs" />
@@ -210,6 +209,7 @@
     <Compile Include="ViewModels\ControllerActionViewModel.cs" />
     <Compile Include="ViewModels\DataTableViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\ProjectDetailsViewModel.cs" />
     <Compile Include="ViewModels\RequirementTemplateViewModel.cs" />
     <Compile Include="ViewModels\RequirementViewModel.cs" />
     <Compile Include="ViewModels\TrackingViewModel.cs" />

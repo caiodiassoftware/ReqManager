@@ -36,7 +36,7 @@ namespace ReqManager.Model
         public virtual ArtifactType ArtifactType { get; set; }
         public virtual ICollection<HistoryProjectArtifact> HistoryProjectArtifact { get; set; }
         public virtual ICollection<LinkBetweenRequirementsArtifacts> LinkRequirementArtifact { get; set; }
-        public virtual MeasureImportance MeasureImportance { get; set; }
+        public virtual Importance MeasureImportance { get; set; }
         public virtual Project Project { get; set; }
     }
 }

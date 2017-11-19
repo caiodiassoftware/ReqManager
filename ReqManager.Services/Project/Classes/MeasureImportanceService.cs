@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace ReqManager.Services.Project.Classes
 {
 
-    public class MeasureImportanceService : ServiceBase<MeasureImportance, MeasureImportanceEntity>, IMeasureImportanceService
+    public class MeasureImportanceService : ServiceBase<Importance, MeasureImportanceEntity>, IMeasureImportanceService
     {
         public MeasureImportanceService(IMeasureImportanceRepository repository, IUnitOfWork unit) : base(repository, unit)
         {

@@ -5,19 +5,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ReqManager.Model
 {
-    [Table("MEASURE_IMPORTANCE", Schema = "PROJ")]
-    public class MeasureImportance
+    [Table("IMPORTANCE", Schema = "PROJ")]
+    public class Importance
     {
-        public MeasureImportance()
+        public Importance()
         {
             this.ProjectArtifact = new HashSet<ProjectArtifact>();
             this.Requirement = new HashSet<Requirement>();
-            this.RequirementRationale = new HashSet<RequirementRationale>();
             this.Task = new HashSet<Task>();
         }
     
         [Key]
-        public int MeasureImportanceID { get; set; }
+        public int ImportanceID { get; set; }
         [Required]
         [MaxLength(50), MinLength(5)]
         [Index(IsUnique = true)]
@@ -25,7 +24,6 @@ namespace ReqManager.Model
     
         public virtual ICollection<ProjectArtifact> ProjectArtifact { get; set; }
         public virtual ICollection<Requirement> Requirement { get; set; }
-        public virtual ICollection<RequirementRationale> RequirementRationale { get; set; }
         public virtual ICollection<Task> Task { get; set; }
     }
 }

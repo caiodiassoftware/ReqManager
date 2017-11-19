@@ -11,7 +11,6 @@ namespace ReqManager.Model
         public StakeholdersProject()
         {
             this.Requirement = new HashSet<Requirement>();
-            this.RequirementRationale = new HashSet<RequirementRationale>();
         }
     
         [Key]
@@ -21,10 +20,14 @@ namespace ReqManager.Model
         [Index("IX_STAKEHOLDERS_PROJECT", 2, IsUnique = true)]
         public int StakeholderID { get; set; }
         public DateTime creationDate { get; set; }
+        [Required]
+        [MaxLength(255)]
+        public string description { get; set; }
+        [Required]
+        public bool approved { get; set; }
 
         public virtual Project Project { get; set; }
         public virtual Stakeholders Stakeholders { get; set; }
         public virtual ICollection<Requirement> Requirement { get; set; }
-        public virtual ICollection<RequirementRationale> RequirementRationale { get; set; }
     }
 }

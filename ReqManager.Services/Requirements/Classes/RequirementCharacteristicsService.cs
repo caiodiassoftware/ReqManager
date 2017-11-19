@@ -7,10 +7,11 @@ using ReqManager.Services.Requirements.Interfaces;
 
 namespace ReqManager.Services.Requirements.Classes
 {
-
-    public class RequirementActionHistoryService : ServiceBase<RequirementActionHistory, RequirementActionHistoryEntity>, IRequirementActionHistoryService
+    public class RequirementCharacteristicsService : ServiceBase<RequirementCharacteristics,
+        RequirementCharacteristicsEntity>, IRequirementCharacteristicsService
     {
-        public RequirementActionHistoryService(IRequirementActionHistoryRepository repository, IUnitOfWork unit) : base(repository, unit)
+        public RequirementCharacteristicsService(IRequirementCharacteristicsRepository repository, IUnitOfWork unit) :
+            base(repository, unit)
         {
         }
     }

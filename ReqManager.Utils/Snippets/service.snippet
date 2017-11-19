@@ -23,7 +23,7 @@
         <Literal>
           <ID>classname</ID>
           <Function>ClassName()</Function>
-          <Default>Class</Default>
+          <Default>Model</Default>
         </Literal>
         <Literal>
           <ID>iServiceModel</ID>
@@ -31,9 +31,10 @@
         </Literal>
       </Declarations>
       <Code Language="CSharp">
-        <![CDATA[public interface $classname$ : IService<$iServiceModel$>
-      {          
-      }
+        <![CDATA[public interface I$classname$Service : IService<$classname$Entity>
+    {
+    
+    }
         ]]>
       </Code>
     </Snippet>
@@ -67,11 +68,6 @@
         </Import>
       </Imports>
       <Declarations>
-        <Literal>
-          <ID>classname</ID>
-          <Function>ClassName()</Function>
-          <Default>Class</Default>
-        </Literal>
         <Literal Editable="true">
           <ID>cServiceModel</ID>
           <ToolTip>Model's name</ToolTip>
@@ -79,9 +75,9 @@
         </Literal>
       </Declarations>
       <Code Language="CSharp">
-        <![CDATA[public class $classname$ : ServiceBase<$cServiceModel$>, I$classname$
+        <![CDATA[public class $cServiceModel$Service : ServiceBase<$cServiceModel$, $cServiceModel$Entity>, I$cServiceModel$Service
         {
-            public $classname$(I$cServiceModel$Repository repository, IUnitOfWork unit) : base(repository, unit)
+            public $cServiceModel$Service(I$cServiceModel$Repository repository, IUnitOfWork unit) : base(repository, unit)
             {
             }
         }

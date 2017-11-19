@@ -7,6 +7,8 @@ using ReqManager.Services.Acess.Interfaces;
 using System.Data.Entity.Validation;
 using System.Data.Entity.Infrastructure;
 using ReqManager.Services.Directories.Interfaces;
+using ReqManager.ViewModels;
+using System.Linq;
 
 namespace ReqManager.Controllers
 {
@@ -14,16 +16,24 @@ namespace ReqManager.Controllers
     {
         private IHistoryProjectService historyProjectService { get; set; }
         private IScanDirectoryService directory { get; set; }
+        private IProjectService projectService { get; set; }
+        private IProjectArtifactService projectArtifact { get; set; }
+        private IProjectRequirementsService projectRequirements { get; set; }
 
         public ProjectsController(
-            IProjectService service,
+            IProjectService projectService,
             IUserService userService,
+            IProjectArtifactService projectArtifact,
+            IProjectRequirementsService projectRequirements,
             IProjectPhasesService phasesService,
             IHistoryProjectService historyProjectService,
-            IScanDirectoryService directory) : base(service)
+            IScanDirectoryService directory) : base(projectService)
         {
+            this.projectArtifact = projectArtifact;
+            this.projectRequirements = projectRequirements;
             this.historyProjectService = historyProjectService;
             this.directory = directory;
+            this.projectService = projectService;
 
             ViewData.Add("ProjectPhasesID", new SelectList(phasesService.getAll(), "ProjectPhasesID", "description"));
             ViewData.Add("UserID", new SelectList(userService.getAll(), "UserID", "name"));
@@ -36,6 +46,24 @@ namespace ReqManager.Controllers
                 ProjectEntity prj = Service.get(ProjectID);
                 var path = directory.getFolders(prj.pathForTraceability);
                 return Json(path, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public override ActionResult Details(int? id)
+        {
+            try
+            {
+                ProjectDetailsViewModel prj = new ProjectDetailsViewModel();
+
+                prj.project = projectService.get(id);
+                prj.artifacts = projectArtifact.getArtifactsByProject(Convert.ToInt32(id));
+                prj.requirements = projectRequirements.getRequirementsByProject(Convert.ToInt32(id)).Select(r => r.Requirement);
+
+                return View(prj);
             }
             catch (Exception ex)
             {

@@ -8,53 +8,32 @@ namespace ReqManager.Entities.Requirement
     public class RequirementRationaleEntity
     {
         [Key]
-        [Display(Name = "Rationale")]
         public int RequirementRationaleID { get; set; }
-        [Required]
-        [Display(Name = "User")]
-        public int UserID { get; set; }
-        [Required]
-        [Display(Name = "Stakeholder")]
-        public int StakeholdersProjectID { get; set; }
-        [Required]
-        [Display(Name = "Measure Importance")]
-        public int MeasureImportanceID { get; set; }
-        [Required]
-        [Display(Name = "Requirement")]
         public int RequirementID { get; set; }
         [Required]
-        [Display(Name = "Type")]
-        public int RequirementTypeID { get; set; }
+        [MaxLength(100), MinLength(10)]
+        public string title { get; set; }
         [Required]
-        [Display(Name = "Status")]
-        public int RequirementStatusID { get; set; }
-        [Required]
-        [Display(Name = "Description")]
         public string description { get; set; }
         [Required]
-        [MaxLength(100), MinLength(10)]
-        [Display(Name = "Title")]
-        public string title { get; set; }
-        [Display(Name = "Changed Date")]
-        public System.DateTime changedDate { get; set; } = DateTime.Now;
+        [MaxLength(50)]
+        public string descriptionType { get; set; }
         [Required]
-        [MaxLength(1000), MinLength(5)]
-        [Display(Name = "Input")]
-        public string input { get; set; }
+        [MaxLength(50)]
+        public string descriptionSubType { get; set; }
         [Required]
-        [MaxLength(1000), MinLength(5)]
-        [Display(Name = "Output")]
-        public string output { get; set; }
+        [MaxLength(50)]
+        public string descriptionStakeholder { get; set; }
         [Required]
-        [MaxLength(1000), MinLength(5)]
-        [Display(Name = "Rationale")]
+        [MaxLength(50)]
+        public string importance { get; set; }
+        [Required]
+        [MaxLength(50)]
+        public string descriptionStatus { get; set; }
+        [Required]
+        public DateTime changedDate { get; set; }
+        [Required]
+        [MaxLength(1000), MinLength(10)]
         public string rationale { get; set; }
-
-        public virtual UserEntity User { get; set; }
-        public virtual StakeholdersProjectEntity StakeholdersProject { get; set; }
-        public virtual MeasureImportanceEntity MeasureImportance { get; set; }
-        public virtual RequirementEntity Requirement { get; set; }
-        public virtual RequirementTypeEntity RequirementType { get; set; }
-        public virtual RequirementStatusEntity RequirementStatus { get; set; }
     }
 }

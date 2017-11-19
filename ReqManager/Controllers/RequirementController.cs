@@ -23,7 +23,6 @@ namespace ReqManager.Controllers
     public class RequirementController : ControlAcessController<RequirementEntity>
     {
         private IRequirementRationaleService rationaleService { get; set; }
-        private IRequirementActionHistoryService reqActionHistoryService { get; set; }
         private ILinkBetweenRequirementsService linkRequirementService { get; set; }
         private ILinkBetweenRequirementsArtifactsService linkReqArtifactService { get; set; }
         private IRequirementService requirementService { get; set; }
@@ -42,7 +41,6 @@ namespace ReqManager.Controllers
             IRequirementTypeService typeService,
             IUserService userService,
             IRequirementRationaleService rationaleService,
-            IRequirementActionHistoryService reqActionHistoryService,
             ILinkBetweenRequirementsService linkRequirementService,
             ILinkBetweenRequirementsArtifactsService linkReqArtifactService,
             IStakeholdersProjectService stakeholdersProject,
@@ -66,7 +64,6 @@ namespace ReqManager.Controllers
             this.linkRequirementService = linkRequirementService;
             this.linkReqArtifactService = linkReqArtifactService;
             this.rationaleService = rationaleService;
-            this.reqActionHistoryService = reqActionHistoryService;
         }
 
         #region GETS

@@ -14,8 +14,8 @@ namespace ReqManager.Model
             this.LinkRequirementsTarget = new HashSet<LinkBetweenRequirement>();
             this.LinkRequirementsArtifacts = new HashSet<LinkBetweenRequirementsArtifacts>();
             this.ProjectRequirements = new HashSet<ProjectRequirements>();
-            this.RequirementActionHistory = new HashSet<RequirementActionHistory>();
-            this.RequirementRationale = new HashSet<RequirementRationale>();
+            this.RequirementRequestForChanges = new HashSet<RequirementRequestForChanges>();
+            this.RequirementCharacteristics = new HashSet<RequirementCharacteristics>();
         }
     
         [Key]
@@ -24,6 +24,7 @@ namespace ReqManager.Model
         public int UserID { get; set; }
         public int RequirementStatusID { get; set; }
         public int RequirementTypeID { get; set; }
+        public Nullable<int> RequirementSubTypeID { get; set; }
         public int StakeholdersProjectID { get; set; }
         public int MeasureImportanceID { get; set; }
         [MaxLength(25)]
@@ -37,17 +38,18 @@ namespace ReqManager.Model
         [Required]
         public DateTime creationDate { get; set; }
 
+        public virtual ICollection<RequirementCharacteristics> RequirementCharacteristics { get; set; }
         public virtual ICollection<LinkBetweenRequirement> LinkRequirementsOrigin { get; set; }
         public virtual ICollection<LinkBetweenRequirement> LinkRequirementsTarget { get; set; }
         public virtual ICollection<LinkBetweenRequirementsArtifacts> LinkRequirementsArtifacts { get; set; }
         public virtual ICollection<ProjectRequirements> ProjectRequirements { get; set; }
-        public virtual ICollection<RequirementActionHistory> RequirementActionHistory { get; set; }
-        public virtual ICollection<RequirementRationale> RequirementRationale { get; set; }
+        public virtual ICollection<RequirementRequestForChanges> RequirementRequestForChanges { get; set; }
         public virtual StakeholdersProject StakeholderProject { get; set; }
-        public virtual MeasureImportance MeasureImportance { get; set; }
+        public virtual Importance MeasureImportance { get; set; }
         public virtual Users Users { get; set; }
         public virtual RequirementTemplate RequirementTemplate { get; set; }
         public virtual RequirementStatus RequirementStatus { get; set; }
         public virtual RequirementType RequirementType { get; set; }
+        public virtual RequirementSubType RequirementSubType { get; set; }
     }
 }

@@ -37,7 +37,7 @@ namespace ReqManager.Model
     
         public virtual Users Users { get; set; }
         public virtual ProjectRequirements ProjectRequirements { get; set; }
-        public virtual MeasureImportance MeasureImportance { get; set; }
+        public virtual Importance MeasureImportance { get; set; }
         public virtual ICollection<HistoryTask> HistoryTask { get; set; }
         public virtual StatusTask StatusTask { get; set; }
         public virtual TaskTypeTemplate TaskTypeTemplate { get; set; }

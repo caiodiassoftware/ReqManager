@@ -20,8 +20,8 @@ namespace ReqManager.Model
         public RequirementType()
         {
             this.Requirement = new HashSet<Requirement>();
-            this.RequirementRationale = new HashSet<RequirementRationale>();
             this.RequirimentTemplate = new HashSet<RequirementTemplate>();
+            this.RequirementSubType = new HashSet<RequirementSubType>();
         }
     
         [Key]
@@ -32,7 +32,7 @@ namespace ReqManager.Model
         public string description { get; set; }
     
         public virtual ICollection<Requirement> Requirement { get; set; }
-        public virtual ICollection<RequirementRationale> RequirementRationale { get; set; }
+        public virtual ICollection<RequirementSubType> RequirementSubType { get; set; }
         public virtual ICollection<RequirementTemplate> RequirimentTemplate { get; set; }
     }
 }

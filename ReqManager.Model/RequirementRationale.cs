@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -10,34 +9,31 @@ namespace ReqManager.Model
     {
         [Key]
         public int RequirementRationaleID { get; set; }
-        public int UserID { get; set; }
-        public int StakeholdersProjectID { get; set; }
-        public int MeasureImportanceID { get; set; }
         public int RequirementID { get; set; }
-        public int RequirementTypeID { get; set; }
-        public int RequirementStatusID { get; set; }
-        [Required]
-        public string description { get; set; }
         [Required]
         [MaxLength(100), MinLength(10)]
         public string title { get; set; }
         [Required]
+        public string description { get; set; }
+        [Required]
+        [MaxLength(50)]
+        public string descriptionType { get; set; }
+        [Required]
+        [MaxLength(50)]
+        public string descriptionSubType { get; set; }
+        [Required]
+        [MaxLength(50)]
+        public string descriptionStakeholder { get; set; }
+        [Required]
+        [MaxLength(50)]
+        public string importance { get; set; }
+        [Required]
+        [MaxLength(50)]
+        public string descriptionStatus { get; set; }
+        [Required]
         public DateTime changedDate { get; set; }
         [Required]
-        [MaxLength(1000), MinLength(5)]
-        public string input { get; set; }
-        [Required]
-        [MaxLength(1000), MinLength(5)]
-        public string output { get; set; }
-        [Required]
-        [MaxLength(1000), MinLength(5)]
+        [MaxLength(1000), MinLength(10)]
         public string rationale { get; set; }
-    
-        public virtual Users User { get; set; }
-        public virtual StakeholdersProject StakeholdersProject { get; set; }
-        public virtual MeasureImportance MeasureImportance { get; set; }
-        public virtual Requirement Requirement { get; set; }
-        public virtual RequirementType RequirementType { get; set; }
-        public virtual RequirementStatus RequirementStatus { get; set; }
     }
 }

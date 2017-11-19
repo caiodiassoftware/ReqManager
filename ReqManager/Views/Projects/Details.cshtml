@@ -1,87 +1,171 @@
-﻿@model ReqManager.Entities.Project.ProjectEntity
+﻿@model ReqManager.ViewModels.ProjectDetailsViewModel
 
 @{
     ViewBag.Title = "Project Details";
 }
 
 <div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ProjectPhases.description)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ProjectPhases.description)
-        </dd>
+    <div id="tabs">
+        <ul>
+            <li><a href="#prj">Project</a></li>
+            <li><a href="#req">Requirements</a></li>
+            <li><a href="#art">Artifacts</a></li>
+        </ul>
+        <div id="prj">
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.project.ProjectPhases.description)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Users.name)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.project.ProjectPhases.description)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Users.name)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.project.Users.name)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.description)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.project.Users.name)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.description)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.project.description)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.pathForTraceability)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.project.description)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.pathForTraceability)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.project.pathForTraceability)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.environmentalInformation)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.project.pathForTraceability)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.environmentalInformation)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.project.environmentalInformation)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.managementInformation)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.project.environmentalInformation)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.managementInformation)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.project.managementInformation)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.startDate)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.project.managementInformation)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.startDate)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.project.startDate)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.endDate)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.project.startDate)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.endDate)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.project.endDate)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.creationDate)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.project.endDate)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.creationDate)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.project.creationDate)
+                </dt>
 
-    </dl>
+                <dd>
+                    @Html.DisplayFor(model => model.project.creationDate)
+                </dd>
+
+            </dl>
+        </div>
+        <div id="req">
+            <table class="table">
+                <tr>
+                    <th>Code</th>
+                    <th>Description</th>
+                    <th>Stakeholder</th>
+                    <th>Create By</th>
+                    <th>Status</th>
+                    <th>Type</th>
+                    <th>Date</th>
+                </tr>
+                @foreach (var item in Model.requirements)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.code)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StakeholderProject.Stakeholders.DisplayName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Users.name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RequirementStatus.description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RequirementType.description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.creationDate)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <div id="art">
+            <table class="table">
+                <tr>
+                    <th>Code</th>
+                    <th>Description</th>
+                    <th>Type</th>
+                    <th>Importance</th>
+                    <th>Create By</th>
+                    <th>Date</th>
+                </tr>
+                @foreach (var item in Model.artifacts)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.code)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ArtifactType.description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MeasureImportance.description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Users.name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.creationDate)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ProjectID }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.project.ProjectID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

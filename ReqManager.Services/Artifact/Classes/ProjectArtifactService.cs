@@ -1,5 +1,4 @@
 ﻿using ReqManager.Data.Infrastructure;
-using ReqManager.Data.Repositories.Artifact.Interfaces;
 using ReqManager.Data.Repositories.Project.Interfaces;
 using ReqManager.Entities.Artifact;
 using ReqManager.Model;
@@ -8,8 +7,6 @@ using ReqManager.Services.Project.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReqManager.Services.Project.Classes
 {
@@ -17,6 +14,18 @@ namespace ReqManager.Services.Project.Classes
     {
         public ProjectArtifactService(IProjectArtifactRepository repository, IUnitOfWork unit) : base(repository, unit)
         {
+        }
+
+        public IEnumerable<ProjectArtifactEntity> getArtifactsByProject(int ProjectID)
+        {
+            try
+            {
+                return getAll().Where(p => p.ProjectID.Equals(ProjectID));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

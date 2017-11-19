@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ReqManager.Data.Repositories.Project.Classes
 {
-    public class MeasureImportanceRepository : RepositoryBase<MeasureImportance>, IMeasureImportanceRepository
+    public class MeasureImportanceRepository : RepositoryBase<Importance>, IMeasureImportanceRepository
     {
         public MeasureImportanceRepository(IDbFactory dbFactory) : base(dbFactory)
         {

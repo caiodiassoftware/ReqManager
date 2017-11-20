@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -11,6 +10,7 @@ namespace ReqManager.Model
         [Key]
         public int RequirementRequestForChangesID { get; set; }
         public int RequirementID { get; set; }
+        public int StakeHolderRequirementID { get; set; }
         [Required]
         [MaxLength(1000), MinLength(10)]
         public string request { get; set; }
@@ -18,5 +18,6 @@ namespace ReqManager.Model
         public DateTime creationDate { get; set; }
 
         public virtual Requirement Requirement { get; set; }
+        public virtual StakeholderRequirement StakeholderRequirement { get; set; }
     }
 }

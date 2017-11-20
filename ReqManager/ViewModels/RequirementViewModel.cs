@@ -16,6 +16,8 @@ namespace ReqManager.ViewModels
         {
             linkReq = new List<LinkBetweenRequirementsEntity>();
             linkReqArt = new List<LinkBetweenRequirementsArtifactsEntity>();
+            characteristics = new List<RequirementCharacteristicsEntity>();
+            stakeholders = new List<StakeholderRequirementEntity>();
         }
 
         [Key]
@@ -34,6 +36,8 @@ namespace ReqManager.ViewModels
         [Required]
         [Display(Name = "Type")]
         public int RequirementTypeID { get; set; }
+        [Display(Name = "SubType")]
+        public int RequirementSubTypeID { get; set; }
         [Required(ErrorMessage = "This field is Required")]
         [Range(1, Double.PositiveInfinity)]
         [Display(Name = "Stakeholder Project")]
@@ -63,6 +67,7 @@ namespace ReqManager.ViewModels
             }
         }
 
+        public virtual RequirementSubTypeEntity RequirementSubType { get; set; }
         public virtual UserEntity Users { get; set; }
         public virtual ProjectEntity Project { get; set; }
         public virtual StakeholdersProjectEntity StakeholderProject { get; set; }
@@ -75,5 +80,9 @@ namespace ReqManager.ViewModels
         public List<LinkBetweenRequirementsEntity> linkReq { get; set; }
         [DisplayName]
         public List<LinkBetweenRequirementsArtifactsEntity> linkReqArt { get; set; }
+        [DisplayName]
+        public List<RequirementCharacteristicsEntity> characteristics { get; set; }
+        [DisplayName]
+        public List<StakeholderRequirementEntity> stakeholders { get; set; }
     }
 }

@@ -33,17 +33,21 @@ namespace ReqManager.Controllers
         private IUserService userService { get; set; }
         private IStakeholdersProjectService stakeholdersProject { get; set; }
         private IRequirementTemplateService templateService { get; set; }
+        private IRequirementCharacteristicsService reqCharacteristics { get; set; }
+        private IStakeholderRequirementService stakeholdersRequirement { get; set; }
 
         public RequirementController(
             IRequirementService requirementService,
             IMeasureImportanceService measureService,
             IRequirementStatusService statusService,
             IRequirementTypeService typeService,
+            IRequirementCharacteristicsService reqCharacteristics,
             IUserService userService,
             IRequirementRationaleService rationaleService,
             ILinkBetweenRequirementsService linkRequirementService,
             ILinkBetweenRequirementsArtifactsService linkReqArtifactService,
             IStakeholdersProjectService stakeholdersProject,
+            IStakeholderRequirementService stakeholdersRequirement,
             IRequirementTemplateService templateService,
             IProjectService projectService)
         {
@@ -53,6 +57,8 @@ namespace ReqManager.Controllers
                 cfg.CreateAutomaticMapping<RequirementEntity, RequirementViewModel>();
             });
 
+            this.stakeholdersRequirement = stakeholdersRequirement;
+            this.reqCharacteristics = reqCharacteristics;
             this.requirementService = requirementService;
             this.templateService = templateService;
             this.stakeholdersProject = stakeholdersProject;
@@ -87,6 +93,8 @@ namespace ReqManager.Controllers
                 RequirementViewModel vm = Mapper.Map<RequirementEntity, RequirementViewModel>(requirementService.get(id));
                 vm.linkReq = linkRequirementService.getAll().Where(r => r.RequirementOriginID.Equals(id) || r.RequirementTargetID.Equals(id)).ToList();
                 vm.linkReqArt = linkReqArtifactService.getAll().Where(r => r.RequirementID.Equals(id)).ToList();
+                vm.characteristics = reqCharacteristics.getAll().Where(r => r.RequirementID.Equals(id)).ToList();
+                vm.stakeholders = stakeholdersRequirement.getAll().Where(r => r.ProjectRequirements.RequirementID.Equals(id)).ToList();
 
                 return View(vm);
             }

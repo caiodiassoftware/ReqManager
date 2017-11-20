@@ -11,6 +11,8 @@
             <li><a href="#req">Requirement</a></li>
             <li><a href="#rr">R-R Traceability</a></li>
             <li><a href="#ra">R-A Traceability</a></li>
+            <li><a href="#stakeholder">Stakeholders</a></li>
+            <li><a href="#characteristics">Characteristics</a></li>
         </ul>
         <div id="req">
             <dl class="dl-horizontal">
@@ -192,6 +194,52 @@
                     </tr>
                 }
 
+            </table>
+        </div>
+        <div id="stakeholder">
+            <table class="table">
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Creation Date
+                    </th>
+                </tr>
+                @foreach (var item in Model.stakeholders)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DisplayName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.creationDate)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <div id="characteristics">
+            <table class="table">
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Active</th>
+                </tr>
+                @foreach (var item in Model.characteristics)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Characteristics.name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Characteristics.description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Characteristics.active)
+                        </td>
+                    </tr>
+                }
             </table>
         </div>
     </div>

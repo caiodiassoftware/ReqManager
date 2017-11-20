@@ -1,0 +1,43 @@
+﻿@model IEnumerable<ReqManager.Entities.Requirement.RequirementCharacteristicsEntity>
+
+@{
+    ViewBag.Title = "Listing of Requirements Characteristics";
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Characteristics.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Requirement.code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.active)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Characteristics.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Requirement.code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.active)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.RequirementCharacteristicsID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.RequirementCharacteristicsID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.RequirementCharacteristicsID })
+        </td>
+    </tr>
+}
+
+</table>

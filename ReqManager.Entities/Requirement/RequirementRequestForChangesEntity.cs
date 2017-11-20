@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ReqManager.Entities.Project;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace ReqManager.Entities.Requirement
@@ -8,6 +9,7 @@ namespace ReqManager.Entities.Requirement
         [Key]
         public int RequirementRequestForChangesID { get; set; }
         public int RequirementID { get; set; }
+        public int StakeHolderRequirementID { get; set; }
         [Required]
         [MaxLength(1000), MinLength(10)]
         public string request { get; set; }
@@ -15,5 +17,6 @@ namespace ReqManager.Entities.Requirement
         public DateTime creationDate { get; set; }
 
         public virtual RequirementEntity Requirement { get; set; }
+        public virtual StakeholderRequirementEntity StakeholderRequirement { get; set; }
     }
 }

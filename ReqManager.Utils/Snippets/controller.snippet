@@ -18,57 +18,12 @@
         </Literal>
       </Declarations>
       <Code Language="CSharp">
-        <![CDATA[#region GETS
-
-        public override ActionResult Create()
+        <![CDATA[public class $EntityName$Controller : BaseController<$EntityName$Entity>
+    {
+        public $EntityName$Controller(I$EntityName$Service service) : base(service)
         {
-            return dropDowns();
         }
-
-        public override ActionResult Edit(int? id)
-        {
-            base.Edit(id);
-            return dropDowns(Service.get(id));
-        }
-
-        public override ActionResult Delete(int? id)
-        {
-            base.Delete(id);
-            return dropDowns(Service.get(id));
-        }
-
-        #endregion
-
-        #region POST
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public override ActionResult Create($EntityName$Entity $EntityName$Entity)
-        {
-            base.Create($EntityName$Entity);
-            return dropDowns($EntityName$Entity);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public override ActionResult Edit($EntityName$Entity $EntityName$Entity)
-        {
-            base.Edit($EntityName$Entity);
-            return dropDowns($EntityName$Entity);
-        }
-
-        #endregion
-
-        #region Private Methods
-
-        private ActionResult dropDowns($EntityName$Entity entity = null)
-        {
-            ViewBag.ID = new SelectList(Service.getAll(), "ProjectID", "descrption");
-            ViewBag.ID = new SelectList(Service.getAll(), "", "");
-            return entity == null ? View() : View(entity);
-        }
-
-        #endregion
+    }
         ]]>
       </Code>
     </Snippet>

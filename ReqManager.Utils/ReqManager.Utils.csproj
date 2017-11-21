@@ -48,7 +48,9 @@
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Script\GenerateCodesScript.sql" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Snippets\controller.snippet" />
     <None Include="Snippets\repository.snippet" />

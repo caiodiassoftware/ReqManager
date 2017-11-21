@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ReqManager.Entities.Project.MeasureImportanceEntity>
+﻿@model IEnumerable<ReqManager.Entities.Project.ImportanceEntity>
 
 @{
     ViewBag.Title = "Listing Measure Importance";
@@ -21,9 +21,9 @@
             @Html.DisplayFor(modelItem => item.description)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MeasureImportanceID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MeasureImportanceID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MeasureImportanceID })
+            @Html.ActionLink("Edit", "Edit", new { id=item.ImportanceID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ImportanceID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ImportanceID })
         </td>
     </tr>
 }

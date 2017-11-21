@@ -17,8 +17,8 @@ namespace ReqManager.Entities.Artifact
         public string descriptionTypeArtifact { get; set; }
         [Required]
         [MaxLength(50)]
-        [Display(Name = "Measure Importance")]
-        public string descriptionMeasureImportance { get; set; }
+        [Display(Name = "Importance")]
+        public string descriptionImportance { get; set; }
         [Required]
         [MaxLength(300)]
         [Display(Name = "Path")]

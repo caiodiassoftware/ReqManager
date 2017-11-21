@@ -56,7 +56,7 @@
     <Compile Include="Link\TypeLinkEntity.cs" />
     <Compile Include="Requirement\CharacteristicsEntity.cs" />
     <Compile Include="Project\HistoryProjectEntity.cs" />
-    <Compile Include="Project\MeasureImportanceEntity.cs" />
+    <Compile Include="Project\ImportanceEntity.cs" />
     <Compile Include="Project\ProjectEntity.cs" />
     <Compile Include="Project\ProjectPhasesEntity.cs" />
     <Compile Include="Project\ProjectRequirementsEntity.cs" />

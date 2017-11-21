@@ -18,7 +18,7 @@ namespace ReqManager.Model
         public int ProjectArtifactID { get; set; }
         public int UserID { get; set; }
         public int ArtifactTypeID { get; set; }
-        public int MeasureImportanceID { get; set; }
+        public int ImportanceID { get; set; }
         public int ProjectID { get; set; }
         [MaxLength(25), MinLength(4)]
         [Index(IsUnique = true)]
@@ -36,7 +36,7 @@ namespace ReqManager.Model
         public virtual ArtifactType ArtifactType { get; set; }
         public virtual ICollection<HistoryProjectArtifact> HistoryProjectArtifact { get; set; }
         public virtual ICollection<LinkBetweenRequirementsArtifacts> LinkRequirementArtifact { get; set; }
-        public virtual Importance MeasureImportance { get; set; }
+        public virtual Importance Importance { get; set; }
         public virtual Project Project { get; set; }
     }
 }

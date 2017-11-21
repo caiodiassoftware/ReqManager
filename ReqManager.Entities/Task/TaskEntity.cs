@@ -18,7 +18,7 @@ namespace ReqManager.Entities.Acess
         [Required(ErrorMessage = "This field is Required")]
         [Range(1, Double.PositiveInfinity)]
         [Display(Name = "Importance")]
-        public int MeasureImportanceID { get; set; }
+        public int ImportanceID { get; set; }
         [Required(ErrorMessage = "This field is Required")]
         [Range(1, Double.PositiveInfinity)]
         [Display(Name = "Status")]
@@ -56,7 +56,7 @@ namespace ReqManager.Entities.Acess
 
         public virtual UserEntity Users { get; set; }
         public virtual ProjectRequirementsEntity ProjectRequirements { get; set; }
-        public virtual MeasureImportanceEntity MeasureImportance { get; set; }
+        public virtual ImportanceEntity Importance { get; set; }
         public virtual StatusTaskEntity StatusTask { get; set; }
         public virtual TaskTypeTemplateEntity TaskTypeTemplate { get; set; }
         public virtual TaskTypeEntity TaskType { get; set; }

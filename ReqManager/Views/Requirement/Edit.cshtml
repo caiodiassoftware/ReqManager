@@ -80,10 +80,10 @@
         </fieldset>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.MeasureImportanceID, "MeasureImportanceID", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ImportanceID, "MeasureImportanceID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("MeasureImportanceID", null, "SELECT THE IMPORTANCE", htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.MeasureImportanceID, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.ImportanceID, "", new { @class = "text-danger" })
             </div>
         </div>
 

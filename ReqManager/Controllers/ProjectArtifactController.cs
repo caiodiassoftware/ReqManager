@@ -19,7 +19,7 @@ namespace ReqManager.Controllers
             IProjectArtifactService service,
             IUserService userService,
             IArtifactTypeService typeService,
-            IMeasureImportanceService measureService,
+            IImportanceService measureService,
             IProjectService projectService,
             IHistoryProjectArtifactService historyServiceArtifact) : base(service)
         {
@@ -57,7 +57,7 @@ namespace ReqManager.Controllers
                     ProjectArtifactEntity artifact = Service.get(entity.ProjectArtifactID);
                     history.ProjectArtifactID = artifact.ProjectArtifactID;
                     history.description = artifact.description;
-                    history.descriptionMeasureImportance = artifact.MeasureImportance.description;
+                    history.descriptionImportance = artifact.Importance.description;
                     history.descriptionTypeArtifact = artifact.ArtifactType.description;
                     history.login = getLoginUser();
                     history.path = artifact.path;

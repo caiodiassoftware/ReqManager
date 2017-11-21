@@ -4,9 +4,9 @@ using ReqManager.Services.Project.Interfaces;
 
 namespace ReqManager.Controllers
 {
-    public class MeasureImportanceController : BaseController<MeasureImportanceEntity>
+    public class ImportanceController : BaseController<ImportanceEntity>
     {
-        public MeasureImportanceController(IMeasureImportanceService service) : base(service)
+        public ImportanceController(IImportanceService service) : base(service)
         {
         }
     }

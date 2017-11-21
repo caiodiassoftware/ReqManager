@@ -18,7 +18,7 @@ namespace ReqManager.Model
         public int TaskID { get; set; }
         public int UserID { get; set; }
         public int ProjectRequirementID { get; set; }
-        public int MeasureImportanceID { get; set; }
+        public int ImportanceID { get; set; }
         public int StatusTaskID { get; set; }
         public int TaskTypeTemplateID { get; set; }
         public int TaskTypeID { get; set; }
@@ -37,7 +37,7 @@ namespace ReqManager.Model
     
         public virtual Users Users { get; set; }
         public virtual ProjectRequirements ProjectRequirements { get; set; }
-        public virtual Importance MeasureImportance { get; set; }
+        public virtual Importance Importance { get; set; }
         public virtual ICollection<HistoryTask> HistoryTask { get; set; }
         public virtual StatusTask StatusTask { get; set; }
         public virtual TaskTypeTemplate TaskTypeTemplate { get; set; }

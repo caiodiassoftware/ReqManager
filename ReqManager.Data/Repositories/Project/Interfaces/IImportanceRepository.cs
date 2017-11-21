@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ReqManager.Data.Repositories.Project.Interfaces
 {
-    public interface IMeasureImportanceRepository : IRepository<Importance>
+    public interface IImportanceRepository : IRepository<Importance>
     {
 
 

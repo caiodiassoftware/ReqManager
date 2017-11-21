@@ -19,7 +19,7 @@ namespace ReqManager.Controllers
             IRequirementRationaleService service,
             IRequirementTypeService typeService,
             IUserService userService,
-            IMeasureImportanceService measureService,
+            IImportanceService measureService,
             IRequirementStatusService statusService,
             IRequirementService reqService,
             IStakeholdersProjectService stakeholderProjectService,

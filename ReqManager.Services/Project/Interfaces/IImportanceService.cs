@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ReqManager.Services.Project.Interfaces
 {
-    public interface IMeasureImportanceService : IService<MeasureImportanceEntity>
+    public interface IImportanceService : IService<ImportanceEntity>
     {
 
     }

@@ -44,7 +44,7 @@ namespace ReqManager.ViewModels
         public int StakeholdersProjectID { get; set; }
         [Required]
         [Display(Name = "Importance")]
-        public int MeasureImportanceID { get; set; }
+        public int ImportanceID { get; set; }
         [Display(Name = "Req. Code")]
         public string code { get; set; }
         [Required]
@@ -63,7 +63,7 @@ namespace ReqManager.ViewModels
         {
             get
             {
-                return code + " - " + MeasureImportance.description;
+                return code + " - " + Importance.description;
             }
         }
 
@@ -71,7 +71,7 @@ namespace ReqManager.ViewModels
         public virtual UserEntity Users { get; set; }
         public virtual ProjectEntity Project { get; set; }
         public virtual StakeholdersProjectEntity StakeholderProject { get; set; }
-        public virtual MeasureImportanceEntity MeasureImportance { get; set; }
+        public virtual ImportanceEntity Importance { get; set; }
         public virtual RequirementTemplateEntity RequirementTemplate { get; set; }
         public virtual RequirementStatusEntity RequirementStatus { get; set; }
         public virtual RequirementTypeEntity RequirementType { get; set; }

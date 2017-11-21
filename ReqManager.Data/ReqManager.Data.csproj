@@ -90,7 +90,7 @@
     <Compile Include="Repositories\Link\Interfaces\ILinkRequirementAttributesRepository.cs" />
     <Compile Include="Repositories\Link\Interfaces\ITypeLinkRepository.cs" />
     <Compile Include="Repositories\Project\Classes\HistoryProjectRepository.cs" />
-    <Compile Include="Repositories\Project\Classes\MeasureImportanceRepository.cs" />
+    <Compile Include="Repositories\Project\Classes\ImportanceRepository.cs" />
     <Compile Include="Repositories\Artifact\Classes\ProjectArtifactRepository.cs" />
     <Compile Include="Repositories\Project\Classes\ProjectPhasesRepository.cs" />
     <Compile Include="Repositories\Project\Classes\ProjectRepository.cs" />
@@ -100,7 +100,7 @@
     <Compile Include="Repositories\Project\Classes\StakeholderRequirementRepository.cs" />
     <Compile Include="Repositories\Project\Classes\StakeholdersProjectRepository.cs" />
     <Compile Include="Repositories\Project\Interfaces\IHistoryProjectRepository.cs" />
-    <Compile Include="Repositories\Project\Interfaces\IMeasureImportanceRepository.cs" />
+    <Compile Include="Repositories\Project\Interfaces\IImportanceRepository.cs" />
     <Compile Include="Repositories\Artifact\Interfaces\IProjectArtifactRepository.cs" />
     <Compile Include="Repositories\Project\Interfaces\IProjectPhasesRepository.cs" />
     <Compile Include="Repositories\Project\Interfaces\IProjectRepository.cs" />

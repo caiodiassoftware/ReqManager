@@ -16,7 +16,7 @@ namespace ReqManager.Model
         public string descriptionTypeArtifact { get; set; }
         [Required]
         [MaxLength(50)]
-        public string descriptionMeasureImportance { get; set; }
+        public string descriptionImportance { get; set; }
         [Required]
         [MaxLength(300)]
         public string path { get; set; }

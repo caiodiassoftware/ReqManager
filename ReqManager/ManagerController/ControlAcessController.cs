@@ -106,7 +106,7 @@ namespace ReqManager.ManagerController
                 builder.Append("Error parsing DbUpdateException: " + e.ToString());
             }
 
-            string message = builder.ToString();
+            string message = builder.ToString() + " - " + ex.InnerException.InnerException.Message;
             ViewBag.MessageReqManager = message;
             return View(entity);
         }

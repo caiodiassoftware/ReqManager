@@ -19,7 +19,7 @@ namespace ReqManager.Model
         public string description { get; set; }
         [Required]
         [MaxLength(50), MinLength(5)]
-        public string descriptionMeasureImportance { get; set; }
+        public string descriptionImportance { get; set; }
         public DateTime changedDate { get; set; }
     
         public virtual Users Users { get; set; }

@@ -26,7 +26,7 @@ namespace ReqManager.Model
         public int RequirementTypeID { get; set; }
         public Nullable<int> RequirementSubTypeID { get; set; }
         public int StakeholdersProjectID { get; set; }
-        public int MeasureImportanceID { get; set; }
+        public int ImportanceID { get; set; }
         [MaxLength(25)]
         [Index(IsUnique = true)]
         public string code { get; set; }
@@ -45,7 +45,7 @@ namespace ReqManager.Model
         public virtual ICollection<ProjectRequirements> ProjectRequirements { get; set; }
         public virtual ICollection<RequirementRequestForChanges> RequirementRequestForChanges { get; set; }
         public virtual StakeholdersProject StakeholderProject { get; set; }
-        public virtual Importance MeasureImportance { get; set; }
+        public virtual Importance Importance { get; set; }
         public virtual Users Users { get; set; }
         public virtual RequirementTemplate RequirementTemplate { get; set; }
         public virtual RequirementStatus RequirementStatus { get; set; }

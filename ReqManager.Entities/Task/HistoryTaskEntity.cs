@@ -31,7 +31,7 @@ namespace ReqManager.Entities.Acess
         [Required]
         [MaxLength(50), MinLength(5)]
         [Display(Name = "Importance")]
-        public string descriptionMeasureImportance { get; set; }
+        public string descriptionImportance { get; set; }
         [Display(Name = "Changed Date")]
         public DateTime changedDate { get; set; } = DateTime.Now;
 

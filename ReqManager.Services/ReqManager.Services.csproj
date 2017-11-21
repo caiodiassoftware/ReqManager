@@ -86,7 +86,7 @@
     <Compile Include="Artifact\Classes\ArtifactTypeService.cs" />
     <Compile Include="Artifact\Classes\HistoryProjectArtifactService.cs" />
     <Compile Include="Project\Classes\HistoryProjectService.cs" />
-    <Compile Include="Project\Classes\MeasureImportanceService.cs" />
+    <Compile Include="Project\Classes\ImportanceService.cs" />
     <Compile Include="Artifact\Classes\ProjectArtifactService.cs" />
     <Compile Include="Project\Classes\ProjectPhasesService.cs" />
     <Compile Include="Project\Classes\ProjectRequirementsService.cs" />
@@ -98,7 +98,7 @@
     <Compile Include="Artifact\Interfaces\IArtifactTypeService.cs" />
     <Compile Include="Artifact\Interfaces\IHistoryProjectArtifactService.cs" />
     <Compile Include="Project\Interfaces\IHistoryProjectService.cs" />
-    <Compile Include="Project\Interfaces\IMeasureImportanceService.cs" />
+    <Compile Include="Project\Interfaces\IImportanceService.cs" />
     <Compile Include="Artifact\Interfaces\IProjectArtifactService.cs" />
     <Compile Include="Project\Interfaces\IProjectPhasesService.cs" />
     <Compile Include="Project\Interfaces\IProjectRequirementsService.cs" />

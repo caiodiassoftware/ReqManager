@@ -8,7 +8,7 @@ namespace ReqManager.Data.Migrations
     {
         public override void Up()
         {
-            var sqlFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"../../../ScriptSql/GenerateCodesScript.sql");
+            var sqlFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"../../../ReqManager.Utils/Script/GenerateCodesScript.sql");
             Sql(File.ReadAllText(sqlFile));
         }
         

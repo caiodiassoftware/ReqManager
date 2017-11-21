@@ -27,7 +27,7 @@ namespace ReqManager.Controllers
         private ILinkBetweenRequirementsArtifactsService linkReqArtifactService { get; set; }
         private IRequirementService requirementService { get; set; }
         private IProjectService projectService { get; set; }
-        private IMeasureImportanceService measureService { get; set; }
+        private IImportanceService measureService { get; set; }
         private IRequirementStatusService statusService { get; set; }
         private IRequirementTypeService typeService { get; set; }
         private IUserService userService { get; set; }
@@ -38,7 +38,7 @@ namespace ReqManager.Controllers
 
         public RequirementController(
             IRequirementService requirementService,
-            IMeasureImportanceService measureService,
+            IImportanceService measureService,
             IRequirementStatusService statusService,
             IRequirementTypeService typeService,
             IRequirementCharacteristicsService reqCharacteristics,
@@ -242,7 +242,7 @@ namespace ReqManager.Controllers
         {
             ViewData.Add("RequirementTemplateID", new SelectList(templateService.getAll(), "RequirementTemplateID", "description", vm == null ? 0 : vm.RequirementTemplateID));
             ViewData.Add("StakeholdersProjectID", new SelectList(stakeholdersProject.getAll(), "StakeholdersProjectID", "DisplayName", vm == null ? 0 : vm.StakeholdersProjectID));
-            ViewData.Add("MeasureImportanceID", new SelectList(measureService.getAll(), "MeasureImportanceID", "description", vm == null ? 0 : vm.MeasureImportanceID));
+            ViewData.Add("ImportanceID", new SelectList(measureService.getAll(), "ImportanceID", "description", vm == null ? 0 : vm.ImportanceID));
             ViewData.Add("RequirementStatusID", new SelectList(statusService.getAll(), "RequirementStatusID", "description", vm == null ? 0 : vm.RequirementStatusID));
             ViewData.Add("RequirementTypeID", new SelectList(typeService.getAll(), "RequirementTypeID", "description", vm == null ? 0 : vm.RequirementTypeID));
             ViewData.Add("UserID", new SelectList(userService.getAll(), "UserID", "name", vm == null ? 0 : vm.UserID));

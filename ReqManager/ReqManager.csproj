@@ -183,7 +183,7 @@
     <Compile Include="Controllers\LinkBetweenRequirementsController.cs" />
     <Compile Include="Controllers\LinkRequirementAttributesController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\MeasureImportanceController.cs" />
+    <Compile Include="Controllers\ImportanceController.cs" />
     <Compile Include="Controllers\ProjectArtifactController.cs" />
     <Compile Include="Controllers\ProjectPhasesController.cs" />
     <Compile Include="Controllers\ProjectRequirementsController.cs" />
@@ -526,11 +526,11 @@
     <Content Include="Views\Requirement\Details.cshtml" />
     <Content Include="Views\Requirement\Edit.cshtml" />
     <Content Include="Views\Requirement\Index.cshtml" />
-    <Content Include="Views\MeasureImportance\Create.cshtml" />
-    <Content Include="Views\MeasureImportance\Delete.cshtml" />
-    <Content Include="Views\MeasureImportance\Details.cshtml" />
-    <Content Include="Views\MeasureImportance\Edit.cshtml" />
-    <Content Include="Views\MeasureImportance\Index.cshtml" />
+    <Content Include="Views\Importance\Create.cshtml" />
+    <Content Include="Views\Importance\Delete.cshtml" />
+    <Content Include="Views\Importance\Details.cshtml" />
+    <Content Include="Views\Importance\Edit.cshtml" />
+    <Content Include="Views\Importance\Index.cshtml" />
     <Content Include="Views\RequirementActionHistory\Details.cshtml" />
     <Content Include="Views\RequirementActionHistory\Index.cshtml" />
     <Content Include="Views\RequirementRationale\Details.cshtml" />

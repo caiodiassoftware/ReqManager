@@ -42,7 +42,8 @@ namespace ReqManager.Data.Infrastructure
         {
             try
             {
-                transaction = DbContext.Database.CurrentTransaction;
+                if(transaction == null)
+                    transaction = DbContext.Database.BeginTransaction();
             }
             catch (Exception ex)
             {

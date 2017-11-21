@@ -107,7 +107,7 @@
                             @Html.DisplayFor(modelItem => item.code)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.description)
+                            @Html.DisplayFor(modelItem => item.title)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.StakeholderProject.Stakeholders.DisplayName)
@@ -151,7 +151,7 @@
                             @Html.DisplayFor(modelItem => item.ArtifactType.description)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.MeasureImportance.description)
+                            @Html.DisplayFor(modelItem => item.Importance.description)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Users.name)

@@ -58,14 +58,6 @@
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.StakeholdersProjectID)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.StakeholdersProjectID)
-                </dd>
-
-                <dt>
                     @Html.DisplayNameFor(model => model.code)
                 </dt>
 
@@ -78,7 +70,7 @@
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(model => model.description)
+                    @Html.Raw(Model.description)
                 </dd>
 
                 <dt>
@@ -222,6 +214,7 @@
         <div id="characteristics">
             <table class="table">
                 <tr>
+                    <th>Req. Code</th>
                     <th>Name</th>
                     <th>Description</th>
                     <th>Active</th>
@@ -229,6 +222,9 @@
                 @foreach (var item in Model.characteristics)
                 {
                     <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Requirement.code)
+                        </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Characteristics.name)
                         </td>

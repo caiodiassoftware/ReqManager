@@ -22,6 +22,7 @@ namespace ReqManager.ViewModels
 
         [Key]
         public int RequirementID { get; set; }
+        [Required]
         [Display(Name = "Template")]
         public int RequirementTemplateID { get; set; }
         [Required]

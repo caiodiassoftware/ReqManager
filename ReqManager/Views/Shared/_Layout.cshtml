@@ -7,8 +7,9 @@
     @Styles.Render("~/Scripts/css/css")
     @Scripts.Render("~/bundles/modernizr")
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>  
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
     @*TOP*@
@@ -154,7 +155,11 @@
     @Scripts.Render("~/Scripts/css/js")
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("scripts", required: false)
+    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script> 
     <script type="text/javascript">
+        $(document).ready(function () {
+            $('.display').dataTable();
+        });
         $('#tabs').tabs({
             beforeLoad: function (event, ui) {
                 ui.panel.html('loading...');

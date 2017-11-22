@@ -50,35 +50,17 @@
     $(document).ready(function () {
         var filterValues = {};
         $('#characteristics').dataTable({
-            serverSide: true,
-            columns: [
-                { data: "name" },
-                { data: "description" },
-                { data: "active" }
-            ],
-            ajax: function (data, callback, settings) {
-                filterValues.draw = data.draw;
-                filterValues.start = data.start;
-                filterValues.length = data.length;
-                $.ajax({
-                    url: '/Characteristics/GetFilter',
-                    method: 'GET',
-                    data: filterValues
-                }).done(callback);
-            }
-
-            @*"bServerSide": true,
+            "bServerSide": true,
             "bProcessing": true,
             ajax: {
                 url: '@Url.Action("GetFilter", "Characteristics")',
                 type: 'POST',
-                data: {search : $('#characteristics_filter').val()}
             },
             "aoColumns": [
                        { "sName": "name" },
                        { "sName": "description" },
                        { "sName": "active" }
-            ]*@
+            ]
         });
     });
 </script>

@@ -1,4 +1,5 @@
-﻿using ReqManager.Entities.Project;
+﻿using DataTables.Mvc;
+using ReqManager.Entities.Project;
 using ReqManager.ManagerController;
 using ReqManager.Services.Estructure;
 using ReqManager.ViewModels;
@@ -15,21 +16,19 @@ namespace ReqManager.Controllers
         {
         }
 
-        public ActionResult GetFilter()
+        public ActionResult GetFilter([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel)
         {
             try
             {
                 IEnumerable<CharacteristicsEntity> filtered = Service.getAll();
 
-                string filterName = Request.QueryString["name"];
-
-                if (!string.IsNullOrEmpty(filterName))
+                if (!string.IsNullOrEmpty(requestModel.Search.Value))
                 {
-                    filtered = filtered.Where(c => c.name.Contains(filterName)
+                    filtered = filtered.Where(c => c.name.Contains(requestModel.Search.Value)
                                ||
-                    c.description.Contains(filterName)
+                    c.description.Contains(requestModel.Search.Value)
                                ||
-                               c.active.ToString().Contains(filterName));
+                               c.active.ToString().Contains(requestModel.Search.Value));
                 }
 
                 var result = from c in filtered
@@ -37,7 +36,7 @@ namespace ReqManager.Controllers
 
                 return Json(new
                 {
-                    sEcho = filterName,
+                    sEcho = requestModel.Search.Value,
                     iTotalRecords = 97,
                     iTotalDisplayRecords = 3,
                     aaData = result

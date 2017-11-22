@@ -29,6 +29,13 @@ namespace ReqManager
                       "~/Content/site.css"));
             //
 
+            bundles.Add(new ScriptBundle("~/bundles/datatables").Include(
+                        "~/Scripts/DataTables/jquery.dataTables.min.js",
+                        "~/Scripts/DataTables/dataTables.bootstrap.js"));
+
+            bundles.Add(new StyleBundle("~/Content/datatables").Include(
+                      "~/Content/DataTables/css/dataTables.bootstrap.css"));
+
             bundles.Add(new StyleBundle("~/Scripts/css/css").Include(
                       "~/Scripts/css/bootstrap.min.css",
                       "~/Scripts/css/styles.css"));

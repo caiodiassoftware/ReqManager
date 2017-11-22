@@ -148,12 +148,11 @@ namespace ReqManager.Data.Infrastructure
             }            
         }
 
-        public virtual IEnumerable<TModel> getAll()
+        public virtual IEnumerable<TModel> getAll(int total = 0)
         {
             try
             {
-                var teste = dbSet.ToList();
-                return dbSet.ToList();
+                return (total != 0) ? dbSet.ToList().Take(total) : dbSet.ToList();
             }
             catch (Exception ex)
             {

@@ -6,6 +6,7 @@ using ReqManager.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web.Mvc;
 
 namespace ReqManager.Controllers
@@ -20,23 +21,38 @@ namespace ReqManager.Controllers
         {
             try
             {
-                IEnumerable<CharacteristicsEntity> filtered = Service.getAll();
+                var characteristics = Service.getAll();
+                List<CharacteristicsEntity> filtered = new List<CharacteristicsEntity>();
+                IEnumerable<string[]> result;
+                string searchValue = requestModel.Search.Value;
 
-                if (!string.IsNullOrEmpty(requestModel.Search.Value))
+                if (!string.IsNullOrEmpty(searchValue))
                 {
-                    filtered = filtered.Where(c => c.name.Contains(requestModel.Search.Value)
-                               ||
-                    c.description.Contains(requestModel.Search.Value)
-                               ||
-                               c.active.ToString().Contains(requestModel.Search.Value));
-                }
+                    foreach (CharacteristicsEntity item in characteristics)
+                    {
+                        foreach (PropertyInfo pi in item.GetType().GetProperties())
+                        {
+                            string value = pi.GetValue(item).ToString();
+                            if (value.Contains(searchValue))
+                            {
+                                filtered.Add(item);
+                                break;
+                            }
+                        }
+                    }
 
-                var result = from c in filtered
+                    result = from c in filtered
                              select new[] { c.name, c.description, c.active.ToString() };
+                }
+                else
+                {
+                    result = from c in characteristics.Take(5)
+                             select new[] { c.name, c.description, c.active.ToString() };
+                }
 
                 return Json(new
                 {
-                    sEcho = requestModel.Search.Value,
+                    //sEcho = requestModel.Search.Value,
                     iTotalRecords = 97,
                     iTotalDisplayRecords = 3,
                     aaData = result

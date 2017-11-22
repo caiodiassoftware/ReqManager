@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReqManager.Services.Estructure
 {
@@ -15,7 +12,7 @@ namespace ReqManager.Services.Estructure
         void delete(Expression<Func<TEntity, bool>> where);
         TEntity get(int? id);
         TEntity get(Expression<Func<TEntity, bool>> where);
-        IEnumerable<TEntity> getAll();
+        IEnumerable<TEntity> getAll(int total = 0);
         IEnumerable<TEntity> filter(Expression<Func<TEntity, bool>> where);
         void saveChanges();
     }

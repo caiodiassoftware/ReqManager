@@ -51,7 +51,7 @@
         var filterValues = {};
         $('#characteristics').dataTable({
             "bServerSide": true,
-            "bProcessing": true,
+            "bProcessing": false,
             ajax: {
                 url: '@Url.Action("GetFilter", "Characteristics")',
                 type: 'POST',

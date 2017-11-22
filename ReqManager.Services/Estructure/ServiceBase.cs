@@ -3,10 +3,7 @@ using ReqManager.Data.Infrastructure;
 using ReqManager.Services.Extensions;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReqManager.Services.Estructure
 {
@@ -116,11 +113,11 @@ namespace ReqManager.Services.Estructure
             }
         }
 
-        public virtual IEnumerable<TEntity> getAll()
+        public virtual IEnumerable<TEntity> getAll(int total = 0)
         {
             try
             {
-                return Mapper.Map<IEnumerable<TModel>, IEnumerable<TEntity>>(repository.getAll());
+                return Mapper.Map<IEnumerable<TModel>, IEnumerable<TEntity>>(repository.getAll(total));
             }
             catch (Exception ex)
             {

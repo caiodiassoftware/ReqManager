@@ -14,7 +14,7 @@ namespace ReqManager.Data.Infrastructure
         void delete(Expression<Func<T, bool>> where);
         T get(int? id);
         T get(Expression<Func<T, bool>> where);
-        IEnumerable<T> getAll();
+        IEnumerable<T> getAll(int total = 0);
         IEnumerable<T> filter(Expression<Func<T, bool>> where);
     }
 }

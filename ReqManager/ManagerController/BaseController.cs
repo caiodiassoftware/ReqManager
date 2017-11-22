@@ -36,7 +36,7 @@ namespace ReqManager.ManagerController
         {
             try
             {
-                return View(Service.getAll());
+                return View(Service.getAll(5));
             }
             catch (Exception ex)
             {

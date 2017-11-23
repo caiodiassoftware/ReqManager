@@ -1,4 +1,7 @@
-﻿using ReqManager.Entities.Acess;
+﻿using DataTables.Mvc;
+using Newtonsoft.Json;
+using ReqManager.Entities.Acess;
+using ReqManager.Services.Estructure;
 using ReqManager.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -7,13 +10,24 @@ using System.Data.Entity.Validation;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace ReqManager.ManagerController
 {
     public class ControlAcessController<TEntity> : Controller where TEntity: class
     {
+        #region Attributes
+
+        protected IService<TEntity> Service { get; set; }
+
+        #endregion
+
+        public ControlAcessController(IService<TEntity> service)
+        {
+            this.Service = service;
+        }
+
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             try
@@ -50,6 +64,60 @@ namespace ReqManager.ManagerController
                 throw ex;
             }
         }
+
+        #region Filters
+
+        public ActionResult GetFilter([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel)
+        {
+            try
+            {
+                List<TEntity> characteristics = Service.getAll().ToList();
+                List<TEntity> result = new List<TEntity>();
+                string searchValue = requestModel.Search.Value;
+
+                if (!string.IsNullOrEmpty(searchValue))
+                {
+                    foreach (TEntity item in characteristics)
+                    {
+                        foreach (PropertyInfo pi in item.GetType().GetProperties())
+                        {
+                            string value = pi.GetValue(item).ToString();
+
+                            string json = new JavaScriptSerializer().Serialize(item);
+                            if (json.Contains(searchValue))
+                            {
+                                result.Add(item);
+                                break;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    result = characteristics.Take(5).ToList();
+                }
+
+                //string jsonReturn = JsonConvert.SerializeObject(result, Formatting.Indented,
+                //    new JsonSerializerSettings
+                //    {
+                //        DateFormatHandling = DateFormatHandling.IsoDateFormat
+                //    });
+
+                return Json(new
+                {
+                    //sEcho = requestModel.Search.Value,
+                    iTotalRecords = result.Count(),
+                    iTotalDisplayRecords = result.Count(),
+                    aaData = result
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        #endregion
 
         #region Protected and Private Methods
 

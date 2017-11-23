@@ -15,7 +15,7 @@ using System.Web.Mvc;
 
 namespace ReqManager.Controllers
 {
-    public class TrackingController : ControlAcessController<TrackingViewModel>
+    public class TrackingController : Controller
     {
         #region Propriets
 

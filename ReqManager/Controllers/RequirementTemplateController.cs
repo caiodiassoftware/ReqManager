@@ -15,9 +15,8 @@ namespace ReqManager.Controllers
 {
     public class RequirementTemplateController : ControlAcessController<RequirementTemplateEntity>
     {
-        private IRequirementTemplateService Service { get; set; }
-
-        public RequirementTemplateController(IRequirementTemplateService service, IUserService userService, IRequirementTypeService type)
+        public RequirementTemplateController
+            (IRequirementTemplateService service, IUserService userService, IRequirementTypeService type) : base(service)
         {
             Mapper.Initialize(cfg =>
             {

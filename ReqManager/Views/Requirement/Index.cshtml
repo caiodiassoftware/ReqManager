@@ -7,66 +7,112 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.code)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Importance.description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RequirementStatus.description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RequirementType.description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Users.name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StakeholdersProjectID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.creationDate)
-        </th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.code)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Importance.description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RequirementStatus.description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RequirementType.description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Users.name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StakeholderProject.DisplayName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.creationDate)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.RequirementID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.RequirementID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.RequirementID })
-        </td>
-    </tr>
-}
+<table id="requirement" class="display">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Importance.description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RequirementStatus.description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RequirementType.description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StakeholdersProjectID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.creationDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Importance.description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RequirementStatus.description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RequirementType.description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Users.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StakeholderProject.DisplayName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.creationDate)
+                </td>
+            </tr>
+        }
+    </tbody>
 
 </table>
+
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function () {
+        $('#requirement').dataTable({
+            "bServerSide": true,
+            "bProcessing": false,
+            ajax: {
+                "url": '@Url.Action("GetFilter", "Requirement")',
+                "type": 'POST',
+                "dataSrc": function (json) {
+                    var return_data = new Array();
+                    for (var i = 0; i < json.aaData.length; i++) {
+                        
+                        return_data.push({
+                            'code': json.aaData[i].code,
+                            'importanceDescription': json.aaData[i].Importance.description,
+                            'statusDescription': json.aaData[i].RequirementStatus.description,
+                            'typeDescription': json.aaData[i].RequirementType.description,
+                            'name': json.aaData[i].Users.name,
+                            'DisplayName': json.aaData[i].StakeholderProject.DisplayName,
+                            'title': json.aaData[i].title,
+                            'creationDate': json.aaData[i].creationDate,
+                            'action': '<a href=\"/Requirement/Edit/' +
+                                json.aaData[i].RequirementID + '\">Edit</a> | <a href=\"/Requirement/Details/' +
+                                json.aaData[i].RequirementID + '\">Details</a> | <a href=\"/Requirement/Delete/' +
+                                json.aaData[i].RequirementID + '\">Delete</a>'
+                        })
+                    }
+
+                    return return_data;
+                }
+            },
+            "aoColumns": [
+                { 'data': 'code' },
+                { 'data': 'importanceDescription' },
+                { 'data': 'statusDescription' },
+                { 'data': 'typeDescription' },
+                { 'data': 'name' },
+                { 'data': 'DisplayName' },
+                { 'data': 'title' },
+                { 'data': 'creationDate' },
+                { 'data': 'action' }
+            ]
+        });
+    });
+</script>

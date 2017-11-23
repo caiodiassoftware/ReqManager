@@ -49,7 +49,7 @@ namespace ReqManager.Controllers
             IStakeholdersProjectService stakeholdersProject,
             IStakeholderRequirementService stakeholdersRequirement,
             IRequirementTemplateService templateService,
-            IProjectService projectService)
+            IProjectService projectService) : base(requirementService)
         {
             Mapper.Initialize(cfg =>
             {

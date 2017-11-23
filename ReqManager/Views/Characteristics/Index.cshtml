@@ -48,18 +48,29 @@
 
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function () {
-        var filterValues = {};
         $('#characteristics').dataTable({
             "bServerSide": true,
             "bProcessing": false,
             ajax: {
-                url: '@Url.Action("GetFilter", "Characteristics")',
-                type: 'POST',
+                "url": '@Url.Action("GetFilter", "Characteristics")',
+                "type": 'POST',
+                "dataSrc": function (json) {
+                    var return_data = new Array();                    
+                    for (var i = 0; i < json.aaData.length; i++) {
+                        return_data.push({
+                            'name': json.aaData[i].name,
+                            'description': json.aaData[i].description,
+                            'active': json.aaData[i].active
+                        })
+                    }
+
+                    return return_data;
+                }
             },
             "aoColumns": [
-                       { "sName": "name" },
-                       { "sName": "description" },
-                       { "sName": "active" }
+                { 'data': 'name' },
+                { 'data': 'description' },
+                { 'data': 'active' }
             ]
         });
     });

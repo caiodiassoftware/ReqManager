@@ -1,7 +1,10 @@
-﻿using ReqManager.Entities.Acess;
+﻿using DataTables.Mvc;
+using ReqManager.Entities.Acess;
+using ReqManager.Entities.Project;
 using ReqManager.Services.Estructure;
 using ReqManager.ViewModels;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
@@ -31,6 +34,48 @@ namespace ReqManager.ManagerController
         #endregion
 
         #region GETS
+
+        public ActionResult GetFilter([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel)
+        {
+            try
+            {
+                List<TEntity> characteristics = Service.getAll().ToList();
+                List<TEntity> result = new List<TEntity>();
+                string searchValue = requestModel.Search.Value;
+
+                if (!string.IsNullOrEmpty(searchValue))
+                {
+                    foreach (TEntity item in characteristics)
+                    {
+                        foreach (PropertyInfo pi in item.GetType().GetProperties())
+                        {
+                            string value = pi.GetValue(item).ToString();
+                            if (value.Contains(searchValue))
+                            {
+                                result.Add(item);
+                                break;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    result = characteristics;
+                }
+
+                return Json(new
+                {
+                    //sEcho = requestModel.Search.Value,
+                    iTotalRecords = result.Count(),
+                    iTotalDisplayRecords = result.Count(),
+                    aaData = result
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public virtual ActionResult Index()
         {

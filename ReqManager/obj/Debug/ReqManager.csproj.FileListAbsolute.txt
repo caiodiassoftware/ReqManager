@@ -221,3 +221,7 @@ C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\ReqManager.Entities.pdb
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\ReqManager.Utils.pdb
 C:\Users\maquina06\Desktop\ReqManager\ReqManager\bin\ReqManager.Model.dll.config
 C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\DataTables.Mvc.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\DataTables.Mvc.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\ReqManager.Data.dll.config
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\ReqManager.Model.dll.config
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\obj\Debug\ReqManager.csproj.CoreCompileInputs.cache

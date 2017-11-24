@@ -29,7 +29,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.creationDate)
             </th>
-            @*<th></th>*@
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -57,11 +57,6 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.creationDate)
                 </td>
-                @*<td>
-                        @Html.ActionLink("Edit", "Edit", new { id=item.ProjectID }) |
-                        @Html.ActionLink("Details", "Details", new { id=item.ProjectID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id=item.ProjectID })
-                    </td>*@
             </tr>
         }
     </tbody>
@@ -77,15 +72,18 @@
                 "dataSrc": function (json) {
                     var return_data = new Array();
                     for (var i = 0; i < json.aaData.length; i++) {
-                        console.log(json.aaData[i]);
                         return_data.push({
                             'code': json.aaData[i].code,
                             'description': json.aaData[i].ProjectPhases.description,
                             'name': json.aaData[i].Users.name,
                             'description': json.aaData[i].description,
-                            'startDate': json.aaData[i].startDate,
-                            'endDate': json.aaData[i].endDate,
-                            'creationDate': json.aaData[i].creationDate,
+                            'startDate': fixDateTime(json.aaData[i].startDate),
+                            'endDate': fixDateTime(json.aaData[i].endDate),
+                            'creationDate': fixDateTime(json.aaData[i].creationDate),
+                            'action': '<a href=\"/Projects/Edit/' +
+                                json.aaData[i].ProjectID + '\">Edit</a> | <a href=\"/Projects/Details/' +
+                                json.aaData[i].ProjectID + '\">Details</a> | <a href=\"/Projects/Delete/' +
+                                json.aaData[i].ProjectID + '\">Delete</a>'
                         })
                     }
 
@@ -99,7 +97,8 @@
                 { 'data': 'description' },
                 { 'data': 'startDate' },
                 { 'data': 'endDate' },
-                { 'data': 'creationDate' }
+                { 'data': 'creationDate' },
+                { 'data': 'action' },
             ]
         });
     });

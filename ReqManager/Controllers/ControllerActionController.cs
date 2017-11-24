@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using ReqManager.Entities;
 using ReqManager.ManagerController;
-using ReqManager.Services.Estructure;
 using ReqManager.Services.Extensions;
 using ReqManager.Services.InterfacesServices;
 using ReqManager.ViewModels;

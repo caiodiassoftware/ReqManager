@@ -71,7 +71,7 @@
 
 </table>
 
-<script type="text/javascript" charset="utf-8">
+<script type="text/javascript" charset="utf-8">    
     $(document).ready(function () {
         $('#requirement').dataTable({
             "bServerSide": true,
@@ -79,10 +79,9 @@
             ajax: {
                 "url": '@Url.Action("GetFilter", "Requirement")',
                 "type": 'POST',
-                "dataSrc": function (json) {
+                "dataSrc": function (json) {                    
                     var return_data = new Array();
                     for (var i = 0; i < json.aaData.length; i++) {
-                        
                         return_data.push({
                             'code': json.aaData[i].code,
                             'importanceDescription': json.aaData[i].Importance.description,
@@ -91,7 +90,7 @@
                             'name': json.aaData[i].Users.name,
                             'DisplayName': json.aaData[i].StakeholderProject.DisplayName,
                             'title': json.aaData[i].title,
-                            'creationDate': json.aaData[i].creationDate,
+                            'creationDate': fixDateTime(json.aaData[i].creationDate),
                             'action': '<a href=\"/Requirement/Edit/' +
                                 json.aaData[i].RequirementID + '\">Edit</a> | <a href=\"/Requirement/Details/' +
                                 json.aaData[i].RequirementID + '\">Details</a> | <a href=\"/Requirement/Delete/' +

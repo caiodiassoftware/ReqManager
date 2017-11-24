@@ -19,7 +19,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.active)
             </th>
-            @*<th></th>*@
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -35,11 +35,6 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.active)
                 </td>
-                @*<td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.CharacteristicsID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.CharacteristicsID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.CharacteristicsID })
-                </td>*@
             </tr>
         }   
     </tbody>
@@ -60,7 +55,11 @@
                         return_data.push({
                             'name': json.aaData[i].name,
                             'description': json.aaData[i].description,
-                            'active': json.aaData[i].active
+                            'active': json.aaData[i].active,
+                            'action': '<a href=\"/Characteristics/Edit/' +
+                                json.aaData[i].CharacteristicID + '\">Edit</a> | <a href=\"/Characteristics/Details/' +
+                                json.aaData[i].CharacteristicID + '\">Details</a> | <a href=\"/Characteristics/Delete/' +
+                                json.aaData[i].CharacteristicID + '\">Delete</a>'
                         })
                     }
 
@@ -70,7 +69,8 @@
             "aoColumns": [
                 { 'data': 'name' },
                 { 'data': 'description' },
-                { 'data': 'active' }
+                { 'data': 'active' },
+                { 'data': 'action' }
             ]
         });
     });

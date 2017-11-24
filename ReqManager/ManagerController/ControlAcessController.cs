@@ -83,8 +83,8 @@ namespace ReqManager.ManagerController
                         {
                             string value = pi.GetValue(item).ToString();
 
-                            string json = new JavaScriptSerializer().Serialize(item);
-                            if (json.Contains(searchValue))
+                            string json = new JavaScriptSerializer().Serialize(item).ToLower(); ;
+                            if (json.Contains(searchValue.ToLower()))
                             {
                                 result.Add(item);
                                 break;
@@ -96,12 +96,6 @@ namespace ReqManager.ManagerController
                 {
                     result = characteristics.Take(5).ToList();
                 }
-
-                //string jsonReturn = JsonConvert.SerializeObject(result, Formatting.Indented,
-                //    new JsonSerializerSettings
-                //    {
-                //        DateFormatHandling = DateFormatHandling.IsoDateFormat
-                //    });
 
                 return Json(new
                 {

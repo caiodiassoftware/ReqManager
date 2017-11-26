@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ReqManager.Data.Repositories.Requirements.Classes
 {
-    public class RequirementRationaleRepository : RepositoryBase<RequirementRationale>, IRequirementRationaleRepository
+    public class RequirementRationaleRepository : RepositoryBase<RequirementVersions>, IRequirementRationaleRepository
     {
         public RequirementRationaleRepository(IDbFactory dbFactory) : base(dbFactory)
         {

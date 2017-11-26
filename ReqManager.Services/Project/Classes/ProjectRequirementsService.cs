@@ -29,6 +29,18 @@ namespace ReqManager.Services.Project.Classes
             }
         }
 
+        public ProjectRequirementsEntity getRequirementsByProjectAndRequirement(int ProjectID, int RequirementID)
+        {
+            try
+            {
+                return getRequirementsByProject(ProjectID).Where(r => r.RequirementID.Equals(RequirementID)).SingleOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public bool isTraceable(int ProjectID, int RequirementID)
         {
             try
@@ -40,5 +52,7 @@ namespace ReqManager.Services.Project.Classes
                 throw ex;
             }
         }
+
+
     }
 }

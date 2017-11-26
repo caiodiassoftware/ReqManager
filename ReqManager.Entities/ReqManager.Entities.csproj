@@ -66,9 +66,10 @@
     <Compile Include="Project\StakeholdersEntity.cs" />
     <Compile Include="Project\StakeholdersProjectEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Requirement\RequestStatusEntity.cs" />
     <Compile Include="Requirement\RequirementCharacteristicsEntity.cs" />
     <Compile Include="Requirement\RequirementEntity.cs" />
-    <Compile Include="Requirement\RequirementRationaleEntity.cs" />
+    <Compile Include="Requirement\RequirementVersionsEntity.cs" />
     <Compile Include="Requirement\RequirementRequestForChangesEntity.cs" />
     <Compile Include="Requirement\RequirementStatusEntity.cs" />
     <Compile Include="Requirement\RequirementSubTypeEntity.cs" />

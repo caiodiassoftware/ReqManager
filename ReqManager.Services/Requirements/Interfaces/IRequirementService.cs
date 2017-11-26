@@ -5,6 +5,6 @@ namespace ReqManager.Services.Requirements.Interfaces
 {
     public interface IRequirementService : IService<RequirementEntity>
     {
-        void update(ref RequirementEntity entity, string userLogin);
+        void update(ref RequirementEntity entity, int RequirementRequestForChangesID, string rationale);
     }
 }

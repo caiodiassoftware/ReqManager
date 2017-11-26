@@ -19,6 +19,9 @@
             @Html.DisplayNameFor(model => model.request)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.RequestStatus.description)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.creationDate)
         </th>
         <th></th>
@@ -30,10 +33,13 @@
             @Html.DisplayFor(modelItem => item.Requirement.code)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.StakeholderRequirement.StakeHolderRequirementID)
+            @Html.DisplayFor(modelItem => item.StakeholderRequirement.DisplayName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.request)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RequestStatus.description)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.creationDate)

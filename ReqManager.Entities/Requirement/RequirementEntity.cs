@@ -1,7 +1,6 @@
 ﻿using ReqManager.Entities.Acess;
 using ReqManager.Entities.Project;
 using System;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace ReqManager.Entities.Requirement
@@ -22,6 +21,8 @@ namespace ReqManager.Entities.Requirement
         [Required]
         [Display(Name = "Type")]
         public int RequirementTypeID { get; set; }
+        [Display(Name = "SubType")]
+        public int RequirementSubTypeID { get; set; }
         [Required]
         [Display(Name = "Stakeholder Project")]
         public int StakeholdersProjectID { get; set; }
@@ -30,6 +31,7 @@ namespace ReqManager.Entities.Requirement
         public int ImportanceID { get; set; }
         [Display(Name = "Req. Code")]
         public string code { get; set; }
+        public int versionNumber { get; set; }
         [Required]
         [Display(Name = "Description")]
         public string description { get; set; }
@@ -55,5 +57,6 @@ namespace ReqManager.Entities.Requirement
         public virtual RequirementTemplateEntity RequirementTemplate { get; set; }
         public virtual RequirementStatusEntity RequirementStatus { get; set; }
         public virtual RequirementTypeEntity RequirementType { get; set; }
+        public virtual RequirementSubTypeEntity RequirementSubType { get; set; }
     }
 }

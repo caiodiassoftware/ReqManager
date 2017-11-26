@@ -4,7 +4,6 @@ using ReqManager.Entities.Project;
 using ReqManager.Entities.Requirement;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
@@ -18,6 +17,7 @@ namespace ReqManager.ViewModels
             linkReqArt = new List<LinkBetweenRequirementsArtifactsEntity>();
             characteristics = new List<RequirementCharacteristicsEntity>();
             stakeholders = new List<StakeholderRequirementEntity>();
+            request = new List<RequirementRequestForChangesEntity>();
         }
 
         [Key]
@@ -37,12 +37,14 @@ namespace ReqManager.ViewModels
         [Required]
         [Display(Name = "Type")]
         public int RequirementTypeID { get; set; }
+        [Required]
         [Display(Name = "SubType")]
         public int RequirementSubTypeID { get; set; }
         [Required(ErrorMessage = "This field is Required")]
         [Range(1, Double.PositiveInfinity)]
         [Display(Name = "Stakeholder Project")]
         public int StakeholdersProjectID { get; set; }
+        public int versionNumber { get; set; }
         [Required]
         [Display(Name = "Importance")]
         public int ImportanceID { get; set; }
@@ -77,13 +79,10 @@ namespace ReqManager.ViewModels
         public virtual RequirementStatusEntity RequirementStatus { get; set; }
         public virtual RequirementTypeEntity RequirementType { get; set; }
 
-        [DisplayName]
         public List<LinkBetweenRequirementsEntity> linkReq { get; set; }
-        [DisplayName]
         public List<LinkBetweenRequirementsArtifactsEntity> linkReqArt { get; set; }
-        [DisplayName]
         public List<RequirementCharacteristicsEntity> characteristics { get; set; }
-        [DisplayName]
         public List<StakeholderRequirementEntity> stakeholders { get; set; }
+        public List<RequirementRequestForChangesEntity> request { get; set; }
     }
 }

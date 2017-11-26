@@ -22,7 +22,7 @@ namespace ReqManager.Controllers
     //REQ3
     public class RequirementController : ControlAcessController<RequirementEntity>
     {
-        private IRequirementRationaleService rationaleService { get; set; }
+        private IRequirementVersionsService rationaleService { get; set; }
         private ILinkBetweenRequirementsService linkRequirementService { get; set; }
         private ILinkBetweenRequirementsArtifactsService linkReqArtifactService { get; set; }
         private IRequirementService requirementService { get; set; }
@@ -35,15 +35,19 @@ namespace ReqManager.Controllers
         private IRequirementTemplateService templateService { get; set; }
         private IRequirementCharacteristicsService reqCharacteristics { get; set; }
         private IStakeholderRequirementService stakeholdersRequirement { get; set; }
+        private IRequirementRequestForChangesService requestService { get; set; }
+        private IRequirementSubTypeService subTypeService { get; set; }
 
         public RequirementController(
             IRequirementService requirementService,
             IImportanceService measureService,
+            IRequirementSubTypeService subTypeService,
             IRequirementStatusService statusService,
             IRequirementTypeService typeService,
             IRequirementCharacteristicsService reqCharacteristics,
             IUserService userService,
-            IRequirementRationaleService rationaleService,
+            IRequirementRequestForChangesService requestService,
+            IRequirementVersionsService rationaleService,
             ILinkBetweenRequirementsService linkRequirementService,
             ILinkBetweenRequirementsArtifactsService linkReqArtifactService,
             IStakeholdersProjectService stakeholdersProject,
@@ -57,6 +61,8 @@ namespace ReqManager.Controllers
                 cfg.CreateAutomaticMapping<RequirementEntity, RequirementViewModel>();
             });
 
+            this.subTypeService = subTypeService;
+            this.requestService = requestService;
             this.stakeholdersRequirement = stakeholdersRequirement;
             this.reqCharacteristics = reqCharacteristics;
             this.requirementService = requirementService;
@@ -95,6 +101,7 @@ namespace ReqManager.Controllers
                 vm.linkReqArt = linkReqArtifactService.getAll().Where(r => r.RequirementID.Equals(id)).ToList();
                 vm.characteristics = reqCharacteristics.getAll().Where(r => r.RequirementID.Equals(id)).ToList();
                 vm.stakeholders = stakeholdersRequirement.getAll().Where(r => r.ProjectRequirements.RequirementID.Equals(id)).ToList();
+                vm.request = requestService.getAll().Where(r => r.RequirementID.Equals(id)).ToList();
 
                 return View(vm);
             }
@@ -125,8 +132,10 @@ namespace ReqManager.Controllers
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                RequirementEntity entity = requirementService.get(id);
-                RequirementViewModel vm = Mapper.Map<RequirementEntity, RequirementViewModel>(entity);
+
+                RequirementRequestForChangesEntity request = requestService.get(id);
+                RequirementEditViewModel vm = Mapper.Map<RequirementEntity, RequirementEditViewModel>(request.Requirement);
+                vm.RequirementRequestForChangesID = Convert.ToInt32(id);
                 createViewData(vm);
 
                 if (vm == null)
@@ -192,16 +201,17 @@ namespace ReqManager.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(RequirementViewModel vm)
+        public ActionResult Edit(RequirementEditViewModel vm)
         {
             try
             {
-                RequirementEntity entity = null;
+                RequirementEntity req = new RequirementEntity();
 
                 if (ModelState.IsValid)
                 {
-                    entity = Mapper.Map<RequirementViewModel, RequirementEntity>(vm);
-                    requirementService.update(ref entity, getLoginUser());
+                    req = Mapper.Map<RequirementEditViewModel, RequirementEntity>(vm);
+                    req.RequirementSubTypeID = 1;
+                    requirementService.update(ref req, vm.RequirementRequestForChangesID, vm.rationale);
                     return RedirectToAction("Index");
                 }
                 else
@@ -209,7 +219,7 @@ namespace ReqManager.Controllers
                     getModelStateValidations();
                 }
 
-                return View(entity);
+                return View(req);
             }
             catch (Exception ex)
             {
@@ -238,13 +248,14 @@ namespace ReqManager.Controllers
 
         #region Private Methods
 
-        private void createViewData(RequirementViewModel vm = null)
+        private void createViewData(RequirementEditViewModel vm = null)
         {
             ViewData.Add("RequirementTemplateID", new SelectList(templateService.getAll(), "RequirementTemplateID", "description", vm == null ? 0 : vm.RequirementTemplateID));
             ViewData.Add("StakeholdersProjectID", new SelectList(stakeholdersProject.getAll(), "StakeholdersProjectID", "DisplayName", vm == null ? 0 : vm.StakeholdersProjectID));
             ViewData.Add("ImportanceID", new SelectList(measureService.getAll(), "ImportanceID", "description", vm == null ? 0 : vm.ImportanceID));
             ViewData.Add("RequirementStatusID", new SelectList(statusService.getAll(), "RequirementStatusID", "description", vm == null ? 0 : vm.RequirementStatusID));
             ViewData.Add("RequirementTypeID", new SelectList(typeService.getAll(), "RequirementTypeID", "description", vm == null ? 0 : vm.RequirementTypeID));
+            ViewData.Add("RequirementSubTypeID", new SelectList(subTypeService.getAll(), "RequirementSubTypeID", "description", vm == null ? 0 : vm.RequirementSubTypeID));
             ViewData.Add("UserID", new SelectList(userService.getAll(), "UserID", "name", vm == null ? 0 : vm.UserID));
             ViewData.Add("ProjectID", new SelectList(projectService.getAll(), "ProjectID", "DisplayName", vm == null ? 0 : vm.ProjectID));
         }

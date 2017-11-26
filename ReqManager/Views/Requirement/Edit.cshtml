@@ -1,4 +1,4 @@
-﻿@model ReqManager.ViewModels.RequirementViewModel
+﻿@model ReqManager.ViewModels.RequirementEditViewModel
 
 @{
     ViewBag.Title = "Edit Requirement";
@@ -18,6 +18,7 @@
         @Html.HiddenFor(model => model.code)
         @Html.HiddenFor(model => model.StakeholdersProjectID)
         @Html.HiddenFor(model => model.RequirementTemplateID)
+        @Html.HiddenFor(model => model.RequirementRequestForChangesID)
 
         <fieldset disabled>
             <div class="form-group">
@@ -69,6 +70,14 @@
             </div>
         </div>
 
+        <div class="form-group">
+            @Html.LabelFor(model => model.RequirementSubTypeID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("RequirementSubTypeID", Enumerable.Empty<SelectListItem>(), "SELECT THE REQUIREMENT SUB TYPE", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.RequirementSubTypeID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
         <fieldset disabled>
             <div class="form-group">
                 @Html.LabelFor(model => model.StakeholdersProjectID, "StakeholdersProjectID", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -80,9 +89,9 @@
         </fieldset>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ImportanceID, "MeasureImportanceID", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ImportanceID, "ImportanceID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("MeasureImportanceID", null, "SELECT THE IMPORTANCE", htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("ImportanceID", null, "SELECT THE IMPORTANCE", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ImportanceID, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -94,6 +103,15 @@
                 @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
             </div>
         </div>
+
+        <div class="form-group">
+            @Html.Label("Rationale", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.rationale, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.rationale, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
@@ -108,6 +126,43 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+<script type="text/javascript">
+
+        $("#RequirementTypeID").change(function () {
+            var id = $(this).val();
+            clearDropDown("RequirementTemplateID");
+            clearDropDown("RequirementSubTypeID");
+
+            $('#RequirementTemplateID').append("<option value='" + 0 + "'>SELECT THE REQUIREMENT TEMPLATE</option>");
+            $('#RequirementSubTypeID').append("<option value='" + 0 + "'>SELECT THE REQUIREMENT SUB TYPE</option>");
+
+            $.getJSON('@Url.Action("GetTemplatesOfRequirementType", "RequirementTemplate")', { type: id }, function (response) {
+                $.each(response, function (index, item) {
+                    var optionExists = ($('#RequirementTemplateID option[value=' + item.RequirementTemplateID + ']').length > 0);
+                    if (!optionExists)
+                        $('#RequirementTemplateID').append("<option value='" + item.RequirementTemplateID + "'>" + item.description + "</option>");
+                });
+            });
+
+            $.getJSON('@Url.Action("GetSubType", "RequirementSubType")', { type: id }, function (response) {
+                $.each(response, function (index, item) {
+                    var optionExists = ($('#RequirementSubTypeID option[value=' + item.RequirementSubTypeID + ']').length > 0);
+                    if (!optionExists)
+                        $('#RequirementSubTypeID').append("<option value='" + item.RequirementSubTypeID + "'>" + item.description + "</option>");
+                });
+            });
+        });
+
+
+        $("#RequirementTemplateID").change(function () {
+            var id = $(this).val();
+            $.getJSON('@Url.Action("GetTemplateHtml", "RequirementTemplate")', { id: id }, function (response) {
+                tinyMCE.activeEditor.setContent(response.templateHtml);
+            });
+        });
+</script>
+
     <script src="~/Scripts/tinymce/tinymce.min.js"></script>
     <script type="text/javascript">
         tinymce.init({

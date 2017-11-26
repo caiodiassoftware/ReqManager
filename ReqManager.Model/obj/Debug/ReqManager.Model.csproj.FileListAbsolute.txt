@@ -26,6 +26,4 @@ C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Model\bin\Debug\EntityFramew
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Model\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Model\bin\Debug\EntityFramework.xml
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Model\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Model\obj\Debug\ReqManager.Model.csprojResolveAssemblyReference.cache
-C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Model\obj\Debug\ReqManager.Model.csproj.CoreCompileInputs.cache
 C:\Users\cdias\Desktop\ReqManager\ReqManager.Model\obj\Debug\ReqManager.Model.csprojResolveAssemblyReference.cache

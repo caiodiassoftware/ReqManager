@@ -52,7 +52,7 @@ namespace ReqManager.Services.Estructure
             try
             {
                 TModel model = convertEntityToModel(entity);
-                repository.update(convertEntityToModel(entity));
+                repository.update(model);
                 commit(persistir);
                 entity = convertModelToEntity(model);                
             }
@@ -91,7 +91,10 @@ namespace ReqManager.Services.Estructure
         {
             try
             {
-                return convertModelToEntity(repository.get(id));
+                TModel model = repository.get(id);
+                TEntity entity = convertModelToEntity(model);
+                repository.Detached(model);
+                return entity;
             }
             catch (Exception ex)
             {
@@ -103,8 +106,7 @@ namespace ReqManager.Services.Estructure
         {
             try
             {
-                Expression<Func<TModel, bool>> newWhere = 
-                    Mapper.Map<Expression<Func<TEntity, bool>>, Expression<Func<TModel, bool>>>(where);
+                Expression<Func<TModel, bool>> newWhere = Mapper.Map<Expression<Func<TModel, bool>>>(where);
                 return Mapper.Map<TModel, TEntity>(repository.get(newWhere));
             }
             catch (Exception ex)

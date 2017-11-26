@@ -192,9 +192,9 @@
     <Compile Include="Controllers\ProjectPhasesController.cs" />
     <Compile Include="Controllers\ProjectRequirementsController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
+    <Compile Include="Controllers\RequestStatusController.cs" />
     <Compile Include="Controllers\RequirementCharacteristicsController.cs" />
     <Compile Include="Controllers\RequirementController.cs" />
-    <Compile Include="Controllers\RequirementRationaleController.cs" />
     <Compile Include="Controllers\RequirementRequestForChangesController.cs" />
     <Compile Include="Controllers\RequirementStatusController.cs" />
     <Compile Include="Controllers\RequirementSubTypeController.cs" />
@@ -219,6 +219,7 @@
     <Compile Include="ViewModels\jQueryDataTableParamModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\ProjectDetailsViewModel.cs" />
+    <Compile Include="ViewModels\RequirementEditViewModel.cs" />
     <Compile Include="ViewModels\RequirementTemplateViewModel.cs" />
     <Compile Include="ViewModels\RequirementViewModel.cs" />
     <Compile Include="ViewModels\TrackingViewModel.cs" />
@@ -538,8 +539,6 @@
     <Content Include="Views\Importance\Index.cshtml" />
     <Content Include="Views\RequirementActionHistory\Details.cshtml" />
     <Content Include="Views\RequirementActionHistory\Index.cshtml" />
-    <Content Include="Views\RequirementRationale\Details.cshtml" />
-    <Content Include="Views\RequirementRationale\Index.cshtml" />
     <Content Include="Views\ArtifactType\Create.cshtml" />
     <Content Include="Views\ArtifactType\Delete.cshtml" />
     <Content Include="Views\ArtifactType\Details.cshtml" />
@@ -590,7 +589,6 @@
     <Content Include="Views\LinkBetweenRequirementsArtifact\Details.cshtml" />
     <Content Include="Views\LinkBetweenRequirementsArtifact\Edit.cshtml" />
     <Content Include="Views\LinkBetweenRequirementsArtifact\Index.cshtml" />
-    <Content Include="Views\RequirementRationale\Rationale.cshtml" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.woff" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.ttf" />
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.eot" />
@@ -629,6 +627,11 @@
     <Content Include="Views\RequirementRequestForChanges\Details.cshtml" />
     <Content Include="Views\RequirementRequestForChanges\Edit.cshtml" />
     <Content Include="Views\RequirementRequestForChanges\Index.cshtml" />
+    <Content Include="Views\RequestStatus\Create.cshtml" />
+    <Content Include="Views\RequestStatus\Delete.cshtml" />
+    <Content Include="Views\RequestStatus\Details.cshtml" />
+    <Content Include="Views\RequestStatus\Edit.cshtml" />
+    <Content Include="Views\RequestStatus\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -11,7 +11,6 @@
     <div id="tabs">
         <ul>
             <li><a href="#link">Link</a></li>
-            <li><a href="#attributes">Attributes</a></li>
         </ul>
         <div id="link">
             <div class="form-horizontal">
@@ -55,38 +54,4 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-<script type="text/javascript">
-        @*$("#TypeLinkID").change(function () {
-            var id = $(this).val();
-            var select = document.getElementById("AttributeID");
-            var i;
-            for (i = select.options.length - 1 ; i >= 0 ; i--)
-                select.remove(i);
-
-            $('#AttributeID').append("<option value='" + 0 + "'>SELECT THE TYPE LINK ATTRIBUTE</option>");
-
-            $.getJSON('@Url.Action("GetAttributesOfTypeLink", "AttributesTypeLink")', { type: id }, function (response) {
-                $.each(response, function (index, item) {
-                    var optionExists = ($('#AttributeID option[value=' + item.AttributeID + ']').length > 0);
-                    if (!optionExists)
-                        $('#AttributeID').append("<option value='" + item.AttributeID + "'>" + item.description + "</option>");
-                });
-            });
-        });
-
-        $("#AddAttribute").click(function () {
-            $.ajax({
-                cache: false,
-                type: "POST",
-                url: "@Url.Action("AddAttribute", "LinkBetweenRequirementsArtifact")",
-                data: {
-                    AttributeId: $("#TypeLinkID").val(),
-                    value: $("#value").val()
-                }
-            });
-        });*@
-</script>
 }

@@ -10,6 +10,7 @@ namespace ReqManager.Entities.Requirement
         public int RequirementRequestForChangesID { get; set; }
         public int RequirementID { get; set; }
         public int StakeHolderRequirementID { get; set; }
+        public int RequestStatusID { get; set; }
         [Required]
         [MaxLength(1000), MinLength(10)]
         public string request { get; set; }
@@ -18,5 +19,6 @@ namespace ReqManager.Entities.Requirement
 
         public virtual RequirementEntity Requirement { get; set; }
         public virtual StakeholderRequirementEntity StakeholderRequirement { get; set; }
+        public virtual RequestStatusEntity RequestStatus { get; set; }
     }
 }

@@ -12,10 +12,18 @@ namespace ReqManager.Controllers
         public RequirementRequestForChangesController(
             IRequirementRequestForChangesService service,
             IStakeholderRequirementService stakeholders,
+            IRequestStatusService status,
             IRequirementService requirement) : base(service)
         {
             ViewData.Add("StakeHolderRequirementID", new SelectList(stakeholders.getAll(), "StakeHolderRequirementID", "DisplayName"));
             ViewData.Add("RequirementID", new SelectList(requirement.getAll(), "RequirementID", "DisplayName"));
+            ViewData.Add("RequestStatusID", new SelectList(status.getAll(), "RequestStatusID", "description"));
+        }
+
+        public override ActionResult Create(RequirementRequestForChangesEntity entity)
+        {
+            entity.RequestStatusID = 1;
+            return base.Create(entity);
         }
     }
 

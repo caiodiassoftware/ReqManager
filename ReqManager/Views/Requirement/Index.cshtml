@@ -91,9 +91,8 @@
                             'DisplayName': json.aaData[i].StakeholderProject.DisplayName,
                             'title': json.aaData[i].title,
                             'creationDate': fixDateTime(json.aaData[i].creationDate),
-                            'action': '<a href=\"/Requirement/Edit/' +
-                                json.aaData[i].RequirementID + '\">Edit</a> | <a href=\"/Requirement/Details/' +
-                                json.aaData[i].RequirementID + '\">Details</a> | <a href=\"/Requirement/Delete/' +
+                            'action': '<a href=\"/Requirement/Details/' + json.aaData[i].RequirementID +
+                                '\">Details</a> | <a href=\"/Requirement/Delete/' +
                                 json.aaData[i].RequirementID + '\">Delete</a>'
                         })
                     }

@@ -5,8 +5,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.Entity.Migrations;
 
 namespace ReqManager.Data.Infrastructure
 {
@@ -68,8 +67,7 @@ namespace ReqManager.Data.Infrastructure
         {
             try
             {
-                dbSet.Attach(model);
-                dataContext.Entry(model).State = System.Data.Entity.EntityState.Modified;
+                dataContext.Set<TModel>().AddOrUpdate(model);
             }
             catch (Exception ex)
             {
@@ -83,8 +81,9 @@ namespace ReqManager.Data.Infrastructure
             {
                 try
                 {
-                    TModel m = dbSet.Find(id);
-                    dbSet.Remove(m);
+                    TModel model = get(id);
+                    dbSet.Attach(model);
+                    dbSet.Remove(model);
                 }
                 catch (Exception ex)
                 {
@@ -124,11 +123,24 @@ namespace ReqManager.Data.Infrastructure
             }
         }
 
+        public void Detached(TModel model)
+        {
+            try
+            {
+                dataContext.Entry(model).State = System.Data.Entity.EntityState.Detached;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public virtual TModel get(int? id)
         {
             try
             {
-                return dbSet.Find(id);
+                TModel model = dbSet.Find(id);
+                return model;
             }
             catch (Exception ex)
             {
@@ -140,7 +152,7 @@ namespace ReqManager.Data.Infrastructure
         {
             try
             {
-                return dbSet.Where(where).FirstOrDefault();
+                return dbSet.AsNoTracking().Where(where).FirstOrDefault();
             }
             catch (Exception ex)
             {
@@ -152,7 +164,7 @@ namespace ReqManager.Data.Infrastructure
         {
             try
             {
-                return (total != 0) ? dbSet.ToList().Take(total) : dbSet.ToList();
+                return (total != 0) ? dbSet.AsNoTracking().ToList().Take(total) : dbSet.AsNoTracking().ToList();
             }
             catch (Exception ex)
             {

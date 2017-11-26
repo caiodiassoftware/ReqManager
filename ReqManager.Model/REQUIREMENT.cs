@@ -19,14 +19,17 @@ namespace ReqManager.Model
         }
     
         [Key]
+        [Index("IX_REQUIREMENT", 1, IsUnique = true)]
         public int RequirementID { get; set; }
-        public Nullable<int> RequirementTemplateID { get; set; }
+        public int RequirementTemplateID { get; set; }
         public int UserID { get; set; }
         public int RequirementStatusID { get; set; }
         public int RequirementTypeID { get; set; }
         public Nullable<int> RequirementSubTypeID { get; set; }
         public int StakeholdersProjectID { get; set; }
         public int ImportanceID { get; set; }
+        [Index("IX_REQUIREMENT", 2, IsUnique = true)]
+        public int versionNumber { get; set; }
         [MaxLength(25)]
         [Index(IsUnique = true)]
         public string code { get; set; }

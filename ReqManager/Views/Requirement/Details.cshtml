@@ -13,6 +13,7 @@
             <li><a href="#ra">R-A Traceability</a></li>
             <li><a href="#stakeholder">Stakeholders</a></li>
             <li><a href="#characteristics">Characteristics</a></li>
+            <li><a href="#request">Changes Request</a></li>
         </ul>
         <div id="req">
             <dl class="dl-horizontal">
@@ -238,13 +239,48 @@
                 }
             </table>
         </div>
+        <div id="request">
+            <table class="table">
+                <tr>
+                    <th>Req. Code</th>
+                    <th>Status</th>
+                    <th>Request</th>
+                    <th>Stakeholder</th>
+                    <th>Creation Date</th>
+                </tr>
+                @foreach (var item in Model.request)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Requirement.code)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RequestStatus.description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.request)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StakeholderRequirement.DisplayName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.creationDate)
+                        </td>
+                        <td>
+                            @if (item.RequestStatus.RequestStatusID != 3)
+                            {
+                                @Html.ActionLink("Approve", "Edit", new { id = item.RequirementRequestForChangesID })
+                            }
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
     </div>
 
     
 </div>
 <p>
     @Html.ActionLink("Tracking", "TrackingRequirement", "Tracking", new { id = Model.RequirementID }, null) |
-    @Html.ActionLink("Change Requirement", "Rationale", "RequirementRationale", new { id = Model.RequirementID }, null) |
-    @Html.ActionLink("Edit", "Edit", new { id = Model.RequirementID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

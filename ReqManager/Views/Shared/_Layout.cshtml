@@ -47,9 +47,9 @@
                 @if (ViewBag.MessageReqManager != null)
                 {
                     <script type="text/javascript">
-                            window.onload = function () {
-                                alert("@ViewBag.MessageReqManager");
-                            };
+                        window.onload = function () {
+                            alert("@ViewBag.MessageReqManager");
+                        };
                     </script>
                 }
 
@@ -90,7 +90,7 @@
                             <li>@Html.ActionLink("Stakeholder", "Index", "Stakeholders")</li>
                             <li>@Html.ActionLink("Classification", "Index", "StakeholderClassification")</li>
                             <li>@Html.ActionLink("Stakeholder and Project", "Index", "StakeholdersProject")</li>
-                            <li>@Html.ActionLink("Stakeholders and Requirements ", "Index", "StakeholderRequirement")</li>                            
+                            <li>@Html.ActionLink("Stakeholders and Requirements ", "Index", "StakeholderRequirement")</li>
                         </ul>
                     </li>
                     <li class="nav-header">
@@ -98,10 +98,10 @@
                         <ul class="nav nav-stacked collapse" style="margin-left:6%;" id="menu5">
                             <li>@Html.ActionLink("Requirements", "Index", "Requirement")</li>
                             <li>@Html.ActionLink("Types", "Index", "RequirementTypes")</li>
+                            <li>@Html.ActionLink("SubTypes", "Index", "RequirementSubType")</li>
                             <li>@Html.ActionLink("Status", "Index", "RequirementStatus")</li>
                             <li>@Html.ActionLink("Templates", "Index", "RequirementTemplate")</li>
                             <li>@Html.ActionLink("Requested Changes", "Index", "RequirementRationale")</li>
-                            <li>@Html.ActionLink("Requirements History", "Index", "RequirementActionHistory")</li>
                         </ul>
                     </li>
                     <li class="nav-header">
@@ -113,7 +113,7 @@
                             <li>@Html.ActionLink("Requirement to Requirement", "Index", "LinkBetweenRequirements")</li>
                             <li>@Html.ActionLink("Requirements to Artifacts", "Index", "LinkBetweenRequirementsArtifact")</li>
                             <li>@Html.ActionLink("Requirements to Requirements - Attributes", "Index", "LinkRequirementAttributes")</li>
-                            <li>@Html.ActionLink("Requirement to Artifact - Attributes", "Index", "LinkArtifactAttributes")</li>                            
+                            <li>@Html.ActionLink("Requirement to Artifact - Attributes", "Index", "LinkArtifactAttributes")</li>
                             <li>@Html.ActionLink("Requirement Traceability Matrix", "RequirementTraceabilityMatrix", "LinkBetweenRequirements")</li>
                             <li>@Html.ActionLink("Artifacts to Requirement Traceability Matrix", "ArtifactRequirementTraceabilityMatrix", "LinkBetweenRequirementsArtifact")</li>
                         </ul>
@@ -155,8 +155,18 @@
     @Scripts.Render("~/Scripts/css/js")
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("scripts", required: false)
-    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script> 
+    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript">
+
+        function clearDropDown(dropdown) {
+            var select = document.getElementById(dropdown);
+            var i;
+
+            if (select.options != null) {
+                for (i = select.options.length - 1; i >= 0; i--)
+                    select.remove(i);
+            }
+        }
 
         function fixDateTime(value) {
             var pattern = /Date\(([^)]+)\)/;
@@ -187,7 +197,7 @@
                     $('#mainTab > div:eq(' + $(this).closest('li').index() + ')').load(href);
                 }
             })
-        });        
+        });
     </script>
 </body>
 </html>

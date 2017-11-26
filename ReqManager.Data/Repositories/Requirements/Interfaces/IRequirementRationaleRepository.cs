@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ReqManager.Data.Repositories.Requirements.Interfaces
 {
-    public interface IRequirementRationaleRepository : IRepository<RequirementRationale>
+    public interface IRequirementRationaleRepository : IRepository<RequirementVersions>
     {
 
 

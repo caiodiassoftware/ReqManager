@@ -4,17 +4,18 @@ using System.Linq.Expressions;
 
 namespace ReqManager.Data.Infrastructure
 {
-    public interface IRepository<T> where T : class
+    public interface IRepository<TModel> where TModel : class
     {
-        void add(T entity);
-        void add(IEnumerable<T> entities);
-        void update(T entity);
+        void Detached(TModel model);
+        void add(TModel entity);
+        void add(IEnumerable<TModel> entities);
+        void update(TModel entity);
         void delete(int? id);
         void delete(List<int> entitiesID);
-        void delete(Expression<Func<T, bool>> where);
-        T get(int? id);
-        T get(Expression<Func<T, bool>> where);
-        IEnumerable<T> getAll(int total = 0);
-        IEnumerable<T> filter(Expression<Func<T, bool>> where);
+        void delete(Expression<Func<TModel, bool>> where);
+        TModel get(int? id);
+        TModel get(Expression<Func<TModel, bool>> where);
+        IEnumerable<TModel> getAll(int total = 0);
+        IEnumerable<TModel> filter(Expression<Func<TModel, bool>> where);
     }
 }

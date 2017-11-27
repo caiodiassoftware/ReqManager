@@ -1,5 +1,4 @@
 ﻿using DataTables.Mvc;
-using Newtonsoft.Json;
 using ReqManager.Entities.Acess;
 using ReqManager.Services.Estructure;
 using ReqManager.ViewModels;

@@ -622,7 +622,7 @@
     <Content Include="Views\RequirementSubType\Details.cshtml" />
     <Content Include="Views\RequirementSubType\Edit.cshtml" />
     <Content Include="Views\RequirementSubType\Index.cshtml" />
-    <Content Include="Views\RequirementRequestForChanges\Create.cshtml" />
+    <Content Include="Views\RequirementRequestForChanges\RequestNewChange.cshtml" />
     <Content Include="Views\RequirementRequestForChanges\Delete.cshtml" />
     <Content Include="Views\RequirementRequestForChanges\Details.cshtml" />
     <Content Include="Views\RequirementRequestForChanges\Edit.cshtml" />

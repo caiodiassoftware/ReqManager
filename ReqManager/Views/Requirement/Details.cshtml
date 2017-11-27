@@ -282,5 +282,6 @@
 </div>
 <p>
     @Html.ActionLink("Tracking", "TrackingRequirement", "Tracking", new { id = Model.RequirementID }, null) |
+    @Html.ActionLink("Request Change", "RequestNewChange", "RequirementRequestForChanges", new { id = Model.RequirementID }, null) |
     @Html.ActionLink("Back to List", "Index")
 </p>

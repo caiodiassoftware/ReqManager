@@ -14,7 +14,7 @@ using System.Web.Script.Serialization;
 
 namespace ReqManager.ManagerController
 {
-    public class ControlAcessController<TEntity> : Controller where TEntity: class
+    public class ControlAcessController<TEntity> : Controller where TEntity : class
     {
         #region Attributes
 
@@ -65,6 +65,18 @@ namespace ReqManager.ManagerController
         }
 
         #region Filters
+
+        public ActionResult Get(int? ID)
+        {
+            try
+            {
+                return (ID != 0) ? Json(Service.get(Convert.ToInt32(ID)), JsonRequestBehavior.AllowGet) : null;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public ActionResult GetFilter([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel)
         {

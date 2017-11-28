@@ -33,6 +33,7 @@ namespace ReqManager.ViewModels
         [Range(1, Double.PositiveInfinity)]
         [Display(Name = "Stakeholder Project")]
         public int StakeholdersProjectID { get; set; }
+        [Required]
         public int versionNumber { get; set; }
         [Required]
         [Display(Name = "Importance")]

@@ -26,5 +26,19 @@ namespace ReqManager.Services.Project.Classes
                 throw ex;
             }
         }
+
+
+        public StakeholderRequirementEntity filterByRequirementAndUser(int RequirementID, int UserID)
+        {
+            try
+            {
+                return getAll().Where(s => s.StakeHolders.UserID.Equals(UserID) &&
+                s. ProjectRequirements.RequirementID.Equals(RequirementID)).SingleOrDefault();
+            }
+            catch (System.Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

@@ -5,5 +5,6 @@ namespace ReqManager.Services.Requirements.Interfaces
 {
     public interface IRequirementRequestForChangesService : IService<RequirementRequestForChangesEntity>
     {
+        bool validateRequestForRequirement(int RequirementID);
     }
 }

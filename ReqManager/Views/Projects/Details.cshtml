@@ -166,6 +166,7 @@
     </div>
 </div>
 <p>
+    @Html.ActionLink("Add Requirement", "Create", "Requirement", new { id = Model.project.ProjectID }, null) |
     @Html.ActionLink("Edit", "Edit", new { id = Model.project.ProjectID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

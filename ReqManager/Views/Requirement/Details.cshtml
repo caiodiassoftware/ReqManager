@@ -9,11 +9,13 @@
     <div id="tabs">
         <ul>
             <li><a href="#req">Requirement</a></li>
+            <li><a href="#projectRequirement">Projects</a></li>
             <li><a href="#rr">R-R Traceability</a></li>
             <li><a href="#ra">R-A Traceability</a></li>
             <li><a href="#stakeholder">Stakeholders</a></li>
             <li><a href="#characteristics">Characteristics</a></li>
             <li><a href="#request">Changes Request</a></li>
+            <li><a href="#versions">Versions</a></li>
         </ul>
         <div id="req">
             <dl class="dl-horizontal">
@@ -276,11 +278,86 @@
                 }
             </table>
         </div>
+        <div id="versions">
+            <table class="table">
+                <tr>
+                    <th>Title</th>
+                    <th>Version Number</th>
+                    <th>Importance</th>
+                    <th>Status</th>
+                    <th>Type</th>
+                    <th>SubType</th>
+                    <th>Rationale</th>
+                    <th>Version Date</th>
+                </tr>
+                @foreach (var item in Model.versions)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.versionNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Importance.description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RequirementStatus.description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RequirementType.description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RequirementSubType.description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.rationale)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.creationDate)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <div id="projectRequirement">
+            <table class="table">
+                <tr>
+                    <th>Code</th>
+                    <th>Description</th>
+                    <th>Management Info</th>
+                    <th>Enronmental Info</th>
+                    <th>Phase</th>
+                </tr>
+                @foreach (var item in Model.projectRequirement)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Project.code)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Project.description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Project.managementInformation)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Project.environmentalInformation)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Project.ProjectPhases.description)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
     </div>
 
     
 </div>
 <p>
+    @Html.ActionLink("Approve", "Approve", "StakeholderRequirement", new { id = Model.RequirementID }, null) |
     @Html.ActionLink("Tracking", "TrackingRequirement", "Tracking", new { id = Model.RequirementID }, null) |
     @Html.ActionLink("Request Change", "RequestNewChange", "RequirementRequestForChanges", new { id = Model.RequirementID }, null) |
     @Html.ActionLink("Back to List", "Index")

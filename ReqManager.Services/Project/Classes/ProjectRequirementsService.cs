@@ -29,6 +29,18 @@ namespace ReqManager.Services.Project.Classes
             }
         }
 
+        public IEnumerable<ProjectRequirementsEntity> getRequirementsByRequirement(int RequirementID)
+        {
+            try
+            {
+                return getAll().Where(r => r.RequirementID.Equals(RequirementID));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public ProjectRequirementsEntity getRequirementsByProjectAndRequirement(int ProjectID, int RequirementID)
         {
             try

@@ -632,6 +632,7 @@
     <Content Include="Views\RequestStatus\Details.cshtml" />
     <Content Include="Views\RequestStatus\Edit.cshtml" />
     <Content Include="Views\RequestStatus\Index.cshtml" />
+    <Content Include="Views\StakeholderRequirement\Approve.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

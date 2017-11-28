@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace ReqManager.Entities.Project
@@ -18,6 +19,11 @@ namespace ReqManager.Entities.Project
         public int StakeHolderID { get; set; }
         [Display(Name = "Creation Date")]
         public DateTime creationDate { get; set; } = DateTime.Now;
+        [MinLength(6)]
+        [MaxLength(255)]
+        [DefaultValue("NOT RATED")]
+        public string description { get; set; }
+        public bool approved { get; set; }
 
         public virtual ProjectRequirementsEntity ProjectRequirements { get; set; }
         public virtual StakeholdersEntity StakeHolders { get; set; }

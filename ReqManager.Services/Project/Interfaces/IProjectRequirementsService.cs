@@ -9,5 +9,6 @@ namespace ReqManager.Services.Project.Interfaces
         bool isTraceable(int ProjectID, int RequirementID);
         IEnumerable<ProjectRequirementsEntity> getRequirementsByProject(int ProjectID);
         ProjectRequirementsEntity getRequirementsByProjectAndRequirement(int ProjectID, int RequirementID);
+        IEnumerable<ProjectRequirementsEntity> getRequirementsByRequirement(int RequirementID);
     }
 }

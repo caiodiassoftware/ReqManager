@@ -175,5 +175,45 @@ namespace ReqManager.Services.Estructure
         }
 
         #endregion
+
+        #region Entity Transactions
+
+        protected void BeginTransaction()
+        {
+            try
+            {
+                unit.BeginTransaction();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        protected void Commit()
+        {
+            try
+            {
+                unit.Commit();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        protected void Rollback()
+        {
+            try
+            {
+                unit.Rollback();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        #endregion
     }
 }

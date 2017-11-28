@@ -14,6 +14,7 @@ namespace ReqManager.Controllers
     {
         private IRequirementService requirement { get; set; }
         private IStakeholderRequirementService stakeholders { get; set; }
+        private IRequirementRequestForChangesService service { get; set; }
 
         public RequirementRequestForChangesController(
             IRequirementRequestForChangesService service,
@@ -23,6 +24,7 @@ namespace ReqManager.Controllers
         {
             this.requirement = requirement;
             this.stakeholders = stakeholders;
+            this.service = service;
             ViewData.Add("RequestStatusID", new SelectList(status.getAll(), "RequestStatusID", "description"));
         }
 
@@ -35,10 +37,15 @@ namespace ReqManager.Controllers
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
 
-                ViewData.Add("RequirementID", new SelectList(requirement.getAll(), "RequirementID", "DisplayName", id));
-                ViewData.Add("StakeHolderRequirementID", new SelectList(
-                    new List<StakeholderRequirementEntity>() { stakeholders.filterByUser(getIdUser()) }, "StakeHolderRequirementID", "DisplayName"));
-                return View();
+                if (service.validateRequestForRequirement(Convert.ToInt32(id)))
+                {
+                    ViewData.Add("RequirementID", new SelectList(requirement.getAll(), "RequirementID", "DisplayName", id));
+                    ViewData.Add("StakeHolderRequirementID", new SelectList(
+                        new List<StakeholderRequirementEntity>() { stakeholders.filterByUser(getIdUser()) }, "StakeHolderRequirementID", "DisplayName"));
+                    return View();
+                }
+                else
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             catch (Exception ex)
             {
@@ -64,7 +71,7 @@ namespace ReqManager.Controllers
             catch (Exception ex)
             {
                 throw ex;
-            }            
+            }
         }
     }
 }

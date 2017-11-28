@@ -16,7 +16,7 @@ namespace ReqManager.Entities.Project
         [Required(ErrorMessage = "This field is Required")]
         [Range(1, Double.PositiveInfinity)]
         [Display(Name = "Stakeholders")]
-        public int StakeHolderID { get; set; }
+        public int StakeholdersProjectID { get; set; }
         [Display(Name = "Creation Date")]
         public DateTime creationDate { get; set; } = DateTime.Now;
         [MinLength(6)]
@@ -26,13 +26,13 @@ namespace ReqManager.Entities.Project
         public bool approved { get; set; }
 
         public virtual ProjectRequirementsEntity ProjectRequirements { get; set; }
-        public virtual StakeholdersEntity StakeHolders { get; set; }
+        public virtual StakeholdersProjectEntity StakeholdersProject { get; set; }
 
         public String DisplayName
         {
             get
             {
-                return this.StakeHolders.Users.nickName + " - " + this.ProjectRequirements.Project.description;
+                return this.StakeholdersProject.Stakeholders.Users.nickName + " - " + this.ProjectRequirements.Project.description;
             }
         }
 

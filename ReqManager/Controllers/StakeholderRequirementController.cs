@@ -72,7 +72,7 @@ namespace ReqManager.Controllers
                 ProjectRequirementsEntity projectReq = projectRequirementService.getRequirementsByProjectAndRequirement(ProjectID, RequirementID);
                 StakeholderRequirementEntity entity = new StakeholderRequirementEntity();
                 entity.ProjectRequirementID = projectReq.ProjectRequirementID;
-                entity.StakeHolderID = StakeHolderID;
+                //entity.StakeHolderID = StakeHolderID;
                 return base.Create(entity);
             }
             catch (Exception ex)

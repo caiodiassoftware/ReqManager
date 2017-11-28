@@ -19,7 +19,7 @@ namespace ReqManager.Services.Project.Classes
         {
             try
             {
-                return getAll().Where(s => s.StakeHolders.UserID.Equals(UserID)).SingleOrDefault();
+                return getAll().Where(s => s.StakeholdersProject.Stakeholders.UserID.Equals(UserID)).SingleOrDefault();
             }
             catch (System.Exception ex)
             {
@@ -32,7 +32,7 @@ namespace ReqManager.Services.Project.Classes
         {
             try
             {
-                return getAll().Where(s => s.StakeHolders.UserID.Equals(UserID) &&
+                return getAll().Where(s => s.StakeholdersProject.Stakeholders.UserID.Equals(UserID) &&
                 s. ProjectRequirements.RequirementID.Equals(RequirementID)).SingleOrDefault();
             }
             catch (System.Exception ex)

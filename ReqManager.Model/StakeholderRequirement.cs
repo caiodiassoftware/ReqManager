@@ -19,7 +19,7 @@ namespace ReqManager.Model
         [Index("IX_STAKEHOLDER_REQUIREMENT", 1, IsUnique = true)]
         public int ProjectRequirementID { get; set; }
         [Index("IX_STAKEHOLDER_REQUIREMENT", 2, IsUnique = true)]
-        public int StakeHolderID { get; set; }
+        public int StakeholdersProjectID { get; set; }
         public DateTime creationDate { get; set; }
         [MinLength(6)]
         [MaxLength(255)]
@@ -29,6 +29,6 @@ namespace ReqManager.Model
 
         public virtual ICollection<RequirementRequestForChanges> RequirementRequestForChanges { get; set; }
         public virtual ProjectRequirements ProjectRequirements { get; set; }
-        public virtual Stakeholders StakeHolders { get; set; }
+        public virtual StakeholdersProject StakeholdersProject { get; set; }
     }
 }

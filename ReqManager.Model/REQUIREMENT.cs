@@ -26,7 +26,6 @@ namespace ReqManager.Model
         public int RequirementStatusID { get; set; }
         public int RequirementTypeID { get; set; }
         public Nullable<int> RequirementSubTypeID { get; set; }
-        public int StakeholdersProjectID { get; set; }
         public int ImportanceID { get; set; }
         [Index("IX_REQUIREMENT", 2, IsUnique = true)]
         public int versionNumber { get; set; }
@@ -47,7 +46,6 @@ namespace ReqManager.Model
         public virtual ICollection<LinkBetweenRequirementsArtifacts> LinkRequirementsArtifacts { get; set; }
         public virtual ICollection<ProjectRequirements> ProjectRequirements { get; set; }
         public virtual ICollection<RequirementRequestForChanges> RequirementRequestForChanges { get; set; }
-        public virtual StakeholdersProject StakeholderProject { get; set; }
         public virtual Importance Importance { get; set; }
         public virtual Users Users { get; set; }
         public virtual RequirementTemplate RequirementTemplate { get; set; }

@@ -10,7 +10,7 @@ namespace ReqManager.Model
     {
         public StakeholdersProject()
         {
-            this.Requirement = new HashSet<Requirement>();
+            this.StakeholderRequirement = new HashSet<StakeholderRequirement>();
         }
     
         [Key]
@@ -28,6 +28,6 @@ namespace ReqManager.Model
 
         public virtual Project Project { get; set; }
         public virtual Stakeholders Stakeholders { get; set; }
-        public virtual ICollection<Requirement> Requirement { get; set; }
+        public virtual ICollection<StakeholderRequirement> StakeholderRequirement { get; set; }
     }
 }

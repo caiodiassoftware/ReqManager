@@ -37,11 +37,18 @@ namespace ReqManager.Controllers
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
 
+                StakeholderRequirementEntity stakeholder = stakeholders.filterByUser(getIdUser());
+
+                if (stakeholder == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+
                 if (service.validateRequestForRequirement(Convert.ToInt32(id)))
                 {
                     ViewData.Add("RequirementID", new SelectList(requirement.getAll(), "RequirementID", "DisplayName", id));
                     ViewData.Add("StakeHolderRequirementID", new SelectList(
-                        new List<StakeholderRequirementEntity>() { stakeholders.filterByUser(getIdUser()) }, "StakeHolderRequirementID", "DisplayName"));
+                        new List<StakeholderRequirementEntity>() { stakeholder }, "StakeHolderRequirementID", "DisplayName"));
                     return View();
                 }
                 else

@@ -198,7 +198,10 @@
                         Name
                     </th>
                     <th>
-                        Creation Date
+                        Approval Description
+                    </th>
+                    <th>
+                        Approval
                     </th>
                 </tr>
                 @foreach (var item in Model.stakeholders)
@@ -208,7 +211,10 @@
                             @Html.DisplayFor(modelItem => item.DisplayName)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.creationDate)
+                            @Html.DisplayFor(modelItem => item.description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.approved)
                         </td>
                     </tr>
                 }
@@ -268,11 +274,24 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.creationDate)
                         </td>
-                        <td>
-                            @if (item.RequestStatus.RequestStatusID != 3)
-                            {
-                                @Html.ActionLink("Approve", "Edit", new { id = item.RequirementRequestForChangesID })
-                            }
+                        <td>@switch (item.RequestStatus.RequestStatusID)
+                        {
+                            case 1:
+                                {
+                                    @Html.ActionLink("Approve", "Edit", new { id = item.RequirementRequestForChangesID })
+                                     @Html.ActionLink("In Analysis", "Edit", new { id = item.RequirementRequestForChangesID })
+                                    break;
+                                }
+                            case 2:
+                                {
+                                    @Html.ActionLink("Approve", "Edit", new { id = item.RequirementRequestForChangesID })
+                                    break;
+                                }
+                            default:
+                                {
+                                    break;
+                                }
+                        }
                         </td>
                     </tr>
                 }
@@ -291,7 +310,7 @@
                     <th>Version Date</th>
                 </tr>
                 @foreach (var item in Model.versions)
-                {
+                                {
                     <tr>
                         <td>
                             @Html.DisplayFor(modelItem => item.title)
@@ -331,7 +350,7 @@
                     <th>Phase</th>
                 </tr>
                 @foreach (var item in Model.projectRequirement)
-                {
+                                {
                     <tr>
                         <td>
                             @Html.DisplayFor(modelItem => item.Project.code)

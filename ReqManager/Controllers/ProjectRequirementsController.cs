@@ -27,7 +27,7 @@ namespace ReqManager.Controllers
         {
             try
             {
-                return Json(Service.getAll().Where(r => r.Project.ProjectID.Equals(ProjectID)).Select(r => r.Requirement), JsonRequestBehavior.AllowGet);
+                return Json(Service.getAll().Where(r => r.Project.ProjectID.Equals(ProjectID)), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

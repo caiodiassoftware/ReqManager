@@ -26,8 +26,8 @@ namespace ReqManager.Controllers
             this.stakeholderProjectService = stakeholderProjectService;
             this.stakeholder = stakeholder;
 
-            ViewBag.ProjectRequirementID = new SelectList(projectRequirementService.getAll(), "ProjectRequirementID", "DisplayName");
-            ViewBag.StakeholdersProjectID = new SelectList(stakeholderProjectService.getAll(), "StakeholdersProjectID", "DisplayName");
+            ViewBag.ProjectID = new SelectList(projectService.getAll(), "ProjectID", "DisplayName");
+            
         }
 
         public ActionResult Approve(int? id)
@@ -38,6 +38,9 @@ namespace ReqManager.Controllers
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
+
+                ViewBag.ProjectRequirementID = new SelectList(projectRequirementService.getAll(), "ProjectRequirementID", "DisplayName");
+                ViewBag.StakeholdersProjectID = new SelectList(stakeholderProjectService.getAll(), "StakeholdersProjectID", "DisplayName");
 
                 StakeholderRequirementEntity stakeholderRequirement = service.filterByRequirementAndUser(Convert.ToInt32(id), getIdUser());
 
@@ -72,7 +75,6 @@ namespace ReqManager.Controllers
                 ProjectRequirementsEntity projectReq = projectRequirementService.getRequirementsByProjectAndRequirement(ProjectID, RequirementID);
                 StakeholderRequirementEntity entity = new StakeholderRequirementEntity();
                 entity.ProjectRequirementID = projectReq.ProjectRequirementID;
-                //entity.StakeHolderID = StakeHolderID;
                 return base.Create(entity);
             }
             catch (Exception ex)

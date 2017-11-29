@@ -129,43 +129,43 @@
         </div>
         <div id="requirementMatrix">
             <table class="table">
-                <tr>
-                    @for (int i = 0; i < Model.requirementMatrix.Columns.Count; i++)
-                    {
-                        <td>@Html.Label(Model.requirementMatrix.Columns[i].ColumnName)</td>
-                    }
-                </tr>
-                @for (int i = 0; i < Model.requirementMatrix.Rows.Count; i++)
-                {
+                <thead>
                     <tr>
-                        @for (int j = 0; j < Model.requirementMatrix.Columns.Count; j++)
+                        @for (int i = 0; i < Model.requirementMatrix.Columns.Count; i++)
                         {
-                            <td>
-                                @if (!string.IsNullOrEmpty(Model.requirementMatrix.Rows[i][j].ToString()))
+                            <td>@Html.Label(Model.requirementMatrix.Columns[i].ColumnName)</td>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.requirementMatrix.Rows.Count; i++)
+                    {
+                        <tr>
+                            @for (int j = 0; j < Model.requirementMatrix.Columns.Count; j++)
+                            {
+                                <td>
+                                    @if (!string.IsNullOrEmpty(Model.requirementMatrix.Rows[i][j].ToString()))
                     {
                         if (j.Equals(0))
                         {
-                                        @Html.Label(Model.requirementMatrix.Rows[i][j].ToString())
+                                            @Html.Label(Model.requirementMatrix.Rows[i][j].ToString())
+                                        }
+                                        else
+                                        {
+                                            @Html.ActionLink(
+                                            Model.requirementMatrix.Rows[i][j].ToString(),
+                                            "",
+                                            "",
+                                            null,
+                                            new { @class = "form-control", onclick = "search()" }
+                                            )
+                                        }
                                     }
-                                    else
-                                    {
-                                        @Html.ActionLink(
-                        Model.requirementMatrix.Rows[i][j].ToString(),
-                        "ShowLink",
-                        "LinkBetweenRequirements",
-                        new
-                        {
-                            origin = Model.requirementMatrix.Columns[j].ColumnName,
-                            target = Model.requirementMatrix.Columns[i].ColumnName
-                        },
-                        htmlAttributes: null
-                        )
-                                    }
-                                }
-                            </td>
-                        }
-                    </tr>
-                }
+                                </td>
+                            }
+                        </tr>
+                    }
+                </tbody>
             </table>
         </div>
         <div id="art">
@@ -227,3 +227,35 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.project.ProjectID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+
+        function search() {
+            console.log('oi');
+            @*clearDropDown("ProjectRequirementID");
+            clearDropDown("StakeholdersProjectID");
+
+            $('#ProjectRequirementID').append("<option value='" + 0 + "'>SELECT THE REQUIREMENT</option>");
+            $('#StakeholdersProjectID').append("<option value='" + 0 + "'>SELECT THE STAKEHOLDER</option>");
+
+            $.getJSON('@Url.Action("GetRequirementsFromProject", "ProjectRequirements")', { ProjectID: id }, function (response) {
+                $.each(response, function (index, item) {
+                    var optionExists = ($('#ProjectRequirementID option[value=' + item.ProjectRequirementID + ']').length > 0);
+                    if (!optionExists)
+                        $('#ProjectRequirementID').append("<option value='" + item.ProjectRequirementID + "'>" + item.Requirement.DisplayName + "</option>");
+                });
+            });
+
+            $.getJSON('@Url.Action("GetStakeholdersFromProject", "StakeholdersProject")', { ProjectID: id }, function (response) {
+                $.each(response, function (index, item) {
+                    var optionExists = ($('#StakeholdersProjectID option[value=' + item.StakeholdersProjectID + ']').length > 0);
+                    if (!optionExists)
+                        $('#StakeholdersProjectID').append("<option value='" + item.StakeholdersProjectID + "'>" + item.Stakeholders.DisplayName + "</option>");
+                });
+            });*@
+        }
+    </script>
+}

@@ -78,22 +78,32 @@ namespace ReqManager.ManagerController
             }
         }
 
+        public ActionResult GetAll()
+        {
+            try
+            {
+                return Json(Service.getAll(), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public ActionResult GetFilter([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel)
         {
             try
             {
-                List<TEntity> characteristics = Service.getAll().ToList();
+                List<TEntity> entities = Service.getAll().ToList();
                 List<TEntity> result = new List<TEntity>();
                 string searchValue = requestModel.Search.Value;
 
                 if (!string.IsNullOrEmpty(searchValue))
                 {
-                    foreach (TEntity item in characteristics)
+                    foreach (TEntity item in entities)
                     {
                         foreach (PropertyInfo pi in item.GetType().GetProperties())
                         {
-                            string value = pi.GetValue(item).ToString();
-
                             string json = new JavaScriptSerializer().Serialize(item).ToLower(); ;
                             if (json.Contains(searchValue.ToLower()))
                             {
@@ -105,7 +115,7 @@ namespace ReqManager.ManagerController
                 }
                 else
                 {
-                    result = characteristics.Take(5).ToList();
+                    result = entities.Take(5).ToList();
                 }
 
                 return Json(new

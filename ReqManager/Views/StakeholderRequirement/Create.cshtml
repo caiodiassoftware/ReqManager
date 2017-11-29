@@ -1,39 +1,55 @@
 ﻿@model ReqManager.Entities.Project.StakeholderRequirementEntity
 
 @{
-    ViewBag.Title = "Create Relationship between Stakeholder and Requirement";
+    ViewBag.Title = "Create a Relationship between Stakeholder and Requirement";
 }
 
-
-@using (Html.BeginForm("CreateNewRelationship", "StakeholderRequirement", FormMethod.Post))
+@using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-
+    
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
         <div class="form-group">
-            @Html.Label("Project", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ProjectRequirementID, "ProjectRequirementID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("ProjectID", null, "SELECT THE PROJECT REQUIREMENT", htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessage("ProjectID", "", new { @class = "text-danger" })
+                @Html.DropDownList("ProjectRequirementID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ProjectRequirementID, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.Label("Requirements", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.StakeholdersProjectID, "StakeholdersProjectID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("RequirementID", Enumerable.Empty<SelectListItem>(), "SELECT THE PROJECT REQUIREMENT", htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessage("RequirementID", "", new { @class = "text-danger" })
+                @Html.DropDownList("StakeholdersProjectID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.StakeholdersProjectID, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.Label("Stakeholder", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.creationDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("StakeHolderID", Enumerable.Empty<SelectListItem>(), "SELECT THE STAKEHOLDER", htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessage("StakeHolderID", "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.creationDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.creationDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.approved, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.approved)
+                    @Html.ValidationMessageFor(model => model.approved, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
 
@@ -48,37 +64,3 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-
-    <script type="text/javascript">
-
-        $("#ProjectID").change(function () {
-            var id = $(this).val();
-            clearDropDown("RequirementID");
-            clearDropDown("StakeHolderID");
-
-            $('#RequirementID').append("<option value='" + 0 + "'>SELECT THE REQUIREMENT</option>");
-            $('#StakeHolderID').append("<option value='" + 0 + "'>SELECT THE STAKEHOLDER</option>");
-
-            $.getJSON('@Url.Action("GetStakeholdersFromProject", "StakeholdersProject")', { ProjectID: id }, function (response) {
-                $.each(response, function (index, item) {                    
-                    var optionExists = ($('#StakeHolderID option[value=' + item.Stakeholders.StakeholderID + ']').length > 0);
-                if (!optionExists)
-                    $('#StakeHolderID').append("<option value='" + item.Stakeholders.StakeholderID + "'>" + item.Stakeholders.DisplayName + "</option>");
-                });
-            });
-
-            $.getJSON('@Url.Action("GetRequirementsFromProject", "ProjectRequirements")', { ProjectID: id }, function (response) {
-                $.each(response, function (index, item) {
-                    console.log(item);
-                var optionExists = ($('#RequirementID option[value=' + item.RequirementID + ']').length > 0);
-                if (!optionExists)
-                    $('#RequirementID').append("<option value='" + item.RequirementID + "'>" + item.DisplayName + "</option>");
-                });
-            });
-    });
-
-    </script>
-}

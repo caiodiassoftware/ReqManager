@@ -1,9 +1,5 @@
 ﻿using ReqManager.Services.Requirements.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using ReqManager.Data.Repositories.Requirements.Interfaces;
 using ReqManager.Utils.Extensions;
@@ -19,14 +15,26 @@ namespace ReqManager.Services.Requirements.Classes
             this.repository = repository;
         }
 
-        public string getHtmlMatrix()
+        public string getHtmlMatrix(int ProjectID)
         {
-            return repository.getMatrix().ConvertDataTableToHTML();
+            return repository.getMatrix(ProjectID).ConvertDataTableToHTML();
         }
 
-        public DataTable getMatrix()
+        public DataTable getMatrix(int ProjectID)
         {
-            return repository.getMatrix();
+            return repository.getMatrix(ProjectID);
+        }
+
+        public DataTable getMatrixByProject(int ProjectID)
+        {
+            try
+            {
+                return getMatrix(ProjectID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

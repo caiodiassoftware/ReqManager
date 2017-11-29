@@ -40,7 +40,7 @@ namespace ReqManager.Services.Requirements.Classes
                 base.add(ref requirement, false);
 
                 projectRequirement.RequirementID = requirement.RequirementID;
-
+                projectRequirement.UserID = requirement.UserID;
                 projectRequirementService.add(ref projectRequirement, false);
                 Commit();
             }

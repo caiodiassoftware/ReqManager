@@ -508,11 +508,6 @@
     <Content Include="Views\StakeholdersProject\Details.cshtml" />
     <Content Include="Views\StakeholdersProject\Edit.cshtml" />
     <Content Include="Views\StakeholdersProject\Index.cshtml" />
-    <Content Include="Views\StakeholderRequirement\Create.cshtml" />
-    <Content Include="Views\StakeholderRequirement\Delete.cshtml" />
-    <Content Include="Views\StakeholderRequirement\Details.cshtml" />
-    <Content Include="Views\StakeholderRequirement\Edit.cshtml" />
-    <Content Include="Views\StakeholderRequirement\Index.cshtml" />
     <Content Include="Views\RequirementStatus\Create.cshtml" />
     <Content Include="Views\RequirementStatus\Delete.cshtml" />
     <Content Include="Views\RequirementStatus\Details.cshtml" />
@@ -633,6 +628,11 @@
     <Content Include="Views\RequestStatus\Edit.cshtml" />
     <Content Include="Views\RequestStatus\Index.cshtml" />
     <Content Include="Views\StakeholderRequirement\Approve.cshtml" />
+    <Content Include="Views\StakeholderRequirement\Create.cshtml" />
+    <Content Include="Views\StakeholderRequirement\Delete.cshtml" />
+    <Content Include="Views\StakeholderRequirement\Details.cshtml" />
+    <Content Include="Views\StakeholderRequirement\Edit.cshtml" />
+    <Content Include="Views\StakeholderRequirement\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

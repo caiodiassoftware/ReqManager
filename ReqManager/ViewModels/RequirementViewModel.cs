@@ -42,10 +42,6 @@ namespace ReqManager.ViewModels
         [Required]
         [Display(Name = "SubType")]
         public int RequirementSubTypeID { get; set; }
-        [Required(ErrorMessage = "This field is Required")]
-        [Range(1, Double.PositiveInfinity)]
-        [Display(Name = "Stakeholder Project")]
-        public int StakeholdersProjectID { get; set; }
         public int versionNumber { get; set; }
         [Required]
         [Display(Name = "Importance")]

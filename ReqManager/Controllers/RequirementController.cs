@@ -124,6 +124,11 @@ namespace ReqManager.Controllers
         {
             try
             {
+                if (id == null)
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (projectService.get(Convert.ToInt32(id)) == null)
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
                 ViewData.Add("RequirementTemplateID", new SelectList(templateService.getAll(), "RequirementTemplateID", "description"));
                 ViewData.Add("StakeholdersProjectID", new SelectList(stakeholdersProject.getAll(), "StakeholdersProjectID", "DisplayName"));
                 ViewData.Add("ImportanceID", new SelectList(measureService.getAll(), "ImportanceID", "description"));
@@ -212,11 +217,8 @@ namespace ReqManager.Controllers
                     projectRequirement.ProjectID = vm.ProjectID;
                     projectRequirement.traceable = true;
                     requirementService.add(ref entity, ref projectRequirement);
-                    ViewBag.MessageReqManager = String.Format("Register was made with Success!");
-                    return RedirectToAction("Index");
                 }
-
-                return View();
+                return RedirectToAction("Details", "Projects", new { id = vm.ProjectID });
             }
             catch (Exception ex)
             {

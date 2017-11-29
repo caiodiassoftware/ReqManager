@@ -12,18 +12,22 @@ namespace ReqManager.Controllers
         private IProjectRequirementsService projectRequirementService { get; set; }
         private IStakeholderRequirementService service { get; set; }
         private IStakeholdersService stakeholder { get; set; }
+        private IStakeholdersProjectService stakeholderProjectService { get; set; }
 
         public StakeholderRequirementController(
             IStakeholderRequirementService service,
             IStakeholdersService stakeholder,
             IProjectRequirementsService projectRequirementService,
+            IStakeholdersProjectService stakeholderProjectService,
             IProjectService projectService) : base(service)
         {
             this.service = service;
             this.projectRequirementService = projectRequirementService;
+            this.stakeholderProjectService = stakeholderProjectService;
             this.stakeholder = stakeholder;
 
-            ViewBag.ProjectID = new SelectList(projectService.getAll(), "ProjectID", "DisplayName");
+            ViewBag.ProjectRequirementID = new SelectList(projectRequirementService.getAll(), "ProjectRequirementID", "DisplayName");
+            ViewBag.StakeholdersProjectID = new SelectList(stakeholderProjectService.getAll(), "StakeholdersProjectID", "DisplayName");
         }
 
         public ActionResult Approve(int? id)
@@ -35,13 +39,9 @@ namespace ReqManager.Controllers
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
 
-                projectRequirementService.getRequirementsByRequirement(Convert.ToInt32(id));
-
                 StakeholderRequirementEntity stakeholderRequirement = service.filterByRequirementAndUser(Convert.ToInt32(id), getIdUser());
 
-                ViewData.Add("StakeHolderID", new SelectList(stakeholder.getAll(), "StakeHolderID", "DisplayName", getIdUser()));
-
-                return View();
+                return View(stakeholderRequirement);
             }
             catch (Exception ex)
             {

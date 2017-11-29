@@ -4,9 +4,7 @@
     ViewBag.Title = "Listing of Requirements";
 }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table id="requirement" class="display">
     <thead>
         <tr>
@@ -24,9 +22,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Users.name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StakeholdersProjectID)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.title)
@@ -57,9 +52,6 @@
                     @Html.DisplayFor(modelItem => item.Users.name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.StakeholderProject.DisplayName)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.title)
                 </td>
                 <td>
@@ -88,7 +80,6 @@
                             'statusDescription': json.aaData[i].RequirementStatus.description,
                             'typeDescription': json.aaData[i].RequirementType.description,
                             'name': json.aaData[i].Users.name,
-                            'DisplayName': json.aaData[i].StakeholderProject.DisplayName,
                             'title': json.aaData[i].title,
                             'creationDate': fixDateTime(json.aaData[i].creationDate),
                             'action': '<a href=\"/Requirement/Details/' + json.aaData[i].RequirementID +
@@ -106,7 +97,6 @@
                 { 'data': 'statusDescription' },
                 { 'data': 'typeDescription' },
                 { 'data': 'name' },
-                { 'data': 'DisplayName' },
                 { 'data': 'title' },
                 { 'data': 'creationDate' },
                 { 'data': 'action' }

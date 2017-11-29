@@ -2,16 +2,9 @@
 using ReqManager.Data.Infrastructure;
 using ReqManager.Data.Repositories.Requirements.Interfaces;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Data.Entity.Core.EntityClient;
-using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace ReqManager.Data.Repositories.Requirements.Classes
 {
@@ -24,14 +17,14 @@ namespace ReqManager.Data.Repositories.Requirements.Classes
             context = dbFactory.Init();
         }
 
-        public DataTable getMatrix()
+        public DataTable getMatrix(int ProjectID)
         {
             try
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ReqManagerDataEntities"].ConnectionString);
                 conn.Open();
 
-                string sql = @"              DECLARE @Target NVARCHAR(MAX);
+                string sql = @"                     DECLARE @Target NVARCHAR(MAX);
                                                     DECLARE @Query NVARCHAR(2000);
 
 	                                                SELECT @Target = STUFF((SELECT DISTINCT(O) FROM(SELECT ',' + QUOTENAME(R.code) as O
@@ -51,6 +44,10 @@ namespace ReqManager.Data.Repositories.Requirements.Classes
 																ON RT.RequirementID = L.RequirementTargetID
 														INNER JOIN REQ.REQUIREMENT AS RO
 																ON RO.RequirementID = L.RequirementOriginID
+                                                        INNER JOIN PROJ.PROJECT_REQUIREMENTS AS PR
+																ON PR.RequirementID = RT.RequirementID
+																OR PR.RequirementID = RO.RequirementID
+																AND PR.ProjectID = " + ProjectID + @"
                                                     ) as x
                                                     PIVOT
                                                     (

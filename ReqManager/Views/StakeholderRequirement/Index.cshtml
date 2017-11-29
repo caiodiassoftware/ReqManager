@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ReqManager.Entities.Project.StakeholderRequirementEntity>
 
 @{
-    ViewBag.Title = "Listing of Relationship between Stakeholder and Requirement";
+    ViewBag.Title = "Relationship between Stakeholder and Requirement";
 }
 
 <p>
@@ -13,10 +13,16 @@
             @Html.DisplayNameFor(model => model.ProjectRequirements.ProjectRequirementID)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.StakeHolders.StakeholderID)
+            @Html.DisplayNameFor(model => model.StakeholdersProject.DisplayName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.creationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.approved)
         </th>
         <th></th>
     </tr>
@@ -24,13 +30,19 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.ProjectRequirements.DisplayName)
+            @Html.DisplayFor(modelItem => item.ProjectRequirements.ProjectRequirementID)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.StakeHolders.DisplayName)
+            @Html.DisplayFor(modelItem => item.StakeholdersProject.DisplayName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.creationDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.approved)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.StakeHolderRequirementID }) |

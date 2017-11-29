@@ -9,6 +9,7 @@ using System.Data.Entity.Infrastructure;
 using ReqManager.Services.Directories.Interfaces;
 using ReqManager.ViewModels;
 using System.Linq;
+using ReqManager.Services.Requirements.Interfaces;
 
 namespace ReqManager.Controllers
 {
@@ -19,16 +20,22 @@ namespace ReqManager.Controllers
         private IProjectService projectService { get; set; }
         private IProjectArtifactService projectArtifact { get; set; }
         private IProjectRequirementsService projectRequirements { get; set; }
+        private IStakeholdersProjectService stakeholders { get; set; }
+        private IRequirementTraceabilityMatrixService matrixService { get; set; }
 
         public ProjectsController(
             IProjectService projectService,
             IUserService userService,
+            IStakeholdersProjectService stakeholders,
             IProjectArtifactService projectArtifact,
             IProjectRequirementsService projectRequirements,
             IProjectPhasesService phasesService,
             IHistoryProjectService historyProjectService,
+            IRequirementTraceabilityMatrixService matrixService,
             IScanDirectoryService directory) : base(projectService)
         {
+            this.matrixService = matrixService;
+            this.stakeholders = stakeholders;
             this.projectArtifact = projectArtifact;
             this.projectRequirements = projectRequirements;
             this.historyProjectService = historyProjectService;
@@ -60,8 +67,10 @@ namespace ReqManager.Controllers
                 ProjectDetailsViewModel prj = new ProjectDetailsViewModel();
 
                 prj.project = projectService.get(id);
+                prj.stakeholders = stakeholders.getStakeholderByProject(Convert.ToInt32(id));
                 prj.artifacts = projectArtifact.getArtifactsByProject(Convert.ToInt32(id));
                 prj.requirements = projectRequirements.getRequirementsByProject(Convert.ToInt32(id)).Select(r => r.Requirement);
+                prj.requirementMatrix = matrixService.getMatrix(Convert.ToInt32(id));
 
                 return View(prj);
             }

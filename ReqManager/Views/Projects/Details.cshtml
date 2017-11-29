@@ -10,7 +10,10 @@
         <ul>
             <li><a href="#prj">Project</a></li>
             <li><a href="#req">Requirements</a></li>
+            <li><a href="#requirementMatrix">Requirement Matrix</a></li>
             <li><a href="#art">Artifacts</a></li>
+            <li><a href="#stakeholders">Stakeholders</a></li>
+
         </ul>
         <div id="prj">
             <hr />
@@ -94,7 +97,6 @@
                 <tr>
                     <th>Code</th>
                     <th>Description</th>
-                    <th>Stakeholder</th>
                     <th>Create By</th>
                     <th>Status</th>
                     <th>Type</th>
@@ -110,9 +112,6 @@
                             @Html.DisplayFor(modelItem => item.title)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.StakeholderProject.Stakeholders.DisplayName)
-                        </td>
-                        <td>
                             @Html.DisplayFor(modelItem => item.Users.name)
                         </td>
                         <td>
@@ -124,6 +123,47 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.creationDate)
                         </td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <div id="requirementMatrix">
+            <table class="table">
+                <tr>
+                    @for (int i = 0; i < Model.requirementMatrix.Columns.Count; i++)
+                    {
+                        <td>@Html.Label(Model.requirementMatrix.Columns[i].ColumnName)</td>
+                    }
+                </tr>
+                @for (int i = 0; i < Model.requirementMatrix.Rows.Count; i++)
+                {
+                    <tr>
+                        @for (int j = 0; j < Model.requirementMatrix.Columns.Count; j++)
+                        {
+                            <td>
+                                @if (!string.IsNullOrEmpty(Model.requirementMatrix.Rows[i][j].ToString()))
+                    {
+                        if (j.Equals(0))
+                        {
+                                        @Html.Label(Model.requirementMatrix.Rows[i][j].ToString())
+                                    }
+                                    else
+                                    {
+                                        @Html.ActionLink(
+                        Model.requirementMatrix.Rows[i][j].ToString(),
+                        "ShowLink",
+                        "LinkBetweenRequirements",
+                        new
+                        {
+                            origin = Model.requirementMatrix.Columns[j].ColumnName,
+                            target = Model.requirementMatrix.Columns[i].ColumnName
+                        },
+                        htmlAttributes: null
+                        )
+                                    }
+                                }
+                            </td>
+                        }
                     </tr>
                 }
             </table>
@@ -159,6 +199,23 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.creationDate)
                         </td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <div id="stakeholders">
+            <table class="table">
+                <tr>
+                    <th>Stakeholder</th>
+                    <th>Classification</th>
+                    <th>Creation Date</th>
+                </tr>
+                @foreach (var item in Model.stakeholders)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Stakeholders.DisplayName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Stakeholders.StakeHolderClassification.description)</td>
+                        <td>@Html.DisplayFor(modelItem => item.creationDate)</td>
                     </tr>
                 }
             </table>

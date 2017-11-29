@@ -42,7 +42,7 @@ namespace ReqManager.Controllers
         public ActionResult RequirementTraceabilityMatrix()
         {
             DataTableViewModel dt = new DataTableViewModel();
-            dt.dataTable = matrixService.getMatrix();
+            //dt.dataTable = matrixService.getMatrix();
             return View(dt);
         }
 

@@ -145,20 +145,16 @@
                             {
                                 <td>
                                     @if (!string.IsNullOrEmpty(Model.requirementMatrix.Rows[i][j].ToString()))
-                    {
-                        if (j.Equals(0))
-                        {
+                                    {
+                                        if (j.Equals(0))
+                                        {
                                             @Html.Label(Model.requirementMatrix.Rows[i][j].ToString())
                                         }
                                         else
                                         {
-                                            @Html.ActionLink(
-                                            Model.requirementMatrix.Rows[i][j].ToString(),
-                                            "",
-                                            "",
-                                            null,
-                                            new { @class = "form-control", onclick = "search()" }
-                                            )
+                                            <a data-line='@Model.requirementMatrix.Columns[j].ColumnName'
+                                                data-column='@Model.requirementMatrix.Columns[i].ColumnName' 
+                                               class="link">@Model.requirementMatrix.Rows[i][j].ToString()</a>
                                         }
                                     }
                                 </td>
@@ -232,30 +228,10 @@
     @Scripts.Render("~/bundles/jqueryval")
 
     <script type="text/javascript">
+        $(document).ready(function () {
+            $('.link').click(function () {
 
-        function search() {
-            console.log('oi');
-            @*clearDropDown("ProjectRequirementID");
-            clearDropDown("StakeholdersProjectID");
-
-            $('#ProjectRequirementID').append("<option value='" + 0 + "'>SELECT THE REQUIREMENT</option>");
-            $('#StakeholdersProjectID').append("<option value='" + 0 + "'>SELECT THE STAKEHOLDER</option>");
-
-            $.getJSON('@Url.Action("GetRequirementsFromProject", "ProjectRequirements")', { ProjectID: id }, function (response) {
-                $.each(response, function (index, item) {
-                    var optionExists = ($('#ProjectRequirementID option[value=' + item.ProjectRequirementID + ']').length > 0);
-                    if (!optionExists)
-                        $('#ProjectRequirementID').append("<option value='" + item.ProjectRequirementID + "'>" + item.Requirement.DisplayName + "</option>");
-                });
             });
-
-            $.getJSON('@Url.Action("GetStakeholdersFromProject", "StakeholdersProject")', { ProjectID: id }, function (response) {
-                $.each(response, function (index, item) {
-                    var optionExists = ($('#StakeholdersProjectID option[value=' + item.StakeholdersProjectID + ']').length > 0);
-                    if (!optionExists)
-                        $('#StakeholdersProjectID').append("<option value='" + item.StakeholdersProjectID + "'>" + item.Stakeholders.DisplayName + "</option>");
-                });
-            });*@
-        }
+        });
     </script>
 }

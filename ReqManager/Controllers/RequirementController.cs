@@ -158,7 +158,6 @@ namespace ReqManager.Controllers
                 RequirementEditViewModel vm = Mapper.Map<RequirementEntity, RequirementEditViewModel>(request.Requirement);
                 vm.RequirementRequestForChangesID = Convert.ToInt32(id);
 
-                ViewData.Add("StakeholdersProjectID", new SelectList(stakeholdersProject.getAll(), "StakeholdersProjectID", "DisplayName", vm == null ? 0 : vm.StakeholdersProjectID));
                 ViewData.Add("ImportanceID", new SelectList(measureService.getAll(), "ImportanceID", "description", vm == null ? 0 : vm.ImportanceID));
                 ViewData.Add("RequirementStatusID", new SelectList(statusService.getAll(), "RequirementStatusID", "description", vm == null ? 0 : vm.RequirementStatusID));
                 ViewData.Add("RequirementTypeID", new SelectList(typeService.getAll(), "RequirementTypeID", "description", vm == null ? 0 : vm.RequirementTypeID));

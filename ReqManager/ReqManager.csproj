@@ -284,10 +284,13 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\css\bootstrap.min.css" />
     <Content Include="Scripts\css\styles.css" />
-    <None Include="Scripts\jquery-1.12.4-vsdoc.js" />
-    <Content Include="Scripts\jquery-1.12.4.js" />
-    <Content Include="Scripts\jquery-1.12.4.min.js" />
-    <Content Include="Scripts\jquery-1.12.4.min.map" />
+    <None Include="Scripts\jquery-3.2.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.2.1.js" />
+    <Content Include="Scripts\jquery-3.2.1.min.js" />
+    <Content Include="Scripts\jquery-3.2.1.slim.js" />
+    <Content Include="Scripts\jquery-3.2.1.slim.min.js" />
+    <Content Include="Scripts\jquery-3.2.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.2.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
@@ -595,7 +598,6 @@
     <Content Include="Views\RequirementTemplate\Create.cshtml" />
     <Content Include="Views\LinkBetweenRequirements\RequirementTraceabilityMatrix.cshtml" />
     <Content Include="Views\Tracking\TrackingRequirement.cshtml" />
-    <Content Include="Views\Shared\List.cshtml" />
     <Content Include="Views\Tracking\TrackingArtifact.cshtml" />
     <Content Include="Views\Tracking\TrackingLinkBetweenRequirement.cshtml" />
     <Content Include="Views\Tracking\TrackingLinkBetweenRequirementArtifact.cshtml" />

@@ -152,8 +152,8 @@
                                         }
                                         else
                                         {
-                                            <a data-line='@Model.requirementMatrix.Columns[j].ColumnName'
-                                                data-column='@Model.requirementMatrix.Columns[i].ColumnName' 
+                                            <a data-origin='@Model.requirementMatrix.Rows[i][0].ToString()'
+                                                data-target='@Model.requirementMatrix.Columns[j].ColumnName' 
                                                class="link">@Model.requirementMatrix.Rows[i][j].ToString()</a>
                                         }
                                     }
@@ -224,14 +224,36 @@
     @Html.ActionLink("Back to List", "Index")
 </p>
 
+<div id="modal-link" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                7
+                <p>One fine body…</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 
     <script type="text/javascript">
         $(document).ready(function () {
             $('.link').click(function () {
-
+                jQuery('#modal-link').modal();
+                console.log($(this).attr('data-origin'));
+                console.log($(this).attr('data-target'));
             });
         });
     </script>
+
 }

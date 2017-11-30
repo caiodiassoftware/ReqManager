@@ -16,7 +16,7 @@ namespace ReqManager.Model
     
         [Key]
         public int TaskID { get; set; }
-        public int UserID { get; set; }
+        public int CreationUserID { get; set; }
         public int ProjectRequirementID { get; set; }
         public int ImportanceID { get; set; }
         public int StatusTaskID { get; set; }
@@ -34,7 +34,8 @@ namespace ReqManager.Model
         [Index(IsUnique = true)]
         public string code { get; set; }
         public Nullable<DateTime> endDate { get; set; }
-    
+
+        [ForeignKey("CreationUserID")]
         public virtual Users Users { get; set; }
         public virtual ProjectRequirements ProjectRequirements { get; set; }
         public virtual Importance Importance { get; set; }

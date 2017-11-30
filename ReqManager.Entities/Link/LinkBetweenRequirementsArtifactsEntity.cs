@@ -2,7 +2,6 @@
 using ReqManager.Entities.Artifact;
 using ReqManager.Entities.Requirement;
 using System;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 namespace ReqManager.Entities.Link
 {
@@ -13,7 +12,7 @@ namespace ReqManager.Entities.Link
         public int LinkArtifactRequirementID { get; set; }
         [Required(ErrorMessage = "This field is Required")]
         [Display(Name = "User")]
-        public int UserID { get; set; }
+        public int CreationUserID { get; set; }
         [Required(ErrorMessage = "This field is Required")]
         [Range(1, Double.PositiveInfinity)]
         [Display(Name = "Artifact")]

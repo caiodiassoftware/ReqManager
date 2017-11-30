@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -10,7 +9,7 @@ namespace ReqManager.Model
     {
         [Key]
         public int HistoryProjectID { get; set; }
-        public int UserID { get; set; }
+        public int CreationUserID { get; set; }
         public int ProjectID { get; set; }
         [Required]
         [MaxLength(50)]
@@ -21,7 +20,8 @@ namespace ReqManager.Model
         public DateTime endDate { get; set; }
         [Required]
         public DateTime changedDate { get; set; }
-    
+
+        [ForeignKey("CreationUserID")]
         public virtual Users Users { get; set; }
         public virtual Project Project { get; set; }
     }

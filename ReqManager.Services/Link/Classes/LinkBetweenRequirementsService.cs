@@ -6,6 +6,7 @@ using ReqManager.Entities.Link;
 using ReqManager.Model;
 using ReqManager.Services.Estructure;
 using ReqManager.Services.Link.Interfaces;
+using System.Linq;
 
 namespace ReqManager.Services.Link.Classes
 {
@@ -21,6 +22,18 @@ namespace ReqManager.Services.Link.Classes
             IUnitOfWork unit) : base(repository, unit)
         {
             this.requirementsAttributes = requirementsAttributes;
+        }
+
+        public LinkBetweenRequirementsEntity get(string ReqOrigin, string ReqTarget)
+        {
+            try
+            {
+                return getAll().Where(l => l.RequirementOrigin.code.Equals(ReqOrigin) && l.RequirementTarget.code.Equals(ReqTarget)).SingleOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void add(LinkBetweenRequirementsEntity entity, List<LinkRequirementAttributesEntity> attributes)

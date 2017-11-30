@@ -15,7 +15,7 @@ namespace ReqManager.Model
 
         [Key]
         public int LinkRequirementsID { get; set; }
-        public int UserID { get; set; }
+        public int CreationUserID { get; set; }
         public int TypeLinkID { get; set; }
         [Index("IX_LINK_BETWEEN_REQUIREMENT", 1, IsUnique = true)]
         public int RequirementOriginID { get; set; }
@@ -26,7 +26,8 @@ namespace ReqManager.Model
         [MaxLength(25), MinLength(4)]
         [Index(IsUnique = true)]
         public string code { get; set; }
-    
+
+        [ForeignKey("CreationUserID")]
         public virtual Users Users { get; set; }
         public virtual ICollection<LinkRequirementAttributes> linkRequirementAttributes { get; set; }
         [ForeignKey("RequirementOriginID")]

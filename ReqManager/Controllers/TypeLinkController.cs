@@ -10,7 +10,7 @@ namespace ReqManager.Controllers
     {
         public TypeLinkController(ITypeLinkService service, IUserService userService) : base(service)
         {
-            ViewBag.UserID = new SelectList(userService.getAll(), "UserID", "name");
+            ViewBag.CreationUserID = new SelectList(userService.getAll(), "UserID", "name");
         }        
     }
 }

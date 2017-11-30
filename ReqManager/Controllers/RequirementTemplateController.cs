@@ -25,7 +25,7 @@ namespace ReqManager.Controllers
             });
 
             Service = service;
-            ViewData.Add("UserID", new SelectList(userService.getAll(), "UserID", "DisplayName"));
+            ViewData.Add("CreationUserID", new SelectList(userService.getAll(), "UserID", "DisplayName"));
             ViewData.Add("RequirementTypeID", new SelectList(type.getAll(), "RequirementTypeID", "description"));
         }
 

@@ -11,7 +11,7 @@ namespace ReqManager.Entities.Link
         public int TypeLinkID { get; set; }
         [Required]
         [Display(Name = "User")]
-        public int UserID { get; set; }
+        public int CreationUserID { get; set; }
         [Required]
         [MaxLength(50), MinLength(3)]
         [Display(Name = "Type Link Description")]

@@ -19,7 +19,7 @@ namespace ReqManager.Controllers
             : base(service)
         {
             ViewData.Add("ProjectID", new SelectList(projectService.getAll(), "ProjectID", "description"));
-            ViewData.Add("UserID", new SelectList(userService.getAll(), "UserID", "name"));
+            ViewData.Add("CreationUserID", new SelectList(userService.getAll(), "UserID", "name"));
             ViewData.Add("RequirementID", new SelectList(reqService.getAll(), "RequirementID", "code"));
         }
 

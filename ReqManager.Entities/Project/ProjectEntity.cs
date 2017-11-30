@@ -11,7 +11,7 @@ namespace ReqManager.Entities.Project
         public int ProjectID { get; set; }
         [Required(ErrorMessage = "This field is Required")]
         [Display(Name = "User")]
-        public int UserID { get; set; }
+        public int CreationUserID { get; set; }
         [Required(ErrorMessage = "This field is Required")]
         [Range(1, Double.PositiveInfinity)]
         [Display(Name = "Phases")]

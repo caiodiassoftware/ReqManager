@@ -43,7 +43,7 @@ namespace ReqManager.Controllers
             this.projectService = projectService;
 
             ViewData.Add("ProjectPhasesID", new SelectList(phasesService.getAll(), "ProjectPhasesID", "description"));
-            ViewData.Add("UserID", new SelectList(userService.getAll(), "UserID", "name"));
+            ViewData.Add("CreationUserID", new SelectList(userService.getAll(), "UserID", "name"));
         }
 
         public JsonResult GetFolders(int ProjectID)
@@ -93,7 +93,7 @@ namespace ReqManager.Controllers
                     HistoryProjectEntity history = new HistoryProjectEntity();
                     ProjectEntity project = Service.get(entity.ProjectID);
                     history.ProjectID = project.ProjectID;
-                    history.UserID = getIdUser();
+                    history.CreationUserID = getIdUser();
                     history.descriptionPhases = project.ProjectPhases.description;
                     history.endDate = Convert.ToDateTime(project.endDate);
                     history.startDate = Convert.ToDateTime(project.startDate);

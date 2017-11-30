@@ -22,7 +22,7 @@ namespace ReqManager.Model
         [Index("IX_REQUIREMENT", 1, IsUnique = true)]
         public int RequirementID { get; set; }
         public int RequirementTemplateID { get; set; }
-        public int UserID { get; set; }
+        public int CreationUserID { get; set; }
         public int RequirementStatusID { get; set; }
         public int RequirementTypeID { get; set; }
         public Nullable<int> RequirementSubTypeID { get; set; }
@@ -47,6 +47,7 @@ namespace ReqManager.Model
         public virtual ICollection<ProjectRequirements> ProjectRequirements { get; set; }
         public virtual ICollection<RequirementRequestForChanges> RequirementRequestForChanges { get; set; }
         public virtual Importance Importance { get; set; }
+        [ForeignKey("CreationUserID")]
         public virtual Users Users { get; set; }
         public virtual RequirementTemplate RequirementTemplate { get; set; }
         public virtual RequirementStatus RequirementStatus { get; set; }

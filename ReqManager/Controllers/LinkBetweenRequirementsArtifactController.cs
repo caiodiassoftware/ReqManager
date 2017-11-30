@@ -39,7 +39,7 @@ namespace ReqManager.Controllers
             ViewData.Add("ProjectArtifactID", new SelectList(artifactService.getAll(), "ProjectArtifactID", "code"));
             ViewData.Add("RequirementID", new SelectList(reqService.getAll(), "RequirementID", "code"));
             ViewData.Add("TypeLinkID", new SelectList(typeService.getAll(), "TypeLinkID", "description"));
-            ViewData.Add("UserID", new SelectList(userService.getAll(), "UserID", "name"));
+            ViewData.Add("CreationUserID", new SelectList(userService.getAll(), "UserID", "name"));
         }
 
         public ActionResult ArtifactRequirementTraceabilityMatrix()

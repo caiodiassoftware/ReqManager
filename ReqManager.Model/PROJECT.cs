@@ -18,7 +18,7 @@ namespace ReqManager.Model
     
         [Key]
         public int ProjectID { get; set; }
-        public int UserID { get; set; }
+        public int CreationUserID { get; set; }
         public int ProjectPhasesID { get; set; }
         [Required]
         [MaxLength(255)]
@@ -41,6 +41,7 @@ namespace ReqManager.Model
         [Index(IsUnique = true)]
         public string code { get; set; }
 
+        [ForeignKey("CreationUserID")]
         public virtual Users Users { get; set; }
         public virtual ICollection<ProjectArtifact> ProjectArtifact { get; set; }
         public virtual ICollection<HistoryProject> HistoryProject { get; set; }

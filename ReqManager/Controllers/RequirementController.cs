@@ -135,7 +135,7 @@ namespace ReqManager.Controllers
                 ViewData.Add("RequirementStatusID", new SelectList(statusService.getAll(), "RequirementStatusID", "description"));
                 ViewData.Add("RequirementTypeID", new SelectList(typeService.getAll(), "RequirementTypeID", "description"));
                 ViewData.Add("RequirementSubTypeID", new SelectList(subTypeService.getAll(), "RequirementSubTypeID", "description"));
-                ViewData.Add("UserID", new SelectList(userService.getAll(), "UserID", "name"));
+                ViewData.Add("CreationUserID", new SelectList(userService.getAll(), "UserID", "name"));
                 ViewData.Add("ProjectID", new SelectList(projectService.getAll(), "ProjectID", "DisplayName", id == null ? 0 : id));
                 return View();
             }
@@ -161,7 +161,7 @@ namespace ReqManager.Controllers
                 ViewData.Add("ImportanceID", new SelectList(measureService.getAll(), "ImportanceID", "description", vm == null ? 0 : vm.ImportanceID));
                 ViewData.Add("RequirementStatusID", new SelectList(statusService.getAll(), "RequirementStatusID", "description", vm == null ? 0 : vm.RequirementStatusID));
                 ViewData.Add("RequirementTypeID", new SelectList(typeService.getAll(), "RequirementTypeID", "description", vm == null ? 0 : vm.RequirementTypeID));
-                ViewData.Add("UserID", new SelectList(userService.getAll(), "UserID", "name", vm == null ? 0 : vm.UserID));
+                ViewData.Add("UserID", new SelectList(userService.getAll(), "UserID", "name", vm == null ? 0 : vm.CreationUserID));
                 ViewData.Add("ProjectID", new SelectList(projectService.getAll(), "ProjectID", "DisplayName", vm == null ? 0 : vm.ProjectID));
 
                 if (vm == null)

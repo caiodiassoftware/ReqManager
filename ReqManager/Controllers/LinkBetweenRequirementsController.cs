@@ -36,7 +36,7 @@ namespace ReqManager.Controllers
             ViewData.Add("RequirementOriginID", new SelectList(requirementService.getAll(), "RequirementID", "code"));
             ViewData.Add("RequirementTargetID", new SelectList(requirementService.getAll(), "RequirementID", "code"));
             ViewData.Add("TypeLinkID", new SelectList(typeLinkService.getAll(), "TypeLinkID", "description"));
-            ViewData.Add("UserID", new SelectList(userService.getAll(), "UserID", "name"));
+            ViewData.Add("CreationUserID", new SelectList(userService.getAll(), "UserID", "name"));
         }
 
         public ActionResult RequirementTraceabilityMatrix()
@@ -44,6 +44,18 @@ namespace ReqManager.Controllers
             DataTableViewModel dt = new DataTableViewModel();
             //dt.dataTable = matrixService.getMatrix();
             return View(dt);
+        }
+
+        public JsonResult GetLink(string ReqOrigin, string ReqTarget)
+        {
+            try
+            {
+                return Json(linkService.get(ReqOrigin, ReqTarget), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public JsonResult GetLinkRequirementsFromProject(string ProjectID)

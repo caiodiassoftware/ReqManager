@@ -43,7 +43,7 @@ namespace ReqManager.Controllers
                 if (ModelState.IsValid)
                 {
                     List<ControllerActionViewModel> list = new List<ControllerActionViewModel>();
-                    UserEntity user = userService.Login(model.login, model.senha);
+                    UserEntity user = userService.Login(model.login, model.password);
                     if (user != null)
                     {
                         Session["user"] = user;

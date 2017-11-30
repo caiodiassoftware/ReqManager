@@ -1,10 +1,5 @@
-﻿using ReqManager.Entities.Acess;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReqManager.Entities.Acess
 {
@@ -14,7 +9,7 @@ namespace ReqManager.Entities.Acess
         public int HistoryTaskID { get; set; }
         [Required]
         [Display(Name = "User")]
-        public int UserID { get; set; }
+        public int CreationUserID { get; set; }
         [Required]
         [Display(Name = "Task")]
         public int TaskID { get; set; }

@@ -28,7 +28,7 @@ namespace ReqManager.Controllers
             ViewData.Add("ArtifactTypeID", new SelectList(typeService.getAll(), "ArtifactTypeID", "description"));
             ViewData.Add("MeasureImportanceID", new SelectList(measureService.getAll(), "MeasureImportanceID", "description"));
             ViewData.Add("ProjectID", new SelectList(projectService.getAll(), "ProjectID", "description"));
-            ViewData.Add("UserID", new SelectList(userService.getAll(), "UserID", "name"));
+            ViewData.Add("CreationUserID", new SelectList(userService.getAll(), "UserID", "name"));
         }
 
         public JsonResult GetArtifactsFromProject(int ProjectID)

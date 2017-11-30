@@ -16,7 +16,7 @@ namespace ReqManager.Model
     
         [Key]
         public int ProjectArtifactID { get; set; }
-        public int UserID { get; set; }
+        public int CreationUserID { get; set; }
         public int ArtifactTypeID { get; set; }
         public int ImportanceID { get; set; }
         public int ProjectID { get; set; }
@@ -31,7 +31,8 @@ namespace ReqManager.Model
         public string description { get; set; }
         [Required]
         public DateTime creationDate { get; set; }
-    
+
+        [ForeignKey("CreationUserID")]
         public virtual Users Users { get; set; }
         public virtual ArtifactType ArtifactType { get; set; }
         public virtual ICollection<HistoryProjectArtifact> HistoryProjectArtifact { get; set; }

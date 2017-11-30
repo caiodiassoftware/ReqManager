@@ -15,7 +15,7 @@ namespace ReqManager.Model
     
         [Key]
         public int LinkArtifactRequirementID { get; set; }
-        public int UserID { get; set; }
+        public int CreationUserID { get; set; }
         [Index("IX_artifact_requirement", 1, IsUnique = true)]
         public int ProjectArtifactID { get; set; }
         [Index("IX_artifact_requirement", 2, IsUnique = true)]
@@ -27,7 +27,8 @@ namespace ReqManager.Model
         [MaxLength(25)]
         [Index(IsUnique = true)]
         public string code { get; set; }
-    
+
+        [ForeignKey("CreationUserID")]
         public virtual Users Users { get; set; }
         public virtual ProjectArtifact ProjectArtifact { get; set; }
         public virtual Requirement Requirement { get; set; }

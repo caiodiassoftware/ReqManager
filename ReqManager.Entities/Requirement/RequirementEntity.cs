@@ -14,7 +14,7 @@ namespace ReqManager.Entities.Requirement
         public Nullable<int> RequirementTemplateID { get; set; }
         [Required]
         [Display(Name = "User")]
-        public int UserID { get; set; }
+        public int CreationUserID { get; set; }
         [Required]
         [Display(Name = "Status")]
         public int RequirementStatusID { get; set; }

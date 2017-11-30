@@ -17,7 +17,7 @@ namespace ReqManager.Model
     
         [Key]
         public int TypeLinkID { get; set; }
-        public int UserID { get; set; }
+        public int CreationUserID { get; set; }
         [Required]
         [Index(IsUnique = true)]
         [MaxLength(50), MinLength(3)]
@@ -25,6 +25,7 @@ namespace ReqManager.Model
         [Required]
         public DateTime creationDate { get; set; }
 
+        [ForeignKey("CreationUserID")]
         public virtual Users Users { get; set; }
         public virtual ICollection<AttributesTypeLink> AttributesTypeLink { get; set; }
         public virtual ICollection<LinkBetweenRequirement> LinkRequirements { get; set; }

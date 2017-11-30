@@ -145,7 +145,7 @@ namespace ReqManager.ManagerController
         {
             try
             {
-                PropertyInfo prop = entity.GetType().GetProperty("UserID", BindingFlags.Public | BindingFlags.Instance);
+                PropertyInfo prop = entity.GetType().GetProperty("CreationUserID", BindingFlags.Public | BindingFlags.Instance);
                 if (null != prop && prop.CanWrite)
                     prop.SetValue(entity, getIdUser(), null);
             }

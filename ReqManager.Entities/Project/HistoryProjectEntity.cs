@@ -11,7 +11,7 @@ namespace ReqManager.Entities.Project
         public int HistoryProjectID { get; set; }
         [Required]
         [Display(Name = "Name")]
-        public int UserID { get; set; }
+        public int CreationUserID { get; set; }
         [Required]
         [Display(Name = "Project")]
         public int ProjectID { get; set; }

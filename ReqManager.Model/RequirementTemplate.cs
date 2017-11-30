@@ -16,7 +16,7 @@ namespace ReqManager.Model
     
         [Key]
         public int RequirementTemplateID { get; set; }
-        public int UserID { get; set; }
+        public int CreationUserID { get; set; }
         public int RequirementTypeID { get; set; }
         [Required]
         [MaxLength(50), MinLength(6)]
@@ -25,7 +25,8 @@ namespace ReqManager.Model
         public string templateHtml { get; set; }
         [Required]
         public DateTime createDate { get; set; }
-    
+
+        [ForeignKey("CreationUserID")]
         public virtual Users Users { get; set; }
         public virtual ICollection<Requirement> Requirement { get; set; }
         public virtual RequirementType RequirementType { get; set; }

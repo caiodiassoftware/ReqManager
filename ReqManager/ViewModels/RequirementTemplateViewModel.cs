@@ -12,7 +12,7 @@ namespace ReqManager.ViewModels
         public int RequirementTemplateID { get; set; }
         [Display(Name = "User")]
         [Required(ErrorMessage = "This field is Required")]
-        public int UserID { get; set; }
+        public int CreationUserID { get; set; }
         [Required(ErrorMessage = "This field is Required")]
         [Range(1, Double.PositiveInfinity)]
         public int RequirementTypeID { get; set; }

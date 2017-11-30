@@ -25,14 +25,15 @@ namespace ReqManager.Model
     
         [Key]
         public int ProjectRequirementID { get; set; }
-        public int UserID { get; set; }
+        public int CreationUserID { get; set; }
         [Index("IX_PROJECT_REQUIREMENTS", 1, IsUnique = true)]
         public int ProjectID { get; set; }
         [Index("IX_PROJECT_REQUIREMENTS", 2, IsUnique = true)]
         public int RequirementID { get; set; }
         public DateTime creationDate { get; set; }
         public bool traceable { get; set; }
-    
+
+        [ForeignKey("CreationUserID")]
         public virtual Users Users { get; set; }
         public virtual Project Project { get; set; }
         public virtual ICollection<StakeholderRequirement> StakeholderRequirement { get; set; }

@@ -1,19 +1,21 @@
 ﻿using DataTables.Mvc;
 using ReqManager.Entities.Acess;
+using ReqManager.Filters;
 using ReqManager.Services.Estructure;
-using ReqManager.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Reflection;
+using System.Security.Principal;
 using System.Text;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 
 namespace ReqManager.ManagerController
 {
+    [Permissions]
     public class ControlAcessController<TEntity> : Controller where TEntity : class
     {
         #region Attributes
@@ -25,43 +27,6 @@ namespace ReqManager.ManagerController
         public ControlAcessController(IService<TEntity> service)
         {
             this.Service = service;
-        }
-
-        protected override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            try
-            {
-                string actionName = filterContext.ActionDescriptor.ActionName;
-                string controllerName = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName;
-
-                if (Session["user"] != null)
-                {
-                    UserEntity user = (UserEntity)Session["user"];
-                    List<ControllerActionViewModel> controllerActions = (List<ControllerActionViewModel>)Session["controllerActions"];
-
-                    if (controllerActions.Where(x => x.Action.Equals(actionName) &&
-                    x.Controller.Equals(controllerName + "Controller")).Count().Equals(0))
-                    {
-                        actionName = "Error";
-                        controllerName = "Shared";
-                    }
-                }
-                else
-                {
-                    actionName = "Login";
-                    controllerName = "Login";
-                }
-
-                //filterContext.Result = new RedirectToRouteResult(
-                //new RouteValueDictionary
-                //{ { "Controller", controllerName },
-                //    { "Action", actionName } });
-                base.OnActionExecuting(filterContext);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
         }
 
         #region Filters

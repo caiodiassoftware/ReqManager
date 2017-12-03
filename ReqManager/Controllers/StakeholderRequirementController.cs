@@ -7,9 +7,8 @@ using System.Net;
 
 namespace ReqManager.Controllers
 {
-    public class StakeholderRequirementController : BaseController<StakeholderRequirementEntity>
+    public class StakeholderRequirementController : BaseController<StakeholderRequirementApprovalEntity>
     {
-        private IProjectRequirementsService projectRequirementService { get; set; }
         private IStakeholderRequirementService service { get; set; }
         private IStakeholdersService stakeholder { get; set; }
         private IStakeholdersProjectService stakeholderProjectService { get; set; }
@@ -17,12 +16,10 @@ namespace ReqManager.Controllers
         public StakeholderRequirementController(
             IStakeholderRequirementService service,
             IStakeholdersService stakeholder,
-            IProjectRequirementsService projectRequirementService,
             IStakeholdersProjectService stakeholderProjectService,
             IProjectService projectService) : base(service)
         {
             this.service = service;
-            this.projectRequirementService = projectRequirementService;
             this.stakeholderProjectService = stakeholderProjectService;
             this.stakeholder = stakeholder;
 
@@ -39,10 +36,9 @@ namespace ReqManager.Controllers
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
 
-                ViewBag.ProjectRequirementID = new SelectList(projectRequirementService.getAll(), "ProjectRequirementID", "DisplayName");
                 ViewBag.StakeholdersProjectID = new SelectList(stakeholderProjectService.getAll(), "StakeholdersProjectID", "DisplayName");
 
-                StakeholderRequirementEntity stakeholderRequirement = service.filterByRequirementAndUser(Convert.ToInt32(id), getIdUser());
+                StakeholderRequirementApprovalEntity stakeholderRequirement = null;
 
                 return View(stakeholderRequirement);
             }
@@ -54,7 +50,7 @@ namespace ReqManager.Controllers
 
         [HttpPost]
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Approve(StakeholderRequirementEntity stakeholderRequirement)
+        public ActionResult Approve(StakeholderRequirementApprovalEntity stakeholderRequirement)
         {
             try
             {
@@ -72,9 +68,7 @@ namespace ReqManager.Controllers
         {
             try
             {
-                ProjectRequirementsEntity projectReq = projectRequirementService.getRequirementsByProjectAndRequirement(ProjectID, RequirementID);
-                StakeholderRequirementEntity entity = new StakeholderRequirementEntity();
-                entity.ProjectRequirementID = projectReq.ProjectRequirementID;
+                StakeholderRequirementApprovalEntity entity = new StakeholderRequirementApprovalEntity();
                 return base.Create(entity);
             }
             catch (Exception ex)

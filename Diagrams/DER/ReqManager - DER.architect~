@@ -677,7 +677,7 @@
   <table id="TAB184" populated="true" UUID="c0f5ed7a-216c-4392-a1dd-7b98b2f1dcf2" name="REQ.REQUIREMENT_VERSIONS" objectType="TABLE" physicalName="REQ.REQUIREMENT_VERSIONS" >
    <remarks></remarks>
    <folder id="FOLTAB1841" populated="true" name="Columns" physicalName="Columns" type="1">
-    <column id="COL185" populated="true" UUID="16ffddf4-d1c9-41db-87fd-467c2a084211" autoIncrement="false" autoIncrementSequenceName="REQ.REQUIREMENT_RATIONALE_ID_requirementRationale_seq" defaultValue="" name="RequirementRationaleID" nullable="0" physicalName="RequirementRationaleID" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+    <column id="COL185" populated="true" UUID="16ffddf4-d1c9-41db-87fd-467c2a084211" autoIncrement="false" autoIncrementSequenceName="REQ.REQUIREMENT_RATIONALE_ID_requirementRationale_seq" defaultValue="" name="RequirementVersionsID" nullable="0" physicalName="RequirementVersionsID" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
     <column id="COL186" populated="true" UUID="7bfec9a0-e333-4284-bc61-6e3b0389fb9d" autoIncrement="false" autoIncrementSequenceName="REQ.REQUIREMENT_VERSIONS_RequirementRequestForChangesID_seq" defaultValue="" name="RequirementRequestForChangesID" nullable="0" physicalName="RequirementRequestForChangesID" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
@@ -720,7 +720,7 @@
     </folder>
     <folder id="FOLTAB1844" populated="true" name="Indices" physicalName="Indices" type="4">
     <index id="IDX197" populated="true" UUID="d9ecc429-662b-4cf3-ad0b-167363017be4" clustered="false" name="REQUIREMENT_VERSIONS_pk" physicalName="REQUIREMENT_RATIONALE_pk" primaryKeyIndex="true" unique="false" >
-     <index-column id="IDC198" populated="true" UUID="d5eb341c-be0a-4909-bd0b-cb5e42fe98dc" ascendingOrDescending="UNSPECIFIED" column-ref="COL185" name="RequirementRationaleID" physicalName="RequirementRationaleID" />
+     <index-column id="IDC198" populated="true" UUID="d5eb341c-be0a-4909-bd0b-cb5e42fe98dc" ascendingOrDescending="UNSPECIFIED" column-ref="COL185" name="RequirementVersionsID" physicalName="RequirementVersionsID" />
     </index>
    </folder>
   </table>
@@ -1427,7 +1427,7 @@
  <ddl-generator type="ca.sqlpower.architect.ddl.SQLServer2005DDLGenerator" allow-connection="true" target-catalog="ReqManager" target-schema="sa"> </ddl-generator>
  <liquibase-settings useSeparateChangeSets="false" generateId="false" idStart="1"/>
  <create-kettle-job-settings filePath="" jobName="" schemaName="" kettleJoinType="0" savingToFile="true" />
- <play-pen zoom="0.8408964152537144" viewportX="742" viewportY="516" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
+ <play-pen zoom="0.8408964152537144" viewportX="987" viewportY="435" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
   <table-pane table-ref="TAB1" x="1844" y="982" bgColor="0xf6bcbc" fgColor="0x000000" rounded="false" dashed="false"/>
   <table-pane table-ref="TAB16" x="1975" y="1318" bgColor="0xe8cfdb" fgColor="0x000000" rounded="false" dashed="false"/>
   <table-pane table-ref="TAB26" x="2389" y="1010" bgColor="0xe8cfdb" fgColor="0x000000" rounded="false" dashed="false"/>

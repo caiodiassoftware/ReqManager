@@ -4,11 +4,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ReqManager.Entities.Project
 {
-    public class StakeholderRequirementEntity
+    public class StakeholderRequirementApprovalEntity
     {
         [Key]
         [Display(Name = "StakeHolder Requirement")]
-        public int StakeHolderRequirementID { get; set; }
+        public int StakeHolderRequirementApprovalID { get; set; }
         [Required(ErrorMessage = "This field is Required")]
         [Range(1, Double.PositiveInfinity)]
         [Display(Name = "Project Requirements")]
@@ -25,14 +25,13 @@ namespace ReqManager.Entities.Project
         public string description { get; set; }
         public bool approved { get; set; }
 
-        public virtual ProjectRequirementsEntity ProjectRequirements { get; set; }
         public virtual StakeholdersProjectEntity StakeholdersProject { get; set; }
 
         public String DisplayName
         {
             get
             {
-                return this.StakeholdersProject.Stakeholders.Users.nickName + " - " + this.ProjectRequirements.Project.description;
+                return this.StakeholdersProject.Stakeholders.Users.nickName;
             }
         }
 

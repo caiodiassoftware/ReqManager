@@ -40,8 +40,7 @@ namespace ReqManager.Data.DataAcess
         public virtual DbSet<HistoryProject> HistoryProject { get; set; }
         public virtual DbSet<Project> Project { get; set; }
         public virtual DbSet<ProjectPhases> ProjectPhases { get; set; }
-        public virtual DbSet<ProjectRequirements> ProjectRequirements { get; set; }
-        public virtual DbSet<StakeholderRequirement> StakeholderRequirement { get; set; }
+        public virtual DbSet<StakeholderRequirementApproval> StakeholderRequirement { get; set; }
         public virtual DbSet<Stakeholders> Stakeholders { get; set; }
         public virtual DbSet<StakeholdersProject> StakeholdersProject { get; set; }
         public virtual DbSet<Importance> Importance { get; set; }

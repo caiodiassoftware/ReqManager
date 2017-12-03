@@ -156,6 +156,10 @@
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="Vereyon.Web.FlashMessage, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Vereyon.Web.FlashMessage.1.0.1\lib\net40\Vereyon.Web.FlashMessage.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -190,7 +194,6 @@
     <Compile Include="Controllers\ImportanceController.cs" />
     <Compile Include="Controllers\ProjectArtifactController.cs" />
     <Compile Include="Controllers\ProjectPhasesController.cs" />
-    <Compile Include="Controllers\ProjectRequirementsController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\RequestStatusController.cs" />
     <Compile Include="Controllers\RequirementCharacteristicsController.cs" />
@@ -208,6 +211,7 @@
     <Compile Include="Controllers\TypeLinkController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UsersRolesController.cs" />
+    <Compile Include="Filters\Permissions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -495,11 +499,6 @@
     <Content Include="Views\Stakeholders\Details.cshtml" />
     <Content Include="Views\Stakeholders\Edit.cshtml" />
     <Content Include="Views\Stakeholders\Index.cshtml" />
-    <Content Include="Views\ProjectRequirements\Create.cshtml" />
-    <Content Include="Views\ProjectRequirements\Delete.cshtml" />
-    <Content Include="Views\ProjectRequirements\Details.cshtml" />
-    <Content Include="Views\ProjectRequirements\Edit.cshtml" />
-    <Content Include="Views\ProjectRequirements\Index.cshtml" />
     <Content Include="Views\Projects\Create.cshtml" />
     <Content Include="Views\Projects\Delete.cshtml" />
     <Content Include="Views\Projects\Details.cshtml" />

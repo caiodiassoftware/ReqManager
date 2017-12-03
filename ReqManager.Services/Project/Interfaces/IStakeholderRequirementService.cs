@@ -3,9 +3,8 @@ using ReqManager.Services.Estructure;
 
 namespace ReqManager.Services.Project.Interfaces
 {
-    public interface IStakeholderRequirementService : IService<StakeholderRequirementEntity>
+    public interface IStakeholderRequirementService : IService<StakeholderRequirementApprovalEntity>
     {
-        StakeholderRequirementEntity filterByUser(int UserID);
-        StakeholderRequirementEntity filterByRequirementAndUser(int RequirementID, int UserID);
+        StakeholderRequirementApprovalEntity filterByUser(int UserID);
     }
 }

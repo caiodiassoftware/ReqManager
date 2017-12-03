@@ -67,6 +67,7 @@ namespace ReqManager.Services.Estructure
             try
             {
                 repository.delete(id);
+                commit(persistir);
             }
             catch (Exception ex)
             {

@@ -55,7 +55,6 @@ namespace ReqManager.Entities.Acess
         }
 
         public virtual UserEntity Users { get; set; }
-        public virtual ProjectRequirementsEntity ProjectRequirements { get; set; }
         public virtual ImportanceEntity Importance { get; set; }
         public virtual StatusTaskEntity StatusTask { get; set; }
         public virtual TaskTypeTemplateEntity TaskTypeTemplate { get; set; }

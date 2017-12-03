@@ -17,7 +17,6 @@ namespace ReqManager.Model
         [Key]
         public int TaskID { get; set; }
         public int CreationUserID { get; set; }
-        public int ProjectRequirementID { get; set; }
         public int ImportanceID { get; set; }
         public int StatusTaskID { get; set; }
         public int TaskTypeTemplateID { get; set; }
@@ -37,7 +36,6 @@ namespace ReqManager.Model
 
         [ForeignKey("CreationUserID")]
         public virtual Users Users { get; set; }
-        public virtual ProjectRequirements ProjectRequirements { get; set; }
         public virtual Importance Importance { get; set; }
         public virtual ICollection<HistoryTask> HistoryTask { get; set; }
         public virtual StatusTask StatusTask { get; set; }

@@ -65,7 +65,6 @@
     <Compile Include="Project.cs" />
     <Compile Include="ProjectArtifact.cs" />
     <Compile Include="ProjectPhases.cs" />
-    <Compile Include="ProjectRequirements.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestStatus.cs" />
     <Compile Include="Requirement.cs" />
@@ -81,7 +80,7 @@
     <Compile Include="Stakeholders.cs" />
     <Compile Include="StakeholdersProject.cs" />
     <Compile Include="StakeholderClassification.cs" />
-    <Compile Include="StakeholderRequirement.cs" />
+    <Compile Include="StakeholderRequirementApproval.cs" />
     <Compile Include="StatusTask.cs" />
     <Compile Include="Subtask.cs" />
     <Compile Include="Task.cs" />

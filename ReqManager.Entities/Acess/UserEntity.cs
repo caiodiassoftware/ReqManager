@@ -34,6 +34,7 @@ namespace ReqManager.Entities.Acess
         public string login { get; set; }
         [Required]
         [Display(Name = "B-Day")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public System.DateTime dateOfBirth { get; set; }
         [Required]
         [MaxLength(30)]

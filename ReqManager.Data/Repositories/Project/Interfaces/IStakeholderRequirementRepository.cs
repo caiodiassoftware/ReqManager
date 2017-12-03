@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ReqManager.Data.Repositories.Project.Interfaces
 {
-    public interface IStakeholderRequirementRepository : IRepository<StakeholderRequirement>
+    public interface IStakeholderRequirementRepository : IRepository<StakeholderRequirementApproval>
     {
 
 

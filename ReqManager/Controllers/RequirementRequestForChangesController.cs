@@ -37,7 +37,7 @@ namespace ReqManager.Controllers
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
 
-                StakeholderRequirementEntity stakeholder = stakeholders.filterByUser(getIdUser());
+                StakeholderRequirementApprovalEntity stakeholder = stakeholders.filterByUser(getIdUser());
 
                 if (stakeholder == null)
                 {
@@ -48,7 +48,7 @@ namespace ReqManager.Controllers
                 {
                     ViewData.Add("RequirementID", new SelectList(requirement.getAll(), "RequirementID", "DisplayName", id));
                     ViewData.Add("StakeHolderRequirementID", new SelectList(
-                        new List<StakeholderRequirementEntity>() { stakeholder }, "StakeHolderRequirementID", "DisplayName"));
+                        new List<StakeholderRequirementApprovalEntity>() { stakeholder }, "StakeHolderRequirementID", "DisplayName"));
                     return View();
                 }
                 else
@@ -68,7 +68,7 @@ namespace ReqManager.Controllers
             {
                 RequirementRequestForChangesEntity req = new RequirementRequestForChangesEntity();
                 req.RequirementID = Convert.ToInt32(id);
-                req.StakeHolderRequirementID = stakeholders.filterByUser(getIdUser()).StakeHolderRequirementID;
+                req.StakeHolderRequirementID = stakeholders.filterByUser(getIdUser()).StakeHolderRequirementApprovalID;
                 req.RequestStatusID = 1;
                 req.creationDate = DateTime.Now;
                 req.request = request;

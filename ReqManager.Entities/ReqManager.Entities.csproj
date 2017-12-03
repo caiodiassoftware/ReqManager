@@ -59,10 +59,9 @@
     <Compile Include="Project\ImportanceEntity.cs" />
     <Compile Include="Project\ProjectEntity.cs" />
     <Compile Include="Project\ProjectPhasesEntity.cs" />
-    <Compile Include="Project\ProjectRequirementsEntity.cs" />
     <Compile Include="Project\StakeholderClassificationEntity.cs" />
     <Compile Include="Acess\UserEntity.cs" />
-    <Compile Include="Project\StakeholderRequirementEntity.cs" />
+    <Compile Include="Project\StakeholderRequirementApprovalEntity.cs" />
     <Compile Include="Project\StakeholdersEntity.cs" />
     <Compile Include="Project\StakeholdersProjectEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

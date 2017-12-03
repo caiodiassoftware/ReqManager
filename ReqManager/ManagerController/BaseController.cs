@@ -34,7 +34,8 @@ namespace ReqManager.ManagerController
             }
             catch (Exception ex)
             {
-                throw ex;
+                TempData["ControllerMessage"] = String.Format("There was an Error while viewing logs! " + ex.Message);
+                return RedirectToAction("Index");
             }
         }
 
@@ -55,7 +56,8 @@ namespace ReqManager.ManagerController
             }
             catch (Exception ex)
             {
-                throw ex;
+                TempData["ControllerMessage"] = String.Format("Error occurred while showing Details! " + ex.Message);
+                return RedirectToAction("Index");
             }
         }
 
@@ -67,7 +69,8 @@ namespace ReqManager.ManagerController
             }
             catch (Exception ex)
             {
-                throw ex;
+                TempData["ControllerMessage"] = String.Format("Error occurred while creating! " + ex.Message);
+                return RedirectToAction("Index");
             }
         }
 
@@ -88,7 +91,8 @@ namespace ReqManager.ManagerController
             }
             catch (Exception ex)
             {
-                throw ex;
+                TempData["ControllerMessage"] = String.Format("Error occurred while editing! " + ex.Message);
+                return RedirectToAction("Index");
             }
         }
 
@@ -109,7 +113,8 @@ namespace ReqManager.ManagerController
             }
             catch (Exception ex)
             {
-                throw ex;
+                TempData["ControllerMessage"] = String.Format("Error occurred while deleting! " + ex.Message);
+                return RedirectToAction("Index");
             }
         }
 
@@ -118,7 +123,8 @@ namespace ReqManager.ManagerController
         #region POST
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [AllowAnonymous]
+        [OutputCache(NoStore = true, Location = System.Web.UI.OutputCacheLocation.None)]
         public virtual ActionResult Create(TEntity entity)
         {
             try
@@ -128,7 +134,8 @@ namespace ReqManager.ManagerController
                 if (ModelState.IsValid)
                 {
                     Service.add(ref entity);
-                    ViewBag.MessageReqManager = String.Format("Register was made with Success!");
+                    ModelState.Clear();
+                    TempData["ControllerMessage"] = String.Format("Register was made with Success!");
                     return RedirectToAction("Index");
                 }
                 else
@@ -153,7 +160,8 @@ namespace ReqManager.ManagerController
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [AllowAnonymous]
+        [OutputCache(NoStore = true, Location = System.Web.UI.OutputCacheLocation.None)]
         public virtual ActionResult Edit(TEntity entity)
         {
             try
@@ -161,6 +169,7 @@ namespace ReqManager.ManagerController
                 if (ModelState.IsValid)
                 {
                     Service.update(ref entity);
+                    TempData["ControllerMessage"] = String.Format("Registration has been successfully edited!!");
                     return RedirectToAction("Index");
                 }
                 else
@@ -185,18 +194,19 @@ namespace ReqManager.ManagerController
         }
 
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        [AllowAnonymous]
+        [OutputCache(NoStore = true, Location = System.Web.UI.OutputCacheLocation.None)]
         public virtual ActionResult DeleteConfirmed(int id)
         {
             try
             {
                 Service.delete(id);
-                Service.saveChanges();
+                TempData["ControllerMessage"] = String.Format("Registration has been successfully deleted!!");
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
-                ViewBag.MessageReqManager = String.Format("Error Detected! " + ex.Message);
+                TempData["ControllerMessage"] = String.Format("Error Detected! " + ex.Message);
                 return RedirectToAction("Index");
             }
         }

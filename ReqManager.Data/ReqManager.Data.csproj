@@ -94,7 +94,6 @@
     <Compile Include="Repositories\Artifact\Classes\ProjectArtifactRepository.cs" />
     <Compile Include="Repositories\Project\Classes\ProjectPhasesRepository.cs" />
     <Compile Include="Repositories\Project\Classes\ProjectRepository.cs" />
-    <Compile Include="Repositories\Project\Classes\ProjectRequirementsRepository.cs" />
     <Compile Include="Repositories\Project\Classes\StakeholderClassificationRepository.cs" />
     <Compile Include="Repositories\Project\Classes\StakeholderRepository.cs" />
     <Compile Include="Repositories\Project\Classes\StakeholderRequirementRepository.cs" />
@@ -104,7 +103,6 @@
     <Compile Include="Repositories\Artifact\Interfaces\IProjectArtifactRepository.cs" />
     <Compile Include="Repositories\Project\Interfaces\IProjectPhasesRepository.cs" />
     <Compile Include="Repositories\Project\Interfaces\IProjectRepository.cs" />
-    <Compile Include="Repositories\Project\Interfaces\IProjectRequirementsRepository.cs" />
     <Compile Include="Repositories\Project\Interfaces\IStakeholderClassificationRepository.cs" />
     <Compile Include="Repositories\Project\Interfaces\IStakeholderRepository.cs" />
     <Compile Include="Repositories\Project\Interfaces\IStakeholderRequirementRepository.cs" />

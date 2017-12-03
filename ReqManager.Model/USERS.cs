@@ -17,7 +17,6 @@ namespace ReqManager.Model
             this.LinkRequirementsModel = new HashSet<LinkBetweenRequirement>();
             this.HistoryProjectModel = new HashSet<HistoryProject>();
             this.ProjectModel = new HashSet<Project>();
-            this.ProjectRequirementModel = new HashSet<ProjectRequirements>();
             this.HistoryTaskModel = new HashSet<HistoryTask>();
             this.TaskTypeTemplateModel = new HashSet<TaskTypeTemplate>();
             this.RequirementModel = new HashSet<Requirement>();
@@ -68,7 +67,6 @@ namespace ReqManager.Model
         public virtual ICollection<LinkBetweenRequirement> LinkRequirementsModel { get; set; }
         public virtual ICollection<HistoryProject> HistoryProjectModel { get; set; }
         public virtual ICollection<Project> ProjectModel { get; set; }
-        public virtual ICollection<ProjectRequirements> ProjectRequirementModel { get; set; }
         public virtual ICollection<HistoryTask> HistoryTaskModel { get; set; }
         public virtual ICollection<TaskTypeTemplate> TaskTypeTemplateModel { get; set; }
         public virtual ICollection<Requirement> RequirementModel { get; set; }

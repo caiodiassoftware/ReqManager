@@ -46,13 +46,14 @@
         <div class="row">
             <div class="col-sm-3">
 
-                @if (ViewBag.MessageReqManager != null)
+                @if (TempData["ControllerMessage"] != null)
                 {
                     <script type="text/javascript">
                         window.onload = function () {
-                            alert("@ViewBag.MessageReqManager");
+                            alert("@TempData["ControllerMessage"]");
                         };
                     </script>
+                    TempData.Remove("ControllerMessage");
                 }
 
                 <h2><b>Modules</b></h2>
@@ -179,7 +180,9 @@
 
         $(document).ready(function () {
             $('.display').dataTable();
+            $(".datepicker").datepicker();
         });
+
         $('#tabs').tabs({
             beforeLoad: function (event, ui) {
                 ui.panel.html('loading...');

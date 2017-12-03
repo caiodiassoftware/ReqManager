@@ -12,7 +12,6 @@ using ReqManager.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using ReqManager.Entities.Project;
 
 namespace ReqManager.Controllers
 {
@@ -39,7 +38,6 @@ namespace ReqManager.Controllers
         private IRequirementRequestForChangesService requestService { get; set; }
         private IRequirementSubTypeService subTypeService { get; set; }
         private IRequirementVersionsService versions { get; set; }
-        private IProjectRequirementsService projectRequirement { get; set; }
 
         public RequirementController(
             IRequirementService requirementService,
@@ -49,7 +47,6 @@ namespace ReqManager.Controllers
             IRequirementTypeService typeService,
             IRequirementCharacteristicsService reqCharacteristics,
             IUserService userService,
-            IProjectRequirementsService projectRequirement,
             IRequirementVersionsService versions,
             IRequirementRequestForChangesService requestService,
             IRequirementVersionsService rationaleService,
@@ -66,7 +63,6 @@ namespace ReqManager.Controllers
                 cfg.CreateAutomaticMapping<RequirementEntity, RequirementViewModel>();
             });
 
-            this.projectRequirement = projectRequirement;
             this.versions = versions;
             this.subTypeService = subTypeService;
             this.requestService = requestService;
@@ -107,10 +103,8 @@ namespace ReqManager.Controllers
                 vm.linkReq = linkRequirementService.getAll().Where(r => r.RequirementOriginID.Equals(id) || r.RequirementTargetID.Equals(id)).ToList();
                 vm.linkReqArt = linkReqArtifactService.getAll().Where(r => r.RequirementID.Equals(id)).ToList();
                 vm.characteristics = reqCharacteristics.getAll().Where(r => r.RequirementID.Equals(id)).ToList();
-                vm.stakeholders = stakeholdersRequirement.getAll().Where(r => r.ProjectRequirements.RequirementID.Equals(id)).ToList();
                 vm.request = requestService.getAll().Where(r => r.RequirementID.Equals(id)).ToList();
                 vm.versions = versions.getAll().Where(r => r.RequirementRequestForChanges.RequirementID.Equals(id)).ToList();
-                vm.projectRequirement = projectRequirement.getAll().Where(r => r.Requirement.RequirementID.Equals(id)).ToList();
 
                 return View(vm);
             }
@@ -212,10 +206,7 @@ namespace ReqManager.Controllers
                 {
                     RequirementEntity entity = Mapper.Map<RequirementViewModel, RequirementEntity>(vm);
                     setIdUser(ref entity);
-                    ProjectRequirementsEntity projectRequirement = new ProjectRequirementsEntity();
-                    projectRequirement.ProjectID = vm.ProjectID;
-                    projectRequirement.traceable = true;
-                    requirementService.add(ref entity, ref projectRequirement);
+                    Service.add(ref entity);
                 }
                 return RedirectToAction("Details", "Projects", new { id = vm.ProjectID });
             }

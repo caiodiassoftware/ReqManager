@@ -13,7 +13,6 @@ namespace ReqManager.Model
             this.LinkRequirementsOrigin = new HashSet<LinkBetweenRequirement>();
             this.LinkRequirementsTarget = new HashSet<LinkBetweenRequirement>();
             this.LinkRequirementsArtifacts = new HashSet<LinkBetweenRequirementsArtifacts>();
-            this.ProjectRequirements = new HashSet<ProjectRequirements>();
             this.RequirementRequestForChanges = new HashSet<RequirementRequestForChanges>();
             this.RequirementCharacteristics = new HashSet<RequirementCharacteristics>();
         }
@@ -21,6 +20,7 @@ namespace ReqManager.Model
         [Key]
         [Index("IX_REQUIREMENT", 1, IsUnique = true)]
         public int RequirementID { get; set; }
+        public int ProjectID { get; set; }
         public int RequirementTemplateID { get; set; }
         public int CreationUserID { get; set; }
         public int RequirementStatusID { get; set; }
@@ -44,8 +44,8 @@ namespace ReqManager.Model
         public virtual ICollection<LinkBetweenRequirement> LinkRequirementsOrigin { get; set; }
         public virtual ICollection<LinkBetweenRequirement> LinkRequirementsTarget { get; set; }
         public virtual ICollection<LinkBetweenRequirementsArtifacts> LinkRequirementsArtifacts { get; set; }
-        public virtual ICollection<ProjectRequirements> ProjectRequirements { get; set; }
         public virtual ICollection<RequirementRequestForChanges> RequirementRequestForChanges { get; set; }
+        public virtual ICollection<StakeholderRequirementApproval> StakeholderRequirement { get; set; }
         public virtual Importance Importance { get; set; }
         [ForeignKey("CreationUserID")]
         public virtual Users Users { get; set; }
@@ -53,5 +53,6 @@ namespace ReqManager.Model
         public virtual RequirementStatus RequirementStatus { get; set; }
         public virtual RequirementType RequirementType { get; set; }
         public virtual RequirementSubType RequirementSubType { get; set; }
+        public virtual Project Project { get; set; }
     }
 }

@@ -8,32 +8,18 @@ using System.Linq;
 
 namespace ReqManager.Services.Project.Classes
 {
-    public class StakeholderRequirementService : ServiceBase<StakeholderRequirement, StakeholderRequirementEntity>, IStakeholderRequirementService
+    public class StakeholderRequirementService : ServiceBase<StakeholderRequirementApproval, StakeholderRequirementApprovalEntity>, IStakeholderRequirementService
     {
         public StakeholderRequirementService(IStakeholderRequirementRepository repository, IUnitOfWork unit) :
             base(repository, unit)
         {
         }
 
-        public StakeholderRequirementEntity filterByUser(int UserID)
+        public StakeholderRequirementApprovalEntity filterByUser(int UserID)
         {
             try
             {
                 return getAll().Where(s => s.StakeholdersProject.Stakeholders.UserID.Equals(UserID)).SingleOrDefault();
-            }
-            catch (System.Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-
-        public StakeholderRequirementEntity filterByRequirementAndUser(int RequirementID, int UserID)
-        {
-            try
-            {
-                return getAll().Where(s => s.StakeholdersProject.Stakeholders.UserID.Equals(UserID) &&
-                s. ProjectRequirements.RequirementID.Equals(RequirementID)).SingleOrDefault();
             }
             catch (System.Exception ex)
             {

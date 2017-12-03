@@ -20,7 +20,7 @@ namespace ReqManager.Entities.Requirement
         public DateTime creationDate { get; set; } = DateTime.Now;
 
         public virtual RequirementEntity Requirement { get; set; }
-        public virtual StakeholderRequirementEntity StakeholderRequirement { get; set; }
+        public virtual StakeholderRequirementApprovalEntity StakeholderRequirement { get; set; }
         public virtual RequestStatusEntity RequestStatus { get; set; }
     }
 }

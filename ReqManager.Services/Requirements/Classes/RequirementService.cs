@@ -16,39 +16,15 @@ namespace ReqManager.Services.Requirements.Classes
     {
         private IRequirementVersionsService versionService { get; set; }
         private IRequirementRequestForChangesService requestService { get; set; }
-        private IProjectRequirementsService projectRequirementService { get; set; }
 
         public RequirementService(
             IRequirementRepository repository,
             IRequirementRequestForChangesService requestService,
             IRequirementVersionsService versionService,
-            IProjectRequirementsService projectRequirementService,
             IUnitOfWork unit) : base(repository, unit)
         {
-            this.projectRequirementService = projectRequirementService;
             this.requestService = requestService;
             this.versionService = versionService;
-        }
-
-        public void add(ref RequirementEntity requirement, 
-            ref ProjectRequirementsEntity projectRequirement)
-        {
-            try
-            {
-                BeginTransaction();
-                requirement.versionNumber = 1;
-                base.add(ref requirement, false);
-
-                projectRequirement.RequirementID = requirement.RequirementID;
-                projectRequirement.CreationUserID = requirement.CreationUserID;
-                projectRequirementService.add(ref projectRequirement, false);
-                Commit();
-            }
-            catch (Exception ex)
-            {
-                Rollback();
-                throw ex;
-            }
         }
 
         public void update(ref RequirementEntity entity, int RequirementRequestForChangesID, string rationale)

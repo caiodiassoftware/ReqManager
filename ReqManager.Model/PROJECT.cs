@@ -13,7 +13,6 @@ namespace ReqManager.Model
             this.ProjectArtifact = new HashSet<ProjectArtifact>();
             this.HistoryProject = new HashSet<HistoryProject>();
             this.StakeholderProject = new HashSet<StakeholdersProject>();
-            this.ProjectRequirement = new HashSet<ProjectRequirements>();
         }
     
         [Key]
@@ -47,6 +46,6 @@ namespace ReqManager.Model
         public virtual ICollection<HistoryProject> HistoryProject { get; set; }
         public virtual ProjectPhases ProjectPhases { get; set; }
         public virtual ICollection<StakeholdersProject> StakeholderProject { get; set; }
-        public virtual ICollection<ProjectRequirements> ProjectRequirement { get; set; }
+        public virtual ICollection<Requirement> RequirementCharacteristics { get; set; }
     }
 }

@@ -6,20 +6,20 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ReqManager.Model
 {
-    [Table("STAKEHOLDER_REQUIREMENT", Schema = "PROJ")]
-    public class StakeholderRequirement
+    [Table("STAKEHOLDER_REQUIREMENT_APPROVAL", Schema = "PROJ")]
+    public class StakeholderRequirementApproval
     {
-        public StakeholderRequirement()
+        public StakeholderRequirementApproval()
         {
             this.RequirementRequestForChanges = new HashSet<RequirementRequestForChanges>();
         }
 
         [Key]
-        public int StakeHolderRequirementID { get; set; }
-        [Index("IX_STAKEHOLDER_REQUIREMENT", 1, IsUnique = true)]
-        public int ProjectRequirementID { get; set; }
-        [Index("IX_STAKEHOLDER_REQUIREMENT", 2, IsUnique = true)]
+        public int StakeholderRequirementApprovalID { get; set; }
+        [Index("IX_STAKEHOLDER_REQUIREMENT_APPROVAL", 1, IsUnique = true)]
         public int StakeholdersProjectID { get; set; }
+        [Index("IX_STAKEHOLDER_REQUIREMENT_APPROVAL", 2, IsUnique = true)]
+        public int RequirementID { get; set; }
         public DateTime creationDate { get; set; }
         [MinLength(6)]
         [MaxLength(255)]
@@ -28,7 +28,7 @@ namespace ReqManager.Model
         public bool approved { get; set; }
 
         public virtual ICollection<RequirementRequestForChanges> RequirementRequestForChanges { get; set; }
-        public virtual ProjectRequirements ProjectRequirements { get; set; }
         public virtual StakeholdersProject StakeholdersProject { get; set; }
+        public virtual Requirement Requirement { get; set; }
     }
 }

@@ -19,7 +19,6 @@ namespace ReqManager.Controllers
         private IScanDirectoryService directory { get; set; }
         private IProjectService projectService { get; set; }
         private IProjectArtifactService projectArtifact { get; set; }
-        private IProjectRequirementsService projectRequirements { get; set; }
         private IStakeholdersProjectService stakeholders { get; set; }
         private IRequirementTraceabilityMatrixService matrixService { get; set; }
 
@@ -28,7 +27,6 @@ namespace ReqManager.Controllers
             IUserService userService,
             IStakeholdersProjectService stakeholders,
             IProjectArtifactService projectArtifact,
-            IProjectRequirementsService projectRequirements,
             IProjectPhasesService phasesService,
             IHistoryProjectService historyProjectService,
             IRequirementTraceabilityMatrixService matrixService,
@@ -37,7 +35,6 @@ namespace ReqManager.Controllers
             this.matrixService = matrixService;
             this.stakeholders = stakeholders;
             this.projectArtifact = projectArtifact;
-            this.projectRequirements = projectRequirements;
             this.historyProjectService = historyProjectService;
             this.directory = directory;
             this.projectService = projectService;
@@ -69,7 +66,7 @@ namespace ReqManager.Controllers
                 prj.project = projectService.get(id);
                 prj.stakeholders = stakeholders.getStakeholderByProject(Convert.ToInt32(id));
                 prj.artifacts = projectArtifact.getArtifactsByProject(Convert.ToInt32(id));
-                prj.requirements = projectRequirements.getRequirementsByProject(Convert.ToInt32(id)).Select(r => r.Requirement);
+                //prj.requirements = projectRequirements.getRequirementsByProject(Convert.ToInt32(id)).Select(r => r.Requirement);
                 prj.requirementMatrix = matrixService.getMatrix(Convert.ToInt32(id));
 
                 return View(prj);

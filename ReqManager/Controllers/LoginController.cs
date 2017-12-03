@@ -3,31 +3,25 @@ using ReqManager.Services.Acess.Interfaces;
 using ReqManager.Services.InterfacesServices;
 using ReqManager.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.Web.Mvc;
+using System.Web.Security;
+using System.Web;
+using ReqManager.Entities;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ReqManager.Controllers
 {
     public class LoginController : Controller
     {
-        private readonly IUserService userService;
-        private readonly IControllerActionService caService;
-        private readonly IRoleControllerActionService rcaService;
-        private readonly IRoleService roleService;
-        private readonly IUserRoleService urService;
+        private IUserService userService;
+        private IControllerActionService caService;
 
-        public LoginController(IUserService userService, 
-            IControllerActionService caService, 
-            IRoleControllerActionService rcaService,
-            IRoleService roleService,
-            IUserRoleService urService)
+        public LoginController(IUserService userService,
+            IControllerActionService caService)
         {
             this.userService = userService;
             this.caService = caService;
-            this.rcaService = rcaService;
-            this.roleService = roleService;
-            this.urService = urService;
         }
 
         public ActionResult Login()
@@ -36,45 +30,40 @@ namespace ReqManager.Controllers
         }
 
         [HttpPost]
-        public void Login([Bind(Include = "login,senha")] LoginViewModel model)
+        public void Login([Bind(Include = "login,password")] LoginViewModel model)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    List<ControllerActionViewModel> list = new List<ControllerActionViewModel>();
                     UserEntity user = userService.Login(model.login, model.password);
+
                     if (user != null)
                     {
-                        Session["user"] = user;
+                        List<ControllerActionEntity> actions = caService.GetActionsFromUser(user).ToList();
 
-                        var roles = roleService.getAll().ToList();
-                        var rcas = rcaService.getAll().ToList();
-                        var cas = caService.getAll().ToList();
-                        var userroles = urService.getAll().ToList();
+                        string data = string.Join("|", actions.Select(a => a.controller.Replace("Controller", "") + ":" + a.action));
 
-                        var controllerActions = from ur in userroles
-                                                join role in roles on ur.RoleID equals role.RoleID
-                                                join rca in rcas on role.RoleID equals rca.RoleID
-                                                join ca in cas on rca.ControllerActionID equals ca.ControllerActionID
-                                                where ur.UserID == user.UserID
-                                                select new ControllerActionViewModel
-                                                {
-                                                    Action = ca.action,
-                                                    Controller = ca.controller,
-                                                    IsGet = ca.IsGet,
-                                                    ControllerActionID = ca.ControllerActionID
-                                                };
+                        FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(
+                                1,
+                                model.login,
+                                DateTime.Now,
+                                DateTime.Now.AddMinutes(30),
+                                true,
+                                data,
+                                FormsAuthentication.FormsCookiePath);
 
-                        foreach (var item in controllerActions.ToList())
-                            list.Add(item);
+                        string encryptedTicket = FormsAuthentication.Encrypt(ticket);
 
-                        Session["controllerActions"] = list;
-                        Response.Redirect(@"~/Users/Index", false);
+                        HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
+                        cookie.HttpOnly = true;
+                        Response.Cookies.Add(cookie);
+
+                        Response.Redirect(@"~/Role/Index", false);
                     }
                     else
                     {
-                        Response.Redirect(@"~/Login/Login", false);
+                        ModelState.Clear();
                     }
                 }
             }

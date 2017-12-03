@@ -19,7 +19,7 @@ namespace ReqManager.Model
         public DateTime creationDate { get; set; }
 
         public virtual Requirement Requirement { get; set; }
-        public virtual StakeholderRequirement StakeholderRequirement { get; set; }
+        public virtual StakeholderRequirementApproval StakeholderRequirement { get; set; }
         public virtual RequestStatus RequestStatus { get; set; }
     }
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ReqManager.Data.Repositories.Project.Classes
 {
-    public class StakeholderRequirementRepository : RepositoryBase<StakeholderRequirement>, IStakeholderRequirementRepository
+    public class StakeholderRequirementRepository : RepositoryBase<StakeholderRequirementApproval>, IStakeholderRequirementRepository
     {
         public StakeholderRequirementRepository(IDbFactory dbFactory) : base(dbFactory)
         {

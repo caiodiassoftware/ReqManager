@@ -1,13 +1,10 @@
 ﻿using ReqManager.Entities.Artifact;
-using ReqManager.Entities.Link;
 using ReqManager.Entities.Project;
 using ReqManager.Entities.Requirement;
-using ReqManager.ManagerController;
 using ReqManager.Services.Directories.Interfaces;
 using ReqManager.Services.Link.Interfaces;
 using ReqManager.Services.Project.Interfaces;
 using ReqManager.Services.Requirements.Interfaces;
-using ReqManager.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +21,6 @@ namespace ReqManager.Controllers
         private IProjectArtifactService artifact { get; set; }
         private ILinkBetweenRequirementsService linkReq { get; set; }
         private ILinkBetweenRequirementsArtifactsService linkArt { get; set; }
-        private IProjectRequirementsService reqProj { get; set; }
         private IProjectService project { get; set; }
         private string path { get; set; }
 
@@ -38,10 +34,8 @@ namespace ReqManager.Controllers
             ILinkBetweenRequirementsService linkReq,
             ILinkBetweenRequirementsArtifactsService linkArt,
             IScanDirectoryService directory,
-            IProjectService project,
-            IProjectRequirementsService reqProj)
+            IProjectService project)
         {
-            this.reqProj = reqProj;
             this.directory = directory;
             this.requirement = requirement;
             this.artifact = artifact;
@@ -83,7 +77,6 @@ namespace ReqManager.Controllers
                 ViewBag.Title = "Track Project Requirement " + req.code;
 
                 ViewData.Add("Requirements", new SelectList(reqList.AsEnumerable(), "RequirementID", "DisplayName", id));
-                ViewData.Add("Project", new SelectList(reqProj.getAll().Where(pr => pr.RequirementID.Equals(req.RequirementID)).Select(p => p.Project), "ProjectID", "DisplayName"));
 
                 return View();
             }
@@ -97,23 +90,13 @@ namespace ReqManager.Controllers
         {
             try
             {
-                if (reqProj.isTraceable(Convert.ToInt32(Project), Convert.ToInt32(Requirements)))
-                {
-                    RequirementEntity req = requirement.get(Convert.ToInt32(Requirements));
-                    reqProj.isTraceable(Convert.ToInt32(Project), Convert.ToInt32(Requirements));
+                RequirementEntity req = requirement.get(Convert.ToInt32(Requirements));
 
+                string[] requirements = { req.code };
+                List<string> files = directory.findFile(requirements, Path);
 
-
-                    string[] requirements = { req.code };
-                    List<string> files = directory.findFile(requirements, Path);
-
-                    JsonResult json = Json(files, JsonRequestBehavior.AllowGet);
-                    return json;
-                }
-                else
-                {
-                    throw new Exception("This Requirement is not traceable for that Project!");
-                }
+                JsonResult json = Json(files, JsonRequestBehavior.AllowGet);
+                return json;
             }
             catch (Exception ex)
             {

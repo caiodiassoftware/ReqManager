@@ -19,19 +19,16 @@ namespace ReqManager.Controllers
     {
         private IRequirementTraceabilityMatrixService matrixService { get; set; }
         private ILinkBetweenRequirementsService linkService { get; set; }
-        private IProjectRequirementsService projectRequirements { get; set; }
 
         public LinkBetweenRequirementsController(
             ILinkBetweenRequirementsService linkService,
             IRequirementService requirementService,
-            IProjectRequirementsService projectRequirements,
             ITypeLinkService typeLinkService,
             IUserService userService,
             IRequirementTraceabilityMatrixService matrixService) : base(linkService)
         {
             this.matrixService = matrixService;
             this.linkService = linkService;
-            this.projectRequirements = projectRequirements;
 
             ViewData.Add("RequirementOriginID", new SelectList(requirementService.getAll(), "RequirementID", "code"));
             ViewData.Add("RequirementTargetID", new SelectList(requirementService.getAll(), "RequirementID", "code"));
@@ -62,8 +59,7 @@ namespace ReqManager.Controllers
         {
             try
             {
-                IEnumerable<RequirementEntity> requirements =
-                    projectRequirements.getRequirementsByProject(Convert.ToInt32(ProjectID)).Select(r => r.Requirement);
+                IEnumerable<RequirementEntity> requirements = null;
 
                 HashSet<LinkBetweenRequirementsEntity> links = new HashSet<LinkBetweenRequirementsEntity>();
 

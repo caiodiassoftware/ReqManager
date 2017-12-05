@@ -13,6 +13,9 @@ namespace ReqManager.Entities.Requirement
         [Display(Name = "Template")]
         public Nullable<int> RequirementTemplateID { get; set; }
         [Required]
+        [Display(Name = "Project")]
+        public int ProjectID { get; set; }
+        [Required]
         [Display(Name = "User")]
         public int CreationUserID { get; set; }
         [Required]
@@ -24,9 +27,6 @@ namespace ReqManager.Entities.Requirement
         [Required]
         [Display(Name = "SubType")]
         public int RequirementSubTypeID { get; set; }
-        [Required]
-        [Display(Name = "Stakeholder Project")]
-        public int StakeholdersProjectID { get; set; }
         [Required]
         [Display(Name = "Importance")]
         public int ImportanceID { get; set; }
@@ -53,7 +53,7 @@ namespace ReqManager.Entities.Requirement
         }
 
         public virtual UserEntity Users { get; set; }
-        public virtual StakeholdersProjectEntity StakeholderProject { get; set; }
+        public virtual ProjectEntity Project { get; set; }
         public virtual ImportanceEntity Importance { get; set; }
         public virtual RequirementTemplateEntity RequirementTemplate { get; set; }
         public virtual RequirementStatusEntity RequirementStatus { get; set; }

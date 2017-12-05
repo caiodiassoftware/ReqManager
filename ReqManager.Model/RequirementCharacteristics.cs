@@ -8,7 +8,9 @@ namespace ReqManager.Model
     {
         [Key]
         public int RequirementCharacteristicsID { get; set; }
+        [Index("IX_REQUIREMENT_CHARACTERISTICS", 1, IsUnique = true)]
         public int CharacteristicsID { get; set; }
+        [Index("IX_REQUIREMENT_CHARACTERISTICS", 2, IsUnique = true)]
         public int RequirementID { get; set; }
         public bool active { get; set; }
 

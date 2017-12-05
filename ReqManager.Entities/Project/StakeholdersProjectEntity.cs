@@ -18,6 +18,10 @@ namespace ReqManager.Entities.Project
         public int StakeholderID { get; set; }
         [Display(Name = "Creation Date")]
         public DateTime creationDate { get; set; } = DateTime.Now;
+        [Required(ErrorMessage = "This field is Required")]
+        [Display(Name = "Description")]
+        [MaxLength(255)]
+        public String description { get; set; }
 
         [Display(Name = "Stakeholder")]
         public String DisplayName

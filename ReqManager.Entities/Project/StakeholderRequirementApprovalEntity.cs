@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ReqManager.Entities.Requirement;
+using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -11,12 +12,12 @@ namespace ReqManager.Entities.Project
         public int StakeHolderRequirementApprovalID { get; set; }
         [Required(ErrorMessage = "This field is Required")]
         [Range(1, Double.PositiveInfinity)]
-        [Display(Name = "Project Requirements")]
-        public int ProjectRequirementID { get; set; }
-        [Required(ErrorMessage = "This field is Required")]
-        [Range(1, Double.PositiveInfinity)]
         [Display(Name = "Stakeholders")]
         public int StakeholdersProjectID { get; set; }
+        [Required(ErrorMessage = "This field is Required")]
+        [Range(1, Double.PositiveInfinity)]
+        [Display(Name = "Requirement")]
+        public int RequirementID { get; set; }
         [Display(Name = "Creation Date")]
         public DateTime creationDate { get; set; } = DateTime.Now;
         [MinLength(6)]
@@ -26,6 +27,7 @@ namespace ReqManager.Entities.Project
         public bool approved { get; set; }
 
         public virtual StakeholdersProjectEntity StakeholdersProject { get; set; }
+        public virtual RequirementEntity Requirement { get; set; }
 
         public String DisplayName
         {

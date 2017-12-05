@@ -86,7 +86,7 @@ namespace ReqManager.Controllers
             }
         }
 
-        public JsonResult TrackingRequirements(string Requirements, string Path, string Project)
+        public JsonResult TrackingRequirements(string Requirements, string Path)
         {
             try
             {

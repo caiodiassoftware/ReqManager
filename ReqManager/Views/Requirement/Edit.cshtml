@@ -13,6 +13,7 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.RequirementID)
+        @Html.HiddenFor(model => model.ProjectID)
         @Html.HiddenFor(model => model.CreationUserID)
         @Html.HiddenFor(model => model.creationDate)
         @Html.HiddenFor(model => model.code)
@@ -28,7 +29,7 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.CreationUserID, "CreationUserID", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.Label("Created By", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.DropDownList("CreationUserID", null, "SELECT THE USER", htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.CreationUserID, "", new { @class = "text-danger" })
@@ -46,7 +47,7 @@
 
 
         <div class="form-group">
-            @Html.LabelFor(model => model.RequirementStatusID, "RequirementStatusID", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Requirement Status", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("RequirementStatusID", null, "SELECT THE STATUS", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.RequirementStatusID, "", new { @class = "text-danger" })
@@ -54,7 +55,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.RequirementTypeID, "RequirementTypeID", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Requirement Type", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("RequirementTypeID", null, "SELECT THE TYPE", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.RequirementTypeID, "", new { @class = "text-danger" })
@@ -62,7 +63,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.RequirementSubTypeID, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Requirement SubType", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("RequirementSubTypeID", Enumerable.Empty<SelectListItem>(), "SELECT THE REQUIREMENT SUB TYPE", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.RequirementSubTypeID, "", new { @class = "text-danger" })
@@ -70,7 +71,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.RequirementTemplateID, "RequirementTemplateID", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Template", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("RequirementTemplateID", Enumerable.Empty<SelectListItem>(), "SELECT THE TEMPLATE", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.RequirementTemplateID, "", new { @class = "text-danger" })
@@ -78,7 +79,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ImportanceID, "ImportanceID", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Importance", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("ImportanceID", null, "SELECT THE IMPORTANCE", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ImportanceID, "", new { @class = "text-danger" })

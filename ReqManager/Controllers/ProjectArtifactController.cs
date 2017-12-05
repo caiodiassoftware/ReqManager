@@ -26,7 +26,7 @@ namespace ReqManager.Controllers
             this.historyServiceArtifact = historyServiceArtifact;
 
             ViewData.Add("ArtifactTypeID", new SelectList(typeService.getAll(), "ArtifactTypeID", "description"));
-            ViewData.Add("MeasureImportanceID", new SelectList(measureService.getAll(), "MeasureImportanceID", "description"));
+            ViewData.Add("ImportanceID", new SelectList(measureService.getAll(), "ImportanceID", "description"));
             ViewData.Add("ProjectID", new SelectList(projectService.getAll(), "ProjectID", "description"));
             ViewData.Add("CreationUserID", new SelectList(userService.getAll(), "UserID", "name"));
         }

@@ -9,10 +9,9 @@
     <div id="tabs">
         <ul>
             <li><a href="#req">Requirement</a></li>
-            <li><a href="#projectRequirement">Projects</a></li>
             <li><a href="#rr">R-R Traceability</a></li>
             <li><a href="#ra">R-A Traceability</a></li>
-            <li><a href="#stakeholder">Stakeholders</a></li>
+            <li><a href="#stakeholder">Stakeholders Appreciation</a></li>
             <li><a href="#characteristics">Characteristics</a></li>
             <li><a href="#request">Changes Request</a></li>
             <li><a href="#versions">Versions</a></li>
@@ -241,7 +240,11 @@
                             @Html.DisplayFor(modelItem => item.Characteristics.description)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Characteristics.active)
+                            @Html.DisplayFor(modelItem => item.active)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", "RequirementCharacteristics", new { id = item.RequirementCharacteristicsID }, null) |
+                            @Html.ActionLink("Delete", "Delete", "RequirementCharacteristics", new { id = item.RequirementCharacteristicsID }, null)
                         </td>
                     </tr>
                 }
@@ -269,7 +272,7 @@
                             @Html.DisplayFor(modelItem => item.request)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.StakeholderRequirement.DisplayName)
+                            @Html.DisplayFor(modelItem => item.StakeholdersProject.DisplayName)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.creationDate)
@@ -340,44 +343,12 @@
                 }
             </table>
         </div>
-        <div id="projectRequirement">
-            <table class="table">
-                <tr>
-                    <th>Code</th>
-                    <th>Description</th>
-                    <th>Management Info</th>
-                    <th>Enronmental Info</th>
-                    <th>Phase</th>
-                </tr>
-                @foreach (var item in Model.projectRequirement)
-                                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Project.code)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Project.description)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Project.managementInformation)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Project.environmentalInformation)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Project.ProjectPhases.description)
-                        </td>
-                    </tr>
-                }
-            </table>
-        </div>
-    </div>
-
-    
+    </div>    
 </div>
 <p>
-    @Html.ActionLink("Approve", "Approve", "StakeholderRequirement", new { id = Model.RequirementID }, null) |
-    @Html.ActionLink("Tracking", "TrackingRequirement", "Tracking", new { id = Model.RequirementID }, null) |
+    @Html.ActionLink("Appreciate", "Approve", "StakeholderRequirementApproval", new { id = Model.RequirementID }, null) |
     @Html.ActionLink("Request Change", "RequestNewChange", "RequirementRequestForChanges", new { id = Model.RequirementID }, null) |
+    @Html.ActionLink("Add Characteristic", "Create", "RequirementCharacteristics", new { id = Model.RequirementID }, null) |
+    @Html.ActionLink("Tracking", "TrackingRequirement", "Tracking", new { id = Model.RequirementID }, null) |
     @Html.ActionLink("Back to List", "Index")
 </p>

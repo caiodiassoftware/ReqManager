@@ -5,7 +5,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ReqManager.Model
 {
-
     [Table("REQUIREMENT_TEMPLATE", Schema = "REQ")]
     public class RequirementTemplate
     {
@@ -17,6 +16,7 @@ namespace ReqManager.Model
         [Key]
         public int RequirementTemplateID { get; set; }
         public int CreationUserID { get; set; }
+        [Index(IsUnique = true)]
         public int RequirementTypeID { get; set; }
         [Required]
         [MaxLength(50), MinLength(6)]

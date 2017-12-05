@@ -13,15 +13,18 @@ namespace ReqManager.Controllers
     public class RequirementRequestForChangesController : BaseController<RequirementRequestForChangesEntity>
     {
         private IRequirementService requirement { get; set; }
-        private IStakeholderRequirementService stakeholders { get; set; }
+        private IStakeholderRequirementApprovalService stakeholders { get; set; }
         private IRequirementRequestForChangesService service { get; set; }
+        private IStakeholdersProjectService stakeholderProject { get; set; }
 
         public RequirementRequestForChangesController(
             IRequirementRequestForChangesService service,
-            IStakeholderRequirementService stakeholders,
+            IStakeholdersProjectService stakeholderProject,
+            IStakeholderRequirementApprovalService stakeholders,
             IRequestStatusService status,
             IRequirementService requirement) : base(service)
         {
+            this.stakeholderProject = stakeholderProject;
             this.requirement = requirement;
             this.stakeholders = stakeholders;
             this.service = service;
@@ -37,18 +40,17 @@ namespace ReqManager.Controllers
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
 
-                StakeholderRequirementApprovalEntity stakeholder = stakeholders.filterByUser(getIdUser());
+                RequirementEntity req = requirement.get(id);
 
-                if (stakeholder == null)
+                if (req == null)
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
 
                 if (service.validateRequestForRequirement(Convert.ToInt32(id)))
                 {
-                    ViewData.Add("RequirementID", new SelectList(requirement.getAll(), "RequirementID", "DisplayName", id));
-                    ViewData.Add("StakeHolderRequirementID", new SelectList(
-                        new List<StakeholderRequirementApprovalEntity>() { stakeholder }, "StakeHolderRequirementID", "DisplayName"));
+                    ViewData.Add("RequirementID", new SelectList(
+                        new List<RequirementEntity>() { req }, "RequirementID", "DisplayName", id));
                     return View();
                 }
                 else
@@ -62,17 +64,20 @@ namespace ReqManager.Controllers
 
         [HttpPost]
         [AcceptVerbs(HttpVerbs.Post)]
-        public void RequestNewChange(string request, DateTime creationDate, int id)
+        public void RequestNewChange(string request, int id)
         {
             try
             {
-                RequirementRequestForChangesEntity req = new RequirementRequestForChangesEntity();
-                req.RequirementID = Convert.ToInt32(id);
-                req.StakeHolderRequirementID = stakeholders.filterByUser(getIdUser()).StakeHolderRequirementApprovalID;
-                req.RequestStatusID = 1;
-                req.creationDate = DateTime.Now;
-                req.request = request;
-                base.Create(req);
+                RequirementEntity req = requirement.get(id);
+                StakeholdersProjectEntity stake = stakeholderProject.getByRequirementAndUser(req.ProjectID, getIdUser());
+
+                RequirementRequestForChangesEntity reqRequest = new RequirementRequestForChangesEntity();
+                reqRequest.RequirementID = Convert.ToInt32(id);
+                reqRequest.StakeholdersProjectID = stake.StakeholdersProjectID;
+                reqRequest.RequestStatusID = 1;
+                reqRequest.creationDate = DateTime.Now;
+                reqRequest.request = request;
+                base.Create(reqRequest);
                 Response.Redirect("~/Requirement/Details/" + id);
             }
             catch (Exception ex)

@@ -1,10 +1,5 @@
-﻿using ReqManager.Model;
-using ReqManager.Services.Estructure;
+﻿using ReqManager.Services.Estructure;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ReqManager.Entities.Acess;
 
 namespace ReqManager.Services.Acess.Interfaces
@@ -12,5 +7,6 @@ namespace ReqManager.Services.Acess.Interfaces
     public interface IUserService : IService<UserEntity>
     {
         UserEntity Login(String login, String senha);
+        UserEntity Get(String login);
     }
 }

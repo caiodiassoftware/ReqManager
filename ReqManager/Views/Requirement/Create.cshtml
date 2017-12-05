@@ -1,7 +1,7 @@
 ﻿@model ReqManager.ViewModels.RequirementViewModel
 
 @{
-    ViewBag.Title = "Create a new Requirement";
+    ViewBag.Title = "Register a new Requirement";
 }
 
 
@@ -12,6 +12,8 @@
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @Html.Hidden("ProjectID", Request.Url.Segments[3].ToString())
 
         <div class="form-group">
             @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -113,7 +115,6 @@
 
             $.getJSON('@Url.Action("GetSubType", "RequirementSubType")', { type: id }, function (response) {
                 $.each(response, function (index, item) {
-                    console.log(item);
                     var optionExists = ($('#RequirementSubTypeID option[value=' + item.RequirementSubTypeID + ']').length > 0);
                     if (!optionExists)
                         $('#RequirementSubTypeID').append("<option value='" + item.RequirementSubTypeID + "'>" + item.description + "</option>");

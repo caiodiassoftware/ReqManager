@@ -17,6 +17,18 @@ namespace ReqManager.Services.Project.Classes
         {
         }
 
+        public StakeholdersProjectEntity getByRequirementAndUser(int ProjectID, int UserID)
+        {
+            try
+            {
+                return getAll().Where(p => p.ProjectID.Equals(ProjectID) && p.Stakeholders.UserID.Equals(UserID)).SingleOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public IEnumerable<StakeholdersProjectEntity> getStakeholderByProject(int ProjectID)
         {
             try

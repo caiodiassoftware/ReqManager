@@ -91,7 +91,7 @@
     <Compile Include="Project\Classes\ProjectPhasesService.cs" />
     <Compile Include="Project\Classes\ProjectService.cs" />
     <Compile Include="Project\Classes\StakeholderClassificationService.cs" />
-    <Compile Include="Project\Classes\StakeholderRequirementService.cs" />
+    <Compile Include="Project\Classes\StakeholderRequirementApprovalService.cs" />
     <Compile Include="Project\Classes\StakeholdersProjectService.cs" />
     <Compile Include="Project\Classes\StakeholdersService.cs" />
     <Compile Include="Artifact\Interfaces\IArtifactTypeService.cs" />
@@ -102,7 +102,7 @@
     <Compile Include="Project\Interfaces\IProjectPhasesService.cs" />
     <Compile Include="Project\Interfaces\IProjectService.cs" />
     <Compile Include="Project\Interfaces\IStakeholderClassificationService.cs" />
-    <Compile Include="Project\Interfaces\IStakeholderRequirementService.cs" />
+    <Compile Include="Project\Interfaces\IStakeholderRequirementApprovalService.cs" />
     <Compile Include="Project\Interfaces\IStakeholdersProjectService.cs" />
     <Compile Include="Project\Interfaces\IStakeholdersService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

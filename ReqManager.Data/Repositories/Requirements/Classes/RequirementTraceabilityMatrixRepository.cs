@@ -42,12 +42,10 @@ namespace ReqManager.Data.Repositories.Requirements.Classes
                                                         FROM LINK.LINK_BETWEEN_REQUIREMENT as L
                                                         INNER JOIN REQ.REQUIREMENT AS RT
 																ON RT.RequirementID = L.RequirementTargetID
+                                                                AND RT.ProjectID = " + ProjectID + @"
 														INNER JOIN REQ.REQUIREMENT AS RO
 																ON RO.RequirementID = L.RequirementOriginID
-                                                        INNER JOIN PROJ.PROJECT_REQUIREMENTS AS PR
-																ON PR.RequirementID = RT.RequirementID
-																OR PR.RequirementID = RO.RequirementID
-																AND PR.ProjectID = " + ProjectID + @"
+                                                                AND RO.ProjectID = " + ProjectID + @"
                                                     ) as x
                                                     PIVOT
                                                     (

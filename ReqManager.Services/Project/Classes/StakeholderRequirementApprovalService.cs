@@ -8,9 +8,9 @@ using System.Linq;
 
 namespace ReqManager.Services.Project.Classes
 {
-    public class StakeholderRequirementService : ServiceBase<StakeholderRequirementApproval, StakeholderRequirementApprovalEntity>, IStakeholderRequirementService
+    public class StakeholderRequirementApprovalService : ServiceBase<StakeholderRequirementApproval, StakeholderRequirementApprovalEntity>, IStakeholderRequirementApprovalService
     {
-        public StakeholderRequirementService(IStakeholderRequirementRepository repository, IUnitOfWork unit) :
+        public StakeholderRequirementApprovalService(IStakeholderRequirementRepository repository, IUnitOfWork unit) :
             base(repository, unit)
         {
         }

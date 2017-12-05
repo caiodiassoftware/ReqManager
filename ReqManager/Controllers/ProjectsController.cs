@@ -21,10 +21,12 @@ namespace ReqManager.Controllers
         private IProjectArtifactService projectArtifact { get; set; }
         private IStakeholdersProjectService stakeholders { get; set; }
         private IRequirementTraceabilityMatrixService matrixService { get; set; }
+        private IRequirementService requirementService { get; set; }
 
         public ProjectsController(
             IProjectService projectService,
             IUserService userService,
+            IRequirementService requirementService,
             IStakeholdersProjectService stakeholders,
             IProjectArtifactService projectArtifact,
             IProjectPhasesService phasesService,
@@ -32,6 +34,7 @@ namespace ReqManager.Controllers
             IRequirementTraceabilityMatrixService matrixService,
             IScanDirectoryService directory) : base(projectService)
         {
+            this.requirementService = requirementService;
             this.matrixService = matrixService;
             this.stakeholders = stakeholders;
             this.projectArtifact = projectArtifact;
@@ -41,6 +44,18 @@ namespace ReqManager.Controllers
 
             ViewData.Add("ProjectPhasesID", new SelectList(phasesService.getAll(), "ProjectPhasesID", "description"));
             ViewData.Add("CreationUserID", new SelectList(userService.getAll(), "UserID", "name"));
+        }
+
+        public JsonResult GetRequirementsFromProject(int ProjectID)
+        {
+            try
+            {
+                return Json(requirementService.getRequirementsByProject(ProjectID), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public JsonResult GetFolders(int ProjectID)
@@ -66,7 +81,7 @@ namespace ReqManager.Controllers
                 prj.project = projectService.get(id);
                 prj.stakeholders = stakeholders.getStakeholderByProject(Convert.ToInt32(id));
                 prj.artifacts = projectArtifact.getArtifactsByProject(Convert.ToInt32(id));
-                //prj.requirements = projectRequirements.getRequirementsByProject(Convert.ToInt32(id)).Select(r => r.Requirement);
+                prj.requirements = requirementService.getRequirementsByProject(Convert.ToInt32(id));
                 prj.requirementMatrix = matrixService.getMatrix(Convert.ToInt32(id));
 
                 return View(prj);

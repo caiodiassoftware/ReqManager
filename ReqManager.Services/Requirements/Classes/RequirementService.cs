@@ -1,14 +1,14 @@
 ﻿using AutoMapper;
 using ReqManager.Data.Infrastructure;
 using ReqManager.Data.Repositories.Requirements.Interfaces;
-using ReqManager.Entities.Project;
 using ReqManager.Entities.Requirement;
 using ReqManager.Model;
 using ReqManager.Services.Estructure;
 using ReqManager.Services.Extensions;
-using ReqManager.Services.Project.Interfaces;
 using ReqManager.Services.Requirements.Interfaces;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ReqManager.Services.Requirements.Classes
 {
@@ -60,6 +60,18 @@ namespace ReqManager.Services.Requirements.Classes
             catch (Exception ex)
             {
                 unit.Rollback();
+                throw ex;
+            }
+        }
+
+        public IEnumerable<RequirementEntity> getRequirementsByProject(int ProjectID)
+        {
+            try
+            {
+                return getAll().Where(r => r.ProjectID.Equals(ProjectID));
+            }
+            catch (Exception ex)
+            {
                 throw ex;
             }
         }

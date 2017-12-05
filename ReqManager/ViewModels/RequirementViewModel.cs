@@ -70,7 +70,6 @@ namespace ReqManager.ViewModels
         public virtual RequirementSubTypeEntity RequirementSubType { get; set; }
         public virtual UserEntity Users { get; set; }
         public virtual ProjectEntity Project { get; set; }
-        public virtual StakeholdersProjectEntity StakeholderProject { get; set; }
         public virtual ImportanceEntity Importance { get; set; }
         public virtual RequirementTemplateEntity RequirementTemplate { get; set; }
         public virtual RequirementStatusEntity RequirementStatus { get; set; }

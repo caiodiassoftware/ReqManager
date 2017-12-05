@@ -16,32 +16,5 @@ namespace ReqManager.Controllers
         {
             this.typeService = typeService;
         }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public override ActionResult Create(RequirementTypeEntity entity)
-        {
-            try
-            {
-                setIdUser(ref entity);
-                if (ModelState.IsValid)                
-                    typeService.add(ref entity);
-                else                
-                    getModelStateValidations();
-                return View();
-            }
-            catch (DbEntityValidationException ex)
-            {
-                return getMessageDbValidation(entity, ex);
-            }
-            catch (DbUpdateException ex)
-            {
-                return getMessageDbUpdateException(entity, ex);
-            }
-            catch (Exception ex)
-            {
-                return getMessageGeralException(entity, ex);
-            }
-        }
     }
 }

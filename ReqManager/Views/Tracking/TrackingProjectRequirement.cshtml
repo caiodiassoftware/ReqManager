@@ -86,7 +86,7 @@
 
             $('#Requirements').append("<option value='" + 0 + "'>SELECT THE REQUIREMENTS</option>");
 
-            $.getJSON('@Url.Action("GetRequirementsFromProject", "ProjectRequirements")', { ProjectID: id }, function (response) {
+            $.getJSON('@Url.Action("GetRequirementsFromProject", "Projects")', { ProjectID: id }, function (response) {
                 $.each(response, function (index, item) {
                     var optionExists = ($('#Requirements option[value=' + item.RequirementID + ']').length > 0);
                     if (!optionExists)

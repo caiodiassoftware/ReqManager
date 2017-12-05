@@ -1,7 +1,7 @@
-﻿@model ReqManager.Entities.Project.StakeholderRequirementEntity
+﻿@model ReqManager.Entities.Project.StakeholderRequirementApprovalEntity
 
 @{
-    ViewBag.Title = "Approve";
+    ViewBag.Title = "Appreciate Requirement";
 }
 
 @using (Html.BeginForm()) 
@@ -11,19 +11,14 @@
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.Label("Project - Requirement", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("ProjectRequirementID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.ProjectRequirementID, "", new { @class = "text-danger" })
-            </div>
-        </div>
+
+        @Html.Hidden("ID", Request.Url.Segments[3].ToString())
 
         <div class="form-group">
-            @Html.Label("Project - Stakeholders", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.RequirementID, "RequirementID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("StakeholdersProjectID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.StakeholdersProjectID, "", new { @class = "text-danger" })
+                @Html.DropDownList("RequirementID", Enumerable.Empty<SelectListItem>(), htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.RequirementID, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -54,5 +49,20 @@
 }
 
 <div>
-    @Html.ActionLink("Back to Requirement", "Details", "Requirement", new { id = Model.ProjectRequirements.RequirementID }, null)
+    @Html.ActionLink("Back to Requirement", "Details", "Requirement", new { id = Request.Url.Segments[3].ToString() }, null)
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+
+        $(function () {
+            var RequirementID = $('#ID').val();
+            $.getJSON('@Url.Action("Get", "Requirement")', { ID: RequirementID }, function (response) {
+                $('#RequirementID').append("<option value='" + response.RequirementID + "'>" + response.DisplayName + "</option>");
+            });
+        });
+    </script>
+
+}

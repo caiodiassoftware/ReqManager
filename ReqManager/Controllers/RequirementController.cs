@@ -34,10 +34,11 @@ namespace ReqManager.Controllers
         private IStakeholdersProjectService stakeholdersProject { get; set; }
         private IRequirementTemplateService templateService { get; set; }
         private IRequirementCharacteristicsService reqCharacteristics { get; set; }
-        private IStakeholderRequirementService stakeholdersRequirement { get; set; }
+        private IStakeholderRequirementApprovalService stakeholdersRequirement { get; set; }
         private IRequirementRequestForChangesService requestService { get; set; }
         private IRequirementSubTypeService subTypeService { get; set; }
         private IRequirementVersionsService versions { get; set; }
+        private IStakeholderRequirementApprovalService stakeholderApproval { get; set; }
 
         public RequirementController(
             IRequirementService requirementService,
@@ -53,8 +54,9 @@ namespace ReqManager.Controllers
             ILinkBetweenRequirementsService linkRequirementService,
             ILinkBetweenRequirementsArtifactsService linkReqArtifactService,
             IStakeholdersProjectService stakeholdersProject,
-            IStakeholderRequirementService stakeholdersRequirement,
+            IStakeholderRequirementApprovalService stakeholdersRequirement,
             IRequirementTemplateService templateService,
+            IStakeholderRequirementApprovalService stakeholderApproval,
             IProjectService projectService) : base(requirementService)
         {
             Mapper.Initialize(cfg =>
@@ -63,6 +65,7 @@ namespace ReqManager.Controllers
                 cfg.CreateAutomaticMapping<RequirementEntity, RequirementViewModel>();
             });
 
+            this.stakeholderApproval = stakeholderApproval;
             this.versions = versions;
             this.subTypeService = subTypeService;
             this.requestService = requestService;
@@ -105,6 +108,7 @@ namespace ReqManager.Controllers
                 vm.characteristics = reqCharacteristics.getAll().Where(r => r.RequirementID.Equals(id)).ToList();
                 vm.request = requestService.getAll().Where(r => r.RequirementID.Equals(id)).ToList();
                 vm.versions = versions.getAll().Where(r => r.RequirementRequestForChanges.RequirementID.Equals(id)).ToList();
+                vm.stakeholders = stakeholderApproval.getAll().Where(r => r.RequirementID.Equals(id)).ToList();
 
                 return View(vm);
             }
@@ -155,7 +159,7 @@ namespace ReqManager.Controllers
                 ViewData.Add("ImportanceID", new SelectList(measureService.getAll(), "ImportanceID", "description", vm == null ? 0 : vm.ImportanceID));
                 ViewData.Add("RequirementStatusID", new SelectList(statusService.getAll(), "RequirementStatusID", "description", vm == null ? 0 : vm.RequirementStatusID));
                 ViewData.Add("RequirementTypeID", new SelectList(typeService.getAll(), "RequirementTypeID", "description", vm == null ? 0 : vm.RequirementTypeID));
-                ViewData.Add("UserID", new SelectList(userService.getAll(), "UserID", "name", vm == null ? 0 : vm.CreationUserID));
+                ViewData.Add("CreationUserID", new SelectList(userService.getAll(), "UserID", "name", vm == null ? 0 : vm.CreationUserID));
                 ViewData.Add("ProjectID", new SelectList(projectService.getAll(), "ProjectID", "DisplayName", vm == null ? 0 : vm.ProjectID));
 
                 if (vm == null)
@@ -198,6 +202,7 @@ namespace ReqManager.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Create(RequirementViewModel vm)
         {
             try
@@ -207,8 +212,14 @@ namespace ReqManager.Controllers
                     RequirementEntity entity = Mapper.Map<RequirementViewModel, RequirementEntity>(vm);
                     setIdUser(ref entity);
                     Service.add(ref entity);
+                    TempData["ControllerMessage"] = String.Format("Register was made with Success!");
+                    return RedirectToAction("Details", "Projects", new { id = vm.ProjectID });
                 }
-                return RedirectToAction("Details", "Projects", new { id = vm.ProjectID });
+                else
+                {
+                    getModelStateValidations();
+                }
+                return Create(vm.ProjectID);
             }
             catch (Exception ex)
             {
@@ -223,14 +234,13 @@ namespace ReqManager.Controllers
         {
             try
             {
-
                 RequirementEntity req = new RequirementEntity();
 
                 if (ModelState.IsValid)
                 {
                     req = Mapper.Map<RequirementEditViewModel, RequirementEntity>(vm);
                     requirementService.update(ref req, vm.RequirementRequestForChangesID, vm.rationale);
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Details", "Requirement", new { id = req.RequirementID });
                 }
                 else
                 {

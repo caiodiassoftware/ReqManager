@@ -184,8 +184,6 @@
     <Compile Include="Controllers\AttributesTypeLinkController.cs" />
     <Compile Include="Controllers\CharacteristicsController.cs" />
     <Compile Include="Controllers\ControllerActionController.cs" />
-    <Compile Include="Controllers\HistoryProjectArtifactsController.cs" />
-    <Compile Include="Controllers\HistoryProjectController.cs" />
     <Compile Include="Controllers\LinkArtifactAttributesController.cs" />
     <Compile Include="Controllers\LinkBetweenRequirementsArtifactController.cs" />
     <Compile Include="Controllers\LinkBetweenRequirementsController.cs" />
@@ -205,7 +203,7 @@
     <Compile Include="Controllers\RequirementTypesController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\RoleControllerActionController.cs" />
-    <Compile Include="Controllers\StakeholderRequirementController.cs" />
+    <Compile Include="Controllers\StakeholderRequirementApprovalController.cs" />
     <Compile Include="Controllers\StakeholdersProjectController.cs" />
     <Compile Include="Controllers\TrackingController.cs" />
     <Compile Include="Controllers\TypeLinkController.cs" />
@@ -487,8 +485,6 @@
     <Content Include="Views\ProjectPhases\Details.cshtml" />
     <Content Include="Views\ProjectPhases\Edit.cshtml" />
     <Content Include="Views\ProjectPhases\Index.cshtml" />
-    <Content Include="Views\HistoryProject\Details.cshtml" />
-    <Content Include="Views\HistoryProject\Index.cshtml" />
     <Content Include="Views\StakeholderClassification\Create.cshtml" />
     <Content Include="Views\StakeholderClassification\Delete.cshtml" />
     <Content Include="Views\StakeholderClassification\Details.cshtml" />
@@ -533,8 +529,6 @@
     <Content Include="Views\Importance\Details.cshtml" />
     <Content Include="Views\Importance\Edit.cshtml" />
     <Content Include="Views\Importance\Index.cshtml" />
-    <Content Include="Views\RequirementActionHistory\Details.cshtml" />
-    <Content Include="Views\RequirementActionHistory\Index.cshtml" />
     <Content Include="Views\ArtifactType\Create.cshtml" />
     <Content Include="Views\ArtifactType\Delete.cshtml" />
     <Content Include="Views\ArtifactType\Details.cshtml" />
@@ -545,8 +539,6 @@
     <Content Include="Views\ProjectArtifact\Details.cshtml" />
     <Content Include="Views\ProjectArtifact\Edit.cshtml" />
     <Content Include="Views\ProjectArtifact\Index.cshtml" />
-    <Content Include="Views\HistoryProjectArtifacts\Details.cshtml" />
-    <Content Include="Views\HistoryProjectArtifacts\Index.cshtml" />
     <Content Include="Views\UsersRoles\Index.cshtml" />
     <Content Include="Views\RoleControllerAction\Create.cshtml" />
     <Content Include="Views\UsersRoles\Delete.cshtml" />
@@ -609,9 +601,7 @@
     <Content Include="Views\Characteristics\Index.cshtml" />
     <Content Include="Views\RequirementCharacteristics\Create.cshtml" />
     <Content Include="Views\RequirementCharacteristics\Delete.cshtml" />
-    <Content Include="Views\RequirementCharacteristics\Details.cshtml" />
     <Content Include="Views\RequirementCharacteristics\Edit.cshtml" />
-    <Content Include="Views\RequirementCharacteristics\Index.cshtml" />
     <Content Include="Views\RequirementSubType\Create.cshtml" />
     <Content Include="Views\RequirementSubType\Delete.cshtml" />
     <Content Include="Views\RequirementSubType\Details.cshtml" />
@@ -627,12 +617,7 @@
     <Content Include="Views\RequestStatus\Details.cshtml" />
     <Content Include="Views\RequestStatus\Edit.cshtml" />
     <Content Include="Views\RequestStatus\Index.cshtml" />
-    <Content Include="Views\StakeholderRequirement\Approve.cshtml" />
-    <Content Include="Views\StakeholderRequirement\Create.cshtml" />
-    <Content Include="Views\StakeholderRequirement\Delete.cshtml" />
-    <Content Include="Views\StakeholderRequirement\Details.cshtml" />
-    <Content Include="Views\StakeholderRequirement\Edit.cshtml" />
-    <Content Include="Views\StakeholderRequirement\Index.cshtml" />
+    <Content Include="Views\StakeholderRequirementApproval\Approve.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

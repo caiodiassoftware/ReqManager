@@ -9,18 +9,16 @@ namespace ReqManager.Entities.Requirement
         [Key]
         public int RequirementRequestForChangesID { get; set; }
         public int RequirementID { get; set; }
-        public int StakeHolderRequirementID { get; set; }
-        [Display(Name = "Request Status")]
+        public int StakeholdersProjectID { get; set; }
         public int RequestStatusID { get; set; }
         [Required]
         [MaxLength(1000), MinLength(10)]
-        [Display(Name = "Request")]
         public string request { get; set; }
         [Required]
-        public DateTime creationDate { get; set; } = DateTime.Now;
+        public DateTime creationDate { get; set; }
 
         public virtual RequirementEntity Requirement { get; set; }
-        public virtual StakeholderRequirementApprovalEntity StakeholderRequirement { get; set; }
+        public virtual StakeholdersProjectEntity StakeholdersProject { get; set; }
         public virtual RequestStatusEntity RequestStatus { get; set; }
     }
 }

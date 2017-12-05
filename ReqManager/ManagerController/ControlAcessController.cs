@@ -1,6 +1,4 @@
 ﻿using DataTables.Mvc;
-using ReqManager.Entities.Acess;
-using ReqManager.Filters;
 using ReqManager.Services.Estructure;
 using System;
 using System.Collections.Generic;
@@ -8,14 +6,13 @@ using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Reflection;
-using System.Security.Principal;
 using System.Text;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 
 namespace ReqManager.ManagerController
 {
-    [Permissions]
+    //[Permissions]
     public class ControlAcessController<TEntity> : Controller where TEntity : class
     {
         #region Attributes
@@ -35,7 +32,7 @@ namespace ReqManager.ManagerController
         {
             try
             {
-                return (ID != 0) ? Json(Service.get(Convert.ToInt32(ID)), JsonRequestBehavior.AllowGet) : null;
+                return (ID != 0 && ID != null) ? Json(Service.get(Convert.ToInt32(ID)), JsonRequestBehavior.AllowGet) : null;
             }
             catch (Exception ex)
             {
@@ -132,9 +129,8 @@ namespace ReqManager.ManagerController
                                 .Select(x => x.ErrorMessage);
 
             var fullErrorMessage = string.Join("; ", errorMessages);
-            //var exceptionMessage = string.Concat(ex.Message, " The validation errors are: ", fullErrorMessage);
-            ViewBag.MessageReqManager = String.Format("Error Detected in DataBase validation! " + fullErrorMessage);
-            return View(entity);
+            TempData["ControllerMessage"] = String.Format("Error Detected in DataBase validation! " + fullErrorMessage);
+            return RedirectToAction("Index");
         }
 
         protected ActionResult getMessageDbUpdateException(TEntity entity, DbUpdateException ex)
@@ -155,19 +151,20 @@ namespace ReqManager.ManagerController
             }
 
             string message = builder.ToString() + " - " + ex.InnerException.InnerException.Message;
-            ViewBag.MessageReqManager = message;
-            return View(entity);
+            ModelState.Clear();
+            TempData["ControllerMessage"] = message;
+            return RedirectToAction("Index");
         }
 
         protected ActionResult getMessageGeralException(TEntity entity, Exception ex)
         {
-            ViewBag.MessageReqManager = String.Format("Error Detected! " + ex.Message);
-            return View(entity);
+            TempData["ControllerMessage"] = String.Format("Error Detected! " + ex.Message);
+            return RedirectToAction("Index");
         }
 
         protected void getModelStateValidations()
         {
-            ViewBag.MessageReqManager = String.Concat("Error Detected in View validation! ", string.Join("; ", ModelState.Values
+            TempData["ControllerMessage"] = String.Concat("Error Detected in View validation! ", string.Join("; ", ModelState.Values
                                                     .SelectMany(x => x.Errors)
                                                     .Select(x => x.ErrorMessage)));
         }

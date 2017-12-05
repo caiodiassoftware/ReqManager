@@ -1,6 +1,5 @@
 ﻿using ReqManager.Services.Estructure;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Net;
@@ -10,10 +9,6 @@ namespace ReqManager.ManagerController
 {
     public class BaseController<TEntity> : ControlAcessController<TEntity> where TEntity : class
     {
-        #region Attributes
-        protected List<ControllerBase> viewBags { get; set; }
-        #endregion
-
         #region Constructor
 
         public BaseController(IService<TEntity> service) : base (service)

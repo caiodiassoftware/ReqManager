@@ -1,7 +1,7 @@
 ﻿@model ReqManager.Entities.Project.ImportanceEntity
 
 @{
-    ViewBag.Title = "Edit Measure Importance";
+    ViewBag.Title = "Edit Importance";
 }
 
 @using (Html.BeginForm())
@@ -11,7 +11,7 @@
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.MeasureImportanceID)
+        @Html.HiddenFor(model => model.ImportanceID)
 
         <div class="form-group">
             @Html.LabelFor(model => model.description, htmlAttributes: new { @class = "control-label col-md-2" })

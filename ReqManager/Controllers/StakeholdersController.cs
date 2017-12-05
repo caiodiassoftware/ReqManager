@@ -10,7 +10,7 @@ namespace ReqManager.Views
     {
         public StakeholdersController(IStakeholdersService service, IStakeholderClassificationService classService, IUserService userService) : base(service)
         {
-            ViewBag.CreationUserID = new SelectList(userService.getAll(), "UserID", "name");
+            ViewBag.UserID = new SelectList(userService.getAll(), "UserID", "name");
             ViewBag.ClassificationID = new SelectList(classService.getAll(), "ClassificationID", "description");
         }
     }

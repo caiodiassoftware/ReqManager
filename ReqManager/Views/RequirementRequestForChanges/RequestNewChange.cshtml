@@ -15,18 +15,10 @@
         @Html.Hidden("ID", Request.Url.Segments[3].ToString())
 
         <div class="form-group">
-            @Html.LabelFor(model => model.RequirementID, "RequirementID", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Requirement", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.RequirementID, null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.RequirementID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.StakeHolderRequirementID, "StakeHolderRequirementID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.StakeHolderRequirementID, null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.StakeHolderRequirementID, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -35,14 +27,6 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.request, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.request, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.creationDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.creationDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.creationDate, "", new { @class = "text-danger" })
             </div>
         </div>
 

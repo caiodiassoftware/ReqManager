@@ -19,7 +19,7 @@ namespace ReqManager.Entities.Artifact
         public int ArtifactTypeID { get; set; }
         [Required(ErrorMessage = "This field is Required")]
         [Range(1, Double.PositiveInfinity)]
-        [Display(Name = "Measure Importance")]
+        [Display(Name = "Importance")]
         public int ImportanceID { get; set; }
         [Required(ErrorMessage = "This field is Required")]
         [Range(1, Double.PositiveInfinity)]
@@ -46,6 +46,7 @@ namespace ReqManager.Entities.Artifact
             }
         }
 
+        [Display(Name = "User")]
         public virtual UserEntity Users { get; set; }
         public virtual ArtifactTypeEntity ArtifactType { get; set; }
         public virtual ImportanceEntity Importance { get; set; }

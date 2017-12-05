@@ -18,7 +18,7 @@ namespace ReqManager.ViewModels
         public int RequirementTypeID { get; set; }
         [Required]
         [MaxLength(50), MinLength(6)]
-        [Display(Name = "Template")]
+        [Display(Name = "Template Description")]
         public string description { get; set; }
         [Display(Name = "Template Html")]
         [AllowHtml]

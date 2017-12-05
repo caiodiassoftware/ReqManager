@@ -4,9 +4,8 @@ using ReqManager.Services.Acess.Interfaces;
 using ReqManager.Data.InterfacesRepositories;
 using ReqManager.Model;
 using System.Linq;
-using System.Collections.Generic;
 using ReqManager.Entities.Acess;
-using AutoMapper;
+using System;
 
 namespace ReqManager.Services.Acess.Classes
 {
@@ -16,10 +15,30 @@ namespace ReqManager.Services.Acess.Classes
         {
         }
 
+        public UserEntity Get(string login)
+        {
+            try
+            {
+                Users user = repository.filter(u => u.login.Equals(login)).FirstOrDefault();
+                return convertModelToEntity(user);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public UserEntity Login(string login, string password)
         {
-            Users user = repository.filter(u => u.login.Equals(login) && u.password.Equals(password)).FirstOrDefault();
-            return convertModelToEntity(user);
-        }    
+            try
+            {
+                Users user = repository.filter(u => u.login.Equals(login) && u.password.Equals(password)).FirstOrDefault();
+                return convertModelToEntity(user);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

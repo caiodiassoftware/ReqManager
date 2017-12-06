@@ -8,7 +8,7 @@
 
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
+    @Html.Hidden("ID", Request.Url.Segments[3].ToString())
     <div id="tabs">
         <ul>
             <li><a href="#path">Tracking</a></li>
@@ -17,18 +17,18 @@
 
         <div id="path">
             <div class="form-group">
-                @Html.Label("Project", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("Project", null, "SELECT THE PROJECT", htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessage("Project", "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
                 @Html.Label("R to R", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.DropDownList("LinkBetweenRequirement", Enumerable.Empty<SelectListItem>(), "SELECT THE LINK BETWEEN REQUIREMENT", htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessage("LinkBetweenRequirement", "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Project", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("Project", Enumerable.Empty<SelectListItem>(), "SELECT THE PROJECT", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessage("Project", "", new { @class = "text-danger" })
                 </div>
             </div>
 
@@ -63,35 +63,32 @@
     </div>
 </div>
 
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
 @section Scripts {
     <script type="text/javascript">
 
-        function clearDropDown(dropDown) {
-            var select = document.getElementById(dropDown);
-            var i;
-            for (i = select.options.length - 1 ; i >= 0 ; i--)
-                select.remove(i);
-        }
+        $(function () {
 
-        $("#Project").change(function () {
+            var LinkID = $('#ID').val();
 
-            var id = $(this).val();
+            $.getJSON('@Url.Action("Get", "LinkBetweenRequirements")', { ID: LinkID }, function (response) {
 
-            clearDropDown("LinkBetweenRequirement");
-            clearDropDown("Path");
+                $('#LinkBetweenRequirement').append("<option value='" + response.LinkRequirementsID + "'>" + response.DisplayName + "</option>");
+                $('#LinkBetweenRequirement').val(LinkID);
 
-            $('#LinkBetweenRequirement').append("<option value='" + 0 + "'>SELECT THE LINK BETWEEN REQUIREMENTS</option>");
-
-            $.getJSON('@Url.Action("GetLinkRequirementsFromProject", "LinkBetweenRequirements")', { ProjectID: id }, function (response) {
-                $.each(response, function (index, item) {
-                    $('#LinkBetweenRequirement').append("<option value='" + item.LinkRequirementsID + "'>" + item.DisplayName + "</option>");
+                $.getJSON('@Url.Action("Get", "Requirement")', { ID: response.RequirementOriginID }, function (response) {
+                    $('#Project').append("<option value='" +    response.Project.ProjectID + "'>" + response.Project.DisplayName + "</option>");
+                });
+                $.getJSON('@Url.Action("Get", "Requirement")', { ID: response.RequirementTargetID }, function (response) {
+                    var optionExists = ($('#Project option[value=' + response.Project.ProjectID + ']').length > 0);
+                    if (!optionExists)
+                        $('#Project').append("<option value='" + response.Project.ProjectID + "'>" + response.Project.DisplayName + "</option>");                    
                 });
             });
+        });
+
+        $("#Project").change(function () {
+            var id = $(this).val();
+            clearDropDown("Path");
 
             $.getJSON('@Url.Action("GetFolders", "Projects")', { ProjectID: id }, function (response) {
                 $('#Path').append("<option value='" + 0 + "'>SELECT THE PATH</option>");
@@ -99,23 +96,15 @@
                     $('#Path').append("<option value='" + item + "'>" + item + "</option>");
                 });
             });
-
         });
 
         $("#track").click(function () {
             var Link = $('#LinkBetweenRequirement').val();
             var Path = $('#Path').val();
 
-            var select = document.getElementById("Files");
-            var i;
-            for (i = select.options.length - 1 ; i >= 0 ; i--)
-                select.remove(i);
-
-            $('#Files').append("<option value='" + 0 + "'>SELECT THE PATH</option>");
-
             $.getJSON('@Url.Action("TrackingLinkBetweenRequirements", "Tracking")', { Link: Link, Path: Path }, function (response) {
                 $.each(response, function (index, item) {
-                    var optionExists = ($('#Files option[value=' + item.AttributeID + ']').length > 0);
+                    var optionExists = ($('#Files option[value=' + item + ']').length > 0);
                     if (!optionExists)
                         $('#Files').append("<option value='" + item + "'>" + item + "</option>");
                 });

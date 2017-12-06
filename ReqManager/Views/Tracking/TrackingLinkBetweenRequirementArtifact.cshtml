@@ -8,7 +8,7 @@
 
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
+    @Html.Hidden("ID", Request.Url.Segments[3].ToString())
     <div id="tabs">
         <ul>
             <li><a href="#path">Tracking</a></li>
@@ -17,19 +17,18 @@
 
         <div id="path">
             <div class="form-group">
-                @Html.Label("Project", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.Label("R to A", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("Project", null, "SELECT THE PROJECT", htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessage("Project", "", new { @class = "text-danger" })
+                    @Html.DropDownList("LinkBetweenArtifactRequirement", Enumerable.Empty<SelectListItem>(),    htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessage("LinkBetweenArtifactRequirement", "", new { @class = "text-danger" })
                 </div>
             </div>
 
-
             <div class="form-group">
-                @Html.Label("R to A", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.Label("Project", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("LinkBetweenArtifactRequirement", Enumerable.Empty<SelectListItem>(), "SELECT THE LINK BETWEEN REQUIREMENTS AND ARTIFACTS", htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessage("LinkBetweenArtifactRequirement", "", new { @class = "text-danger" })
+                    @Html.DropDownList("Project", Enumerable.Empty<SelectListItem>(), "SELECT THE PROJECT", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessage("Project", "", new { @class = "text-danger" })
                 </div>
             </div>
 
@@ -64,35 +63,34 @@
     </div>
 </div>
 
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
 @section Scripts {
     <script type="text/javascript">
 
-        function clearDropDown(dropDown) {
-            var select = document.getElementById(dropDown);
-            var i;
-            for (i = select.options.length - 1 ; i >= 0 ; i--)
-                select.remove(i);
-        }
+        $(function () {
 
-        $("#Project").change(function () {
+            var LinkID = $('#ID').val();
 
-            var id = $(this).val();
+            $.getJSON('@Url.Action("Get", "LinkBetweenRequirementsArtifact")', { ID: LinkID }, function (response) {
 
-            clearDropDown("LinkBetweenArtifactRequirement");
-            clearDropDown("Path");
+                $('#LinkBetweenArtifactRequirement').append("<option value='" + response.LinkArtifactRequirementID + "'>" + response.DisplayName + "</option>");
+                $('#LinkBetweenArtifactRequirement').val(LinkID);
 
-            $('#LinkBetweenArtifactRequirement').append("<option value='" + 0 + "'>SELECT THE LINK BETWEEN REQUIREMENTS AND ARTIFACTS</option>");
-
-            $.getJSON('@Url.Action("GetLinkArtifactsRequirementsFromProject", "LinkBetweenRequirementsArtifact")', { ProjectID: id }, function (response) {
-                $.each(response, function (index, item) {
-                    $('#LinkBetweenArtifactRequirement').append("<option value='" + item.LinkArtifactRequirementID + "'>" + item.DisplayName + "</option>");
+                $.getJSON('@Url.Action("Get", "Requirement")', { ID: response.RequirementID }, function (response) {
+                    var optionExists = ($('#Project option[value=' + response.Project.ProjectID + ']').length > 0);
+                    if (!optionExists)
+                        $('#Project').append("<option value='" + response.Project.ProjectID + "'>" + response.Project.DisplayName + "</option>");
+                });
+                $.getJSON('@Url.Action("Get", "ProjectArtifact")', { ID: response.ProjectArtifactID }, function (response) {
+                    var optionExists = ($('#Project option[value=' + response.Project.ProjectID + ']').length > 0);
+                    if (!optionExists)
+                        $('#Project').append("<option value='" + response.Project.ProjectID + "'>" + response.Project.DisplayName + "</option>");
                 });
             });
+        });
+
+        $("#Project").change(function () {
+            var id = $(this).val();
+            clearDropDown("Path");
 
             $.getJSON('@Url.Action("GetFolders", "Projects")', { ProjectID: id }, function (response) {
                 $('#Path').append("<option value='" + 0 + "'>SELECT THE PATH</option>");
@@ -107,14 +105,11 @@
             var Link = $('#LinkBetweenArtifactRequirement').val();
             var Path = $('#Path').val();
 
-            var select = document.getElementById("Files");
-            var i;
-            for (i = select.options.length - 1 ; i >= 0 ; i--)
-                select.remove(i);
+            clearDropDown("Files");
 
             $('#Files').append("<option value='" + 0 + "'>SELECT THE PATH</option>");
 
-            $.getJSON('@Url.Action("TrackingLinkBetweenRequirementArtifacts", "Tracking")', { Link: Link, Path: Path }, function (response) {
+            $.getJSON('@Url.Action("TrackingLinkBetweenRequirementArtifacts", "Tracking")', { item: Link, Path: Path }, function (response) {
                 $.each(response, function (index, item) {
                     var optionExists = ($('#Files option[value=' + item.AttributeID + ']').length > 0);
                     if (!optionExists)

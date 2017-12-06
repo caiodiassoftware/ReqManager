@@ -4,7 +4,6 @@ using ReqManager.Services.Directories.Interfaces;
 using System.IO;
 using System.Linq;
 using ReqManager.Utils.Extensions;
-using System.Security.Permissions;
 using System.Security.AccessControl;
 
 namespace ReqManager.Services.Directories.Classes
@@ -55,7 +54,7 @@ namespace ReqManager.Services.Directories.Classes
                 }
                 else
                 {
-                    new ArgumentException("Path not Found!");
+                    filesFound.Add("Path not Found");
                 }
 
                 return filesFound;

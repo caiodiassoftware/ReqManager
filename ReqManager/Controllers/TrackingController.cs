@@ -26,7 +26,7 @@ namespace ReqManager.Controllers
 
         #endregion
 
-        #region Construtor
+        #region Constructor
 
         public TrackingController(
             IRequirementService requirement,
@@ -211,7 +211,6 @@ namespace ReqManager.Controllers
         {
             try
             {
-                ViewData.Add("Project", new SelectList(project.getAll(), "ProjectID", "DisplayName"));
                 return View();
             }
             catch (Exception ex)

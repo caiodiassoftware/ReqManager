@@ -618,6 +618,7 @@
     <Content Include="Views\RequestStatus\Edit.cshtml" />
     <Content Include="Views\RequestStatus\Index.cshtml" />
     <Content Include="Views\StakeholderRequirementApproval\Approve.cshtml" />
+    <Content Include="Views\Role\RenderPdf.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

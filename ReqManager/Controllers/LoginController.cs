@@ -40,17 +40,13 @@ namespace ReqManager.Controllers
 
                     if (user != null)
                     {
-                        List<ControllerActionEntity> actions = caService.GetActionsFromUser(user).ToList();
-
-                        string data = string.Join("|", actions.Select(a => a.controller.Replace("Controller", "") + ":" + a.action));
-
                         FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(
                                 1,
                                 model.login,
                                 DateTime.Now,
                                 DateTime.Now.AddMinutes(30),
                                 true,
-                                data,
+                                user.UserID.ToString(),
                                 FormsAuthentication.FormsCookiePath);
 
                         string encryptedTicket = FormsAuthentication.Encrypt(ticket);

@@ -1,4 +1,5 @@
 ﻿using DataTables.Mvc;
+using ReqManager.Filters;
 using ReqManager.Services.Estructure;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ using System.Web.Script.Serialization;
 
 namespace ReqManager.ManagerController
 {
-    //[Permissions]
+    [Permissions]
     public class ControlAcessController<TEntity> : Controller where TEntity : class
     {
         #region Attributes

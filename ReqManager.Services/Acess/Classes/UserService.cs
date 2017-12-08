@@ -32,7 +32,7 @@ namespace ReqManager.Services.Acess.Classes
         {
             try
             {
-                Users user = repository.filter(u => u.login.Equals(login) && u.password.Equals(password)).FirstOrDefault();
+                Users user = repository.filter(u => u.login.Equals(login) && u.password.Equals(password) && u.active).FirstOrDefault();
                 return convertModelToEntity(user);
             }
             catch (Exception ex)

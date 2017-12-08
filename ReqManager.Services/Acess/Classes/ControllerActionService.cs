@@ -64,7 +64,7 @@ namespace ReqManager.Services.Acess
             }
         }
 
-        public IEnumerable<ControllerActionEntity> GetActionsFromUser(UserEntity user)
+        public bool CanAccess(int UserID, string controllerName, string actionName)
         {
             try
             {
@@ -73,12 +73,14 @@ namespace ReqManager.Services.Acess
                 var cas = getAll().ToList();
                 var userroles = userRoleService.getAll().ToList();
 
-                return from ur in userroles
+                var yellow = from ur in userroles
                        join role in roles on ur.RoleID equals role.RoleID
                        join rca in rcas on role.RoleID equals rca.RoleID
                        join ca in cas on rca.ControllerActionID equals ca.ControllerActionID
-                       where ur.UserID == user.UserID
+                       where ur.UserID.Equals(UserID) && ca.controller.Equals(controllerName) && ca.action.Equals(actionName)
                        select ca;
+
+                return yellow != null ? true : false;
             }
             catch (Exception ex)
             {

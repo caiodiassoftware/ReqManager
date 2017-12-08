@@ -16,28 +16,22 @@ namespace ReqManager.Filters
             {
                 string actionName = filterContext.ActionDescriptor.ActionName;
                 string controllerName = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName;
-                bool hasPermission = false;
 
                 HttpCookie authCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName];
 
                 if (authCookie != null)
                 {
+                    IControllerActionService caService = DependencyResolver.Current.GetService<IControllerActionService>();
+
                     FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
 
-                    string[] roles = authTicket.UserData.Split(new char[] { '|' });
-
-                    foreach (var item in roles)
-                    {
-                        string[] controllerAction = item.Split(':');
-                        if(controllerAction[0].Equals(controllerName) && controllerAction[1].Equals(actionName))                        
-                            hasPermission = true;                        
-                    }
+                    int UserID = Convert.ToInt32(authTicket.UserData);
 
                     IIdentity id = new FormsIdentity(authTicket);
-                    IPrincipal principal = new GenericPrincipal(id, roles);
+                    IPrincipal principal = new GenericPrincipal(id, null);
                     HttpContext.Current.Request.RequestContext.HttpContext.User = principal;
 
-                    if(!hasPermission)
+                    if (!caService.CanAccess(UserID, controllerName, actionName))
                     {
                         filterContext.Result = new HttpUnauthorizedResult(
                             "You don't have Permissions to Access " + actionName + " " + controllerName);
@@ -52,6 +46,7 @@ namespace ReqManager.Filters
                             { "action", "Login" }
                         });
                 }
+
             }
             catch (Exception ex)
             {

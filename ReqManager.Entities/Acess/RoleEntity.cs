@@ -1,10 +1,4 @@
-﻿using ReqManager.Entities.Acess;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ReqManager.Entities.Acess
 {
@@ -15,6 +9,10 @@ namespace ReqManager.Entities.Acess
         public int RoleID { get; set; }
         [MinLength(5)]
         [MaxLength(50)]
+        [Display(Name = "Role Name")]
+        public string name { get; set; }
+        [MinLength(5)]
+        [MaxLength(255)]
         [Display(Name = "Role Description")]
         public string description { get; set; }
 

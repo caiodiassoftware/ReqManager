@@ -10,6 +10,8 @@ using ReqManager.Services.Directories.Interfaces;
 using ReqManager.ViewModels;
 using System.Linq;
 using ReqManager.Services.Requirements.Interfaces;
+using ReqManager.Services.Documents.Interfaces;
+using System.Web;
 
 namespace ReqManager.Controllers
 {
@@ -22,6 +24,7 @@ namespace ReqManager.Controllers
         private IStakeholdersProjectService stakeholders { get; set; }
         private IRequirementTraceabilityMatrixService matrixService { get; set; }
         private IRequirementService requirementService { get; set; }
+        private IRequirementDocumentService reqDocument { get; set; }
 
         public ProjectsController(
             IProjectService projectService,
@@ -32,8 +35,10 @@ namespace ReqManager.Controllers
             IProjectPhasesService phasesService,
             IHistoryProjectService historyProjectService,
             IRequirementTraceabilityMatrixService matrixService,
-            IScanDirectoryService directory) : base(projectService)
+            IScanDirectoryService directory,
+            IRequirementDocumentService reqDocument) : base(projectService)
         {
+            this.reqDocument = reqDocument;
             this.requirementService = requirementService;
             this.matrixService = matrixService;
             this.stakeholders = stakeholders;
@@ -44,6 +49,27 @@ namespace ReqManager.Controllers
 
             ViewData.Add("ProjectPhasesID", new SelectList(phasesService.getAll(), "ProjectPhasesID", "description"));
             ViewData.Add("CreationUserID", new SelectList(userService.getAll(), "UserID", "name"));
+        }
+
+        public void PrintDocumentRequirement(int ProjectID, int RequirementTypeID)
+        {
+            try
+            {
+                Response.Clear();
+                Response.ContentType = "application/pdf";
+                Response.ContentType = "application/octet-stream";
+                Response.Cache.SetCacheability(HttpCacheability.NoCache);
+                Response.AddHeader("content-disposition", "inline;filename= Test.pdf");
+                Response.Buffer = true;
+                Response.Clear();
+                var bytes = reqDocument.printDocumentRequirementProject(ProjectID, RequirementTypeID);
+                Response.OutputStream.Write(bytes, 0, bytes.Length);
+                Response.OutputStream.Flush();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public JsonResult GetRequirementsFromProject(int ProjectID)

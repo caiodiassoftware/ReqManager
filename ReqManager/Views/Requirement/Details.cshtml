@@ -5,7 +5,7 @@
 }
 
 <div>
-
+    @Html.Hidden("ID", Request.Url.Segments[3].ToString())
     <div id="tabs">
         <ul>
             <li><a href="#req">Requirement</a></li>
@@ -346,9 +346,23 @@
     </div>    
 </div>
 <p>
+    <a href="" onclick="printDocumentRequirement(); return false;">Print Requirement</a> |
     @Html.ActionLink("Appreciate", "Approve", "StakeholderRequirementApproval", new { id = Model.RequirementID }, null) |
     @Html.ActionLink("Request Change", "RequestNewChange", "RequirementRequestForChanges", new { id = Model.RequirementID }, null) |
     @Html.ActionLink("Add Characteristic", "Create", "RequirementCharacteristics", new { id = Model.RequirementID }, null) |
     @Html.ActionLink("Tracking", "TrackingRequirement", "Tracking", new { id = Model.RequirementID }, null) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+
+        function printDocumentRequirement() {
+            var RequirementID = $("#ID").val();
+            window.open('/Requirement/PrintDocumentRequirement?RequirementID=' + RequirementID);
+        };
+    </script>
+
+}

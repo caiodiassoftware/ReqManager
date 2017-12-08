@@ -12,6 +12,8 @@ using ReqManager.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Web;
+using ReqManager.Services.Documents.Interfaces;
 
 namespace ReqManager.Controllers
 {
@@ -38,11 +40,13 @@ namespace ReqManager.Controllers
         private IRequirementRequestForChangesService requestService { get; set; }
         private IRequirementSubTypeService subTypeService { get; set; }
         private IRequirementVersionsService versions { get; set; }
+        private IRequirementDocumentService reqDocument { get; set; }
         private IStakeholderRequirementApprovalService stakeholderApproval { get; set; }
 
         public RequirementController(
             IRequirementService requirementService,
             IImportanceService measureService,
+            IRequirementDocumentService reqDocument,
             IRequirementSubTypeService subTypeService,
             IRequirementStatusService statusService,
             IRequirementTypeService typeService,
@@ -65,6 +69,7 @@ namespace ReqManager.Controllers
                 cfg.CreateAutomaticMapping<RequirementEntity, RequirementViewModel>();
             });
 
+            this.reqDocument = reqDocument;
             this.stakeholderApproval = stakeholderApproval;
             this.versions = versions;
             this.subTypeService = subTypeService;
@@ -85,6 +90,27 @@ namespace ReqManager.Controllers
         }
 
         #region GETS
+
+        public void PrintDocumentRequirement(int RequirementID)
+        {
+            try
+            {
+                Response.Clear();
+                Response.ContentType = "application/pdf";
+                Response.ContentType = "application/octet-stream";
+                Response.Cache.SetCacheability(HttpCacheability.NoCache);
+                Response.AddHeader("content-disposition", "attachment;filename= Test.pdf");
+                Response.Buffer = true;
+                Response.Clear();
+                var bytes = reqDocument.printRequirement(RequirementID);
+                Response.OutputStream.Write(bytes, 0, bytes.Length);
+                Response.OutputStream.Flush();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public ActionResult Index()
         {

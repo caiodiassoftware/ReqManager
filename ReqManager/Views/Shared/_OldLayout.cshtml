@@ -1,0 +1,207 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>ReqManager</title>
+    @Styles.Render("~/Scripts/css/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    @Scripts.Render("~/bundles/bootstrap")
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+<body>
+    @*TOP*@
+    <div id="top-nav" class="navbar navbar-inverse navbar-static-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">ReqManager</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#"> Admin <span class="caret"></span></a>
+                        <ul id="g-account-menu" class="dropdown-menu" role="menu">
+                            <li><a href="#">My Profile</a></li>
+                            <li><a href="#">My Profile</a></li>
+                            <li><a href="#">My Profile</a></li>
+                            <li><a href="#">My Profile</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#"> Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    @*SIDE BAR*@
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3">
+
+                @if (TempData["ControllerMessage"] != null)
+                {
+                    <script type="text/javascript">
+                        window.onload = function () {
+                            alert("@TempData["ControllerMessage"]");
+                        };
+                    </script>
+                    TempData.Remove("ControllerMessage");
+                }
+
+                <h2><b>Modules</b></h2>
+                <hr>
+                <ul class="nav nav-stacked">
+                    <li class="nav-header">
+                        <a href="#" data-toggle="collapse" data-target="#userMenu">ACCESS</a>
+                        <ul class="nav nav-stacked collapse" style="margin-left:6%;" id="userMenu">
+                            <li class="active">@Html.ActionLink("Users", "Index", "User")</li>
+                            <li>@Html.ActionLink("Role", "Index", "Role")</li>
+                            <li>@Html.ActionLink("Actions", "Index", "ControllerAction")</li>
+                            <li>@Html.ActionLink("User's Roles", "Index", "UsersRoles")</li>
+                            <li>@Html.ActionLink("Role's Actions", "Index", "RoleControllerAction")</li>
+                        </ul>
+                    </li>
+                    <li class="nav-header">
+                        <a href="#" data-toggle="collapse" data-target="#menu2">ARTIFACTS</a>
+                        <ul class="nav nav-stacked collapse" style="margin-left:6%;" id="menu2">
+                            <li>@Html.ActionLink("Artifacts", "Index", "ProjectArtifact")</li>
+                            <li>@Html.ActionLink("Types", "Index", "ArtifactType")</li>
+                            <li>@Html.ActionLink("Artifacts History", "Index", "HistoryProjectArtifacts")</li>
+                        </ul>
+                    </li>
+                    <li class="nav-header">
+                        <a href="#" data-toggle="collapse" data-target="#menu3">PROJECT</a>
+                        <ul class="nav nav-stacked collapse" style="margin-left:6%;" id="menu3">
+                            <li>@Html.ActionLink("Projects", "Index", "Projects")</li>
+                            <li>@Html.ActionLink("Project Requirements ", "Index", "ProjectRequirements")</li>
+                            <li>@Html.ActionLink("Project Phases", "Index", "ProjectPhases")</li>
+                            <li>@Html.ActionLink("Importance", "Index", "Importance")</li>
+                            <li>@Html.ActionLink("Projects History", "Index", "HistoryProject")</li>
+                        </ul>
+                    </li>
+                    <li class="nav-header">
+                        <a href="#" data-toggle="collapse" data-target="#menu4">STAKEHOLDERS</a>
+                        <ul class="nav nav-stacked collapse" style="margin-left:6%;" id="menu4">
+                            <li>@Html.ActionLink("Stakeholder", "Index", "Stakeholders")</li>
+                            <li>@Html.ActionLink("Classification", "Index", "StakeholderClassification")</li>
+                            
+                            <li>@Html.ActionLink("Stakeholders and Requirements ", "Index", "StakeholderRequirement")</li>
+                        </ul>
+                    </li>
+                    <li class="nav-header">
+                        <a href="#" data-toggle="collapse" data-target="#menu5">REQUIREMENT</a>
+                        <ul class="nav nav-stacked collapse" style="margin-left:6%;" id="menu5">
+                            <li>@Html.ActionLink("Requirements", "Index", "Requirement")</li>
+                            <li>@Html.ActionLink("Types", "Index", "RequirementTypes")</li>
+                            <li>@Html.ActionLink("SubTypes", "Index", "RequirementSubType")</li>
+                            <li>@Html.ActionLink("Status", "Index", "RequirementStatus")</li>
+                            <li>@Html.ActionLink("Templates", "Index", "RequirementTemplate")</li>
+                            <li>@Html.ActionLink("Requested Changes", "Index", "RequirementRationale")</li>
+                        </ul>
+                    </li>
+                    <li class="nav-header">
+                        <a href="#" data-toggle="collapse" data-target="#menu6">LINK</a>
+                        <ul class="nav nav-stacked collapse" style="margin-left:6%;" id="menu6">
+                            <li>@Html.ActionLink("Attributes", "Index", "Attributes")</li>
+                            <li>@Html.ActionLink("Type Link", "Index", "TypeLink")</li>
+                            <li>@Html.ActionLink("Type Link Attributes", "Index", "AttributesTypeLink")</li>
+                            <li>@Html.ActionLink("Requirement to Requirement", "Index", "LinkBetweenRequirements")</li>
+                            <li>@Html.ActionLink("Requirements to Artifacts", "Index", "LinkBetweenRequirementsArtifact")</li>
+                            <li>@Html.ActionLink("Requirements to Requirements - Attributes", "Index", "LinkRequirementAttributes")</li>
+                            <li>@Html.ActionLink("Requirement to Artifact - Attributes", "Index", "LinkArtifactAttributes")</li>
+                            <li>@Html.ActionLink("Requirement Traceability Matrix", "RequirementTraceabilityMatrix", "LinkBetweenRequirements")</li>
+                            <li>@Html.ActionLink("Artifacts to Requirement Traceability Matrix", "ArtifactRequirementTraceabilityMatrix", "LinkBetweenRequirementsArtifact")</li>
+                        </ul>
+                    </li>
+                    <li class="nav-header">
+                        <a href="#" data-toggle="collapse" data-target="#menu7">MATRIX</a>
+                        <ul class="nav nav-stacked collapse" style="margin-left:6%;" id="menu7">
+                            <li>@Html.ActionLink("Requirement Traceability Matrix", "RequirementTraceabilityMatrix", "LinkBetweenRequirements")</li>
+                            <li>@Html.ActionLink("Artifacts to Requirement Traceability Matrix", "ArtifactRequirementTraceabilityMatrix", "LinkBetweenRequirementsArtifact")</li>
+                        </ul>
+                    </li>
+                    <li class="nav-header">
+                        <a href="#" data-toggle="collapse" data-target="#menu8">TRACEABILITY</a>
+                        <ul class="nav nav-stacked collapse" style="margin-left:6%;" id="menu8">
+                            <li>@Html.ActionLink("Artifacts", "TrackingProjectArtifact", "Tracking")</li>
+                            <li>@Html.ActionLink("Requirements", "TrackingProjectRequirement", "Tracking")</li>
+                            <li>@Html.ActionLink("Between Requirements", "TrackingLinkBetweenRequirement", "Tracking")</li>
+                            <li>@Html.ActionLink("Requirements and Artifacts", "TrackingLinkBetweenRequirementArtifact", "Tracking")</li>
+                        </ul>
+                    </li>
+                </ul>
+                <hr>
+            </div>
+            @*CENTER*@
+            <div class="col-sm-9">
+                <h2><b>@ViewBag.Title</b></h2>
+                <hr>
+                <div class="container-fluid">
+                    <div class="row">
+                        @RenderBody()
+                    </div>
+                    <hr />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @Scripts.Render("~/Scripts/css/js")
+    
+    @RenderSection("scripts", required: false)
+    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+
+        function clearDropDown(dropdown) {
+            var select = document.getElementById(dropdown);
+            var i;
+
+            if (select.options != null) {
+                for (i = select.options.length - 1; i >= 0; i--)
+                    select.remove(i);
+            }
+        }
+
+        function fixDateTime(value) {
+            var pattern = /Date\(([^)]+)\)/;
+            var results = pattern.exec(value);
+            var dt = new Date(parseFloat(results[1]));
+            return dt.getDate() + "/" + (dt.getMonth() + 1) + "/" + dt.getFullYear() + " - " + dt.getHours() + ":" + dt.getMinutes();
+        }
+
+        $(document).ready(function () {
+            $('.display').dataTable();
+            $(".datepicker").datepicker();
+        });
+
+        $('#tabs').tabs({
+            beforeLoad: function (event, ui) {
+                ui.panel.html('loading...');
+                ui.jqXHR.error(function () {
+                    ui.panel.html('load page failed');
+                });
+            },
+            show: { effect: 'fade', duration: 200 },
+            hide: { effect: 'fade', duration: 200 },
+            active: 0,
+            collapsible: false
+        });
+        $('#tabs > ul > li > a').each(function (index, element) {
+            $(element).click(function () {
+                var href = $(this).attr('href');
+                if (!href.match(/^#.*$/)) {
+                    $('#mainTab > div:eq(' + $(this).closest('li').index() + ')').load(href);
+                }
+            })
+        });
+    </script>
+</body>
+</html>

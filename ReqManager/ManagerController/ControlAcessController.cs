@@ -13,7 +13,7 @@ using System.Web.Script.Serialization;
 
 namespace ReqManager.ManagerController
 {
-    [Permissions]
+    //[Permissions]
     public class ControlAcessController<TEntity> : Controller where TEntity : class
     {
         #region Attributes

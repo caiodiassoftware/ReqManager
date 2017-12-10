@@ -25,8 +25,7 @@ namespace ReqManager
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/bootstrap.css"));
             //
 
             bundles.Add(new ScriptBundle("~/bundles/datatables").Include(
@@ -38,9 +37,10 @@ namespace ReqManager
 
             bundles.Add(new StyleBundle("~/Scripts/css/css").Include(
                       "~/Scripts/css/bootstrap.min.css",
-                      "~/Scripts/css/styles.css"));
+                      "~/Scripts/css/jquery-ui.css"));
             bundles.Add(new ScriptBundle("~/Scripts/css/js").Include(
-                        "~/Scripts/js/bootstrap.min.js", "~/Scripts/js/scripts.js"));
+                        "~/Scripts/js/bootstrap.min.js",
+                        "~/Scripts/js/scripts.js"));
         }
     }
 }

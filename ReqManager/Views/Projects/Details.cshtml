@@ -99,7 +99,9 @@
                     <th>Create By</th>
                     <th>Status</th>
                     <th>Type</th>
+                    <th>Pre-Traceability</th>
                     <th>Date</th>
+                    <th></th>
                 </tr>
                 @foreach (var item in Model.requirements)
                 {
@@ -120,7 +122,13 @@
                             @Html.DisplayFor(modelItem => item.RequirementType.description)
                         </td>
                         <td>
+                            @Html.DisplayFor(modelItem => item.preTraceability)
+                        </td>
+                        <td>
                             @Html.DisplayFor(modelItem => item.creationDate)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Details", "Details", "Requirement", new { id = item.RequirementID }, null)
                         </td>
                     </tr>
                 }
@@ -132,7 +140,9 @@
                     <tr>
                         @for (int i = 0; i < Model.requirementMatrix.Columns.Count; i++)
                         {
-                            <td>@Html.Label(Model.requirementMatrix.Columns[i].ColumnName)</td>
+                            <td><a href="" data-code='@Model.requirementMatrix.Columns[i].ColumnName'
+                                   onclick="RequirementDetails($(this)); return false;">
+                                @Html.Label(Model.requirementMatrix.Columns[i].ColumnName)</a></td>
                         }
                     </tr>
                 </thead>
@@ -147,13 +157,17 @@
                                     {
                                         if (j.Equals(0))
                                         {
-                                            @Html.Label(Model.requirementMatrix.Rows[i][j].ToString())
+                                            <a href="" data-code='@Model.requirementMatrix.Rows[i][j].ToString()'
+                                                onclick="RequirementDetails($(this)); return false;">
+                                                @Html.Label(Model.requirementMatrix.Rows[i][j].ToString())
+                                            </a>
                                         }
                                         else
                                         {
-                                            <a data-origin='@Model.requirementMatrix.Rows[i][0].ToString()'
-                                               data-target='@Model.requirementMatrix.Columns[j].ColumnName'
-                                               class="link">@Model.requirementMatrix.Rows[i][j].ToString()</a>
+                                            <a href="" onclick="ReqToReqLinkDetails($(this)); return false;"
+                                               data-origin='@Model.requirementMatrix.Rows[i][0].ToString()'
+                                               data-target='@Model.requirementMatrix.Columns[j].ColumnName'>
+                                                @Model.requirementMatrix.Rows[i][j].ToString()</a>
                                         }
                                     }
                                 </td>
@@ -221,7 +235,7 @@
     @Html.ActionLink("Add Requirement", "Create", "Requirement", new { id = Model.project.ProjectID }, null) |
     <a href="" onclick="requestPrintDocumentRequirement(); return false;">Print Requirement Document</a> |
     @Html.ActionLink("Edit", "Edit", new { id = Model.project.ProjectID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to Projects", "Index")
 </p>
 
 <div id="modal-requirementDocument" class="modal fade">
@@ -250,12 +264,78 @@
     </div>
 </div>
 
+<div id="modal-requirementDetails" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Requirements Details</h4>
+            </div>
+            <div class="modal-body">
+                <dl class="dl-horizontal">
+
+                    <dt>
+                        Importance
+                    </dt>
+
+                    <dd>
+                        <label id="importance"></label>
+                    </dd>
+
+                    <dt>
+                        Status
+                    </dt>
+
+                    <dd>
+                        <label id="status"></label>
+                    </dd>
+
+                    <dt>
+                        Type
+                    </dt>
+
+                    <dd>
+                        <label id="type"></label>
+                    </dd>
+
+                    <dt>
+                        Create By
+                    </dt>
+
+                    <dd>
+                        <label id="user"></label>
+                    </dd>
+
+                    <dt>
+                        Title
+                    </dt>
+
+                    <dd>
+                        <label id="title"></label>
+                    </dd>
+
+                    <dt>
+                        Creation Date
+                    </dt>
+
+                    <dd>
+                        <label id="creationDate"></label>
+                    </dd>
+                </dl>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div id="modal-link" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title"><label id="lblTitleLabel"></label></h4>
+                <h4 class="modal-title">Link Details</h4>
             </div>
             <div class="modal-body">
                 7
@@ -278,6 +358,7 @@
             var ProjectID = $("#ID").val();
             var RequirementTypeID = $("#RequirementTypeID").val();
             window.open('/Projects/PrintDocumentRequirement?ProjectID=' + ProjectID + '&RequirementTypeID=' + RequirementTypeID);
+            jQuery('#modal-requirementDocument').modal('hide');
         };
 
         function requestPrintDocumentRequirement() {
@@ -296,20 +377,34 @@
             jQuery('#modal-requirementDocument').modal();
         }
 
-        $(document).ready(function () {
-            $('.link').click(function () {
+        function RequirementDetails(requirement) {
 
-                var ReqOrigin = $(this).attr('data-origin');
-                var ReqTarget = $(this).attr('data-target');
+            var code = requirement.attr('data-code');
 
-                $.getJSON('@Url.Action("GetLink", "LinkBetweenRequirements")',
-                    { ReqOrigin: ReqOrigin, ReqTarget: ReqTarget }, function (response) {
-                        console.log(response);
-                    });
+            $.getJSON('@Url.Action("GetWithCode", "Requirement")',
+                { code: code }, function (response) {
+                    $("#importance").html(response.Importance.description);
+                    $('#status').html(response.RequirementStatus.description);
+                    $('#type').html(response.RequirementType.description);
+                    $('#user').html(response.Users.name);
+                    $('#title').html(response.title);
+                    $('#creationDate').html(fixDateTime(response.creationDate));
+                });
 
-                jQuery('#modal-link').modal();
-            });
-        });
+            jQuery('#modal-requirementDetails').modal();
+        };
+
+        function ReqToReqLinkDetails(link) {
+            var ReqOrigin = link.attr('data-origin');
+            var ReqTarget = link.attr('data-target');
+
+            $.getJSON('@Url.Action("GetLink", "LinkBetweenRequirements")',
+                { ReqOrigin: ReqOrigin, ReqTarget: ReqTarget }, function (response) {
+                    console.log(response);
+                });
+
+            jQuery('#modal-link').modal();
+        };
     </script>
 
 }

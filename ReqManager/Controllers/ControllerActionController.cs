@@ -25,19 +25,19 @@ namespace ReqManager.Controllers
         {
             try
             {
-                List<ControllerActionViewModel> controllerActions = new List<ControllerActionViewModel>();
+                List<ControllerActionEntity> controllerActions = new List<ControllerActionEntity>();
                 Assembly asm = Assembly.GetAssembly(typeof(MvcApplication));
 
                 List<Type> controlleractionlist = asm.GetTypes().Where(type => typeof(Controller).IsAssignableFrom(type)).
                     Where(m => !m.GetCustomAttributes(typeof(System.Runtime.CompilerServices.CompilerGeneratedAttribute), true).Any()).ToList();
 
-                List<ControllerActionViewModel> baseControllerMethods = controlleractionlist.Where(x => x.Name.Contains("BaseController")).FirstOrDefault().
+                List<ControllerActionEntity> baseControllerMethods = controlleractionlist.Where(x => x.Name.Contains("BaseController")).FirstOrDefault().
                     GetMethods(BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.Public).
                     Where(m => m.IsVirtual && !m.DeclaringType.Equals(m)).Select(m =>
-                    new ControllerActionViewModel
+                    new ControllerActionEntity
                     {
-                        Action = m.Name,
-                        Controller = m.DeclaringType.Name,
+                        action = m.Name,
+                        controller = m.DeclaringType.Name,
                         IsGet = m.GetCustomAttributes().Select(a => a.GetType().Name.Replace("Attribute", "")).Contains("HttpPost") ? false : true
                     }).ToList();
 
@@ -45,21 +45,21 @@ namespace ReqManager.Controllers
                 {
                     controllerActions.AddRange(item.GetMethods(BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.Public).
                         Where(m => m.DeclaringType.Equals(item)).Select(m =>
-                        new ControllerActionViewModel
+                        new ControllerActionEntity
                         {
-                            Action = m.Name,
-                            Controller = m.DeclaringType.Name,
+                            action = m.Name,
+                            controller = m.DeclaringType.Name,
                             IsGet = m.GetCustomAttributes().Select(a => a.GetType().Name.Replace("Attribute", "")).Contains("HttpGet") ? false : true
                         }));
 
                     if (item.BaseType.Name.Contains("BaseController"))
                     {
-                        baseControllerMethods.ForEach(m => m.Controller = item.Name);
+                        baseControllerMethods.ForEach(m => m.controller = item.Name);
                         controllerActions.AddRange(baseControllerMethods.Select(x =>
-                        new ControllerActionViewModel
+                        new ControllerActionEntity
                         {
-                            Action = x.Action,
-                            Controller = x.Controller,
+                            action = x.action,
+                            controller = x.controller,
                             IsGet = x.IsGet
                         }));
                     }
@@ -67,11 +67,11 @@ namespace ReqManager.Controllers
 
                 Mapper.Initialize(cfg =>
                 {
-                    cfg.CreateMap<ControllerActionViewModel, ControllerActionEntity>();
+                    cfg.CreateMap<ControllerActionEntity, ControllerActionEntity>();
                     cfg.IgnoreUnmapped();
                 });
 
-                IEnumerable<ControllerActionEntity> controllerActionApplication = Mapper.Map<IEnumerable<ControllerActionViewModel>, IEnumerable<ControllerActionEntity>>(controllerActions);
+                IEnumerable<ControllerActionEntity> controllerActionApplication = Mapper.Map<IEnumerable<ControllerActionEntity>, IEnumerable<ControllerActionEntity>>(controllerActions);
 
                 service.Refresh(controllerActionApplication);
                 Service.saveChanges();

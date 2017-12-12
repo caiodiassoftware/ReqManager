@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ReqManager.ViewModels
@@ -51,5 +48,7 @@ namespace ReqManager.ViewModels
         [Required]
         [Display(Name = "Creation Date")]
         public System.DateTime creationDate { get; set; } = DateTime.Now;
+        [Required]
+        public bool preTraceability { get; set; }
     }
 }

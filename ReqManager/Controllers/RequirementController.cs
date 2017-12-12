@@ -91,6 +91,19 @@ namespace ReqManager.Controllers
 
         #region GETS
 
+        public JsonResult GetWithCode(string code)
+        {
+            try
+            {
+                return Json(requirementService.getWithCode(code),
+                    JsonRequestBehavior.AllowGet); ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public void PrintDocumentRequirement(int RequirementID)
         {
             try

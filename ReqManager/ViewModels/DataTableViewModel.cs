@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Web;
+﻿using System.Data;
 
 namespace ReqManager.ViewModels
 {
     public class DataTableViewModel
     {
+        public DataTable dataTable { get; set; }
+
         public DataTableViewModel()
         {
             dataTable = new DataTable();
         }
-
-        public DataTable dataTable { get; set; }
     }
 }

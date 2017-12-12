@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -39,6 +40,9 @@ namespace ReqManager.Model
         public string title { get; set; }
         [Required]
         public DateTime creationDate { get; set; }
+        [Required]
+        [DefaultValue(true)]
+        public bool preTraceability { get; set; }
 
         public virtual ICollection<RequirementCharacteristics> RequirementCharacteristics { get; set; }
         public virtual ICollection<LinkBetweenRequirement> LinkRequirementsOrigin { get; set; }

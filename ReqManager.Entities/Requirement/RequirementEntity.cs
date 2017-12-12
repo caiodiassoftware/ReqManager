@@ -43,6 +43,8 @@ namespace ReqManager.Entities.Requirement
         [Required]
         [Display(Name = "Creation Date")]
         public System.DateTime creationDate { get; set; } = DateTime.Now;
+        [Required]
+        public bool preTraceability { get; set; }
 
         public String DisplayName
         {

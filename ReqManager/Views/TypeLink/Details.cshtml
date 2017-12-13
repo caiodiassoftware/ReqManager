@@ -5,35 +5,76 @@
 }
 
 <div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Users.name)
-        </dt>
+    @Html.Hidden("ID", Request.Url.Segments[3].ToString())
+    <div id="tabs">
+        <ul>
+            <li><a href="#typeLink">Type Link</a></li>
+            <li><a href="#attributes">Attributes</a></li>
+        </ul>
 
-        <dd>
-            @Html.DisplayFor(model => model.Users.name)
-        </dd>
+        <div id="typeLink">
+            <dl class="dl-horizontal">
+                <dt>
+                    Create By
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.description)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Users.name)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.description)
-        </dd>
+                <dt>
+                    Description
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.creationDate)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.description)
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.creationDate)
-        </dd>
+                <dt>
+                    Date
+                </dt>
 
-    </dl>
+                <dd>
+                    @Html.DisplayFor(model => model.creationDate)
+                </dd>
+
+            </dl>
+        </div>
+
+        <div id="attributes">
+            <table id="attributesTable" class="table">
+                <tr>
+                    <th>
+                        Attribute
+                    </th>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
 </div>
 <p>
+    @Html.ActionLink("Add Attribute", "CreateNewAttributeForTypeLink", "AttributesTypeLink", new { id = Model.TypeLinkID }, null) |
     @Html.ActionLink("Edit", "Edit", new { id = Model.TypeLinkID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $(function () {
+            var TypeLinkID = $('#ID').val();
+
+            $.getJSON('@Url.Action("GetAttributesOfTypeLink", "AttributesTypeLink")',
+                { type: TypeLinkID },
+                function (response) {
+                $.each(response, function (i, item) {
+                    $('#attributesTable').append('<tr><td>' + item.description + '</td></tr>');
+                });
+            });
+        });
+    </script>
+
+}

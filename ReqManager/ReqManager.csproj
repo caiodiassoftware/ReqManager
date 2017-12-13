@@ -594,27 +594,22 @@
     <Content Include="Views\Attributes\Details.cshtml" />
     <Content Include="Views\Attributes\Edit.cshtml" />
     <Content Include="Views\Attributes\Index.cshtml" />
-    <Content Include="Views\AttributesTypeLink\Create.cshtml" />
     <Content Include="Views\AttributesTypeLink\Delete.cshtml" />
     <Content Include="Views\AttributesTypeLink\Details.cshtml" />
     <Content Include="Views\AttributesTypeLink\Edit.cshtml" />
     <Content Include="Views\AttributesTypeLink\Index.cshtml" />
-    <Content Include="Views\LinkBetweenRequirements\Create.cshtml" />
     <Content Include="Views\LinkBetweenRequirements\Delete.cshtml" />
     <Content Include="Views\LinkBetweenRequirements\Details.cshtml" />
     <Content Include="Views\LinkBetweenRequirements\Edit.cshtml" />
     <Content Include="Views\LinkBetweenRequirements\Index.cshtml" />
-    <Content Include="Views\LinkRequirementAttributes\Create.cshtml" />
     <Content Include="Views\LinkRequirementAttributes\Delete.cshtml" />
     <Content Include="Views\LinkRequirementAttributes\Details.cshtml" />
     <Content Include="Views\LinkRequirementAttributes\Edit.cshtml" />
     <Content Include="Views\LinkRequirementAttributes\Index.cshtml" />
-    <Content Include="Views\LinkArtifactAttributes\Create.cshtml" />
     <Content Include="Views\LinkArtifactAttributes\Delete.cshtml" />
     <Content Include="Views\LinkArtifactAttributes\Details.cshtml" />
     <Content Include="Views\LinkArtifactAttributes\Edit.cshtml" />
     <Content Include="Views\LinkArtifactAttributes\Index.cshtml" />
-    <Content Include="Views\LinkBetweenRequirementsArtifact\Create.cshtml" />
     <Content Include="Views\LinkBetweenRequirementsArtifact\Delete.cshtml" />
     <Content Include="Views\LinkBetweenRequirementsArtifact\Details.cshtml" />
     <Content Include="Views\LinkBetweenRequirementsArtifact\Edit.cshtml" />
@@ -664,6 +659,11 @@
     <Content Include="Views\Requirement\PrintDocumentRequirement.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\DefaultLayout.cshtml" />
+    <Content Include="Views\LinkBetweenRequirements\CreateNewLink.cshtml" />
+    <Content Include="Views\LinkBetweenRequirementsArtifact\CreateNewLink.cshtml" />
+    <Content Include="Views\AttributesTypeLink\CreateNewAttributeForTypeLink.cshtml" />
+    <Content Include="Views\LinkArtifactAttributes\CreateNewAttributeForLink.cshtml" />
+    <Content Include="Views\LinkRequirementAttributes\CreateNewAttributeForLink.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

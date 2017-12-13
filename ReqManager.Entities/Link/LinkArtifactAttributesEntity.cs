@@ -14,7 +14,7 @@ namespace ReqManager.Entities.Link
         public int AttributeID { get; set; }
         [Required(ErrorMessage = "This field is Required")]
         [Range(1, Double.PositiveInfinity)]
-        [Display(Name = "Artefact - Requirement")]
+        [Display(Name = "Artifact - Requirement")]
         public int LinkArtifactRequirementID { get; set; }
         [Required]
         [Display(Name = "Value")]
@@ -24,7 +24,8 @@ namespace ReqManager.Entities.Link
         {
             get
             {
-                return this.Attributes.description + " - " + this.LinkRequirementsArtifacts.code;
+                return this.LinkRequirementsArtifacts.code + " - " + this.Attributes.description +
+                    " : " + this.value;
             }
         }
 

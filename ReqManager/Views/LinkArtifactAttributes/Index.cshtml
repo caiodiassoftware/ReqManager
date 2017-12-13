@@ -1,19 +1,17 @@
 ﻿@model IEnumerable<ReqManager.Entities.Link.LinkArtifactAttributesEntity>
 
 @{
-    ViewBag.Title = "Link between Artifacts and Requirements";
+    ViewBag.Title = "Link between Artifacts and Requirements Attributes";
 }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Attributes.description)
+            @Html.DisplayNameFor(model => model.LinkRequirementsArtifacts.code)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LinkRequirementsArtifacts.code)
+            @Html.DisplayNameFor(model => model.Attributes.description)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.value)
@@ -24,10 +22,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Attributes.description)
+            @Html.DisplayFor(modelItem => item.LinkRequirementsArtifacts.code)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.LinkRequirementsArtifacts.code)
+            @Html.DisplayFor(modelItem => item.Attributes.description)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.value)

@@ -6,6 +6,6 @@ namespace ReqManager.Services.Link.Interfaces
 {
     public interface ILinkBetweenRequirementsArtifactsService : IService<LinkBetweenRequirementsArtifactsEntity>
     {
-        void add(LinkBetweenRequirementsArtifactsEntity entity, List<LinkArtifactAttributesEntity> attributes);
+        LinkBetweenRequirementsArtifactsEntity getWithCode(string code);
     }
 }

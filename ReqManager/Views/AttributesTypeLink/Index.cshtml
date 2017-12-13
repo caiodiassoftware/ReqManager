@@ -1,19 +1,17 @@
 ﻿@model IEnumerable<ReqManager.Entities.Link.AttributesTypeLinkEntity>
 
 @{
-    ViewBag.Title = "Listing of Attributes for Type Link";
+    ViewBag.Title = "Type Link Attributes";
 }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Attributes.description)
+            Attribute
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TypeLink.description)
+            Link Type
         </th>
         <th></th>
     </tr>

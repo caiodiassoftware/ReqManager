@@ -107,7 +107,10 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.code)
+                            <a href="" data-code='@item.code'
+                               onclick="RequirementDetails($(this)); return false;">
+                                @Html.DisplayFor(modelItem => item.code)
+                            </a>
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.title)
@@ -191,7 +194,10 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.code)
+                            <a href="" data-code='@item.code'
+                               onclick="ArtifactDetails($(this)); return false;">
+                                @Html.DisplayFor(modelItem => item.code)
+                            </a>
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.description)
@@ -275,6 +281,14 @@
                 <dl class="dl-horizontal">
 
                     <dt>
+                        Title
+                    </dt>
+
+                    <dd>
+                        <label id="title"></label>
+                    </dd>
+
+                    <dt>
                         Importance
                     </dt>
 
@@ -307,14 +321,6 @@
                     </dd>
 
                     <dt>
-                        Title
-                    </dt>
-
-                    <dd>
-                        <label id="title"></label>
-                    </dd>
-
-                    <dt>
                         Creation Date
                     </dt>
 
@@ -330,20 +336,156 @@
     </div>
 </div>
 
-<div id="modal-link" class="modal fade">
+<div id="modal-artifactDetails" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title">Link Details</h4>
+                <h4 class="modal-title">Artifact Details</h4>
             </div>
             <div class="modal-body">
-                7
-                <p>One fine body…</p>
+                <dl class="dl-horizontal">
+                    <dt>
+                        Importance
+                    </dt>
+
+                    <dd>
+                        <label id="mdArtifactImportance"></label>
+                    </dd>
+
+                    <dt>
+                        Project
+                    </dt>
+
+                    <dd>
+                        <label id="mdArtifactProject"></label>
+                    </dd>
+
+                    <dt>
+                        Create By
+                    </dt>
+
+                    <dd>
+                        <label id="mdArtifactCreateBy"></label>
+                    </dd>
+
+                    <dt>
+                        Type
+                    </dt>
+
+                    <dd>
+                        <label id="mdArtifactType"></label>
+                    </dd>
+
+                    <dt>
+                        Code
+                    </dt>
+
+                    <dd>
+                        <label id="mdArtifactCode"></label>
+                    </dd>
+
+                    <dt>
+                        Description
+                    </dt>
+
+                    <dd>
+                        <label id="mdArtifactDescription"></label>
+                    </dd>
+
+                    <dt>
+                        Date
+                    </dt>
+
+                    <dd>
+                        <label id="mdArtifactDate"></label>
+                    </dd>
+
+                </dl>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal-linkBetweenRequirements" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Link between Requirements Details</h4>
+            </div>
+            <div class="modal-body">
+                <dl class="dl-horizontal">
+
+                    <dt>
+                        Code
+                    </dt>
+
+                    <dd>
+                        <label id="mdLinkRequirementCode"></label>
+                    </dd>
+
+                    <dt>
+                        Link Name
+                    </dt>
+
+                    <dd>
+                        <label id="mdLinkRequirementName"></label>
+                    </dd>
+
+                    <dt>
+                        Code Origin
+                    </dt>
+
+                    <dd>
+                        <label id="mdLinkRequirementOrigin"></label>
+                    </dd>
+
+                    <dt>
+                        Code Target
+                    </dt>
+
+                    <dd>
+                        <label id="mdLinkRequirementTarget"></label>
+                    </dd>
+
+                    <dt>
+                        Create By
+                    </dt>
+
+                    <dd>
+                        <label id="mdLinkRequirementUser"></label>
+                    </dd>
+
+                    <dt>
+                        Type Link
+                    </dt>
+
+                    <dd>
+                        <label id="mdLinkRequirementTypeLink"></label>
+                    </dd>
+
+                    <dt>
+                        Creation Date
+                    </dt>
+
+                    <dd>
+                        <label id="mdLinkRequirementCreationDate"></label>
+                    </dd>
+                </dl>
+                <table id="attributesLinkRequirementTable" class="table">
+                    <tr>
+                        <th>
+                            Attributes
+                        </th>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -375,7 +517,24 @@
             });
 
             jQuery('#modal-requirementDocument').modal();
-        }
+        };
+
+        function ArtifactDetails(artifact) {
+            var code = artifact.attr('data-code');
+
+            $.getJSON('@Url.Action("GetWithCode", "ProjectArtifact")',
+                { code: code }, function (response) {
+                    $("#mdArtifactImportance").html(response.Importance.description);
+                    $('#mdArtifactProject').html(response.Project.description);
+                    $('#mdArtifactCreateBy').html(response.Users.name);
+                    $('#mdArtifactCode').html(response.code);
+                    $('#mdArtifactType').html(response.ArtifactType.description);
+                    $('#mdArtifactDescription').html(response.description);
+                    $('#mdArtifactDate').html(fixDateTime(response.creationDate));
+                });
+
+            jQuery('#modal-artifactDetails').modal();
+        };
 
         function RequirementDetails(requirement) {
 
@@ -401,9 +560,25 @@
             $.getJSON('@Url.Action("GetLink", "LinkBetweenRequirements")',
                 { ReqOrigin: ReqOrigin, ReqTarget: ReqTarget }, function (response) {
                     console.log(response);
+
+                    $("#mdLinkRequirementCode").html(response.code);
+                    $('#mdLinkRequirementName').html(response.DisplayName);
+                    $('#mdLinkRequirementOrigin').html(response.RequirementOrigin.DisplayName);
+                    $('#mdLinkRequirementTarget').html(response.RequirementTarget.DisplayName);
+                    $('#mdLinkRequirementUser').html(response.Users.name);
+                    $('#mdLinkRequirementTypeLink').html(response.TypeLink.description);
+                    $('#mdLinkRequirementCreationDate').html(fixDateTime(response.creationDate));
+
+                    $.getJSON('@Url.Action("GetAttributes", "LinkRequirementAttributes")',
+                    { LinkRequirementsID: response.LinkRequirementsID },
+                    function (response) {
+                        $.each(response, function (i, item) {
+                            $('#attributesLinkRequirementTable').append('<tr><td>' + item.DisplayName + '</td></tr>');
+                        });
+                    });
                 });
 
-            jQuery('#modal-link').modal();
+            jQuery('#modal-linkBetweenRequirements').modal();
         };
     </script>
 

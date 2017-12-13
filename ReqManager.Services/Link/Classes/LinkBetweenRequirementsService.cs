@@ -36,23 +36,14 @@ namespace ReqManager.Services.Link.Classes
             }
         }
 
-        public void add(LinkBetweenRequirementsEntity entity, List<LinkRequirementAttributesEntity> attributes)
+        public LinkBetweenRequirementsEntity getWithCode(string code)
         {
             try
             {
-                unit.BeginTransaction();
-
-                add(ref entity);
-                attributes.ForEach(a => {
-                    a.LinkRequirementsID = entity.LinkRequirementsID;
-                    requirementsAttributes.add(ref a);
-                });
-
-                unit.Commit();
+                return getAll().Where(l => l.code.Equals(code)).SingleOrDefault();
             }
             catch (Exception ex)
             {
-                unit.Rollback();
                 throw ex;
             }
         }

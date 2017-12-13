@@ -8,12 +8,10 @@ using ReqManager.Entities.Acess;
 using ReqManager.Services.Artifact.Interfaces;
 using ReqManager.ViewModels;
 using System;
-using System.Linq;
 using System.Collections.Generic;
-using System.Data.Entity.Validation;
-using System.Data.Entity.Infrastructure;
 using ReqManager.Services.Link.Interfaces;
-using ReqManager.Services.Project.Interfaces;
+using ReqManager.Services.Requirements.Interfaces;
+using System.Net;
 
 namespace ReqManager.Controllers
 {
@@ -21,22 +19,63 @@ namespace ReqManager.Controllers
     {
         private IArtifactRequirementTraceabilityMatrixService matrix { get; set; }
         private ILinkBetweenRequirementsArtifactsService linkService { get; set; }
+        private IRequirementService requirementService { get; set; }
 
         public LinkBetweenRequirementsArtifactController(
             ILinkBetweenRequirementsArtifactsService linkService,
             IService<ProjectArtifactEntity> artifactService,
-            IService<RequirementEntity> reqService,
+            IRequirementService requirementService,
             IService<UserEntity> userService,
             IService<TypeLinkEntity> typeService,
             IArtifactRequirementTraceabilityMatrixService matrix) : base(linkService)
         {
             this.matrix = matrix;
             this.linkService = linkService;
+            this.requirementService = requirementService;
 
             ViewData.Add("ProjectArtifactID", new SelectList(artifactService.getAll(), "ProjectArtifactID", "code"));
-            ViewData.Add("RequirementID", new SelectList(reqService.getAll(), "RequirementID", "code"));
             ViewData.Add("TypeLinkID", new SelectList(typeService.getAll(), "TypeLinkID", "description"));
-            ViewData.Add("CreationUserID", new SelectList(userService.getAll(), "UserID", "name"));
+        }
+
+        #region GETS
+
+        public JsonResult GetWithCode(string code)
+        {
+            try
+            {
+                return Json(linkService.getWithCode(code),
+                    JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public ActionResult CreateNewLink(int? id)
+        {
+            try
+            {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+
+                RequirementEntity reqOrigin = requirementService.get(id);
+
+                if (reqOrigin == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+
+                ViewData.Add("RequirementID", new SelectList(
+                        new List<RequirementEntity>() { reqOrigin }, "RequirementID", "DisplayName", id));
+                return View();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public ActionResult ArtifactRequirementTraceabilityMatrix()
@@ -58,13 +97,13 @@ namespace ReqManager.Controllers
             try
             {
                 IEnumerable<RequirementEntity> requirements = null;
-                
+
                 HashSet<LinkBetweenRequirementsArtifactsEntity> links = new HashSet<LinkBetweenRequirementsArtifactsEntity>();
 
                 foreach (RequirementEntity req in requirements)
                 {
                     IEnumerable<LinkBetweenRequirementsArtifactsEntity> linksFilter = linkService.filter(l => l.RequirementID.Equals(req.RequirementID));
-                    foreach (LinkBetweenRequirementsArtifactsEntity link in linksFilter)                    
+                    foreach (LinkBetweenRequirementsArtifactsEntity link in linksFilter)
                         links.Add(link);
                 }
 
@@ -76,19 +115,6 @@ namespace ReqManager.Controllers
             }
         }
 
-        public ActionResult ShowLink(string art, string req)
-        {
-            try
-            {
-                LinkBetweenRequirementsArtifactsEntity link = Service.getAll().
-                    Where(l => l.Requirement.code.Equals(req) && l.ProjectArtifact.code.Equals(art)).SingleOrDefault();
-                return RedirectToAction("Index", link.LinkArtifactRequirementID);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
+        #endregion
     }
 }

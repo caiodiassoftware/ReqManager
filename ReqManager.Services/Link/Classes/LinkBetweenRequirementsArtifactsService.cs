@@ -1,15 +1,11 @@
-﻿using ReqManager.Data.Infrastructure;
-using ReqManager.Data.InterfacesRepositories;
+﻿using System;
+using ReqManager.Data.Infrastructure;
 using ReqManager.Data.Repositories.Link.Interfaces;
 using ReqManager.Entities.Link;
 using ReqManager.Model;
 using ReqManager.Services.Estructure;
 using ReqManager.Services.Link.Interfaces;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReqManager.Services.Link.Classes
 {
@@ -27,23 +23,14 @@ namespace ReqManager.Services.Link.Classes
             this.linkService = linkService;
         }
 
-        public void add(LinkBetweenRequirementsArtifactsEntity entity, List<LinkArtifactAttributesEntity> attributes)
+        public LinkBetweenRequirementsArtifactsEntity getWithCode(string code)
         {
             try
             {
-                unit.BeginTransaction();
-
-                add(ref entity);
-                attributes.ForEach(a => {
-                    a.LinkArtifactRequirementID = entity.LinkArtifactRequirementID;
-                    linkService.add(ref a);
-                });
-
-                unit.Commit();
+                return getAll().Where(l => l.code.Equals(code)).SingleOrDefault();
             }
             catch (Exception ex)
             {
-                unit.Rollback();
                 throw ex;
             }
         }

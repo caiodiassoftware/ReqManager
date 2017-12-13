@@ -1,33 +1,31 @@
 ﻿@model IEnumerable<ReqManager.Entities.Link.LinkBetweenRequirementsEntity>
 
 @{
-    ViewBag.Title = "Listing of Links between Requirements";
+    ViewBag.Title = "Links between Requirements";
 }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table id="linkRequirements" class="display">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.RequirementOrigin.code)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RequirementTarget.code)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TypeLink.description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Users.name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.creationDate)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.code)
             </th>
+            <th>
+                Origin Code
+            </th>
+            <th>
+                Target Code
+            </th>
+            <th>
+                Type Link
+            </th>
+            <th>
+                Create By
+            </th>
+            <th>
+                Date
+            </th>
+            
             <th></th>
         </tr>
     </thead>
@@ -35,6 +33,9 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.code)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.RequirementOrigin.code)
                 </td>
@@ -49,9 +50,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.creationDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.code)
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id=item.LinkRequirementsID }) |
@@ -75,16 +73,17 @@
                     var return_data = new Array();
                     for (var i = 0; i < json.aaData.length; i++) {
                         return_data.push({
+                            'code': json.aaData[i].code,
                             'origin': json.aaData[i].RequirementOrigin.code,
                             'target': json.aaData[i].RequirementTarget.code,
                             'type': json.aaData[i].TypeLink.description,
                             'name': json.aaData[i].Users.name,
                             'creationDate': fixDateTime(json.aaData[i].creationDate),
-                            'code': json.aaData[i].code,
                             'action': '<a href=\"/LinkBetweenRequirements/Edit/' +
                                 json.aaData[i].LinkRequirementsID + '\">Edit</a> | <a href=\"/LinkBetweenRequirements/Details/' +
                                 json.aaData[i].LinkRequirementsID + '\">Details</a> | <a href=\"/LinkBetweenRequirements/Delete/' +
-                                json.aaData[i].LinkRequirementsID + '\">Delete</a>'
+                                json.aaData[i].LinkRequirementsID + '\">Delete</a> | <a href=\"/LinkRequirementAttributes/CreateNewAttributeForLink/' +
+                                json.aaData[i].LinkRequirementsID + '\">Add Attribute</a>'
                         })
                     }
 
@@ -92,12 +91,12 @@
                 }
             },
             "aoColumns": [
+                { 'data': 'code' },
                 { 'data': 'origin' },
                 { 'data': 'target' },
                 { 'data': 'type' },
                 { 'data': 'name' },
                 { 'data': 'creationDate' },
-                { 'data': 'code' },
                 { 'data': 'action' },
             ]
         });

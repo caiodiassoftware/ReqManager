@@ -1,4 +1,4 @@
-﻿using System.Web.Mvc;
+﻿
 using ReqManager.Entities.Link;
 using ReqManager.ManagerController;
 using ReqManager.Services.Link.Interfaces;
@@ -10,7 +10,6 @@ namespace ReqManager.Controllers
     {
         public TypeLinkController(ITypeLinkService service, IUserService userService) : base(service)
         {
-            ViewBag.CreationUserID = new SelectList(userService.getAll(), "UserID", "name");
-        }        
+        }
     }
 }

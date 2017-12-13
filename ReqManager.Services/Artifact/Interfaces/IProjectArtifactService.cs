@@ -7,5 +7,6 @@ namespace ReqManager.Services.Project.Interfaces
     public interface IProjectArtifactService : IService<ProjectArtifactEntity>
     {
         IEnumerable<ProjectArtifactEntity> getArtifactsByProject(int ProjectID);
+        ProjectArtifactEntity GetWithCode(string code);
     }
 }

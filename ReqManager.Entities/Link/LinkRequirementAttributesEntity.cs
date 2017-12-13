@@ -24,7 +24,7 @@ namespace ReqManager.Entities.Link
         {
             get
             {
-                return this.Attributes.description + " - " + this.LinkRequirement.code + " - " + this.value;
+                return this.LinkRequirement.code + " - " +  this.Attributes.description + " : " + this.value;
             }
         }
 

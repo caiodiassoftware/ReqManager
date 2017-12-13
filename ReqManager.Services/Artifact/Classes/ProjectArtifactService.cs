@@ -10,7 +10,8 @@ using System.Linq;
 
 namespace ReqManager.Services.Project.Classes
 {
-    public class ProjectArtifactService : ServiceBase<ProjectArtifact, ProjectArtifactEntity>, IProjectArtifactService
+    public class ProjectArtifactService : ServiceBase<ProjectArtifact, ProjectArtifactEntity>, 
+        IProjectArtifactService
     {
         public ProjectArtifactService(IProjectArtifactRepository repository, IUnitOfWork unit) : base(repository, unit)
         {
@@ -21,6 +22,18 @@ namespace ReqManager.Services.Project.Classes
             try
             {
                 return getAll().Where(p => p.ProjectID.Equals(ProjectID));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public ProjectArtifactEntity GetWithCode(string code)
+        {
+            try
+            {
+                return getAll().Where(p => p.code.Equals(code)).SingleOrDefault();
             }
             catch (Exception ex)
             {

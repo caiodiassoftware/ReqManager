@@ -6,7 +6,6 @@ using ReqManager.Services.Project.Interfaces;
 using ReqManager.Services.Acess.Interfaces;
 using System.Data.Entity.Validation;
 using System.Data.Entity.Infrastructure;
-using System.Linq;
 
 namespace ReqManager.Controllers
 {
@@ -14,6 +13,7 @@ namespace ReqManager.Controllers
     public class ProjectArtifactController : BaseController<ProjectArtifactEntity>
     {
         private IHistoryProjectArtifactService historyServiceArtifact { get; set; }
+        private IProjectArtifactService service { get; set; }
 
         public ProjectArtifactController(
             IProjectArtifactService service,
@@ -23,19 +23,31 @@ namespace ReqManager.Controllers
             IProjectService projectService,
             IHistoryProjectArtifactService historyServiceArtifact) : base(service)
         {
+            this.service = service;
             this.historyServiceArtifact = historyServiceArtifact;
 
             ViewData.Add("ArtifactTypeID", new SelectList(typeService.getAll(), "ArtifactTypeID", "description"));
             ViewData.Add("ImportanceID", new SelectList(measureService.getAll(), "ImportanceID", "description"));
             ViewData.Add("ProjectID", new SelectList(projectService.getAll(), "ProjectID", "description"));
-            ViewData.Add("CreationUserID", new SelectList(userService.getAll(), "UserID", "name"));
+        }
+
+        public JsonResult GetWithCode(string code)
+        {
+            try
+            {
+                return Json(service.GetWithCode(code), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public JsonResult GetArtifactsFromProject(int ProjectID)
         {
             try
             {
-                return Json(Service.getAll().Where(a => a.ProjectID.Equals(ProjectID)), JsonRequestBehavior.AllowGet);
+                return Json(service.getArtifactsByProject(ProjectID), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

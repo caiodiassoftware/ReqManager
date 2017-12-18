@@ -73,14 +73,7 @@ namespace ReqManager.Controllers
                 throw ex;
             }
         }
-
-
-        public ActionResult RequirementTraceabilityMatrix()
-        {
-            DataTableViewModel dt = new DataTableViewModel();
-            //dt.dataTable = matrixService.getMatrix();
-            return View(dt);
-        }
+        
 
         public JsonResult GetLink(string ReqOrigin, string ReqTarget)
         {

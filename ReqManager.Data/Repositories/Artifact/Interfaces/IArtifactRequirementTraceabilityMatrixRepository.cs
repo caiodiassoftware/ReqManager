@@ -4,6 +4,6 @@ namespace ReqManager.Data.Repositories.Artifact.Interfaces
 {
     public interface IArtifactRequirementTraceabilityMatrixRepository
     {
-        DataTable getMatrix();
+        DataTable getMatrix(int ProjectID);
     }
 }

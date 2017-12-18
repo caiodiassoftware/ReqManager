@@ -15,26 +15,9 @@ namespace ReqManager.Services.Requirements.Classes
             this.repository = repository;
         }
 
-        public string getHtmlMatrix(int ProjectID)
-        {
-            return repository.getMatrix(ProjectID).ConvertDataTableToHTML();
-        }
-
         public DataTable getMatrix(int ProjectID)
         {
             return repository.getMatrix(ProjectID);
-        }
-
-        public DataTable getMatrixByProject(int ProjectID)
-        {
-            try
-            {
-                return getMatrix(ProjectID);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
         }
     }
 }

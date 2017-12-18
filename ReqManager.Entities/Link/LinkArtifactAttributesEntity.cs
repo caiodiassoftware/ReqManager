@@ -18,6 +18,7 @@ namespace ReqManager.Entities.Link
         public int LinkArtifactRequirementID { get; set; }
         [Required]
         [Display(Name = "Value")]
+        [DataType(DataType.MultilineText)]
         public string value { get; set; }
 
         public String DisplayName

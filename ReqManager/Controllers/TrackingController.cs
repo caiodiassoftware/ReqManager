@@ -1,6 +1,7 @@
 ﻿using ReqManager.Entities.Artifact;
 using ReqManager.Entities.Project;
 using ReqManager.Entities.Requirement;
+using ReqManager.Filters;
 using ReqManager.Services.Directories.Interfaces;
 using ReqManager.Services.Link.Interfaces;
 using ReqManager.Services.Project.Interfaces;
@@ -12,6 +13,7 @@ using System.Web.Mvc;
 
 namespace ReqManager.Controllers
 {
+    [Permissions]
     public class TrackingController : Controller
     {
         #region Propriets
@@ -228,27 +230,6 @@ namespace ReqManager.Controllers
 
                 JsonResult json = Json(files, JsonRequestBehavior.AllowGet);
                 return json;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        #endregion
-
-        #region Others
-
-        [HttpPost]
-        public void OpenFile(string file)
-        {
-            try
-            {
-                System.Diagnostics.Process proc = new System.Diagnostics.Process();
-                proc.EnableRaisingEvents = false;
-                proc.StartInfo.FileName = file;
-                proc.Start();
-                proc.Close();
             }
             catch (Exception ex)
             {

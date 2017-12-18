@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace ReqManager.Services.Directories.Interfaces
 {
@@ -11,5 +7,6 @@ namespace ReqManager.Services.Directories.Interfaces
         IEnumerable<string> getFolders(string path);
         IEnumerable<string> getAllDirectoriesInPath(string path);
         List<string> findFile(string[] value, string path);
+        List<string> findFile(string value, string path);
     }
 }

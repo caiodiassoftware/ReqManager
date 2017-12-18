@@ -22,6 +22,7 @@ namespace ReqManager.Controllers
     //R-A1
     //PRJ4
     //REQ3
+    //ART1
     public class RequirementController : ControlAcessController<RequirementEntity>
     {
         private IRequirementVersionsService rationaleService { get; set; }
@@ -96,7 +97,7 @@ namespace ReqManager.Controllers
             try
             {
                 return Json(requirementService.getWithCode(code),
-                    JsonRequestBehavior.AllowGet); ;
+                    JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
@@ -145,9 +146,15 @@ namespace ReqManager.Controllers
                 vm.linkReq = linkRequirementService.getAll().Where(r => r.RequirementOriginID.Equals(id) || r.RequirementTargetID.Equals(id)).ToList();
                 vm.linkReqArt = linkReqArtifactService.getAll().Where(r => r.RequirementID.Equals(id)).ToList();
                 vm.characteristics = reqCharacteristics.getAll().Where(r => r.RequirementID.Equals(id)).ToList();
-                vm.request = requestService.getAll().Where(r => r.RequirementID.Equals(id)).ToList();
-                vm.versions = versions.getAll().Where(r => r.RequirementRequestForChanges.RequirementID.Equals(id)).ToList();
-                vm.stakeholders = stakeholderApproval.getAll().Where(r => r.RequirementID.Equals(id)).ToList();
+                vm.request = requestService.getAll().Where(r => r.StakeholderRequirement.RequirementID.Equals(id)).ToList();
+
+                var versionsRequested = versions.getAll().Where(r => r.RequirementRequestForChanges != null).ToList();
+                var versionsCreated = versions.getAll().Where(r => r.RequirementRequestForChanges == null).ToList();
+
+                vm.versions = versionsRequested.Where(r => r.RequirementRequestForChanges.StakeholderRequirement.RequirementID.Equals(id)).ToList();
+                vm.versions.AddRange(versions.getAll().Where(r => r.RequirementID.Equals(id)));
+
+                vm.stakeholders = stakeholderApproval.getAll().Where(r => r.StakeholderRequirement.RequirementID.Equals(id)).ToList();
 
                 return View(vm);
             }
@@ -192,7 +199,7 @@ namespace ReqManager.Controllers
                 }
 
                 RequirementRequestForChangesEntity request = requestService.get(id);
-                RequirementEditViewModel vm = Mapper.Map<RequirementEntity, RequirementEditViewModel>(request.Requirement);
+                RequirementEditViewModel vm = Mapper.Map<RequirementEntity, RequirementEditViewModel>(request.StakeholderRequirement.Requirement);
                 vm.RequirementRequestForChangesID = Convert.ToInt32(id);
 
                 ViewData.Add("ImportanceID", new SelectList(measureService.getAll(), "ImportanceID", "description", vm == null ? 0 : vm.ImportanceID));
@@ -240,8 +247,9 @@ namespace ReqManager.Controllers
         #region POST
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         [AcceptVerbs(HttpVerbs.Post)]
+        [AllowAnonymous]
+        [OutputCache(NoStore = true, Location = System.Web.UI.OutputCacheLocation.None)]
         public ActionResult Create(RequirementViewModel vm)
         {
             try
@@ -267,8 +275,9 @@ namespace ReqManager.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         [AcceptVerbs(HttpVerbs.Post)]
+        [AllowAnonymous]
+        [OutputCache(NoStore = true, Location = System.Web.UI.OutputCacheLocation.None)]
         public ActionResult Edit(RequirementEditViewModel vm)
         {
             try
@@ -295,7 +304,9 @@ namespace ReqManager.Controllers
         }
 
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        [AcceptVerbs(HttpVerbs.Post)]
+        [AllowAnonymous]
+        [OutputCache(NoStore = true, Location = System.Web.UI.OutputCacheLocation.None)]
         public ActionResult DeleteConfirmed(int id)
         {
             try

@@ -11,7 +11,9 @@ namespace ReqManager.Entities.Project
         public string name { get; set; }
         [Required]
         [MaxLength(255)]
+        [DataType(DataType.MultilineText)]
         public string description { get; set; }
+        [Required]
         public bool active { get; set; }
     }
 }

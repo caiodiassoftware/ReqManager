@@ -1,4 +1,6 @@
-﻿using ReqManager.Services.InterfacesServices;
+﻿using ReqManager.Entities.Acess;
+using ReqManager.Services.Acess.Interfaces;
+using ReqManager.Services.InterfacesServices;
 using System;
 using System.Security.Principal;
 using System.Web;
@@ -22,19 +24,41 @@ namespace ReqManager.Filters
                 if (authCookie != null)
                 {
                     IControllerActionService caService = DependencyResolver.Current.GetService<IControllerActionService>();
+                    IUserService userService = DependencyResolver.Current.GetService<IUserService>();
 
                     FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
 
-                    int UserID = Convert.ToInt32(authTicket.UserData);
-
-                    IIdentity id = new FormsIdentity(authTicket);
-                    IPrincipal principal = new GenericPrincipal(id, null);
-                    HttpContext.Current.Request.RequestContext.HttpContext.User = principal;
-
-                    if (!caService.CanAccess(UserID, controllerName, actionName))
+                    if(!authTicket.Expired)
                     {
-                        filterContext.Result = new HttpUnauthorizedResult(
-                            "You don't have Permissions to Access " + actionName + " " + controllerName);
+                        int UserID = Convert.ToInt32(authTicket.UserData);
+
+                        UserEntity user = userService.get(UserID);
+                        HttpContext.Current.Session["name"] = user.name;
+                        HttpContext.Current.Session["roles"] = "Admin";
+
+                        authCookie.Expires = DateTime.Now.AddMinutes(30);
+                        IIdentity id = new FormsIdentity(authTicket);
+                        IPrincipal principal = new GenericPrincipal(id, null);
+                        HttpContext.Current.Request.RequestContext.HttpContext.User = principal;
+
+                        if (!caService.CanAccess(UserID, controllerName, actionName))
+                        {
+                            filterContext.Result = new HttpUnauthorizedResult(
+                                "You don't have Permissions to Access " + actionName + " " + controllerName);
+                        }
+                    }
+                    else
+                    {
+                        FormsAuthentication.SignOut();
+                        authCookie.Expires = DateTime.Now.AddYears(-1);
+                        HttpContext.Current.Response.Cookies.Add(authCookie);
+
+                        filterContext.Result = new RedirectToRouteResult(
+                        new RouteValueDictionary
+                        {
+                            { "controller", "Login" },
+                            { "action", "Login" }
+                        });
                     }
                 }
                 else

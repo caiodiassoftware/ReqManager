@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ReqManager.Entities.Link
 {
@@ -15,6 +10,7 @@ namespace ReqManager.Entities.Link
         [Required]
         [MaxLength(50), MinLength(5)]
         [Display(Name = "Attribute Description")]
+        [DataType(DataType.MultilineText)]
         public string description { get; set; }
     }
 }

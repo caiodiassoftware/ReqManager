@@ -14,19 +14,19 @@ namespace ReqManager.Model
             this.LinkRequirementsOrigin = new HashSet<LinkBetweenRequirement>();
             this.LinkRequirementsTarget = new HashSet<LinkBetweenRequirement>();
             this.LinkRequirementsArtifacts = new HashSet<LinkBetweenRequirementsArtifacts>();
-            this.RequirementRequestForChanges = new HashSet<RequirementRequestForChanges>();
+            this.StakeholderRequirement = new HashSet<StakeholderRequirement>();
             this.RequirementCharacteristics = new HashSet<RequirementCharacteristics>();
         }
-    
+
         [Key]
         [Index("IX_REQUIREMENT", 1, IsUnique = true)]
         public int RequirementID { get; set; }
         public int ProjectID { get; set; }
-        public int RequirementTemplateID { get; set; }
+        public int? RequirementTemplateID { get; set; }
         public int CreationUserID { get; set; }
         public int RequirementStatusID { get; set; }
         public int RequirementTypeID { get; set; }
-        public Nullable<int> RequirementSubTypeID { get; set; }
+        public int? RequirementSubTypeID { get; set; }
         public int ImportanceID { get; set; }
         [Index("IX_REQUIREMENT", 2, IsUnique = true)]
         public int versionNumber { get; set; }
@@ -40,16 +40,18 @@ namespace ReqManager.Model
         public string title { get; set; }
         [Required]
         public DateTime creationDate { get; set; }
+        public Nullable<DateTime> startDate { get; set; }
+        public Nullable<DateTime> endDate { get; set; }
         [Required]
         [DefaultValue(true)]
         public bool preTraceability { get; set; }
 
+        public virtual ICollection<RequirementVersions> RequirementVersions { get; set; }
         public virtual ICollection<RequirementCharacteristics> RequirementCharacteristics { get; set; }
         public virtual ICollection<LinkBetweenRequirement> LinkRequirementsOrigin { get; set; }
         public virtual ICollection<LinkBetweenRequirement> LinkRequirementsTarget { get; set; }
         public virtual ICollection<LinkBetweenRequirementsArtifacts> LinkRequirementsArtifacts { get; set; }
-        public virtual ICollection<RequirementRequestForChanges> RequirementRequestForChanges { get; set; }
-        public virtual ICollection<StakeholderRequirementApproval> StakeholderRequirement { get; set; }
+        public virtual ICollection<StakeholderRequirement> StakeholderRequirement { get; set; }
         public virtual Importance Importance { get; set; }
         [ForeignKey("CreationUserID")]
         public virtual Users Users { get; set; }

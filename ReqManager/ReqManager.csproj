@@ -69,6 +69,10 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="itextsharp, Version=5.5.12.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Bin\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -184,6 +188,7 @@
     <Compile Include="Controllers\AttributesTypeLinkController.cs" />
     <Compile Include="Controllers\CharacteristicsController.cs" />
     <Compile Include="Controllers\ControllerActionController.cs" />
+    <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\LinkArtifactAttributesController.cs" />
     <Compile Include="Controllers\LinkBetweenRequirementsArtifactController.cs" />
     <Compile Include="Controllers\LinkBetweenRequirementsController.cs" />
@@ -204,6 +209,7 @@
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\RoleControllerActionController.cs" />
     <Compile Include="Controllers\StakeholderRequirementApprovalController.cs" />
+    <Compile Include="Controllers\StakeholderRequirementController.cs" />
     <Compile Include="Controllers\StakeholdersProjectController.cs" />
     <Compile Include="Controllers\TrackingController.cs" />
     <Compile Include="Controllers\TypeLinkController.cs" />
@@ -340,6 +346,7 @@
     <Content Include="Scripts\js\classie.js" />
     <Content Include="Scripts\js\jquery-1.10.2.min.js" />
     <Content Include="Scripts\js\jquery.nicescroll.js" />
+    <Content Include="Scripts\js\JsonToHtmlTable.js" />
     <Content Include="Scripts\js\scripts.js" />
     <Content Include="Scripts\js\uisearch.js" />
     <Content Include="Scripts\js\wow.min.js" />
@@ -502,7 +509,6 @@
     </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_OldLayout.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\ControllerAction\Index.cshtml" />
     <Content Include="Views\Role\Create.cshtml" />
@@ -623,12 +629,10 @@
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-mobile.woff" />
     <Content Include="Scripts\tinymce\langs\readme.md" />
     <Content Include="Views\RequirementTemplate\Create.cshtml" />
-    <Content Include="Views\LinkBetweenRequirements\RequirementTraceabilityMatrix.cshtml" />
     <Content Include="Views\Tracking\TrackingRequirement.cshtml" />
     <Content Include="Views\Tracking\TrackingArtifact.cshtml" />
     <Content Include="Views\Tracking\TrackingLinkBetweenRequirement.cshtml" />
     <Content Include="Views\Tracking\TrackingLinkBetweenRequirementArtifact.cshtml" />
-    <Content Include="Views\LinkBetweenRequirementsArtifact\ArtifactRequirementTraceabilityMatrix.cshtml" />
     <Content Include="Views\Tracking\TrackingProjectRequirement.cshtml" />
     <Content Include="Views\Tracking\TrackingProjectArtifact.cshtml" />
     <Content Include="Views\Characteristics\Create.cshtml" />
@@ -658,16 +662,20 @@
     <Content Include="Views\Projects\PrintDocumentRequirement.cshtml" />
     <Content Include="Views\Requirement\PrintDocumentRequirement.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Shared\DefaultLayout.cshtml" />
     <Content Include="Views\LinkBetweenRequirements\CreateNewLink.cshtml" />
     <Content Include="Views\LinkBetweenRequirementsArtifact\CreateNewLink.cshtml" />
     <Content Include="Views\AttributesTypeLink\CreateNewAttributeForTypeLink.cshtml" />
     <Content Include="Views\LinkArtifactAttributes\CreateNewAttributeForLink.cshtml" />
     <Content Include="Views\LinkRequirementAttributes\CreateNewAttributeForLink.cshtml" />
+    <Content Include="Views\File\RenderFile.cshtml" />
+    <Content Include="Views\StakeholderRequirement\Create.cshtml" />
+    <Content Include="Views\StakeholderRequirement\Delete.cshtml" />
+    <Content Include="Views\StakeholderRequirement\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Matrix\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

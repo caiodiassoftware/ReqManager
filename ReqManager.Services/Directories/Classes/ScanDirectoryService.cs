@@ -26,6 +26,12 @@ namespace ReqManager.Services.Directories.Classes
             return Directory.EnumerateFileSystemEntries(path);
         }
 
+        public List<string> findFile(string value, string path)
+        {
+            string[] values = { value };
+            return findFile(values, path);
+        }
+
         public List<string> findFile(string[] values, string path)
         {
             try

@@ -25,7 +25,7 @@ namespace ReqManager.ViewModels
         public int RequirementID { get; set; }
         [Required]
         [Display(Name = "Template")]
-        public int RequirementTemplateID { get; set; }
+        public Nullable<int> RequirementTemplateID { get; set; }
         [Required]
         [Display(Name = "Project")]
         public int ProjectID { get; set; }
@@ -40,7 +40,7 @@ namespace ReqManager.ViewModels
         public int RequirementTypeID { get; set; }
         [Required]
         [Display(Name = "SubType")]
-        public int RequirementSubTypeID { get; set; }
+        public Nullable<int> RequirementSubTypeID { get; set; }
         public int versionNumber { get; set; }
         [Required]
         [Display(Name = "Importance")]
@@ -60,6 +60,8 @@ namespace ReqManager.ViewModels
         public System.DateTime creationDate { get; set; } = DateTime.Now;
         [Required]
         public bool preTraceability { get; set; }
+        public Nullable<DateTime> startDate { get; set; }
+        public Nullable<DateTime> endDate { get; set; }
 
         public String DisplayName
         {

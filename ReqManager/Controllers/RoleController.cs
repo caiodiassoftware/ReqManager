@@ -8,7 +8,7 @@ namespace ReqManager.Controllers
     {
         public RoleController(IRoleService service) : base(service)
         {
-
+            
         }
     }
 }

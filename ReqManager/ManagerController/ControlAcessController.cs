@@ -8,12 +8,14 @@ using System.Data.Entity.Validation;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
+using System.Web.Security;
 
 namespace ReqManager.ManagerController
 {
-    //[Permissions]
+    [Permissions]
     public class ControlAcessController<TEntity> : Controller where TEntity : class
     {
         #region Attributes
@@ -27,7 +29,7 @@ namespace ReqManager.ManagerController
             this.Service = service;
         }
 
-        #region Filters
+        #region GETS
 
         public ActionResult Get(int? ID)
         {
@@ -101,14 +103,35 @@ namespace ReqManager.ManagerController
 
         protected int getIdUser()
         {
-            return 1;
+            try
+            {
+                return Convert.ToInt32(getAuthToken().UserData);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        
+        protected string getLoginUser()
+        {
+            try
+            {
+                return getAuthToken().Name;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         protected void setIdUser(ref TEntity entity)
         {
             try
             {
-                PropertyInfo prop = entity.GetType().GetProperty("CreationUserID", BindingFlags.Public | BindingFlags.Instance);
+                PropertyInfo prop = entity.GetType().
+                    GetProperty("CreationUserID", 
+                    BindingFlags.Public | BindingFlags.Instance);
                 if (null != prop && prop.CanWrite)
                     prop.SetValue(entity, getIdUser(), null);
             }
@@ -118,9 +141,12 @@ namespace ReqManager.ManagerController
             }
         }
 
-        protected string getLoginUser()
+        private FormsAuthenticationTicket getAuthToken()
         {
-            return "caiodias";
+            string cookieName = FormsAuthentication.FormsCookieName;
+            HttpCookie authCookie = HttpContext.Request.Cookies[cookieName];
+            FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(authCookie.Value);
+            return ticket;
         }
 
         protected ActionResult getMessageDbValidation(TEntity entity, DbEntityValidationException ex)

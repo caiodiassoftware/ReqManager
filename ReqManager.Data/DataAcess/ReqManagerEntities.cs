@@ -8,7 +8,7 @@ namespace ReqManager.Data.DataAcess
     {
         public ReqManagerEntities() : base("ReqManagerDataEntities")
         {
-
+            Database.SetInitializer(new ReqManagerContextInitializer());
         }
 
         public virtual void Commit()
@@ -40,7 +40,7 @@ namespace ReqManager.Data.DataAcess
         public virtual DbSet<HistoryProject> HistoryProject { get; set; }
         public virtual DbSet<Project> Project { get; set; }
         public virtual DbSet<ProjectPhases> ProjectPhases { get; set; }
-        public virtual DbSet<StakeholderRequirementApproval> StakeholderRequirement { get; set; }
+        public virtual DbSet<StakeholderRequirementApproval> StakeholderRequirementApproval { get; set; }
         public virtual DbSet<Stakeholders> Stakeholders { get; set; }
         public virtual DbSet<StakeholdersProject> StakeholdersProject { get; set; }
         public virtual DbSet<Importance> Importance { get; set; }
@@ -61,5 +61,6 @@ namespace ReqManager.Data.DataAcess
         public virtual DbSet<RequirementSubType> RequirementSubType { get; set; }
         public virtual DbSet<RequirementCharacteristics> RequirementCharacteristics { get; set; }
         public virtual DbSet<RequirementRequestForChanges> RequirementRequestForChanges { get; set; }
+        public virtual DbSet<StakeholderRequirement> StakeholderRequirement { get; set; }
     }
 }

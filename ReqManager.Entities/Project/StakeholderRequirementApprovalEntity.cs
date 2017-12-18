@@ -1,6 +1,4 @@
-﻿using ReqManager.Entities.Requirement;
-using System;
-using System.ComponentModel;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace ReqManager.Entities.Project
@@ -8,32 +6,24 @@ namespace ReqManager.Entities.Project
     public class StakeholderRequirementApprovalEntity
     {
         [Key]
-        [Display(Name = "StakeHolder Requirement")]
-        public int StakeHolderRequirementApprovalID { get; set; }
-        [Required(ErrorMessage = "This field is Required")]
+        public int StakeholderRequirementApprovalID { get; set; }
         [Range(1, Double.PositiveInfinity)]
-        [Display(Name = "Stakeholders")]
-        public int StakeholdersProjectID { get; set; }
-        [Required(ErrorMessage = "This field is Required")]
-        [Range(1, Double.PositiveInfinity)]
-        [Display(Name = "Requirement")]
-        public int RequirementID { get; set; }
-        [Display(Name = "Creation Date")]
+        public int StakeholderRequirementID { get; set; }
         public DateTime creationDate { get; set; } = DateTime.Now;
         [MinLength(6)]
-        [MaxLength(255)]
-        [DefaultValue("NOT RATED")]
+        [MaxLength(1000)]
+        [Required]
+        [DataType(DataType.MultilineText)]
         public string description { get; set; }
         public bool approved { get; set; }
 
-        public virtual StakeholdersProjectEntity StakeholdersProject { get; set; }
-        public virtual RequirementEntity Requirement { get; set; }
+        public virtual StakeholderRequirementEntity StakeholderRequirement { get; set; }
 
         public String DisplayName
         {
             get
             {
-                return this.StakeholdersProject.Stakeholders.Users.nickName;
+                return this.StakeholderRequirement.StakeholdersProject.Stakeholders.Users.nickName;
             }
         }
 

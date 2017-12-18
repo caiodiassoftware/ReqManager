@@ -15,6 +15,7 @@ namespace ReqManager.Entities.Link
         [Required]
         [MaxLength(50), MinLength(3)]
         [Display(Name = "Type Link Description")]
+        [DataType(DataType.MultilineText)]
         public string description { get; set; }
         [Display(Name = "Creation Date")]
         public System.DateTime creationDate { get; set; } = DateTime.Now;

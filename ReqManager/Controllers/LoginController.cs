@@ -6,9 +6,6 @@ using System;
 using System.Web.Mvc;
 using System.Web.Security;
 using System.Web;
-using ReqManager.Entities;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace ReqManager.Controllers
 {
@@ -40,6 +37,9 @@ namespace ReqManager.Controllers
 
                     if (user != null)
                     {
+                        Session["name"] = "Caio Dias";
+                        Session["roles"] = "Admin";
+
                         FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(
                                 1,
                                 model.login,
@@ -55,7 +55,7 @@ namespace ReqManager.Controllers
                         cookie.HttpOnly = true;
                         Response.Cookies.Add(cookie);
 
-                        Response.Redirect(@"~/Role/Index", false);
+                        Response.Redirect(@"~/Requirement/Index", false);
                     }
                     else
                     {
@@ -66,6 +66,24 @@ namespace ReqManager.Controllers
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        public void LogOut()
+        {
+            try
+            {
+                HttpCookie authCookie = HttpContext.Request.Cookies[FormsAuthentication.FormsCookieName];
+
+                FormsAuthentication.SignOut();
+                authCookie.Expires = DateTime.Now.AddYears(-1);
+                HttpContext.Response.Cookies.Add(authCookie);
+
+                Response.Redirect("~/Login/Login");
+            }
+            catch (Exception ex)
+            {
+                throw;
             }
         }
     }

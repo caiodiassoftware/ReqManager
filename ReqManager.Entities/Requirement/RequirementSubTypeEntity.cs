@@ -9,6 +9,7 @@ namespace ReqManager.Entities.Requirement
         public int RequirementTypeID { get; set; }
         [MinLength(5)]
         [MaxLength(50)]
+        [DataType(DataType.MultilineText)]
         public string description { get; set; }
 
         public virtual RequirementTypeEntity RequirementType { get; set; }

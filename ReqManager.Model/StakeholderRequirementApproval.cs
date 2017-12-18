@@ -1,26 +1,22 @@
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ReqManager.Model
 {
-    [Table("STAKEHOLDER_REQUIREMENT_APPROVAL", Schema = "PROJ")]
+    [Table("STAKEHOLDER_REQUIREMENT_APPROVAL", Schema = "REQ")]
     public class StakeholderRequirementApproval
     {
         [Key]
         public int StakeholderRequirementApprovalID { get; set; }
-        public int StakeholdersProjectID { get; set; }
-        public int RequirementID { get; set; }
+        public int StakeholderRequirementID { get; set; }
         public DateTime creationDate { get; set; }
         [MinLength(6)]
-        [MaxLength(255)]
-        [DefaultValue("APPROVED")]
+        [MaxLength(1000)]
+        [Required]
         public string description { get; set; }
         public bool approved { get; set; }
 
-        public virtual StakeholdersProject StakeholdersProject { get; set; }
-        public virtual Requirement Requirement { get; set; }
+        public virtual StakeholderRequirement StakeholderRequirement { get; set; }
     }
 }

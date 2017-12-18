@@ -19,6 +19,7 @@ namespace ReqManager.Entities.Project
         [Required]
         [MaxLength(255)]
         [Display(Name = "Project Description")]
+        [DataType(DataType.MultilineText)]
         public string description { get; set; }
         [Required]
         [MaxLength(300)]
@@ -27,9 +28,11 @@ namespace ReqManager.Entities.Project
         [Required]
         [MaxLength(1000)]
         [Display(Name = "Environmental Information")]
+        [DataType(DataType.MultilineText)]
         public string environmentalInformation { get; set; }
         [Required]
         [MaxLength(1000)]
+        [DataType(DataType.MultilineText)]
         [Display(Name = "Management Information")]
         public string managementInformation { get; set; }
         [Required]

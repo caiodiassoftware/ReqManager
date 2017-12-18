@@ -102,6 +102,7 @@
     <Compile Include="Project\Classes\ProjectService.cs" />
     <Compile Include="Project\Classes\StakeholderClassificationService.cs" />
     <Compile Include="Project\Classes\StakeholderRequirementApprovalService.cs" />
+    <Compile Include="Project\Classes\StakeholderRequirementService.cs" />
     <Compile Include="Project\Classes\StakeholdersProjectService.cs" />
     <Compile Include="Project\Classes\StakeholdersService.cs" />
     <Compile Include="Artifact\Interfaces\IArtifactTypeService.cs" />
@@ -113,6 +114,7 @@
     <Compile Include="Project\Interfaces\IProjectService.cs" />
     <Compile Include="Project\Interfaces\IStakeholderClassificationService.cs" />
     <Compile Include="Project\Interfaces\IStakeholderRequirementApprovalService.cs" />
+    <Compile Include="Project\Interfaces\IStakeholderRequirementService.cs" />
     <Compile Include="Project\Interfaces\IStakeholdersProjectService.cs" />
     <Compile Include="Project\Interfaces\IStakeholdersService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -174,7 +176,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

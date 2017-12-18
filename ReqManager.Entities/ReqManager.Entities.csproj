@@ -54,6 +54,7 @@
     <Compile Include="Link\LinkBetweenRequirementsEntity.cs" />
     <Compile Include="Link\LinkRequirementAttributesEntity.cs" />
     <Compile Include="Link\TypeLinkEntity.cs" />
+    <Compile Include="Project\StakeholderRequirementEntity.cs" />
     <Compile Include="Requirement\CharacteristicsEntity.cs" />
     <Compile Include="Project\HistoryProjectEntity.cs" />
     <Compile Include="Project\ImportanceEntity.cs" />

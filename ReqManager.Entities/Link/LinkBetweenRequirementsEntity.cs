@@ -37,7 +37,7 @@ namespace ReqManager.Entities.Link
         {
             get
             {
-                return this.RequirementOrigin.code + " to " + this.RequirementTarget.code + " using " + this.TypeLink.description;
+                return this.code + " - " + this.RequirementOrigin.code + " to " + this.RequirementTarget.code + " using " + this.TypeLink.description;
             }
         }
 

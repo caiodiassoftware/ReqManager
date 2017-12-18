@@ -10,12 +10,13 @@ namespace ReqManager.Model
         [Key]
         public int RequirementVersionsID { get; set; }
         [Index("IX_REQUIREMENT_VERSIONS", 1, IsUnique = true)]
-        public int RequirementRequestForChangesID { get; set; }
+        public Nullable<int> RequirementRequestForChangesID { get; set; }
+        public Nullable<int> RequirementID { get; set; }
         public int RequirementTypeID { get; set; }
         public Nullable<int> RequirementSubTypeID { get; set; }
         public int ImportanceID { get; set; }
         public int RequirementStatusID { get; set; }
-        public int RequirementTemplateID { get; set; }
+        public Nullable<int> RequirementTemplateID { get; set; }
         [Required]
         [Index("IX_REQUIREMENT_VERSIONS", 2, IsUnique = true)]
         public int versionNumber { get; set; }
@@ -29,9 +30,12 @@ namespace ReqManager.Model
         public string rationale { get; set; }
         [Required]
         public DateTime creationDate { get; set; }
+        public Nullable<DateTime> startDate { get; set; }
+        public Nullable<DateTime> endDate { get; set; }
 
         public virtual RequirementRequestForChanges RequirementRequestForChanges { get; set; }
         public virtual Importance Importance { get; set; }
+        public virtual Requirement Requirement { get; set; }
         public virtual RequirementTemplate RequirementTemplate { get; set; }
         public virtual RequirementStatus RequirementStatus { get; set; }
         public virtual RequirementType RequirementType { get; set; }

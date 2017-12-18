@@ -10,7 +10,7 @@ namespace ReqManager.Services.Project.Classes
 {
     public class StakeholderRequirementApprovalService : ServiceBase<StakeholderRequirementApproval, StakeholderRequirementApprovalEntity>, IStakeholderRequirementApprovalService
     {
-        public StakeholderRequirementApprovalService(IStakeholderRequirementRepository repository, IUnitOfWork unit) :
+        public StakeholderRequirementApprovalService(IStakeholderRequirementApprovalRepository repository, IUnitOfWork unit) :
             base(repository, unit)
         {
         }
@@ -19,7 +19,7 @@ namespace ReqManager.Services.Project.Classes
         {
             try
             {
-                return getAll().Where(s => s.StakeholdersProject.Stakeholders.UserID.Equals(UserID)).SingleOrDefault();
+                return getAll().Where(s => s.StakeholderRequirement.StakeholdersProject.Stakeholders.UserID.Equals(UserID)).SingleOrDefault();
             }
             catch (System.Exception ex)
             {

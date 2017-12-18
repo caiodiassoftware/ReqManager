@@ -10,6 +10,7 @@ namespace ReqManager.Entities.Requirement
         [MinLength(5)]
         [MaxLength(50)]
         [Display(Name = "Requirement Type")]
+        [DataType(DataType.MultilineText)]
         public string description { get; set; }
     }
 }

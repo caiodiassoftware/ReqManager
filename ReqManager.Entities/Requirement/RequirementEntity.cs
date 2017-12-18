@@ -26,7 +26,7 @@ namespace ReqManager.Entities.Requirement
         public int RequirementTypeID { get; set; }
         [Required]
         [Display(Name = "SubType")]
-        public int RequirementSubTypeID { get; set; }
+        public Nullable<int> RequirementSubTypeID { get; set; }
         [Required]
         [Display(Name = "Importance")]
         public int ImportanceID { get; set; }
@@ -39,18 +39,21 @@ namespace ReqManager.Entities.Requirement
         [Required]
         [MaxLength(100), MinLength(10)]
         [Display(Name = "Title")]
+        [DataType(DataType.MultilineText)]
         public string title { get; set; }
         [Required]
         [Display(Name = "Creation Date")]
         public System.DateTime creationDate { get; set; } = DateTime.Now;
         [Required]
         public bool preTraceability { get; set; }
+        public Nullable<DateTime> startDate { get; set; }
+        public Nullable<DateTime> endDate { get; set; }
 
         public String DisplayName
         {
             get
             {
-                return code + " - " + Importance.description;
+                return code + " - " + title;
             }
         }
 

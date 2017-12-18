@@ -17,7 +17,7 @@ namespace ReqManager.Data.Repositories.Artifact.Classes
             context = dbFactory.Init();
         }
 
-        public DataTable getMatrix()
+        public DataTable getMatrix(int ProjectID)
         {
             try
             {
@@ -48,6 +48,7 @@ namespace ReqManager.Data.Repositories.Artifact.Classes
 														                                        FROM LINK.LINK_BETWEEN_REQUIREMENTS_ARTIFACTS AS L
 														                                        INNER JOIN PROJ.PROJECT_ARTIFACT AS A
 															                                        ON A.ProjectArtifactID = L.ProjectArtifactID
+                                                                                                    AND A.ProjectID = " + ProjectID + @"
 														                                        INNER JOIN REQ.REQUIREMENT AS R
 															                                        ON R.RequirementID = L.RequirementID
                                                                                             ) as x

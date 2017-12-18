@@ -34,5 +34,17 @@ namespace ReqManager.Services.Link.Classes
                 throw ex;
             }
         }
+
+        public LinkBetweenRequirementsArtifactsEntity get(string ArtifactCode, string RequirementCode)
+        {
+            try
+            {
+                return getAll().Where(l => l.ProjectArtifact.code.Equals(ArtifactCode) && l.Requirement.code.Equals(RequirementCode)).SingleOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

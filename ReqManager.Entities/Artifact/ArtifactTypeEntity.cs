@@ -10,6 +10,7 @@ namespace ReqManager.Entities.Artifact
         [Required]
         [MaxLength(50), MinLength(5)]
         [Display(Name = "Artifact Type Description")]
+        [DataType(DataType.MultilineText)]
         public string description { get; set; }
     }
 }

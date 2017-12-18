@@ -1,11 +1,6 @@
 ﻿using ReqManager.Data.Repositories.Artifact.Interfaces;
 using ReqManager.Services.Artifact.Interfaces;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReqManager.Services.Artifact.Classes
 {
@@ -18,9 +13,9 @@ namespace ReqManager.Services.Artifact.Classes
             this.matrix = matrix;
         }
 
-        public DataTable getMatrix()
+        public DataTable getMatrix(int ProjectID)
         {
-            return matrix.getMatrix();
+            return matrix.getMatrix(ProjectID);
         }
     }
 }

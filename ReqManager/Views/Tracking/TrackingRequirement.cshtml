@@ -8,102 +8,125 @@
 
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.Hidden("Project")
     @Html.Hidden("ID", Request.Url.Segments[3].ToString())
-    <div id="tabs">
-        <ul>
-            <li><a href="#path">Tracking</a></li>
-            <li><a href="#tabFiles">Files Found</a></li>
-        </ul>
 
-        <div id="path">
-            <div class="form-group">
-                @Html.Label("Requirements", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("Requirements", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessage("Requirements", "", new { @class = "text-danger" })
-                </div>
-            </div>
+    <div class="col-lg-6">
 
-            <div class="form-group">
-                @Html.Label("Path", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("Path", Enumerable.Empty<SelectListItem>(), htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessage("Path", "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <button id="track" class="btn btn-default">Track</button>
-                </div>
+        <div class="form-group">
+            @Html.Label("Requirement", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Requirements", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessage("Requirements", "", new { @class = "text-danger" })
             </div>
         </div>
-        <div id="tabFiles">
-            @using (Html.BeginForm("OpenFile", "Tracking", FormMethod.Post))
-            {
-                <div id="files" class="form-group">
-                    @Html.Label("Files", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DropDownList("Files", Enumerable.Empty<SelectListItem>(), "SELECT THE FILE PATH", htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessage("Files", "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            }
+
+        <div class="form-group">
+            @Html.Label("Path", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("PathForTraceability", new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button id="search" class="btn btn-default">Search</button>
+            </div>
+        </div>
+
+        <div>
+            @Html.ActionLink("Back to Requirement", "Details", "Requirement", new { id = Request.Url.Segments[3].ToString() }, null)
         </div>
     </div>
-</div>
+    <div class="col-lg-5">
 
-<div>
-    @Html.ActionLink("Back to Requirement", "Index")
+        <div class="form-group">
+            @Html.Label("Folders", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Folders", Enumerable.Empty<SelectListItem>(), "SEARCH THE FOLDERS", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessage("Folders", "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div id="files" class="form-group">
+            @Html.Label("Files", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Files", Enumerable.Empty<SelectListItem>(), "SELECT THE FILE PATH", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessage("Files", "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button id="track" class="btn btn-default">Track</button>
+            </div>
+        </div>
+
+    </div>
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script type="text/javascript">
 
+
         $(function () {
-            var RequirementID = $('#ID').val();
-            $('#Path').append("<option value='" + 0 + "'>SELECT THE PATH</option>");
+
+            var RequirementID = $("#ID").val();
 
             $.getJSON('@Url.Action("Get", "Requirement")', { ID: RequirementID }, function (response) {
-                $.getJSON('@Url.Action("GetFolders", "Projects")', { ProjectID: response.ProjectID }, function (response) {
-                    $.each(response, function (index, item) {
-                        $('#Path').append("<option value='" + item + "'>" + item + "</option>");
-                    });
-                });
+                $('#PathForTraceability').val(response.Project.pathForTraceability);
             });
+        });
+
+        $("#search").click(function () {
+            var path = $('#PathForTraceability').val();
+            clearDropDown('Folders');
+            clearDropDown('Files');
+
+            $.getJSON(
+                '@Url.Action("GetFolders", "File")',
+                { path: path },
+                function (response) {
+                    clearDropDown("Folders");
+                    $('#Folders').append("<option value='" + 0 + "'>SELECT THE FOLDER</option>");
+                    $('#Files').append("<option value='" + 0 + "'>SELECT THE FILES</option>");
+                    $.each(response, function (index, item) {
+                        $('#Folders').append("<option value='" + item + "'>" + item + "</option>");
+                    });
+                }).error(function () {
+                    alert('Error');
+                });
+        });
+
+        $("#Folders").change(function () {
+            clearDropDown("Files");
+            $('#Files').append("<option value='" + 0 + "'>SELECT THE FILE</option>");
         });
 
         $("#track").click(function () {
             var Requirements = $('#Requirements').val();
-            var Path = $('#Path').val();
+            var Path = $('#Folders').val();
 
             clearDropDown('Files');
 
-            $('#Files').append("<option value='" + 0 + "'>SELECT THE PATH</option>");
+            $('#Files').append("<option value='" + 0 + "'>SEARCHING FILES</option>");
 
             $.getJSON(
                 '@Url.Action("TrackingRequirements", "Tracking")',
                 { Requirements: Requirements, Path: Path },
                 function (response) {
+                    clearDropDown("Files");
+                    $('#Files').append("<option value='" + 0 + "'>SELECT THE FILE</option>");
                     $.each(response, function (index, item) {
                         $('#Files').append("<option value='" + item + "'>" + item + "</option>");
                     });
-                }).error(function() {
+                }).error(function () {
                     alert('Error');
                 });
         });
 
         $("#Files").change(function () {
-            $.ajax({
-                cache: false,
-                type: "POST",
-                url: "@Url.Action("OpenFile", "Tracking")",
-                data: {
-                    file: $("#Files").val()
-                }
-            });
+            window.open('/File/RenderFile?FilePath=' + $("#Files").val() + '&Title=' + 'TrackingRequirement');
         });
     </script>
 

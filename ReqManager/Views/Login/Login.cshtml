@@ -1,44 +1,99 @@
 ﻿@model ReqManager.ViewModels.LoginViewModel
 
 @{
-    ViewBag.Title = "Login";
+    Layout = null;
 }
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>ReqManager - Sign In</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Easy Admin Panel Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <link href="~/Content/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+    <link href="~/Content/css/style.css" rel='stylesheet' type='text/css' />
+    <link href="~/Content/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/css/icon-font.min.css" type='text/css' />
 
-    <div class="form-horizontal">
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.login, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.login, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.login, "", new { @class = "text-danger" })
+    <script src="~/Scripts/js/Chart.js"></script>
+    <link href="~/Content/css/animate.css" rel="stylesheet" type="text/css" media="all">
+    <script src="~/Scripts/js/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+
+    <link href='//fonts.googleapis.com/css?family=Cabin:400,400italic,500,500italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+</head>
+
+<body class="sign-in-up">
+    <section>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div id="page-wrapper" class="sign-in-wrapper">
+                <div class="graphs">
+                    <div class="sign-in-form">
+                        <div class="sign-in-form-top">
+                            <p><span>Sign In to ReqManager</span></p>
+                        </div>
+                        <div class="signin">
+                            <div class="log-input">
+                                <div class="log-input-left">
+                                    @Html.Label("Login", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.login, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.login, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="clearfix"> </div>
+                            </div>
+                            <div class="log-input">
+                                <div class="log-input-left">
+                                    @Html.Label("Password", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="clearfix"> </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Login" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+        <!--footer section start-->
+            <footer>
+                <p>&copy 2017 ReqManager. All Rights Reserved | Design by <a href="https://w3layouts.com/" target="_blank">w3layouts.</a></p>
+            </footer>
+        <!--footer section end-->
+        }
+    </section>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Login" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    <script src="~/Scripts/js/jquery.nicescroll.js"></script>
+    <script src="~/Scripts/js/scripts.js"></script>
+    <script src="~/Scripts/js/bootstrap.min.js"></script>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+</body>
+</html>

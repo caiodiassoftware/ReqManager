@@ -9,8 +9,7 @@ namespace ReqManager.Model
     {
         [Key]
         public int RequirementRequestForChangesID { get; set; }
-        public int RequirementID { get; set; }
-        public int StakeholdersProjectID { get; set; }
+        public int StakeholderRequirementID { get; set; }
         public int RequestStatusID { get; set; }
         [Required]
         [MaxLength(1000), MinLength(10)]
@@ -18,8 +17,7 @@ namespace ReqManager.Model
         [Required]
         public DateTime creationDate { get; set; }
 
-        public virtual Requirement Requirement { get; set; }
-        public virtual StakeholdersProject StakeholdersProject { get; set; }
+        public virtual StakeholderRequirement StakeholderRequirement { get; set; }
         public virtual RequestStatus RequestStatus { get; set; }
     }
 }

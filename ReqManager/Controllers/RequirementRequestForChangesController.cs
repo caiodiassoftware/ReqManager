@@ -15,16 +15,16 @@ namespace ReqManager.Controllers
         private IRequirementService requirement { get; set; }
         private IStakeholderRequirementApprovalService stakeholders { get; set; }
         private IRequirementRequestForChangesService service { get; set; }
-        private IStakeholdersProjectService stakeholderProject { get; set; }
+        private IStakeholderRequirementService stakeholderRequirement { get; set; }
 
         public RequirementRequestForChangesController(
             IRequirementRequestForChangesService service,
-            IStakeholdersProjectService stakeholderProject,
+            IStakeholderRequirementService stakeholderRequirement,
             IStakeholderRequirementApprovalService stakeholders,
             IRequestStatusService status,
             IRequirementService requirement) : base(service)
         {
-            this.stakeholderProject = stakeholderProject;
+            this.stakeholderRequirement = stakeholderRequirement;
             this.requirement = requirement;
             this.stakeholders = stakeholders;
             this.service = service;
@@ -41,8 +41,14 @@ namespace ReqManager.Controllers
                 }
 
                 RequirementEntity req = requirement.get(id);
+                StakeholderRequirementEntity stakeholderRaequirement = stakeholderRequirement.get(getIdUser(), Convert.ToInt32(id));
 
                 if (req == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+
+                if (stakeholderRaequirement == null)
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
@@ -64,16 +70,16 @@ namespace ReqManager.Controllers
 
         [HttpPost]
         [AcceptVerbs(HttpVerbs.Post)]
+        [AllowAnonymous]
+        [OutputCache(NoStore = true, Location = System.Web.UI.OutputCacheLocation.None)]
         public void RequestNewChange(string request, int id)
         {
             try
             {
                 RequirementEntity req = requirement.get(id);
-                StakeholdersProjectEntity stake = stakeholderProject.getByRequirementAndUser(req.ProjectID, getIdUser());
 
                 RequirementRequestForChangesEntity reqRequest = new RequirementRequestForChangesEntity();
-                reqRequest.RequirementID = Convert.ToInt32(id);
-                reqRequest.StakeholdersProjectID = stake.StakeholdersProjectID;
+                reqRequest.StakeholderRequirementID = stakeholderRequirement.get(getIdUser(), id).StakeholderRequirementID;
                 reqRequest.RequestStatusID = 1;
                 reqRequest.creationDate = DateTime.Now;
                 reqRequest.request = request;

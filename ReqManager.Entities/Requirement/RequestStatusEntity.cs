@@ -8,6 +8,7 @@ namespace ReqManager.Entities.Requirement
         public int RequestStatusID { get; set; }
         [Required]
         [MaxLength(50), MinLength(5)]
+        [DataType(DataType.MultilineText)]
         public string description { get; set; }
     }
 }

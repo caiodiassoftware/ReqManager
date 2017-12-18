@@ -152,7 +152,8 @@ namespace ReqManager.Controllers
         #region POST
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [AllowAnonymous]
+        [OutputCache(NoStore = true, Location = System.Web.UI.OutputCacheLocation.None)]
         public ActionResult Create(RequirementTemplateViewModel vm)
         {
             try
@@ -175,7 +176,8 @@ namespace ReqManager.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [AllowAnonymous]
+        [OutputCache(NoStore = true, Location = System.Web.UI.OutputCacheLocation.None)]
         public ActionResult Edit(RequirementTemplateViewModel vm)
         {
             try
@@ -199,6 +201,8 @@ namespace ReqManager.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
+        [OutputCache(NoStore = true, Location = System.Web.UI.OutputCacheLocation.None)]
         public ActionResult DeleteConfirmed(int id)
         {
             try

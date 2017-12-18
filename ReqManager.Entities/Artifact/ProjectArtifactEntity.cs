@@ -34,6 +34,7 @@ namespace ReqManager.Entities.Artifact
         [Required]
         [MaxLength(500)]
         [Display(Name = "Artifact Description")]
+        [DataType(DataType.MultilineText)]
         public string description { get; set; }
         [Display(Name = "Creation Data")]
         public DateTime creationDate { get; set; } = DateTime.Now;

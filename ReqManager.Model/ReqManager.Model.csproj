@@ -77,6 +77,7 @@
     <Compile Include="RequirementType.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="RoleControllerAction.cs" />
+    <Compile Include="StakeholderRequirement.cs" />
     <Compile Include="Stakeholders.cs" />
     <Compile Include="StakeholdersProject.cs" />
     <Compile Include="StakeholderClassification.cs" />

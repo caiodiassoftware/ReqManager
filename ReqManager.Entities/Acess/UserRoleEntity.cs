@@ -20,7 +20,7 @@ namespace ReqManager.Entities.Acess
         {
             get
             {
-                return this.Role.description + " - " + User.nickName;
+                return this.User.nickName + " - " + this.Role.description;
             }
         }
 

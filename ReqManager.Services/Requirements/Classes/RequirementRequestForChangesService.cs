@@ -20,7 +20,7 @@ namespace ReqManager.Services.Requirements.Classes
         {
             try
             {
-                var request = getAll().Where(r => r.RequirementID.Equals(RequirementID) && r.RequestStatusID.Equals(1)).SingleOrDefault();
+                var request = getAll().Where(r => r.StakeholderRequirement.RequirementID.Equals(RequirementID) && r.RequestStatusID.Equals(1)).SingleOrDefault();
                 return request == null ? true : false;
             }
             catch (System.Exception ex)

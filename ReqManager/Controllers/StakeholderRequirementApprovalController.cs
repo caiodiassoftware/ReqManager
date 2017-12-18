@@ -13,19 +13,20 @@ namespace ReqManager.Controllers
     {
         private IStakeholderRequirementApprovalService service { get; set; }
         private IStakeholdersService stakeholder { get; set; }
-        private IStakeholdersProjectService stakeholderProjectService { get; set; }
         private IRequirementService requirement { get; set; }
+        private IStakeholderRequirementService stakeholderRequirementService { get; set; }
 
         public StakeholderRequirementApprovalController(
             IStakeholderRequirementApprovalService service,
             IStakeholdersService stakeholder,
             IRequirementService requirement,
+            IStakeholderRequirementService stakeholderRequirementService,
             IStakeholdersProjectService stakeholderProjectService,
             IProjectService projectService) : base(service)
         {
+            this.stakeholderRequirementService = stakeholderRequirementService;
             this.requirement = requirement;
             this.service = service;
-            this.stakeholderProjectService = stakeholderProjectService;
             this.stakeholder = stakeholder;
 
             ViewBag.ProjectID = new SelectList(projectService.getAll(), "ProjectID", "DisplayName");
@@ -36,7 +37,7 @@ namespace ReqManager.Controllers
         {
             try
             {
-                if (id == null)                
+                if (id == null)
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 RequirementEntity req = requirement.get(id);
                 if (req == null)
@@ -56,12 +57,10 @@ namespace ReqManager.Controllers
         {
             try
             {
-                RequirementEntity req = requirement.get(ID);
-                StakeholdersProjectEntity stake = stakeholderProjectService.getByRequirementAndUser(req.ProjectID, getIdUser());
+                StakeholderRequirementEntity stakeholderRequirement = stakeholderRequirementService.get(getIdUser(), ID);
 
                 StakeholderRequirementApprovalEntity approval = new StakeholderRequirementApprovalEntity();
-                approval.RequirementID = req.RequirementID;
-                approval.StakeholdersProjectID = stake.StakeholdersProjectID;
+                approval.StakeholderRequirementID = stakeholderRequirement.StakeholderRequirementID;
                 approval.description = description;
                 approval.approved = Convert.ToBoolean(approved);
 

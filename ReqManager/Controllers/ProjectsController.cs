@@ -12,6 +12,7 @@ using System.Linq;
 using ReqManager.Services.Requirements.Interfaces;
 using ReqManager.Services.Documents.Interfaces;
 using System.Web;
+using ReqManager.Services.Artifact.Interfaces;
 
 namespace ReqManager.Controllers
 {
@@ -25,10 +26,12 @@ namespace ReqManager.Controllers
         private IRequirementTraceabilityMatrixService matrixService { get; set; }
         private IRequirementService requirementService { get; set; }
         private IRequirementDocumentService reqDocument { get; set; }
+        private IArtifactRequirementTraceabilityMatrixService artifactMatrix {get;set;}
 
         public ProjectsController(
             IProjectService projectService,
             IUserService userService,
+            IArtifactRequirementTraceabilityMatrixService artifactMatrix,
             IRequirementService requirementService,
             IStakeholdersProjectService stakeholders,
             IProjectArtifactService projectArtifact,
@@ -38,6 +41,7 @@ namespace ReqManager.Controllers
             IScanDirectoryService directory,
             IRequirementDocumentService reqDocument) : base(projectService)
         {
+            this.artifactMatrix = artifactMatrix;
             this.reqDocument = reqDocument;
             this.requirementService = requirementService;
             this.matrixService = matrixService;
@@ -104,11 +108,15 @@ namespace ReqManager.Controllers
             {
                 ProjectDetailsViewModel prj = new ProjectDetailsViewModel();
 
+                int ProjectID = Convert.ToInt32(id);
+
                 prj.project = projectService.get(id);
-                prj.stakeholders = stakeholders.getStakeholderByProject(Convert.ToInt32(id));
-                prj.artifacts = projectArtifact.getArtifactsByProject(Convert.ToInt32(id));
-                prj.requirements = requirementService.getRequirementsByProject(Convert.ToInt32(id));
-                prj.requirementMatrix = matrixService.getMatrix(Convert.ToInt32(id));
+                prj.stakeholders = stakeholders.getStakeholderByProject(ProjectID);
+                prj.artifacts = projectArtifact.getArtifactsByProject(ProjectID);
+                prj.requirements = requirementService.getRequirementsByProject(ProjectID);
+                prj.requirementMatrix = matrixService.getMatrix(ProjectID);
+                prj.artifactMatrix = artifactMatrix.getMatrix(ProjectID);
+                prj.history = historyProjectService.getProjectHistory(ProjectID);
 
                 return View(prj);
             }
@@ -119,27 +127,16 @@ namespace ReqManager.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [AllowAnonymous]
+        [OutputCache(NoStore = true, Location = System.Web.UI.OutputCacheLocation.None)]
         public override ActionResult Edit(ProjectEntity entity)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    Service.update(ref entity);
-
-                    HistoryProjectEntity history = new HistoryProjectEntity();
-                    ProjectEntity project = Service.get(entity.ProjectID);
-                    history.ProjectID = project.ProjectID;
-                    history.CreationUserID = getIdUser();
-                    history.descriptionPhases = project.ProjectPhases.description;
-                    history.endDate = Convert.ToDateTime(project.endDate);
-                    history.startDate = Convert.ToDateTime(project.startDate);
-
-                    historyProjectService.add(ref history);
-
-                    Service.saveChanges();
-                    return RedirectToAction("Index");
+                    projectService.update(ref entity, getIdUser());
+                    return RedirectToAction("Details", "Projects", new { id = entity.ProjectID});
                 }
                 else
                 {

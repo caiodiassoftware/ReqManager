@@ -34,9 +34,41 @@ namespace ReqManager.Services.Requirements.Classes
 
         public override void add(ref RequirementEntity entity, bool persistir = true)
         {
-            ProjectEntity project = projectService.get(entity.ProjectID);
-            entity.preTraceability = projectService.isPreTraceability(project);
-            base.add(ref entity, persistir);
+            try
+            {
+                unit.BeginTransaction();
+
+                ProjectEntity project = projectService.get(entity.ProjectID);
+                entity.preTraceability = projectService.isPreTraceability(project);
+                entity.versionNumber = 1;
+
+                if (entity.RequirementTemplateID.Equals(0))
+                    entity.RequirementTemplateID = null;
+                if (entity.RequirementSubTypeID.Equals(0))
+                    entity.RequirementSubTypeID = null;
+
+                Mapper.Initialize(cfg =>
+                {
+                    cfg.CreateAutomaticMapping<RequirementEntity, RequirementVersionsEntity>();
+                });
+
+                RequirementVersionsEntity version = new RequirementVersionsEntity();
+                version = Mapper.Map<RequirementEntity, RequirementVersionsEntity>(entity);
+                version.RequirementRequestForChangesID = null;
+                version.creationDate = DateTime.Now;
+                version.rationale = "First version of the requirement.";
+
+                base.add(ref entity, false);
+                version.RequirementID = entity.RequirementID;
+                versionService.add(ref version, false);
+
+                unit.Commit();
+            }
+            catch (Exception ex)
+            {
+                unit.Rollback();
+                throw ex;
+            }
         }
 
         public void update(ref RequirementEntity entity, int RequirementRequestForChangesID, string rationale)
@@ -45,6 +77,13 @@ namespace ReqManager.Services.Requirements.Classes
             {
                 unit.BeginTransaction();
 
+                entity.versionNumber++;
+
+                if (entity.RequirementTemplateID.Equals(0))
+                    entity.RequirementTemplateID = null;
+                if (entity.RequirementSubTypeID.Equals(0))
+                    entity.RequirementSubTypeID = null;
+
                 Mapper.Initialize(cfg =>
                 {
                     cfg.CreateAutomaticMapping<RequirementEntity, RequirementVersionsEntity>();
@@ -52,16 +91,15 @@ namespace ReqManager.Services.Requirements.Classes
 
                 RequirementRequestForChangesEntity request = requestService.get(RequirementRequestForChangesID);
 
-                //TODO
                 request.RequestStatusID = 3;
-                request.RequestStatus.RequestStatusID = 3;
+                //request.RequestStatus.RequestStatusID = 3;
 
                 RequirementVersionsEntity version = new RequirementVersionsEntity();
                 version = Mapper.Map<RequirementEntity, RequirementVersionsEntity>(entity);
-                version.versionNumber = entity.versionNumber + 1;
                 version.creationDate = DateTime.Now;
                 version.rationale = rationale;
                 version.RequirementRequestForChangesID = request.RequirementRequestForChangesID;
+                version.RequirementID = null;
 
                 versionService.add(ref version, false);
                 requestService.update(ref request, false);

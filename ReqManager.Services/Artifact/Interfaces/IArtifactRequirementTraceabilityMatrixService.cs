@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using System.Data;
 namespace ReqManager.Services.Artifact.Interfaces
 {
     public interface IArtifactRequirementTraceabilityMatrixService
     {
-        DataTable getMatrix();
+        DataTable getMatrix(int ProjectID);
     }
 }

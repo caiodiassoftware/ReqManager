@@ -6,7 +6,6 @@ using ReqManager.Entities.Artifact;
 using ReqManager.Entities.Requirement;
 using ReqManager.Entities.Acess;
 using ReqManager.Services.Artifact.Interfaces;
-using ReqManager.ViewModels;
 using System;
 using System.Collections.Generic;
 using ReqManager.Services.Link.Interfaces;
@@ -38,6 +37,18 @@ namespace ReqManager.Controllers
         }
 
         #region GETS
+
+        public JsonResult GetLink(string ArtifactCode, string RequirementCode)
+        {
+            try
+            {
+                return Json(linkService.get(ArtifactCode, RequirementCode), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public JsonResult GetWithCode(string code)
         {
@@ -71,20 +82,6 @@ namespace ReqManager.Controllers
                 ViewData.Add("RequirementID", new SelectList(
                         new List<RequirementEntity>() { reqOrigin }, "RequirementID", "DisplayName", id));
                 return View();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public ActionResult ArtifactRequirementTraceabilityMatrix()
-        {
-            try
-            {
-                DataTableViewModel dt = new DataTableViewModel();
-                dt.dataTable = matrix.getMatrix();
-                return View(dt);
             }
             catch (Exception ex)
             {

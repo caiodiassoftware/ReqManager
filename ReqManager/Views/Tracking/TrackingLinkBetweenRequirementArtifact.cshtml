@@ -1,73 +1,69 @@
 ﻿@model ReqManager.ViewModels.TrackingViewModel
-
 @{
     ViewBag.Title = "Tracking Link Between Requirement and Artifacts";
 }
-
 <div class="form-horizontal">
-
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.Hidden("ID", Request.Url.Segments[3].ToString())
-    <div id="tabs">
-        <ul>
-            <li><a href="#path">Tracking</a></li>
-            <li><a href="#tabFiles">Files Found</a></li>
-        </ul>
 
-        <div id="path">
-            <div class="form-group">
-                @Html.Label("R to A", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("LinkBetweenArtifactRequirement", Enumerable.Empty<SelectListItem>(),    htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessage("LinkBetweenArtifactRequirement", "", new { @class = "text-danger" })
-                </div>
+    <div class="col-lg-5">
+        <div class="form-group">
+            @Html.Label("R to A", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("LinkBetweenArtifactRequirement", Enumerable.Empty<SelectListItem>(), htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessage("LinkBetweenArtifactRequirement", "", new { @class = "text-danger" })
             </div>
-
-            <div class="form-group">
-                @Html.Label("Project", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("Project", Enumerable.Empty<SelectListItem>(), "SELECT THE PROJECT", htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessage("Project", "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.Label("Path", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("Path", Enumerable.Empty<SelectListItem>(), "SELECT THE PATH", htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessage("Path", "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <button id="track" class="btn btn-default">Track</button>
-                </div>
-            </div>
-
         </div>
-        <div id="tabFiles">
-            @using (Html.BeginForm("OpenFile", "Tracking", FormMethod.Post))
-            {
-                <div id="files" class="form-group">
-                    @Html.Label("Files", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DropDownList("Files", Enumerable.Empty<SelectListItem>(), "SELECT THE FILE PATH", htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessage("Files", "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            }
+        <div class="form-group">
+            @Html.Label("Project", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Project", Enumerable.Empty<SelectListItem>(), "SELECT THE PROJECT", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessage("Project", "", new { @class = "text-danger" })
+            </div>
         </div>
-
+        <div class="form-group">
+            @Html.Label("Path", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("PathForTraceability", new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button id="search" class="btn btn-default">Search</button>
+            </div>
+        </div>
+        <div>
+            @Html.ActionLink("Back to Link", "Details", "LinkBetweenRequirementsArtifact", new { id = Request.Url.Segments[3].ToString() }, null)
+        </div>
+    </div>
+    <div class="col-lg-5">
+        <div class="form-group">
+            @Html.Label("Folders", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Folders", Enumerable.Empty<SelectListItem>(), "SELECT THE FOLDER",
+               htmlAttributes: new { @data_something = "", @class = "form-control" })
+                @Html.ValidationMessage("Folders", "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Files", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Files", Enumerable.Empty<SelectListItem>(), "SELECT THE FILE PATH", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessage("Files", "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button id="track" class="btn btn-default">Track</button>
+            </div>
+        </div>
     </div>
 </div>
-
 @section Scripts {
     <script type="text/javascript">
 
         $(function () {
-
             var LinkID = $('#ID').val();
 
             $.getJSON('@Url.Action("Get", "LinkBetweenRequirementsArtifact")', { ID: LinkID }, function (response) {
@@ -76,58 +72,73 @@
                 $('#LinkBetweenArtifactRequirement').val(LinkID);
 
                 $.getJSON('@Url.Action("Get", "Requirement")', { ID: response.RequirementID }, function (response) {
-                    var optionExists = ($('#Project option[value=' + response.Project.ProjectID + ']').length > 0);
-                    if (!optionExists)
-                        $('#Project').append("<option value='" + response.Project.ProjectID + "'>" + response.Project.DisplayName + "</option>");
+                    $('#Project').append("<option value='" + response.Project.ProjectID + "'>" + response.Project.DisplayName + "</option>");
                 });
                 $.getJSON('@Url.Action("Get", "ProjectArtifact")', { ID: response.ProjectArtifactID }, function (response) {
                     var optionExists = ($('#Project option[value=' + response.Project.ProjectID + ']').length > 0);
+                    console.log(optionExists);
                     if (!optionExists)
                         $('#Project').append("<option value='" + response.Project.ProjectID + "'>" + response.Project.DisplayName + "</option>");
                 });
             });
         });
 
+        $("#Folders").change(function () {
+            clearDropDown("Files");
+            $('#Files').append("<option value='" + 0 + "'>SELECT THE FILE</option>");
+        });
+
         $("#Project").change(function () {
-            var id = $(this).val();
-            clearDropDown("Path");
+            var ProjectID = $(this).val();
 
-            $.getJSON('@Url.Action("GetFolders", "Projects")', { ProjectID: id }, function (response) {
-                $('#Path').append("<option value='" + 0 + "'>SELECT THE PATH</option>");
-                $.each(response, function (index, item) {
-                    $('#Path').append("<option value='" + item + "'>" + item + "</option>");
-                });
+            $.getJSON('@Url.Action("Get", "Projects")', { ID: ProjectID }, function (response) {
+                $('#PathForTraceability').val(response.pathForTraceability);
             });
+        });
 
+        $("#search").click(function () {
+            var path = $('#PathForTraceability').val();
+            clearDropDown('Folders');
+            clearDropDown('Files');
+
+            $.getJSON(
+                '@Url.Action("GetFolders", "File")',
+                { path: path },
+                function (response) {
+                    clearDropDown("Folders");
+                    $('#Folders').append("<option value='" + 0 + "'>SELECT THE FOLDER</option>");
+                    $('#Files').append("<option value='" + 0 + "'>SELECT THE FILE</option>");
+                    $.each(response, function (index, item) {
+                        $('#Folders').append("<option value='" + item + "'>" + item + "</option>");
+                    });
+                }).error(function () {
+                    alert('Error');
+                });
         });
 
         $("#track").click(function () {
             var Link = $('#LinkBetweenArtifactRequirement').val();
-            var Path = $('#Path').val();
+            var Path = $('#Folders').val();
 
             clearDropDown("Files");
 
-            $('#Files').append("<option value='" + 0 + "'>SELECT THE PATH</option>");
+            $('#Files').append("<option value='" + 0 + "'>SEARCHING FILES</option>");
 
-            $.getJSON('@Url.Action("TrackingLinkBetweenRequirementArtifacts", "Tracking")', { item: Link, Path: Path }, function (response) {
-                $.each(response, function (index, item) {
-                    var optionExists = ($('#Files option[value=' + item.AttributeID + ']').length > 0);
-                    if (!optionExists)
-                        $('#Files').append("<option value='" + item + "'>" + item + "</option>");
+            $.getJSON('@Url.Action("TrackingLinkBetweenRequirementArtifacts", "Tracking")',
+                { item: Link, Path: Path }, function (response) {
+                    clearDropDown("Files");
+                    $('#Files').append("<option value='" + 0 + "'>SELECT THE FILE</option>");
+                    $.each(response, function (index, item) {
+                        var optionExists = ($('#Files option[value=' + item.AttributeID + ']').length > 0);
+                        if (!optionExists)
+                            $('#Files').append("<option value='" + item + "'>" + item + "</option>");
+                    });
                 });
-            });
         });
 
         $("#Files").change(function () {
-            $.ajax({
-                cache: false,
-                type: "POST",
-                url: "@Url.Action("OpenFile", "Tracking")",
-                data: {
-                    file: $("#Files").val()
-                }
-            });
+            window.open('/File/RenderFile?FilePath=' + $("#Files").val() + '&Title=' + 'TrackingLinkRequirementAndArtifacts');
         });
 
-</script>
+    </script>
 }

@@ -10,6 +10,7 @@ namespace ReqManager.Entities.Acess
         [MinLength(6)]
         [MaxLength(50)]
         [Display(Name = "Classification Description")]
+        [DataType(DataType.MultilineText)]
         public string description { get; set; }
 
     }

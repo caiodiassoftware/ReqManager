@@ -10,6 +10,7 @@ namespace ReqManager.Entities.Project
         [Required]
         [MaxLength(50), MinLength(5)]
         [Display(Name = "Phases Description")]
+        [DataType(DataType.MultilineText)]
         public string description { get; set; }
     }
 }

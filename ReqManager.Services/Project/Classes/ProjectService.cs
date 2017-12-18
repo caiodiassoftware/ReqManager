@@ -9,8 +9,41 @@ namespace ReqManager.Services.Project.Classes
 {
     public class ProjectService : ServiceBase<Model.Project, ProjectEntity>, IProjectService
     {
-        public ProjectService(IProjectRepository repository, IUnitOfWork unit) : base(repository, unit)
+        private IHistoryProjectService historyProjectService { get; set; }
+
+        public ProjectService(
+            IProjectRepository repository,
+            IHistoryProjectService historyProjectService,
+            IUnitOfWork unit) : base(repository, unit)
         {
+            this.historyProjectService = historyProjectService;
+        }
+
+        public void update(ref ProjectEntity entity, int UserID)
+        {
+            try
+            {
+                unit.BeginTransaction();
+
+                ProjectEntity prj = get(entity.ProjectID);
+
+                base.update(ref entity, false);
+
+                HistoryProjectEntity history = new HistoryProjectEntity();
+                history.ProjectID = entity.ProjectID;
+                history.CreationUserID = UserID;
+                history.descriptionPhases = prj.ProjectPhases.description;
+                history.endDate = Convert.ToDateTime(prj.endDate);
+                history.startDate = Convert.ToDateTime(prj.startDate);
+                historyProjectService.add(ref history, false);
+
+                unit.Commit();
+            }
+            catch (Exception ex)
+            {
+                unit.Rollback();
+                throw ex;
+            }
         }
 
         public bool isPreTraceability(ProjectEntity project)

@@ -86,13 +86,13 @@
                     var return_data = new Array();
                     for (var i = 0; i < json.aaData.length; i++) {
                         return_data.push({
-                            'importance': json.aaData[i].Importance.description,
+                            'code': json.aaData[i].code,
+                            'description': json.aaData[i].description,
                             'project': json.aaData[i].Project.description,
+                            'importance': json.aaData[i].Importance.description,
                             'user': json.aaData[i].Users.name,
                             'type': json.aaData[i].ArtifactType.description,
-                            'code': json.aaData[i].code,
                             'path': json.aaData[i].path,
-                            'description': json.aaData[i].description,
                             'creationDate': fixDateTime(json.aaData[i].creationDate),
                             'action': '<a href=\"/ProjectArtifact/Edit/' +
                                 json.aaData[i].ProjectArtifactID + '\">Edit</a> | <a href=\"/ProjectArtifact/Details/' +
@@ -105,13 +105,13 @@
                 }
             },
             "aoColumns": [
-                { 'data': 'importance' },
+                { 'data': 'code' },
+                { 'data': 'description' },
                 { 'data': 'project' },
+                { 'data': 'importance' },
                 { 'data': 'user' },
                 { 'data': 'type' },
-                { 'data': 'code' },
                 { 'data': 'path' },
-                { 'data': 'description' },
                 { 'data': 'creationDate' },
                 { 'data': 'action' },
             ]

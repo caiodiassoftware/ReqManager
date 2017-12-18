@@ -224,6 +224,9 @@
                     <th>
                         Approved
                     </th>
+                    <th>
+                        Date
+                    </th>
                 </tr>
                 @foreach (var item in Model.stakeholders)
                 {
@@ -236,6 +239,9 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.approved)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.creationDate)
                         </td>
                     </tr>
                 }
@@ -277,25 +283,25 @@
             <table class="table">
                 <tr>
                     <th>Req. Code</th>
+                    <th>Stakeholder</th>
                     <th>Status</th>
                     <th>Request</th>
-                    <th>Stakeholder</th>
                     <th>Creation Date</th>
                 </tr>
                 @foreach (var item in Model.request)
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Requirement.code)
+                            @Html.DisplayFor(modelItem => item.StakeholderRequirement.Requirement.DisplayName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StakeholderRequirement.StakeholdersProject.Stakeholders.DisplayName)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.RequestStatus.description)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.request)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.StakeholdersProject.DisplayName)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.creationDate)
@@ -689,8 +695,8 @@
 
         function printDocumentRequirement() {
             var RequirementID = $("#ID").val();
-            window.open('/Requirement/PrintDocumentRequirement?RequirementID=' + RequirementID);
-        };
+            window.open('/Requirement/PricumentRequirement?RequirementID=' + RequirementID);
+        }; ntDo
 
         function LinkBetweenRequirementsDetails(link) {
             var code = link.attr('data-code');

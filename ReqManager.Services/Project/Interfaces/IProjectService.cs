@@ -7,5 +7,6 @@ namespace ReqManager.Services.Project.Interfaces
     {
         bool isPreTraceability(ProjectEntity project);
         bool isPosTraceability(ProjectEntity project);
+        void update(ref ProjectEntity entity, int UserID);
     }
 }

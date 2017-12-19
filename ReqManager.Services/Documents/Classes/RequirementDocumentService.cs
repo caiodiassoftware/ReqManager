@@ -18,12 +18,15 @@ namespace ReqManager.Services.Documents.Classes
         private IRequirementService requirementService { get; set; }
         private IProjectService projectService { get; set; }
         private IStakeholdersProjectService stakeholderProjectService { get; set; }
+        private IStakeholderRequirementService stakeholderRequirementService { get; set; }
 
         public RequirementDocumentService(
             IRequirementService requirementService,
             IProjectService projectService,
-            IStakeholdersProjectService stakeholderProjectService)
+            IStakeholdersProjectService stakeholderProjectService,
+            IStakeholderRequirementService stakeholderRequirementService)
         {
+            this.stakeholderRequirementService = stakeholderRequirementService;
             this.stakeholderProjectService = stakeholderProjectService;
             this.projectService = projectService;
             this.requirementService = requirementService;
@@ -44,9 +47,9 @@ namespace ReqManager.Services.Documents.Classes
                             doc.Open();
 
                             using (var html = new StringReader(
-                                getProjectHeader(requirement.Project) + 
+                                getProjectHeader(requirement.Project) +
                                 getRequirementHtml(requirement) +
-                                getFooter(requirement.Project)))
+                                getRequirementFooter(requirement)))
                             {
                                 XMLWorkerHelper.GetInstance().ParseXHtml(writer, doc, html);
                             }
@@ -85,7 +88,7 @@ namespace ReqManager.Services.Documents.Classes
                             string body = string.Empty;
                             requirements.ForEach(r => body += getRequirementHtml(r));
 
-                            using (var html = new StringReader(getProjectHeader(project) + body + getFooter(project)))
+                            using (var html = new StringReader(getProjectHeader(project) + body + getProjectFooter(project)))
                             {
                                 XMLWorkerHelper.GetInstance().ParseXHtml(writer, doc, html);
                             }
@@ -105,7 +108,10 @@ namespace ReqManager.Services.Documents.Classes
 
         private string getProjectHeader(ProjectEntity project)
         {
-            return @"<hr />
+            try
+            {
+
+                return @"<hr />
                     <h2>Requirement Document</h2>
                     <p><strong>Project</strong>: " + project.description + @"</p>
                     <p><strong>Code</strong>: " + project.code + @"</p>
@@ -116,24 +122,42 @@ namespace ReqManager.Services.Documents.Classes
                     <p><strong>End Date</strong>: " + project.endDate.ToShortDateString() + @"</p>
                     <br />
                     <hr />
-                    <h2>Project Requirements</h2>";
+                    <h2>Requirements</h2>";
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         private string getRequirementHtml(RequirementEntity requirement)
         {
-            return @"<p style=""padding - left: 30px; ""><strong>Code</strong>: " + requirement.code + @"</p>
+            try
+            {
+                string subType = string.Empty;
+                if(requirement.RequirementSubType != null)
+                {
+                    subType = requirement.RequirementSubType.description;
+                }
+
+                return @"<p style=""padding - left: 30px; ""><strong>Code</strong>: " + requirement.code + @"</p>
    < p style = ""padding-left: 30px;"" >< strong > Version Number </ strong >: " + requirement.versionNumber + @"</ p >
              < p style = ""padding-left: 30px;"" >< strong > Title </ strong >: " + requirement.title + @"</ p >
                        < p style = ""padding-left: 30px;"" >< strong > Status </ strong >: " + requirement.RequirementStatus.description + @"</ p >
                                  < p style = ""padding-left: 30px;"" >< strong > Importance </ strong >: " + requirement.Importance.description + @"</ p >
                                            < p style = ""padding-left: 30px;"" >< strong > Type </ strong >: " + requirement.RequirementType.description + @"</ p >
-                                                     < p style = ""padding-left: 30px;"" >< strong > SubType </ strong >: " + requirement.RequirementSubType.description + @"</ p >
+                                                     < p style = ""padding-left: 30px;"" >< strong > SubType </ strong >: " + subType + @"</ p >
                                                                < p style = ""padding-left: 30px;"" >< strong > Description </ strong >: " + requirement.description + @"</ p >
-                                                                         < hr />
+                                                                         <br />< hr />
                                                                          < p > &nbsp;</ p > ";
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
-        private string getFooter(ProjectEntity project)
+        private string getProjectFooter(ProjectEntity project)
         {
             try
             {
@@ -143,8 +167,30 @@ namespace ReqManager.Services.Documents.Classes
                 var stakeholders = stakeholderProjectService.getStakeholderByProject(project.ProjectID).ToList();
                 foreach (var item in stakeholders)
                 {
-                    footer+= @"<h3 style=""text-align:center;"">__________________________________________________</h3>
+                    footer += @"<h3 style=""text-align:center;"">__________________________________________________</h3>
                                 <h3 style=""text-align:center;"">" + item.Stakeholders.DisplayName + @"</h3>";
+                }
+
+                return footer;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private string getRequirementFooter(RequirementEntity requirement)
+        {
+            try
+            {
+                string footer = @"<br/>
+                                <h2>Requirement Stakeholders Agreement</h2>
+                                <br/>";
+                var stakeholders = stakeholderRequirementService.getStakeholdersFromRequirement(requirement.RequirementID).ToList();
+                foreach (var item in stakeholders)
+                {
+                    footer += @"<h3 style=""text-align:center;"">__________________________________________________</h3>
+                                <h3 style=""text-align:center;"">" + item.StakeholdersProject.Stakeholders.DisplayName + @"</h3>";
                 }
 
                 return footer;

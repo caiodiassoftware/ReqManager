@@ -16,9 +16,10 @@ namespace ReqManager.ViewModels
             linkReq = new List<LinkBetweenRequirementsEntity>();
             linkReqArt = new List<LinkBetweenRequirementsArtifactsEntity>();
             characteristics = new List<RequirementCharacteristicsEntity>();
-            stakeholders = new List<StakeholderRequirementApprovalEntity>();
+            stakeholdersApproval = new List<StakeholderRequirementApprovalEntity>();
             request = new List<RequirementRequestForChangesEntity>();
             versions = new List<RequirementVersionsEntity>();
+            stakeholders = new List<StakeholderRequirementEntity>();
         }
 
         [Key]
@@ -82,7 +83,8 @@ namespace ReqManager.ViewModels
         public List<LinkBetweenRequirementsEntity> linkReq { get; set; }
         public List<LinkBetweenRequirementsArtifactsEntity> linkReqArt { get; set; }
         public List<RequirementCharacteristicsEntity> characteristics { get; set; }
-        public List<StakeholderRequirementApprovalEntity> stakeholders { get; set; }
+        public List<StakeholderRequirementApprovalEntity> stakeholdersApproval { get; set; }
+        public List<StakeholderRequirementEntity> stakeholders { get; set; }
         public List<RequirementRequestForChangesEntity> request { get; set; }
         public List<RequirementVersionsEntity> versions { get; set; }
     }

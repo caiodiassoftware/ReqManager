@@ -5,6 +5,7 @@ using ReqManager.Model;
 using ReqManager.Services.Estructure;
 using ReqManager.Services.Project.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ReqManager.Services.Project.Classes
@@ -15,6 +16,18 @@ namespace ReqManager.Services.Project.Classes
         public StakeholderRequirementService(IStakeholderRequirementRepository repository, IUnitOfWork unit) : 
             base(repository, unit)
         {
+        }
+
+        public IEnumerable<StakeholderRequirementEntity> getStakeholdersFromRequirement(int RequirementID)
+        {
+            try
+            {
+                return getAll().Where(r => r.RequirementID.Equals(RequirementID));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public StakeholderRequirementEntity get(int UserID, int RequirementID)

@@ -18,6 +18,22 @@ namespace ReqManager.Controllers
             ViewBag.StakeholderID = new SelectList(stakeholderService.getAll(), "StakeholderID", "DisplayName");
         }
 
+        [HttpPost]
+        public void Add(int StakeholderID, int ProjectID, string description)
+        {
+            try
+            {
+                StakeholdersProjectEntity stakeholderProject = new StakeholdersProjectEntity();
+                stakeholderProject.ProjectID = ProjectID;
+                stakeholderProject.StakeholderID = StakeholderID;
+                stakeholderProject.description = description;
+                base.Create(stakeholderProject);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public JsonResult GetStakeholdersFromProject(int ProjectID)
         {

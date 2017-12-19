@@ -2,6 +2,8 @@
 using ReqManager.ManagerController;
 using ReqManager.Services.Project.Interfaces;
 using ReqManager.Services.Requirements.Interfaces;
+using System;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace ReqManager.Controllers
@@ -21,6 +23,34 @@ namespace ReqManager.Controllers
 
             ViewData.Add("StakeholdersProjectID", new SelectList(stakeholderProjectService.getAll(), "StakeholdersProjectID", "DisplayName"));
             ViewData.Add("RequirementID", new SelectList(requirementService.getAll(), "RequirementID", "DisplayName"));
+        }
+
+        [HttpPost]
+        public void Add(int StakeholderProjectID, int RequirementID)
+        {
+            try
+            {
+                StakeholderRequirementEntity stakeholder = new StakeholderRequirementEntity();
+                stakeholder.StakeholdersProjectID = StakeholderProjectID;
+                stakeholder.RequirementID = RequirementID;
+                base.Create(stakeholder);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public JsonResult GetStakeholdersFromRequirement(int RequirementID)
+        {
+            try
+            {
+                return Json(Service.getAll().Where(s => s.RequirementID.Equals(RequirementID)), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public override ActionResult Create(StakeholderRequirementEntity entity)

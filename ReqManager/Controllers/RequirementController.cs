@@ -43,9 +43,11 @@ namespace ReqManager.Controllers
         private IRequirementVersionsService versions { get; set; }
         private IRequirementDocumentService reqDocument { get; set; }
         private IStakeholderRequirementApprovalService stakeholderApproval { get; set; }
+        IStakeholderRequirementService stakeholderRequirementService { get; set; }
 
         public RequirementController(
             IRequirementService requirementService,
+            IStakeholderRequirementService stakeholderRequirementService,
             IImportanceService measureService,
             IRequirementDocumentService reqDocument,
             IRequirementSubTypeService subTypeService,
@@ -70,6 +72,7 @@ namespace ReqManager.Controllers
                 cfg.CreateAutomaticMapping<RequirementEntity, RequirementViewModel>();
             });
 
+            this.stakeholderRequirementService = stakeholderRequirementService;
             this.reqDocument = reqDocument;
             this.stakeholderApproval = stakeholderApproval;
             this.versions = versions;
@@ -109,11 +112,14 @@ namespace ReqManager.Controllers
         {
             try
             {
+                RequirementEntity requirement = requirementService.get(RequirementID);
+                string title = "ReqManager_" + requirement.code + "_" + DateTime.Now.ToString();
+
                 Response.Clear();
                 Response.ContentType = "application/pdf";
                 Response.ContentType = "application/octet-stream";
                 Response.Cache.SetCacheability(HttpCacheability.NoCache);
-                Response.AddHeader("content-disposition", "attachment;filename= Test.pdf");
+                Response.AddHeader("content-disposition", "attachment;filename= " + title + ".pdf");
                 Response.Buffer = true;
                 Response.Clear();
                 var bytes = reqDocument.printRequirement(RequirementID);
@@ -154,7 +160,8 @@ namespace ReqManager.Controllers
                 vm.versions = versionsRequested.Where(r => r.RequirementRequestForChanges.StakeholderRequirement.RequirementID.Equals(id)).ToList();
                 vm.versions.AddRange(versions.getAll().Where(r => r.RequirementID.Equals(id)));
 
-                vm.stakeholders = stakeholderApproval.getAll().Where(r => r.StakeholderRequirement.RequirementID.Equals(id)).ToList();
+                vm.stakeholdersApproval = stakeholderApproval.getAll().Where(r => r.StakeholderRequirement.RequirementID.Equals(id)).ToList();
+                vm.stakeholders = stakeholderRequirementService.getAll().Where(r => r.RequirementID.Equals(id)).ToList();
 
                 return View(vm);
             }

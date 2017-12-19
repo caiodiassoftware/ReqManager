@@ -28,7 +28,7 @@ namespace ReqManager.Filters
 
                     FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
 
-                    if(!authTicket.Expired)
+                    if (!authTicket.Expired)
                     {
                         int UserID = Convert.ToInt32(authTicket.UserData);
 
@@ -36,7 +36,6 @@ namespace ReqManager.Filters
                         HttpContext.Current.Session["name"] = user.name;
                         HttpContext.Current.Session["roles"] = "Admin";
 
-                        authCookie.Expires = DateTime.Now.AddMinutes(30);
                         IIdentity id = new FormsIdentity(authTicket);
                         IPrincipal principal = new GenericPrincipal(id, null);
                         HttpContext.Current.Request.RequestContext.HttpContext.User = principal;

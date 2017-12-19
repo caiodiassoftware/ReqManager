@@ -44,7 +44,7 @@ namespace ReqManager.Controllers
                                 1,
                                 model.login,
                                 DateTime.Now,
-                                DateTime.Now.AddMinutes(30),
+                                DateTime.Now.AddMinutes(120),
                                 true,
                                 user.UserID.ToString(),
                                 FormsAuthentication.FormsCookiePath);

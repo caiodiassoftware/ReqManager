@@ -52,18 +52,20 @@ namespace ReqManager.Controllers
             this.projectService = projectService;
 
             ViewData.Add("ProjectPhasesID", new SelectList(phasesService.getAll(), "ProjectPhasesID", "description"));
-            ViewData.Add("CreationUserID", new SelectList(userService.getAll(), "UserID", "name"));
         }
 
         public void PrintDocumentRequirement(int ProjectID, int RequirementTypeID)
         {
             try
             {
+                ProjectEntity project = projectService.get(ProjectID);
+                string title = "ReqManager_" + project.code + "_" + DateTime.Now.ToString();
+
                 Response.Clear();
                 Response.ContentType = "application/pdf";
                 Response.ContentType = "application/octet-stream";
                 Response.Cache.SetCacheability(HttpCacheability.NoCache);
-                Response.AddHeader("content-disposition", "inline;filename= Test.pdf");
+                Response.AddHeader("content-disposition", "attachment;filename= " + title + ".pdf");
                 Response.Buffer = true;
                 Response.Clear();
                 var bytes = reqDocument.printDocumentRequirementProject(ProjectID, RequirementTypeID);

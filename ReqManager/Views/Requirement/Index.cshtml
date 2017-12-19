@@ -70,7 +70,8 @@
             ajax: {
                 "url": '@Url.Action("GetFilter", "Requirement")',
                 "type": 'POST',
-                "dataSrc": function (json) {                    
+
+                "dataSrc": function (json) {
                     var return_data = new Array();
                     for (var i = 0; i < json.aaData.length; i++) {
                         return_data.push({

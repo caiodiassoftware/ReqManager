@@ -12,18 +12,38 @@ namespace ReqManager.Services.Directories.Classes
     {
         public IEnumerable<string> getAllDirectoriesInPath(string path)
         {
-            List<string> allDirectories = Directory.GetDirectories(path, "*.*", SearchOption.AllDirectories).ToList();
-            return allDirectories;
+            try
+            {
+                return File.Exists(path) ? Directory.GetDirectories(path, "*.*", SearchOption.AllDirectories).ToList() : null;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         private IEnumerable<string> getAllFilesInPath(string path)
         {
-            return System.IO.Directory.GetFiles(path, "*.*", System.IO.SearchOption.AllDirectories).ToList();
+            try
+            {
+                return System.IO.Directory.GetFiles(path, "*.*", System.IO.SearchOption.AllDirectories).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public IEnumerable<string> getFolders(string path)
         {
-            return Directory.EnumerateFileSystemEntries(path);
+            try
+            {
+                return File.Exists(path) ? Directory.EnumerateFileSystemEntries(path) : null;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public List<string> findFile(string value, string path)
@@ -44,7 +64,7 @@ namespace ReqManager.Services.Directories.Classes
 
                     foreach (string file in files)
                     {
-                        if(CanRead(file))
+                        if (CanRead(file))
                         {
                             FileInfo info = new FileInfo(file);
                             using (StreamReader sr = info.OpenText())
@@ -60,7 +80,7 @@ namespace ReqManager.Services.Directories.Classes
                 }
                 else
                 {
-                    filesFound.Add("Path not Found");
+                    filesFound.Add(path);
                 }
 
                 return filesFound;
@@ -73,26 +93,34 @@ namespace ReqManager.Services.Directories.Classes
 
         private bool CanRead(string path)
         {
-            var readAllow = false;
-            var readDeny = false;
-            var accessControlList = Directory.GetAccessControl(path);
-            if (accessControlList == null)
-                return false;
-            var accessRules = accessControlList.GetAccessRules(true, true, typeof(System.Security.Principal.SecurityIdentifier));
-            if (accessRules == null)
-                return false;
-
-            foreach (FileSystemAccessRule rule in accessRules)
+            try
             {
-                if ((FileSystemRights.Read & rule.FileSystemRights) != FileSystemRights.Read) continue;
+                var readAllow = false;
+                var readDeny = false;
+                var accessControlList = Directory.GetAccessControl(path);
+                if (accessControlList == null)
+                    return false;
+                var accessRules = accessControlList.GetAccessRules(true, true, typeof(System.Security.Principal.SecurityIdentifier));
+                if (accessRules == null)
+                    return false;
 
-                if (rule.AccessControlType == AccessControlType.Allow)
-                    readAllow = true;
-                else if (rule.AccessControlType == AccessControlType.Deny)
-                    readDeny = true;
+                foreach (FileSystemAccessRule rule in accessRules)
+                {
+                    if ((FileSystemRights.Read & rule.FileSystemRights) != FileSystemRights.Read) continue;
+
+                    if (rule.AccessControlType == AccessControlType.Allow)
+                        readAllow = true;
+                    else if (rule.AccessControlType == AccessControlType.Deny)
+                        readDeny = true;
+                }
+
+                return readAllow && !readDeny;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
 
-            return readAllow && !readDeny;
         }
     }
 }

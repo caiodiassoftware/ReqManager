@@ -668,14 +668,12 @@
     <Content Include="Views\LinkArtifactAttributes\CreateNewAttributeForLink.cshtml" />
     <Content Include="Views\LinkRequirementAttributes\CreateNewAttributeForLink.cshtml" />
     <Content Include="Views\File\RenderFile.cshtml" />
-    <Content Include="Views\StakeholderRequirement\Create.cshtml" />
     <Content Include="Views\StakeholderRequirement\Delete.cshtml" />
     <Content Include="Views\StakeholderRequirement\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Matrix\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

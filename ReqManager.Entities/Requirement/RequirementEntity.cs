@@ -48,12 +48,26 @@ namespace ReqManager.Entities.Requirement
         public bool preTraceability { get; set; }
         public Nullable<DateTime> startDate { get; set; }
         public Nullable<DateTime> endDate { get; set; }
+        [Required]
+        [RegularExpression(@"^\d+\.\d{0,2}$")]
+        [Range(0, 9999999999999999.99)]
+        public decimal cost { get; set; }
+        [Required]
+        public bool active { get; set; }
 
         public String DisplayName
         {
             get
             {
-                return code + " - " + title;
+                return this.RequirementType.abbreviation + " - " + this.code + " : " + this.RequirementStatus.description;
+            }
+        }
+
+        public String DisplayType
+        {
+            get
+            {
+                return this.RequirementType.description;
             }
         }
 

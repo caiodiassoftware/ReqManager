@@ -9,7 +9,6 @@ using ReqManager.Services.Link.Interfaces;
 using AutoMapper;
 using ReqManager.Services.Extensions;
 using ReqManager.ViewModels;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -23,7 +22,7 @@ namespace ReqManager.Controllers
     //PRJ4
     //REQ3
     //ART1
-    public class RequirementController : ControlAcessController<RequirementEntity>
+    public class RequirementController : ControlAccessController<RequirementEntity>
     {
         private IRequirementVersionsService rationaleService { get; set; }
         private ILinkBetweenRequirementsService linkRequirementService { get; set; }
@@ -95,6 +94,18 @@ namespace ReqManager.Controllers
 
         #region GETS
 
+        public decimal GetRequirementCostByProject(int ProjectID)
+        {
+            try
+            {
+                return requirementService.getRequirementCostByProject(ProjectID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public JsonResult GetWithCode(string code)
         {
             try
@@ -136,7 +147,7 @@ namespace ReqManager.Controllers
         {
             try
             {
-                return View(Mapper.Map<IEnumerable<RequirementEntity>, IEnumerable<RequirementViewModel>>(requirementService.getAll()));
+                return View();
             }
             catch (Exception ex)
             {
@@ -209,16 +220,22 @@ namespace ReqManager.Controllers
                 RequirementEditViewModel vm = Mapper.Map<RequirementEntity, RequirementEditViewModel>(request.StakeholderRequirement.Requirement);
                 vm.RequirementRequestForChangesID = Convert.ToInt32(id);
 
-                ViewData.Add("ImportanceID", new SelectList(measureService.getAll(), "ImportanceID", "description", vm == null ? 0 : vm.ImportanceID));
-                ViewData.Add("RequirementStatusID", new SelectList(statusService.getAll(), "RequirementStatusID", "description", vm == null ? 0 : vm.RequirementStatusID));
-                ViewData.Add("RequirementTypeID", new SelectList(typeService.getAll(), "RequirementTypeID", "description", vm == null ? 0 : vm.RequirementTypeID));
-                ViewData.Add("CreationUserID", new SelectList(userService.getAll(), "UserID", "name", vm == null ? 0 : vm.CreationUserID));
-                ViewData.Add("ProjectID", new SelectList(projectService.getAll(), "ProjectID", "DisplayName", vm == null ? 0 : vm.ProjectID));
-
                 if (vm == null)
                 {
                     return HttpNotFound();
                 }
+
+                ViewData.Add("ImportanceID", new SelectList(measureService.getAll(), "ImportanceID", "description", vm.ImportanceID));
+                ViewData.Add("RequirementStatusID", new SelectList(statusService.getAll(), "RequirementStatusID", "description", vm.RequirementStatusID));
+                ViewData.Add("RequirementTypeID", new SelectList(typeService.getAll(), "RequirementTypeID", "description", vm.RequirementTypeID));
+                ViewData.Add("CreationUserID", new SelectList(userService.getAll(), "UserID", "name", vm.CreationUserID));
+                ViewData.Add("ProjectID", new SelectList(projectService.getAll(), "ProjectID", "DisplayName", vm.ProjectID));
+
+                ViewData.Add("RequirementSubTypeID", new SelectList(subTypeService.getAll(), "RequirementSubTypeID", "description",
+                    vm.RequirementSubTypeID == null ? 0 : vm.RequirementSubTypeID));
+                ViewData.Add("RequirementTemplateID", new SelectList(templateService.getAll(), "RequirementTemplateID", "description",
+                    vm.RequirementTemplateID == null ? 0 : vm.RequirementTemplateID));
+
                 return View(vm);
             }
             catch (Exception ex)

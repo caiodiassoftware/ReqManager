@@ -10,8 +10,12 @@ namespace ReqManager.Controllers
     {
         public RoleControllerActionController(IRoleControllerActionService service, IControllerActionService caService, IRoleService roleService) : base(service)
         {
-            ViewBag.ControllerActionID = new SelectList(caService.getAll(), "ControllerActionID", "DisplayName");
-            ViewBag.RoleID = new SelectList(roleService.getAll(), "RoleID", "description");
+
+        }
+
+        public override ActionResult Index()
+        {
+            return View();
         }
     }
 }

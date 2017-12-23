@@ -55,7 +55,8 @@ namespace ReqManager.Data.Infrastructure
         {
             try
             {
-                transaction.Rollback();
+                if (transaction != null)
+                    transaction.Rollback();
             }
             catch (Exception ex)
             {

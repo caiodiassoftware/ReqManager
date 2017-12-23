@@ -46,6 +46,9 @@ namespace ReqManager.Entities.Project
         public DateTime creationDate { get; set; } = DateTime.Now;
         [Display(Name = "Prj. Code")]
         public string code { get; set; }
+        [Required]
+        [Display(Name = "Cost")]
+        public decimal cost { get; set; }
 
         public String DisplayName
         {

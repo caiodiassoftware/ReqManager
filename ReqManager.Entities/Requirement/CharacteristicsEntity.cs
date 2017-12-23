@@ -14,6 +14,6 @@ namespace ReqManager.Entities.Project
         [DataType(DataType.MultilineText)]
         public string description { get; set; }
         [Required]
-        public bool active { get; set; }
+        public bool required { get; set; }
     }
 }

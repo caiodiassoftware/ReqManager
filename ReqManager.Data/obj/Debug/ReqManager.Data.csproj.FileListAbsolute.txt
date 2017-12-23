@@ -54,3 +54,8 @@ C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\obj\Debug\ReqManager.Da
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\obj\Debug\ReqManager.Data.Migrations.RequirementSubTypeAndTemplateNullable.resources
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\obj\Debug\ReqManager.Data.Migrations.RequirementSubTypeAndTemplateNullableWithSignal.resources
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\obj\Debug\ReqManager.Data.Migrations.RequirementVersions.resources
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\obj\Debug\ReqManager.Data.Migrations.RemoveUniqueKeyRequirementVersions.resources
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\obj\Debug\ReqManager.Data.Migrations.AddCostToRequirementAndProjectAndStakeholderImportance.resources
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\obj\Debug\ReqManager.Data.Migrations.AbbreviationRange.resources
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\obj\Debug\ReqManager.Data.Migrations.FlagCheckInRequirementsCharacteristics.resources
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\obj\Debug\ReqManager.Data.Migrations.AddRequirementsFieldInRequirementVersions.resources

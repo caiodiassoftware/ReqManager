@@ -73,14 +73,16 @@ namespace ReqManager.Services.Acess
                 var cas = getAll().ToList();
                 var userroles = userRoleService.getAll().ToList();
 
-                var yellow = from ur in userroles
+                var permissions = from ur in userroles
                        join role in roles on ur.RoleID equals role.RoleID
                        join rca in rcas on role.RoleID equals rca.RoleID
                        join ca in cas on rca.ControllerActionID equals ca.ControllerActionID
-                       where ur.UserID.Equals(UserID) && ca.controller.Equals(controllerName) && ca.action.Equals(actionName)
+                       where ur.UserID.Equals(UserID) && ca.controller.Equals(controllerName + "Controller") && ca.action.Equals(actionName)
                        select ca;
 
-                return yellow != null ? true : false;
+                List<ControllerActionEntity> actions = permissions.ToList();
+
+                return actions.Count > 0 ? true : false;
             }
             catch (Exception ex)
             {

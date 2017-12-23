@@ -79,6 +79,26 @@
     <Compile Include="Migrations\201712160132148_RequirementVersions.Designer.cs">
       <DependentUpon>201712160132148_RequirementVersions.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712191953247_RemoveUniqueKeyRequirementVersions.cs" />
+    <Compile Include="Migrations\201712191953247_RemoveUniqueKeyRequirementVersions.Designer.cs">
+      <DependentUpon>201712191953247_RemoveUniqueKeyRequirementVersions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712202127036_AddCostToRequirementAndProjectAndStakeholderImportance.cs" />
+    <Compile Include="Migrations\201712202127036_AddCostToRequirementAndProjectAndStakeholderImportance.Designer.cs">
+      <DependentUpon>201712202127036_AddCostToRequirementAndProjectAndStakeholderImportance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712202217572_AbbreviationRange.cs" />
+    <Compile Include="Migrations\201712202217572_AbbreviationRange.Designer.cs">
+      <DependentUpon>201712202217572_AbbreviationRange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712202336048_FlagCheckInRequirementsCharacteristics.cs" />
+    <Compile Include="Migrations\201712202336048_FlagCheckInRequirementsCharacteristics.Designer.cs">
+      <DependentUpon>201712202336048_FlagCheckInRequirementsCharacteristics.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712212330396_AddRequirementsFieldInRequirementVersions.cs" />
+    <Compile Include="Migrations\201712212330396_AddRequirementsFieldInRequirementVersions.Designer.cs">
+      <DependentUpon>201712212330396_AddRequirementsFieldInRequirementVersions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\Artifact\Classes\ArtifactRequirementTraceabilityMatrixRepository.cs" />
     <Compile Include="Repositories\Artifact\Classes\ArtifactTypeRepository.cs" />
@@ -195,6 +215,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712160132148_RequirementVersions.resx">
       <DependentUpon>201712160132148_RequirementVersions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712191953247_RemoveUniqueKeyRequirementVersions.resx">
+      <DependentUpon>201712191953247_RemoveUniqueKeyRequirementVersions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712202127036_AddCostToRequirementAndProjectAndStakeholderImportance.resx">
+      <DependentUpon>201712202127036_AddCostToRequirementAndProjectAndStakeholderImportance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712202217572_AbbreviationRange.resx">
+      <DependentUpon>201712202217572_AbbreviationRange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712202336048_FlagCheckInRequirementsCharacteristics.resx">
+      <DependentUpon>201712202336048_FlagCheckInRequirementsCharacteristics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712212330396_AddRequirementsFieldInRequirementVersions.resx">
+      <DependentUpon>201712212330396_AddRequirementsFieldInRequirementVersions.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

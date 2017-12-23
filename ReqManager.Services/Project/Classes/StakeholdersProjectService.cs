@@ -17,11 +17,12 @@ namespace ReqManager.Services.Project.Classes
         {
         }
 
-        public StakeholdersProjectEntity getByRequirementAndUser(int ProjectID, int UserID)
+        public StakeholdersProjectEntity getByProjectAndUser(int ProjectID, int UserID)
         {
             try
             {
-                return getAll().Where(p => p.ProjectID.Equals(ProjectID) && p.Stakeholders.UserID.Equals(UserID)).SingleOrDefault();
+                return getAll().Where(p => p.ProjectID.Equals(ProjectID) &&
+                p.Stakeholders.UserID.Equals(UserID)).FirstOrDefault();
             }
             catch (Exception ex)
             {

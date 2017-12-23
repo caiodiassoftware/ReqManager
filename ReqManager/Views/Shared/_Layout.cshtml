@@ -17,6 +17,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href="~/Content/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
     <link href="~/Content/css/style.css" rel='stylesheet' type='text/css' />
     <link href="~/Content/css/font-awesome.css" rel="stylesheet">
+    <link href="~/Scripts/css/fontawesome-stars.css" rel="stylesheet">
     <link rel="stylesheet" href="~/Content/css/icon-font.min.css" type='text/css' />
 
     <script src="~/Scripts/js/Chart.js"></script>
@@ -28,7 +29,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     <link href='//fonts.googleapis.com/css?family=Cabin:400,400italic,500,500italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
 
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    @*<script src="https://code.jquery.com/jquery-1.12.4.js"></script>*@
+
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/jquery.barrating.min.js"></script>
+    <script src="~/Scripts/jquery.maskMoney.min.js"></script>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
 
@@ -237,6 +242,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             $('.display').dataTable();
             $(".datepicker").datepicker();
             $(".table").removeClass("table").addClass("table table-bordered");
+            $('.rating').barrating({
+                theme: 'fontawesome-stars'
+            });
+            $('.money').maskMoney({
+                thousands : ""
+            });
         });
 
         $('#tabs').tabs({

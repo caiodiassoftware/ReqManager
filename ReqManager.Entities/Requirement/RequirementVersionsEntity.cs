@@ -1,5 +1,4 @@
-﻿using ReqManager.Entities.Acess;
-using ReqManager.Entities.Project;
+﻿using ReqManager.Entities.Project;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -32,6 +31,13 @@ namespace ReqManager.Entities.Requirement
         public DateTime creationDate { get; set; }
         public Nullable<DateTime> startDate { get; set; }
         public Nullable<DateTime> endDate { get; set; }
+        [Required]
+        public bool preTraceability { get; set; }
+        [Required]
+        [Range(0, 9999999999999999.99)]
+        public decimal cost { get; set; }
+        [Required]
+        public bool active { get; set; }
 
         public String DisplayName
         {

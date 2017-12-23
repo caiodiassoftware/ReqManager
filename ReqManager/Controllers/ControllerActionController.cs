@@ -25,25 +25,22 @@ namespace ReqManager.Controllers
         {
             try
             {
-                List<ControllerActionEntity> controllerActions = new List<ControllerActionEntity>();
+                List<ControllerActionEntity> controllerActionsToDataBase = new List<ControllerActionEntity>();
                 Assembly asm = Assembly.GetAssembly(typeof(MvcApplication));
 
-                List<Type> controlleractionlist = asm.GetTypes().Where(type => typeof(Controller).IsAssignableFrom(type)).
+                List<Type> controllerActionsFromApplication = asm.GetTypes().Where(type => typeof(Controller).IsAssignableFrom(type)).
                     Where(m => !m.GetCustomAttributes(typeof(System.Runtime.CompilerServices.CompilerGeneratedAttribute), true).Any()).ToList();
 
-                List<ControllerActionEntity> baseControllerMethods = controlleractionlist.Where(x => x.Name.Contains("BaseController")).FirstOrDefault().
-                    GetMethods(BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.Public).
-                    Where(m => m.IsVirtual && !m.DeclaringType.Equals(m)).Select(m =>
-                    new ControllerActionEntity
-                    {
-                        action = m.Name,
-                        controller = m.DeclaringType.Name,
-                        IsGet = m.GetCustomAttributes().Select(a => a.GetType().Name.Replace("Attribute", "")).Contains("HttpPost") ? false : true
-                    }).ToList();
+                List<ControllerActionEntity> baseControllerMethods = new List<ControllerActionEntity>();
+                baseControllerMethods.AddRange(getActionsFromController(controllerActionsFromApplication, "BaseController"));
+                baseControllerMethods.AddRange(getActionsFromController(controllerActionsFromApplication, "ControlAccessController"));
 
-                foreach (var item in controlleractionlist.Where(x => !x.Name.Contains("BaseController")))
+                foreach (var item in controllerActionsFromApplication.Where(
+                    x => !x.Name.Contains("BaseController") &&
+                    !x.Name.Contains("ControlAccessController")))
                 {
-                    controllerActions.AddRange(item.GetMethods(BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.Public).
+                    controllerActionsToDataBase.AddRange(item.GetMethods(BindingFlags.Instance |
+                        BindingFlags.DeclaredOnly | BindingFlags.Public).
                         Where(m => m.DeclaringType.Equals(item)).Select(m =>
                         new ControllerActionEntity
                         {
@@ -52,10 +49,10 @@ namespace ReqManager.Controllers
                             IsGet = m.GetCustomAttributes().Select(a => a.GetType().Name.Replace("Attribute", "")).Contains("HttpGet") ? false : true
                         }));
 
-                    if (item.BaseType.Name.Contains("BaseController"))
+                    if (item.BaseType.Name.Contains("BaseController") || item.BaseType.Name.Contains("ControlAccessController"))
                     {
                         baseControllerMethods.ForEach(m => m.controller = item.Name);
-                        controllerActions.AddRange(baseControllerMethods.Select(x =>
+                        controllerActionsToDataBase.AddRange(baseControllerMethods.Select(x =>
                         new ControllerActionEntity
                         {
                             action = x.action,
@@ -71,7 +68,7 @@ namespace ReqManager.Controllers
                     cfg.IgnoreUnmapped();
                 });
 
-                IEnumerable<ControllerActionEntity> controllerActionApplication = Mapper.Map<IEnumerable<ControllerActionEntity>, IEnumerable<ControllerActionEntity>>(controllerActions);
+                IEnumerable<ControllerActionEntity> controllerActionApplication = Mapper.Map<IEnumerable<ControllerActionEntity>, IEnumerable<ControllerActionEntity>>(controllerActionsToDataBase);
 
                 service.Refresh(controllerActionApplication);
                 Service.saveChanges();
@@ -81,6 +78,20 @@ namespace ReqManager.Controllers
             {
                 throw ex;
             }
+        }
+
+        private List<ControllerActionEntity> getActionsFromController(List<Type> actionsList, string controllerName)
+        {
+            return actionsList.Where
+                                (x => x.Name.Contains(controllerName)).FirstOrDefault().
+                                GetMethods(BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.Public).
+                                Where(m => m.IsVirtual && !m.DeclaringType.Equals(m)).Select(m =>
+                                new ControllerActionEntity
+                                {
+                                    action = m.Name,
+                                    controller = m.DeclaringType.Name,
+                                    IsGet = m.GetCustomAttributes().Select(a => a.GetType().Name.Replace("Attribute", "")).Contains("HttpPost") ? false : true
+                                }).ToList();
         }
     }
 }

@@ -13,7 +13,7 @@ using System.Linq;
 
 namespace ReqManager.Controllers
 {
-    public class RequirementTemplateController : ControlAcessController<RequirementTemplateEntity>
+    public class RequirementTemplateController : ControlAccessController<RequirementTemplateEntity>
     {
         public RequirementTemplateController
             (IRequirementTemplateService service, IUserService userService, IRequirementTypeService type) : base(service)

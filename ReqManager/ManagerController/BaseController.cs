@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace ReqManager.ManagerController
 {
-    public class BaseController<TEntity> : ControlAcessController<TEntity> where TEntity : class
+    public class BaseController<TEntity> : ControlAccessController<TEntity> where TEntity : class
     {
         #region Constructor
 

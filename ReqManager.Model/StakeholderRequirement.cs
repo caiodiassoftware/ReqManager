@@ -19,6 +19,9 @@ namespace ReqManager.Model
         public int StakeholdersProjectID { get; set; }
         public int RequirementID { get; set; }
         public DateTime creationDate { get; set; }
+        [Required]
+        [Range(0, 9)]
+        public int importanceValue { get; set; }
 
         public virtual StakeholdersProject StakeholdersProject { get; set; }
         public virtual Requirement Requirement { get; set; }

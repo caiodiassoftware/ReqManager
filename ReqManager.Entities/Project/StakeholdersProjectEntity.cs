@@ -21,6 +21,10 @@ namespace ReqManager.Entities.Project
         [Required]
         [MaxLength(255)]
         public string description { get; set; }
+        [Required]
+        [Range(1, 9)]
+        [Display(Name = "Importance to Project")]
+        public int importanceValue { get; set; }
 
         public virtual ProjectEntity Project { get; set; }
         public virtual StakeholdersEntity Stakeholders { get; set; }
@@ -30,7 +34,7 @@ namespace ReqManager.Entities.Project
         {
             get
             {
-                return this.Project.code + " - " + this.Stakeholders.DisplayName;
+                return this.Stakeholders.DisplayName;
             }
         }
     }

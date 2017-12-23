@@ -42,6 +42,7 @@ namespace ReqManager.ViewModels
         [Required]
         [Display(Name = "SubType")]
         public Nullable<int> RequirementSubTypeID { get; set; }
+        [Display(Name = "Version Number")]
         public int versionNumber { get; set; }
         [Required]
         [Display(Name = "Importance")]
@@ -61,14 +62,30 @@ namespace ReqManager.ViewModels
         public System.DateTime creationDate { get; set; } = DateTime.Now;
         [Required]
         public bool preTraceability { get; set; }
+        [Display(Name = "Start Date")]
         public Nullable<DateTime> startDate { get; set; }
+        [Display(Name = "End Date")]
         public Nullable<DateTime> endDate { get; set; }
+        [Required]
+        [Display(Name = "Cost")]
+        [Range(0, 9999999999999999.99)]
+        public decimal cost { get; set; }
+        [Required]
+        public bool active { get; set; }
 
         public String DisplayName
         {
             get
             {
-                return code + " - " + Importance.description;
+                return this.RequirementType.abbreviation + " - " + this.code + " : " + this.RequirementStatus.description;
+            }
+        }
+
+        public String DisplayType
+        {
+            get
+            {
+                return this.RequirementType.description;
             }
         }
 

@@ -19,6 +19,20 @@ namespace ReqManager.Controllers
             ViewData.Add("CharacteristicsID", new SelectList(characteristics.getAll(), "CharacteristicsID", "name"));
         }
 
+        public void Check(int RequirementCharacteristicsID, bool check)
+        {
+            try
+            {
+                RequirementCharacteristicsEntity entity = Service.get(RequirementCharacteristicsID);
+                entity.check = check;
+                Service.update(ref entity);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         [HttpGet, ActionName("Create")]
         public ActionResult CreateNewRequirementCharacterisc(int? id)
         {
@@ -42,7 +56,7 @@ namespace ReqManager.Controllers
             try
             {
                 RequirementCharacteristicsEntity characteristic = new RequirementCharacteristicsEntity();
-                characteristic.active = Convert.ToBoolean(active);
+                characteristic.check = Convert.ToBoolean(active);
                 characteristic.RequirementID = Convert.ToInt32(ID);
                 characteristic.CharacteristicsID = Convert.ToInt32(CharacteristicsID);
 

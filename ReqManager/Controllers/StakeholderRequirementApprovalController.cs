@@ -15,6 +15,7 @@ namespace ReqManager.Controllers
         private IStakeholdersService stakeholder { get; set; }
         private IRequirementService requirement { get; set; }
         private IStakeholderRequirementService stakeholderRequirementService { get; set; }
+        private IStakeholdersProjectService stakeholderProjectService { get; set; }
 
         public StakeholderRequirementApprovalController(
             IStakeholderRequirementApprovalService service,
@@ -24,13 +25,14 @@ namespace ReqManager.Controllers
             IStakeholdersProjectService stakeholderProjectService,
             IProjectService projectService) : base(service)
         {
+            this.stakeholderProjectService = stakeholderProjectService;
             this.stakeholderRequirementService = stakeholderRequirementService;
             this.requirement = requirement;
             this.service = service;
             this.stakeholder = stakeholder;
 
             ViewBag.ProjectID = new SelectList(projectService.getAll(), "ProjectID", "DisplayName");
-            
+
         }
 
         public ActionResult Approve(int? id)
@@ -39,9 +41,13 @@ namespace ReqManager.Controllers
             {
                 if (id == null)
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                RequirementEntity req = requirement.get(id);
-                if (req == null)
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+                StakeholderRequirementEntity stakeholder = stakeholderRequirementService.get(Convert.ToInt32(id), getIdUser());
+
+                if (stakeholder == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.Unauthorized, "You are not Stakeholder interesed in this Requirement!");
+                }
 
                 return View();
             }
@@ -57,13 +63,12 @@ namespace ReqManager.Controllers
         {
             try
             {
-                StakeholderRequirementEntity stakeholderRequirement = stakeholderRequirementService.get(getIdUser(), ID);
+                StakeholderRequirementEntity stakeholderRequirement = stakeholderRequirementService.get(ID, getIdUser());
 
                 StakeholderRequirementApprovalEntity approval = new StakeholderRequirementApprovalEntity();
                 approval.StakeholderRequirementID = stakeholderRequirement.StakeholderRequirementID;
                 approval.description = description;
                 approval.approved = Convert.ToBoolean(approved);
-
 
                 if (TryValidateModel(approval))
                 {

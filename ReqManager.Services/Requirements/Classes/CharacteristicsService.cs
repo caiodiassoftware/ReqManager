@@ -7,8 +7,6 @@ using ReqManager.Services.Requirements.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReqManager.Services.Requirements.Classes
 {
@@ -16,6 +14,18 @@ namespace ReqManager.Services.Requirements.Classes
     {
         public CharacteristicsService(ICharacteristicsRepository repository, IUnitOfWork unit) : base(repository, unit)
         {
+        }
+
+        public IEnumerable<CharacteristicsEntity> getRequiredCharacteristics()
+        {
+            try
+            {
+                return getAll().Where(c => c.required);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

@@ -1,10 +1,6 @@
 ﻿using ReqManager.Entities.Requirement;
 using ReqManager.ManagerController;
 using ReqManager.Services.Requirements.Interfaces;
-using System;
-using System.Data.Entity.Infrastructure;
-using System.Data.Entity.Validation;
-using System.Web.Mvc;
 
 namespace ReqManager.Controllers
 {

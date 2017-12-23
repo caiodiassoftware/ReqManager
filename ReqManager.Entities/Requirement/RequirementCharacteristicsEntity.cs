@@ -14,8 +14,8 @@ namespace ReqManager.Entities.Requirement
         [Display(Name = "Requirement")]
         public int RequirementID { get; set; }
         [Required]
-        [Display(Name = "Active")]
-        public bool active { get; set; }
+        [Display(Name = "Checked")]
+        public bool check { get; set; }
 
         public virtual CharacteristicsEntity Characteristics { get; set; }
         public virtual RequirementEntity Requirement { get; set; }

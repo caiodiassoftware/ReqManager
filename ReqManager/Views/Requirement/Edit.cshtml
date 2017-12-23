@@ -18,6 +18,11 @@
         @Html.HiddenFor(model => model.creationDate)
         @Html.HiddenFor(model => model.code)
         @Html.HiddenFor(model => model.RequirementRequestForChangesID)
+        @Html.HiddenFor(model => model.versionNumber)
+
+        <div class="alert alert-info">
+            <p>Modifications to Requirements may affect project timelines and costs and impact other requirements and artifacts to which it may relate.</p>
+        </div>
 
         <fieldset disabled>
             <div class="form-group">
@@ -25,6 +30,14 @@
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.code, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.code, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.versionNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.versionNumber, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.versionNumber, "", new { @class = "text-danger" })
                 </div>
             </div>
 
@@ -45,9 +58,8 @@
             </div>
         </div>
 
-
         <div class="form-group">
-            @Html.Label("Requirement Status", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Status", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("RequirementStatusID", null, "SELECT THE STATUS", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.RequirementStatusID, "", new { @class = "text-danger" })
@@ -55,7 +67,7 @@
         </div>
 
         <div class="form-group">
-            @Html.Label("Requirement Type", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Type", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("RequirementTypeID", null, "SELECT THE TYPE", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.RequirementTypeID, "", new { @class = "text-danger" })
@@ -63,7 +75,7 @@
         </div>
 
         <div class="form-group">
-            @Html.Label("Requirement SubType", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("SubType", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("RequirementSubTypeID", Enumerable.Empty<SelectListItem>(), "SELECT THE REQUIREMENT SUB TYPE", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.RequirementSubTypeID, "", new { @class = "text-danger" })
@@ -87,6 +99,14 @@
         </div>
 
         <div class="form-group">
+            @Html.Label("Cost", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cost, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.cost, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.Label("Start Date", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.startDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
@@ -99,6 +119,14 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.endDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
                 @Html.ValidationMessageFor(model => model.endDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.active, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.CheckBoxFor(model => model.active, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.active, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -127,7 +155,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to Requirement", "Details", "Requirement", new { id = Model.RequirementID }, null)
 </div>
 
 @section Scripts {

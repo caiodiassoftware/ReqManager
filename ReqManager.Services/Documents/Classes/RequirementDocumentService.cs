@@ -140,7 +140,7 @@ namespace ReqManager.Services.Documents.Classes
                     subType = requirement.RequirementSubType.description;
                 }
 
-                return @"<p style=""padding - left: 30px; ""><strong>Code</strong>: " + requirement.code + @"</p>
+                return @"<p style=""padding - left: 30px; ""><strong>Code</strong>: " + requirement.RequirementType.abbreviation + " - " + requirement.code + @"</p>
    < p style = ""padding-left: 30px;"" >< strong > Version Number </ strong >: " + requirement.versionNumber + @"</ p >
              < p style = ""padding-left: 30px;"" >< strong > Title </ strong >: " + requirement.title + @"</ p >
                        < p style = ""padding-left: 30px;"" >< strong > Status </ strong >: " + requirement.RequirementStatus.description + @"</ p >

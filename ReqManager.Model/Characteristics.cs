@@ -19,9 +19,10 @@ namespace ReqManager.Model
         [Index(IsUnique = true)]
         public string name { get; set; }
         [Required]
-        [MaxLength(255)]
+        [MaxLength(500)]
         public string description { get; set; }
-        public bool active { get; set; }
+        [Required]
+        public bool required { get; set; }
 
         public virtual ICollection<RequirementCharacteristics> RequirementCharacteristics { get; set; }
     }

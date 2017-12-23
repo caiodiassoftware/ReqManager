@@ -16,7 +16,7 @@ using System.Web.Security;
 namespace ReqManager.ManagerController
 {
     [Permissions]
-    public class ControlAcessController<TEntity> : Controller where TEntity : class
+    public class ControlAccessController<TEntity> : Controller where TEntity : class
     {
         #region Attributes
 
@@ -24,14 +24,14 @@ namespace ReqManager.ManagerController
 
         #endregion
 
-        public ControlAcessController(IService<TEntity> service)
+        public ControlAccessController(IService<TEntity> service)
         {
             this.Service = service;
         }
 
         #region GETS
 
-        public ActionResult Get(int? ID)
+        public virtual ActionResult Get(int? ID)
         {
             try
             {
@@ -43,7 +43,7 @@ namespace ReqManager.ManagerController
             }
         }
 
-        public ActionResult GetAll()
+        public virtual ActionResult GetAll()
         {
             try
             {
@@ -55,7 +55,7 @@ namespace ReqManager.ManagerController
             }
         }
 
-        public ActionResult GetFilter([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel)
+        public virtual ActionResult GetFilter([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel)
         {
             try
             {

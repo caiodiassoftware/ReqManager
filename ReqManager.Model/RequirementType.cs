@@ -9,7 +9,6 @@
 
 namespace ReqManager.Model
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
@@ -26,6 +25,9 @@ namespace ReqManager.Model
     
         [Key]
         public int RequirementTypeID { get; set; }
+        [MaxLength(4)]
+        [Index(IsUnique = true)]
+        public string abbreviation { get; set; }
         [MinLength(5)]
         [MaxLength(50)]
         [Index(IsUnique = true)]

@@ -37,9 +37,6 @@ namespace ReqManager.Controllers
 
                     if (user != null)
                     {
-                        Session["name"] = "Caio Dias";
-                        Session["roles"] = "Admin";
-
                         FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(
                                 1,
                                 model.login,
@@ -59,7 +56,8 @@ namespace ReqManager.Controllers
                     }
                     else
                     {
-                        ModelState.Clear();
+                        Response.Redirect(@"~/Login/Login", false);
+                        ModelState.AddModelError(string.Empty, "Login or Password are Incorrect!");
                     }
                 }
             }

@@ -12,7 +12,7 @@ namespace ReqManager.Model
         public int CharacteristicsID { get; set; }
         [Index("IX_REQUIREMENT_CHARACTERISTICS", 2, IsUnique = true)]
         public int RequirementID { get; set; }
-        public bool active { get; set; }
+        public bool check { get; set; }
 
         public virtual Characteristics Characteristics { get; set; }
         public virtual Requirement Requirement { get; set; }

@@ -1,4 +1,5 @@
-﻿@model IEnumerable<ReqManager.ViewModels.RequirementViewModel>
+﻿
+@model IEnumerable<ReqManager.ViewModels.RequirementViewModel>
 
 @{
     ViewBag.Title = "Requirements";
@@ -8,56 +9,31 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.code)
+                Code
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Importance.description)
+                Importance
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.RequirementStatus.description)
+                Status
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.RequirementType.description)
+                Type
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Users.name)
+                Created By
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.title)
+                Title
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.creationDate)
+                Date
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.code)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Importance.description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.RequirementStatus.description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.RequirementType.description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Users.name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.creationDate)
-                </td>
-            </tr>
-        }
+
     </tbody>
 
 </table>

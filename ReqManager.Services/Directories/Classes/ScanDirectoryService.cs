@@ -14,7 +14,7 @@ namespace ReqManager.Services.Directories.Classes
         {
             try
             {
-                return File.Exists(path) ? Directory.GetDirectories(path, "*.*", SearchOption.AllDirectories).ToList() : null;
+                return Directory.Exists(path) ? Directory.GetDirectories(path, "*.*", SearchOption.AllDirectories).ToList() : null;
             }
             catch (Exception ex)
             {
@@ -38,7 +38,7 @@ namespace ReqManager.Services.Directories.Classes
         {
             try
             {
-                return File.Exists(path) ? Directory.EnumerateFileSystemEntries(path) : null;
+                return Directory.Exists(path) ? Directory.EnumerateFileSystemEntries(path) : null;
             }
             catch (Exception ex)
             {

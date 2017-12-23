@@ -39,6 +39,9 @@ namespace ReqManager.Model
         [MaxLength(25)]
         [Index(IsUnique = true)]
         public string code { get; set; }
+        [Required]
+        [Range(0, 9999999999999999.99)]
+        public decimal cost { get; set; }
 
         [ForeignKey("CreationUserID")]
         public virtual Users Users { get; set; }

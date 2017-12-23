@@ -33,8 +33,11 @@ namespace ReqManager.Filters
                         int UserID = Convert.ToInt32(authTicket.UserData);
 
                         UserEntity user = userService.get(UserID);
-                        HttpContext.Current.Session["name"] = user.name;
+                        HttpContext.Current.Session["name"] = user.nickName;
                         HttpContext.Current.Session["roles"] = "Admin";
+
+                        authCookie.Expires = DateTime.Now.AddMinutes(30);
+                        HttpContext.Current.Response.Cookies.Add(authCookie);
 
                         IIdentity id = new FormsIdentity(authTicket);
                         IPrincipal principal = new GenericPrincipal(id, null);
@@ -43,7 +46,7 @@ namespace ReqManager.Filters
                         if (!caService.CanAccess(UserID, controllerName, actionName))
                         {
                             filterContext.Result = new HttpUnauthorizedResult(
-                                "You don't have Permissions to Access " + actionName + " " + controllerName);
+                                "You don't have Permissions to Access " + controllerName + " : " + actionName);
                         }
                     }
                     else
@@ -69,7 +72,6 @@ namespace ReqManager.Filters
                             { "action", "Login" }
                         });
                 }
-
             }
             catch (Exception ex)
             {

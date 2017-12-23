@@ -3,7 +3,9 @@ using ReqManager.Data.Repositories.Project.Interfaces;
 using ReqManager.Entities.Project;
 using ReqManager.Services.Estructure;
 using ReqManager.Services.Project.Interfaces;
+using ReqManager.Services.Requirements.Interfaces;
 using System;
+using System.Linq;
 
 namespace ReqManager.Services.Project.Classes
 {
@@ -17,6 +19,19 @@ namespace ReqManager.Services.Project.Classes
             IUnitOfWork unit) : base(repository, unit)
         {
             this.historyProjectService = historyProjectService;
+        }
+
+        public decimal getCost(int ProjectID)
+        {
+            try
+            {
+                return 1;
+                //return requirementService.getRequirementsByProject(ProjectID).Sum(r => r.cost);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void update(ref ProjectEntity entity, int UserID)

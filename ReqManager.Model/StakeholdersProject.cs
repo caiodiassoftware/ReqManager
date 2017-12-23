@@ -23,6 +23,9 @@ namespace ReqManager.Model
         [Required]
         [MaxLength(255)]
         public string description { get; set; }
+        [Required]
+        [Range(1, 9)]
+        public int importanceValue { get; set; }
 
         public virtual Project Project { get; set; }
         public virtual Stakeholders Stakeholders { get; set; }

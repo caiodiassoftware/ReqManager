@@ -120,6 +120,22 @@
                     @Html.DisplayFor(model => model.project.creationDate)
                 </dd>
 
+                <dt>
+                    Project Cost
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.project.cost)
+                </dd>
+
+                <dt>
+                    Requirements Cost
+                </dt>
+
+                <dd id="requirementCost">
+                    
+                </dd>
+
             </dl>
         </div>
         <div id="req">
@@ -127,7 +143,7 @@
                 <thead>
                     <tr>
                         <th>Code</th>
-                        <th>Description</th>
+                        <th>Title</th>
                         <th>Create By</th>
                         <th>Status</th>
                         <th>Type</th>
@@ -135,7 +151,8 @@
                         <th>Creation Date</th>
                         <th>Start</th>
                         <th>End</th>
-                        <th>In Time</th>
+                        <th>Cost</th>
+                        <th>Time</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -172,6 +189,9 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.endDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.cost)
                         </td>
                         <td>
 
@@ -382,7 +402,9 @@
                     <tr>
                         <th>Stakeholder</th>
                         <th>Activities/Roles</th>
-                        <th>Creation Date</th>
+                        <th>Importance to Project</th>
+                        <th>Date</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -391,7 +413,20 @@
                     <tr>
                         <td>@Html.DisplayFor(modelItem => item.DisplayName)</td>
                         <td>@Html.DisplayFor(modelItem => item.description)</td>
+                        <td>@Html.DisplayFor(modelItem => item.importanceValue)</td>
                         <td>@Html.DisplayFor(modelItem => item.creationDate)</td>
+                        <td>
+                            <p>
+                                @Html.ActionLink("Edit", "Edit",
+                            "StakeholdersProject",
+                            new { id = item.StakeholdersProjectID }, null)
+                            </p>
+                            <p>
+                                @Html.ActionLink("Delete", "Delete",
+                            "StakeholdersProject",
+                            new { id = item.StakeholdersProjectID }, null)
+                            </p>
+                        </td>
                     </tr>
                     }
                 </tbody>
@@ -445,6 +480,22 @@
                         @Html.Label("Activities/Roles", htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
                             <textarea id="stakeholderDescription" rows="5" style="resize:none;" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Importance", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <select id="stakeholderRating" class="rating">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -767,6 +818,11 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('#requirementsTable').dataTable();
+            var ProjectID = $('#ID').val();
+            $.get('@Url.Action("GetRequirementCostByProject", "Requirement")',
+                { ProjectID: ProjectID }, function (data) {
+                    $('#requirementCost').html(data);
+                });
         });
 
         function addStakeholder() {
@@ -785,9 +841,10 @@
             var StakeholderID = $('#StakeholdersID').val();
             var ProjectID = $('#ID').val();
             var description = $('#stakeholderDescription').val();
+            var importanceValue = $('#stakeholderRating').val();
 
             $.post('@Url.Action("Add", "StakeholdersProject")',
-                { StakeholderID: StakeholderID, ProjectID: ProjectID, description: description }, function () {
+                { StakeholderID: StakeholderID, ProjectID: ProjectID, description: description, importanceValue: importanceValue }, function () {
                     jQuery('#modal-addStakeholder').modal('hide');
                     alert("Register was made with Success!");
 
@@ -796,7 +853,7 @@
                             $('#stakeholderProject tbody').remove();
                             $.each(response, function (index, item) {
                                 $('#stakeholderProject').append(
-                                    '<tr><td>' + item.DisplayName + '</td><td>' + item.description + '</td><td>' + fixDateTime(item.creationDate) + '</td></tr>');
+                                    '<tr><td>' + item.DisplayName + '</td><td>' + item.description + '</td><td>' + item.importanceValue + '</td><td>' + fixDateTime(item.creationDate) + '</td></tr>');
                             });
                         });
                 });

@@ -45,6 +45,11 @@ namespace ReqManager.Model
         [Required]
         [DefaultValue(true)]
         public bool preTraceability { get; set; }
+        [Required]
+        [Range(0, 9999999999999999.99)]
+        public decimal cost { get; set; }
+        [Required]
+        public bool active { get; set; }
 
         public virtual ICollection<RequirementVersions> RequirementVersions { get; set; }
         public virtual ICollection<RequirementCharacteristics> RequirementCharacteristics { get; set; }

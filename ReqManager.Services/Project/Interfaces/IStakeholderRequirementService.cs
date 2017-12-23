@@ -7,6 +7,6 @@ namespace ReqManager.Services.Project.Interfaces
     public interface IStakeholderRequirementService : IService<StakeholderRequirementEntity>
     {
         IEnumerable<StakeholderRequirementEntity> getStakeholdersFromRequirement(int RequirementID);
-        StakeholderRequirementEntity get(int UserID, int RequirementID);
+        StakeholderRequirementEntity get(int RequirementID, int UserID);
     }
 }

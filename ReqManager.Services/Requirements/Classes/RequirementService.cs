@@ -19,14 +19,20 @@ namespace ReqManager.Services.Requirements.Classes
         private IRequirementVersionsService versionService { get; set; }
         private IRequirementRequestForChangesService requestService { get; set; }
         private IProjectService projectService { get; set; }
+        private ICharacteristicsService characteristicsService { get; set; }
+        private IRequirementCharacteristicsService requirementCharacteristicsService { get; set; }
 
         public RequirementService(
             IRequirementRepository repository,
             IProjectService projectService,
+            IRequirementCharacteristicsService requirementCharacteristicsService,
+            ICharacteristicsService characteristicsService,
             IRequirementRequestForChangesService requestService,
             IRequirementVersionsService versionService,
             IUnitOfWork unit) : base(repository, unit)
         {
+            this.requirementCharacteristicsService = requirementCharacteristicsService;
+            this.characteristicsService = characteristicsService;
             this.projectService = projectService;
             this.requestService = requestService;
             this.versionService = versionService;
@@ -36,33 +42,50 @@ namespace ReqManager.Services.Requirements.Classes
         {
             try
             {
-                unit.BeginTransaction();
-
-                ProjectEntity project = projectService.get(entity.ProjectID);
-                entity.preTraceability = projectService.isPreTraceability(project);
-                entity.versionNumber = 1;
-
-                if (entity.RequirementTemplateID.Equals(0))
-                    entity.RequirementTemplateID = null;
-                if (entity.RequirementSubTypeID.Equals(0))
-                    entity.RequirementSubTypeID = null;
-
-                Mapper.Initialize(cfg =>
+                if (checkProjectBalance(entity.ProjectID, entity.cost))
                 {
-                    cfg.CreateAutomaticMapping<RequirementEntity, RequirementVersionsEntity>();
-                });
+                    unit.BeginTransaction();
 
-                RequirementVersionsEntity version = new RequirementVersionsEntity();
-                version = Mapper.Map<RequirementEntity, RequirementVersionsEntity>(entity);
-                version.RequirementRequestForChangesID = null;
-                version.creationDate = DateTime.Now;
-                version.rationale = "First version of the requirement.";
+                    ProjectEntity project = projectService.get(entity.ProjectID);
+                    entity.preTraceability = projectService.isPreTraceability(project);
+                    entity.versionNumber = 1;
+                    entity.active = true;
 
-                base.add(ref entity, false);
-                version.RequirementID = entity.RequirementID;
-                versionService.add(ref version, false);
+                    if (entity.RequirementTemplateID.Equals(0))
+                        entity.RequirementTemplateID = null;
+                    if (entity.RequirementSubTypeID.Equals(0))
+                        entity.RequirementSubTypeID = null;
 
-                unit.Commit();
+                    Mapper.Initialize(cfg =>
+                    {
+                        cfg.CreateAutomaticMapping<RequirementEntity, RequirementVersionsEntity>();
+                    });
+
+                    RequirementVersionsEntity version = new RequirementVersionsEntity();
+                    version = Mapper.Map<RequirementEntity, RequirementVersionsEntity>(entity);
+                    version.RequirementRequestForChangesID = null;
+                    version.creationDate = DateTime.Now;
+                    version.rationale = "First version of the requirement.";
+
+                    base.add(ref entity, false);
+                    version.RequirementID = entity.RequirementID;
+                    versionService.add(ref version, false);
+
+                    foreach (var item in characteristicsService.getRequiredCharacteristics())
+                    {
+                        RequirementCharacteristicsEntity req = new RequirementCharacteristicsEntity();
+                        req.RequirementID = entity.RequirementID;
+                        req.CharacteristicsID = item.CharacteristicsID;
+                        req.check = false;
+                        requirementCharacteristicsService.add(ref req, false);
+                    }
+
+                    unit.Commit();
+                }
+                else
+                {
+                    throw new ArgumentException("The inclusion of this requirement exceeds the project balance!");
+                }
             }
             catch (Exception ex)
             {
@@ -75,37 +98,43 @@ namespace ReqManager.Services.Requirements.Classes
         {
             try
             {
-                unit.BeginTransaction();
-
-                entity.versionNumber++;
-
-                if (entity.RequirementTemplateID.Equals(0))
-                    entity.RequirementTemplateID = null;
-                if (entity.RequirementSubTypeID.Equals(0))
-                    entity.RequirementSubTypeID = null;
-
-                Mapper.Initialize(cfg =>
+                if (checkProjectBalance(entity.ProjectID, entity.cost))
                 {
-                    cfg.CreateAutomaticMapping<RequirementEntity, RequirementVersionsEntity>();
-                });
+                    unit.BeginTransaction();
 
-                RequirementRequestForChangesEntity request = requestService.get(RequirementRequestForChangesID);
+                    entity.versionNumber += 1;
 
-                request.RequestStatusID = 3;
-                //request.RequestStatus.RequestStatusID = 3;
+                    if (entity.RequirementTemplateID.Equals(0))
+                        entity.RequirementTemplateID = null;
+                    if (entity.RequirementSubTypeID.Equals(0))
+                        entity.RequirementSubTypeID = null;
 
-                RequirementVersionsEntity version = new RequirementVersionsEntity();
-                version = Mapper.Map<RequirementEntity, RequirementVersionsEntity>(entity);
-                version.creationDate = DateTime.Now;
-                version.rationale = rationale;
-                version.RequirementRequestForChangesID = request.RequirementRequestForChangesID;
-                version.RequirementID = null;
+                    Mapper.Initialize(cfg =>
+                    {
+                        cfg.CreateAutomaticMapping<RequirementEntity, RequirementVersionsEntity>();
+                    });
 
-                versionService.add(ref version, false);
-                requestService.update(ref request, false);
-                update(ref entity, false);
+                    RequirementRequestForChangesEntity request = requestService.get(RequirementRequestForChangesID);
 
-                unit.Commit();
+                    request.RequestStatusID = 3;
+
+                    RequirementVersionsEntity version = new RequirementVersionsEntity();
+                    version = Mapper.Map<RequirementEntity, RequirementVersionsEntity>(entity);
+                    version.creationDate = DateTime.Now;
+                    version.rationale = rationale;
+                    version.RequirementRequestForChangesID = request.RequirementRequestForChangesID;
+                    version.RequirementID = null;
+
+                    versionService.add(ref version, false);
+                    requestService.update(ref request, false);
+                    update(ref entity, false);
+
+                    unit.Commit();
+                }
+                else
+                {
+                    throw new ArgumentException("The inclusion of this requirement exceeds the project balance!");
+                }
             }
             catch (Exception ex)
             {
@@ -131,6 +160,31 @@ namespace ReqManager.Services.Requirements.Classes
             try
             {
                 return getAll().Where(r => r.code.Equals(code)).SingleOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public decimal getRequirementCostByProject(int ProjectID)
+        {
+            try
+            {
+                return getRequirementsByProject(ProjectID).Sum(c => c.cost);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private bool checkProjectBalance(int ProjectID, decimal requirementCost)
+        {
+            try
+            {
+                ProjectEntity project = projectService.get(ProjectID);
+                return getRequirementCostByProject(ProjectID) + requirementCost < project.cost ? true : false;
             }
             catch (Exception ex)
             {

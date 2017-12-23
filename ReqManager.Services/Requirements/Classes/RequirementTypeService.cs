@@ -22,33 +22,6 @@ namespace ReqManager.Services.Requirements.Classes
             this.templateService = templateService;
             this.subTypeService = subTypeService;
         }
-
-        public override void add(ref RequirementTypeEntity entity, bool persistir = true)
-        {
-            try
-            {
-                unit.BeginTransaction();
-                base.add(ref entity, false);
-
-                RequirementSubTypeEntity subType = new RequirementSubTypeEntity();
-                subType.description = entity.description + " Doesn't Have SubType";
-                subType.RequirementTypeID = entity.RequirementTypeID;
-                subTypeService.add(ref subType, false);
-
-                //RequirementTemplateEntity template = new RequirementTemplateEntity();
-                //template.description = entity.description + " Doesn't Have Template";
-                //template.RequirementTypeID = entity.RequirementTypeID;
-                //template.templateHtml = "Insert your text";
-                //templateService.add(ref template, false);
-
-                unit.Commit();
-            }
-            catch (Exception ex)
-            {
-                unit.Rollback();
-                throw ex;
-            }
-        }
     }
 
 }

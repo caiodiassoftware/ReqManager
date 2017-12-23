@@ -18,8 +18,18 @@ namespace ReqManager.Controllers
             ViewBag.StakeholderID = new SelectList(stakeholderService.getAll(), "StakeholderID", "DisplayName");
         }
 
+        [HttpPost, ActionName("EditImportance")]
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Edit(int StakeholdersProjectID, int importanceValue)
+        {
+            StakeholdersProjectEntity entity = Service.get(StakeholdersProjectID);
+            entity.importanceValue = importanceValue;
+
+            return base.Edit(entity);
+        }
+
         [HttpPost]
-        public void Add(int StakeholderID, int ProjectID, string description)
+        public void Add(int StakeholderID, int ProjectID, string description, int importanceValue)
         {
             try
             {
@@ -27,6 +37,7 @@ namespace ReqManager.Controllers
                 stakeholderProject.ProjectID = ProjectID;
                 stakeholderProject.StakeholderID = StakeholderID;
                 stakeholderProject.description = description;
+                stakeholderProject.importanceValue = importanceValue;
                 base.Create(stakeholderProject);
             }
             catch (Exception ex)

@@ -1,7 +1,7 @@
 ﻿@model ReqManager.Entities.Project.CharacteristicsEntity
 
 @{
-    ViewBag.Title = "Delete Characteristics";
+    ViewBag.Title = "Delete Characteristic";
 }
 
 <h3>Are you sure you want to delete this?</h3>
@@ -25,11 +25,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.active)
+            @Html.DisplayNameFor(model => model.required)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.active)
+            @Html.DisplayFor(model => model.required)
         </dd>
 
     </dl>

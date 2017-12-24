@@ -8,5 +8,6 @@ namespace ReqManager.Services.Acess.Interfaces
     {
         UserEntity Login(String login, String senha);
         UserEntity Get(String login);
+        bool ResetPassword(string login, string document, string newPassword);
     }
 }

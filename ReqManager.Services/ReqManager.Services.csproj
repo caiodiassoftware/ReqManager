@@ -51,6 +51,7 @@
     <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.4.0\lib\net461\System.ValueTuple.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -95,6 +96,8 @@
     <Compile Include="Link\Interfaces\ITypeLinkService.cs" />
     <Compile Include="Artifact\Classes\ArtifactTypeService.cs" />
     <Compile Include="Artifact\Classes\HistoryProjectArtifactService.cs" />
+    <Compile Include="Others\Classes\EmailService.cs" />
+    <Compile Include="Others\Interfaces\IEmailService.cs" />
     <Compile Include="Project\Classes\HistoryProjectService.cs" />
     <Compile Include="Project\Classes\ImportanceService.cs" />
     <Compile Include="Artifact\Classes\ProjectArtifactService.cs" />

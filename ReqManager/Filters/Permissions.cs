@@ -48,6 +48,16 @@ namespace ReqManager.Filters
                             filterContext.Result = new HttpUnauthorizedResult(
                                 "You don't have Permissions to Access " + controllerName + " : " + actionName);
                         }
+
+                        if(controllerName.Equals("Login") && actionName.Equals("Login"))
+                        {
+                            filterContext.Result = new RedirectToRouteResult(
+                        new RouteValueDictionary
+                        {
+                            { "controller", "Requirement" },
+                            { "action", "Index" }
+                        });
+                        }
                     }
                     else
                     {

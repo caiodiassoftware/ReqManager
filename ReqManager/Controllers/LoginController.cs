@@ -6,19 +6,20 @@ using System;
 using System.Web.Mvc;
 using System.Web.Security;
 using System.Web;
+using ReqManager.Utils.Hashing;
+using ReqManager.Services.Others.Interfaces;
 
 namespace ReqManager.Controllers
 {
     public class LoginController : Controller
     {
-        private IUserService userService;
-        private IControllerActionService caService;
+        private IUserService userService { get; set; }
 
-        public LoginController(IUserService userService,
+        public LoginController(
+            IUserService userService,
             IControllerActionService caService)
         {
             this.userService = userService;
-            this.caService = caService;
         }
 
         public ActionResult Login()
@@ -27,32 +28,43 @@ namespace ReqManager.Controllers
         }
 
         [HttpPost]
-        public void Login([Bind(Include = "login,password")] LoginViewModel model)
+        public void Login([Bind(Include = "login, password")] LoginViewModel model)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    UserEntity user = userService.Login(model.login, model.password);
+                    UserEntity user = userService.Get(model.login);
 
                     if (user != null)
                     {
-                        FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(
-                                1,
-                                model.login,
-                                DateTime.Now,
-                                DateTime.Now.AddMinutes(120),
-                                true,
-                                user.UserID.ToString(),
-                                FormsAuthentication.FormsCookiePath);
+                        var hashCode = user.verificationCode;
+                        var encodingPasswordString = CryptographySHA1.EncodePassword(model.password, hashCode);
 
-                        string encryptedTicket = FormsAuthentication.Encrypt(ticket);
+                        if (user.password.Equals(encodingPasswordString))
+                        {
+                            FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(
+                                    1,
+                                    model.login,
+                                    DateTime.Now,
+                                    DateTime.Now.AddMinutes(120),
+                                    true,
+                                    user.UserID.ToString(),
+                                    FormsAuthentication.FormsCookiePath);
 
-                        HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
-                        cookie.HttpOnly = true;
-                        Response.Cookies.Add(cookie);
+                            string encryptedTicket = FormsAuthentication.Encrypt(ticket);
 
-                        Response.Redirect(@"~/Requirement/Index", false);
+                            HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
+                            cookie.HttpOnly = true;
+                            Response.Cookies.Add(cookie);
+
+                            Response.Redirect(@"~/Requirement/Index", false);
+                        }
+                        else
+                        {
+                            Response.Redirect(@"~/Login/Login", false);
+                            ModelState.AddModelError(string.Empty, "Login or Password are Incorrect!");
+                        }
                     }
                     else
                     {
@@ -81,7 +93,21 @@ namespace ReqManager.Controllers
             }
             catch (Exception ex)
             {
-                throw;
+                throw ex;
+            }
+        }
+
+        [HttpPost]
+        [AcceptVerbs(HttpVerbs.Post)]
+        public void ResetPassword(string loginReset, string documentReset, string newPassword)
+        {
+            try
+            {
+                userService.ResetPassword(loginReset, documentReset, newPassword);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
     }

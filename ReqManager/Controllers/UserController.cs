@@ -12,11 +12,5 @@ namespace ReqManager.Controllers
         {
 
         }
-
-        public override ActionResult Create(UserEntity entity)
-        {
-            entity.active = true;
-            return base.Create(entity);
-        }
     }
 }

@@ -59,3 +59,5 @@ C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\obj\Debug\ReqManager.Da
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\obj\Debug\ReqManager.Data.Migrations.AbbreviationRange.resources
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\obj\Debug\ReqManager.Data.Migrations.FlagCheckInRequirementsCharacteristics.resources
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\obj\Debug\ReqManager.Data.Migrations.AddRequirementsFieldInRequirementVersions.resources
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\obj\Debug\ReqManager.Data.Migrations.IncludeAttributeVerificationCodeInUsers.resources
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\obj\Debug\ReqManager.Data.Migrations.IncreaseVerificationSizeLength.resources

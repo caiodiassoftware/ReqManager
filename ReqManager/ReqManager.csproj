@@ -629,12 +629,6 @@
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-mobile.woff" />
     <Content Include="Scripts\tinymce\langs\readme.md" />
     <Content Include="Views\RequirementTemplate\Create.cshtml" />
-    <Content Include="Views\Tracking\TrackingRequirement.cshtml" />
-    <Content Include="Views\Tracking\TrackingArtifact.cshtml" />
-    <Content Include="Views\Tracking\TrackingLinkBetweenRequirement.cshtml" />
-    <Content Include="Views\Tracking\TrackingLinkBetweenRequirementArtifact.cshtml" />
-    <Content Include="Views\Tracking\TrackingProjectRequirement.cshtml" />
-    <Content Include="Views\Tracking\TrackingProjectArtifact.cshtml" />
     <Content Include="Views\Characteristics\Create.cshtml" />
     <Content Include="Views\Characteristics\Delete.cshtml" />
     <Content Include="Views\Characteristics\Details.cshtml" />
@@ -669,6 +663,12 @@
     <Content Include="Views\File\RenderFile.cshtml" />
     <Content Include="Views\StakeholderRequirement\Delete.cshtml" />
     <Content Include="Views\StakeholderRequirement\Edit.cshtml" />
+    <Content Include="Views\Tracking\TrackingArtifact.cshtml" />
+    <Content Include="Views\Tracking\TrackingLinkBetweenRequirement.cshtml" />
+    <Content Include="Views\Tracking\TrackingLinkBetweenRequirementArtifact.cshtml" />
+    <Content Include="Views\Tracking\TrackingProjectArtifact.cshtml" />
+    <Content Include="Views\Tracking\TrackingProjectRequirement.cshtml" />
+    <Content Include="Views\Tracking\TrackingRequirement.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

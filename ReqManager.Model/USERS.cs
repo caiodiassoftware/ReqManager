@@ -39,6 +39,9 @@ namespace ReqManager.Model
         [MinLength(10)]
         [MaxLength(1000)]
         public string password { get; set; }
+        [MinLength(10)]
+        [MaxLength(10)]
+        public string verificationCode { get; set; }
         [Required]
         [MaxLength(50)]
         [Index(IsUnique = true)]

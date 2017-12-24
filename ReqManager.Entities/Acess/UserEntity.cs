@@ -23,6 +23,9 @@ namespace ReqManager.Entities.Acess
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string password { get; set; }
+        [MinLength(10)]
+        [MaxLength(10)]
+        public string verificationCode { get; set; }
         [Required]
         [MaxLength(50)]
         [Display(Name = "E-mail")]

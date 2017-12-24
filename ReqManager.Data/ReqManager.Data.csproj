@@ -99,6 +99,14 @@
     <Compile Include="Migrations\201712212330396_AddRequirementsFieldInRequirementVersions.Designer.cs">
       <DependentUpon>201712212330396_AddRequirementsFieldInRequirementVersions.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712232359262_IncludeAttributeVerificationCodeInUsers.cs" />
+    <Compile Include="Migrations\201712232359262_IncludeAttributeVerificationCodeInUsers.Designer.cs">
+      <DependentUpon>201712232359262_IncludeAttributeVerificationCodeInUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712240014284_IncreaseVerificationSizeLength.cs" />
+    <Compile Include="Migrations\201712240014284_IncreaseVerificationSizeLength.Designer.cs">
+      <DependentUpon>201712240014284_IncreaseVerificationSizeLength.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\Artifact\Classes\ArtifactRequirementTraceabilityMatrixRepository.cs" />
     <Compile Include="Repositories\Artifact\Classes\ArtifactTypeRepository.cs" />
@@ -230,6 +238,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712212330396_AddRequirementsFieldInRequirementVersions.resx">
       <DependentUpon>201712212330396_AddRequirementsFieldInRequirementVersions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712232359262_IncludeAttributeVerificationCodeInUsers.resx">
+      <DependentUpon>201712232359262_IncludeAttributeVerificationCodeInUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712240014284_IncreaseVerificationSizeLength.resx">
+      <DependentUpon>201712240014284_IncreaseVerificationSizeLength.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

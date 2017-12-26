@@ -121,7 +121,7 @@ namespace ReqManager.Services.Others.Classes
 
         private void setSender()
         {
-            from = new MailAddress("caiodias12@gmail.com", "ReqManager Notifications");
+            from = new MailAddress("reqmanageraadsp@gmail.com", "ReqManager Notifications");
         }
 
         private void setClient()
@@ -129,7 +129,7 @@ namespace ReqManager.Services.Others.Classes
             try
             {
                 cliente = new SmtpClient("smtp.gmail.com", 587);
-                cliente.Credentials = new System.Net.NetworkCredential("caiodias12@gmail.com", "caiodias15");
+                cliente.Credentials = new System.Net.NetworkCredential("reqmanageraadsp@gmail.com", "ReqManager2017");
                 cliente.EnableSsl = true;
             }
             catch (Exception ex)

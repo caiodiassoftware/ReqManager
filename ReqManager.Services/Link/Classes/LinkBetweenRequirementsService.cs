@@ -24,6 +24,21 @@ namespace ReqManager.Services.Link.Classes
             this.requirementsAttributes = requirementsAttributes;
         }
 
+        public override void add(ref LinkBetweenRequirementsEntity entity, bool persistir = true)
+        {
+            try
+            {
+                if (!entity.RequirementOriginID.Equals(entity.RequirementTargetID))
+                    base.add(ref entity, persistir);
+                else
+                    throw new ArgumentException("Requirement Origin must be different from B!");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public LinkBetweenRequirementsEntity get(string ReqOrigin, string ReqTarget)
         {
             try

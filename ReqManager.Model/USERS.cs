@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ReqManager.Model
 {
-    [Table("USERS", Schema = "ACESS")]
+    [Table("USERS", Schema = "ACCESS")]
     public class Users
     {
         public Users()

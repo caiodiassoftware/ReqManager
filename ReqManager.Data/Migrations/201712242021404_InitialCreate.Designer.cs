@@ -7,13 +7,13 @@ namespace ReqManager.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class RequirementSubTypeAndTemplateNullableWithSignal : IMigrationMetadata
+    public sealed partial class InitialCreate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(RequirementSubTypeAndTemplateNullableWithSignal));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
         
         string IMigrationMetadata.Id
         {
-            get { return "201712152050390_RequirementSubTypeAndTemplateNullableWithSignal"; }
+            get { return "201712242021404_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

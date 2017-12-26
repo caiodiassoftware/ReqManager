@@ -29,8 +29,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     <link href='//fonts.googleapis.com/css?family=Cabin:400,400italic,500,500italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
 
-    @*<script src="https://code.jquery.com/jquery-1.12.4.js"></script>*@
-
     <script src="~/Scripts/jquery-3.2.1.min.js"></script>
     <script src="~/Scripts/jquery.barrating.min.js"></script>
     <script src="~/Scripts/jquery.maskMoney.min.js"></script>
@@ -83,7 +81,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </a>
                         <ul class="sub-menu-list">
                             <li>@Html.ActionLink("Project", "Index", "Projects")</li>
-                            <li>@Html.ActionLink("Stakeholders ", "Index", "StakeholdersProject")</li>
                             <li>@Html.ActionLink("Phases", "Index", "ProjectPhases")</li>
                             <li>@Html.ActionLink("Importance", "Index", "Importance")</li>
                         </ul>
@@ -105,7 +102,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </a>
                         <ul class="sub-menu-list">
                             <li>@Html.ActionLink("Requirement", "Index", "Requirement")</li>
-                            <li>@Html.ActionLink("Stakeholders", "Index", "StakeholderRequirement")</li>
                             <li>@Html.ActionLink("Characteristics", "Index", "Characteristics")</li>
                             <li>@Html.ActionLink("Types", "Index", "RequirementTypes")</li>
                             <li>@Html.ActionLink("SubTypes", "Index", "RequirementSubType")</li>
@@ -216,14 +212,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script type="text/javascript">
 
         function LogOut() {
-            $.ajax({
-                url: '@Url.Action("LogOut", "Login")'
-            });
+            $.post('@Url.Action("LogOut", "Login")');
+            window.location = '@Url.Action("Login", "Login")'
         };
 
         function clearDropDown(dropdown) {
             var select = document.getElementById(dropdown);
             var i;
+
 
             if (select.options != null) {
                 for (i = select.options.length - 1; i >= 0; i--)

@@ -1,4 +1,5 @@
---ART1
+USE ReqManager
+GO
 
 CREATE TRIGGER PROJ.GenerateCodeProject
 ON PROJ.PROJECT
@@ -153,3 +154,6 @@ BEGIN CATCH
 END CATCH
 END
 GO
+
+INSERT INTO ACCESS.USERS
+SELECT 'Admin System', 'Admin', '63-43-8E-03-E7-26-E1-9C-AB-F2-7A-55-C8-03-B1-1D', 'fhkp42KdHp', 'reqmanager@gmail.com', 'admin', '05-03-1994', 'Manager', '9999999999', 1

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ReqManager.Model
 {
-    [Table("USER_ROLE", Schema = "ACESS")]
+    [Table("USER_ROLE", Schema = "ACCESS")]
     public class UserRole
     {
         [Key]

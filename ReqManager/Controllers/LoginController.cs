@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using System.Web;
 using ReqManager.Utils.Hashing;
-using ReqManager.Services.Others.Interfaces;
+using ReqManager.Filters;
 
 namespace ReqManager.Controllers
 {
@@ -79,6 +79,7 @@ namespace ReqManager.Controllers
             }
         }
 
+        [HttpPost]
         public void LogOut()
         {
             try

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ReqManager.Model
 {
-    [Table("ROLE", Schema = "ACESS")]
+    [Table("ROLE", Schema = "ACCESS")]
     public class Role
     {
         public Role()

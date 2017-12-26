@@ -47,7 +47,7 @@ C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\obj\Debug\ReqManager.Da
 C:\Users\maquina06\Desktop\ReqManager\ReqManager.Data\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\maquina06\Desktop\ReqManager\ReqManager.Data\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\maquina06\Desktop\ReqManager\ReqManager.Data\bin\Debug\ReqManager.Model.dll.config
-C:\Users\cdias\Desktop\ReqManager\ReqManager.Data\obj\Debug\ReqManager.Data.Migrations.GenerateCodesTriggers.resources
 C:\Users\cdias\Desktop\ReqManager\ReqManager.Data\obj\Debug\ReqManager.Data.csproj.GenerateResource.Cache
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\obj\Debug\ReqManager.Data.Migrations.InitialCreate.resources
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\obj\Debug\ReqManager.Data.csproj.GenerateResource.Cache
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Data\obj\Debug\ReqManager.Data.Migrations.InitialCreate.resources

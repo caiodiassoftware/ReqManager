@@ -77,3 +77,6 @@ C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Services\bin\Debug\System.Va
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Services\bin\Debug\itextsharp.dll
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Services\bin\Debug\itextsharp.xmlworker.dll
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Services\bin\Debug\itextsharp.xml
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Debug\itextsharp.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Debug\itextsharp.xmlworker.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Debug\itextsharp.xml

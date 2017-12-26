@@ -133,7 +133,7 @@
                 </dt>
 
                 <dd id="requirementCost">
-                    
+
                 </dd>
 
             </dl>
@@ -159,76 +159,76 @@
                 <tbody>
                     @foreach (var item in Model.requirements)
                     {
-                    <tr>
-                        <td>
-                            <a href="" data-code='@item.code'
-                               onclick="RequirementDetails($(this)); return false;">
-                                @Html.DisplayFor(modelItem => item.code)
-                            </a>
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.title)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Users.name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.RequirementStatus.description)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.RequirementType.description)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.preTraceability)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.creationDate)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.startDate)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.endDate)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.cost)
-                        </td>
-                        <td>
+                        <tr>
+                            <td>
+                                <a href="" data-code='@item.code'
+                                   onclick="RequirementDetails($(this)); return false;">
+                                    @Html.DisplayFor(modelItem => item.code)
+                                </a>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Users.name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RequirementStatus.description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RequirementType.description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.preTraceability)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.creationDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.startDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.endDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.cost)
+                            </td>
+                            <td>
 
-                            @if (item.endDate != null)
+                                @if (item.endDate != null)
                                 {
                                     if (Convert.ToDateTime(item.endDate).CompareTo(Model.project.endDate) > 0
                                         && !item.RequirementStatusID.Equals(7))
                                     {
-                            @Html.Label("End date after project completion!")
+                                        @Html.Label("End date after project completion!")
                                     }
 
                                     if (Convert.ToDateTime(item.endDate).CompareTo(DateTime.Now) < 0
                                         && !item.RequirementStatusID.Equals(7))
                                     {
-                            @Html.Label("Out of Time!")
+                                        @Html.Label("Out of Time!")
                                     }
                                 }
 
-                            @if (item.startDate != null)
+                                @if (item.startDate != null)
                                 {
                                     if (Convert.ToDateTime(item.startDate).CompareTo(Model.project.endDate) > 0)
                                     {
-                            @Html.Label("Requirement will start after project completion!")
+                                        @Html.Label("Requirement will start after project completion!")
                                     }
 
                                     if (Model.project.endDate.CompareTo(item.startDate) > 0)
                                     {
-                            @Html.Label(Convert.ToDateTime(item.endDate).Subtract(DateTime.Now).Days.ToString() +
+                                        @Html.Label(Convert.ToDateTime(item.endDate).Subtract(DateTime.Now).Days.ToString() +
                                        " Days to End!")
                                     }
                                 }
 
-                        </td>
-                        <td>
-                            @Html.ActionLink("Details", "Details", "Requirement", new { id = item.RequirementID }, null)
-                        </td>
-                    </tr>
+                            </td>
+                            <td>
+                                @Html.ActionLink("Details", "Details", "Requirement", new { id = item.RequirementID }, null)
+                            </td>
+                        </tr>
                     }
                 </tbody>
             </table>
@@ -239,43 +239,43 @@
                     <tr>
                         @for (int i = 0; i < Model.requirementMatrix.Columns.Count; i++)
                         {
-                        <td>
-                            <a href="" data-code='@Model.requirementMatrix.Columns[i].ColumnName'
-                               onclick="RequirementDetails($(this)); return false;">
-                                @Html.Label(Model.requirementMatrix.Columns[i].ColumnName)
-                            </a>
-                        </td>
+                            <td>
+                                <a href="" data-code='@Model.requirementMatrix.Columns[i].ColumnName'
+                                   onclick="RequirementDetails($(this)); return false;">
+                                    @Html.Label(Model.requirementMatrix.Columns[i].ColumnName)
+                                </a>
+                            </td>
                         }
                     </tr>
                 </thead>
                 <tbody>
                     @for (int i = 0; i < Model.requirementMatrix.Rows.Count; i++)
                     {
-                    <tr>
-                        @for (int j = 0; j < Model.requirementMatrix.Columns.Count; j++)
+                        <tr>
+                            @for (int j = 0; j < Model.requirementMatrix.Columns.Count; j++)
                             {
-                        <td>
-                            @if (!string.IsNullOrEmpty(Model.requirementMatrix.Rows[i][j].ToString()))
+                                <td>
+                                    @if (!string.IsNullOrEmpty(Model.requirementMatrix.Rows[i][j].ToString()))
                                     {
                                         if (j.Equals(0))
                                         {
-                            <a href="" data-code='@Model.requirementMatrix.Rows[i][j].ToString()'
-                               onclick="RequirementDetails($(this)); return false;">
-                                @Html.Label(Model.requirementMatrix.Rows[i][j].ToString())
-                            </a>
+                                            <a href="" data-code='@Model.requirementMatrix.Rows[i][j].ToString()'
+                                               onclick="RequirementDetails($(this)); return false;">
+                                                @Html.Label(Model.requirementMatrix.Rows[i][j].ToString())
+                                            </a>
                                         }
                                         else
                                         {
-                            <a href="" onclick="ReqToReqLinkDetails($(this)); return false;"
-                               data-origin='@Model.requirementMatrix.Rows[i][0].ToString()'
-                               data-target='@Model.requirementMatrix.Columns[j].ColumnName'>
-                                @Model.requirementMatrix.Rows[i][j].ToString()
-                            </a>
+                                            <a href="" onclick="ReqToReqLinkDetails($(this)); return false;"
+                                               data-origin='@Model.requirementMatrix.Rows[i][0].ToString()'
+                                               data-target='@Model.requirementMatrix.Columns[j].ColumnName'>
+                                                @Model.requirementMatrix.Rows[i][j].ToString()
+                                            </a>
                                         }
                                     }
-                        </td>
+                                </td>
                             }
-                    </tr>
+                        </tr>
                     }
                 </tbody>
             </table>
@@ -286,43 +286,43 @@
                     <tr>
                         @for (int i = 0; i < Model.artifactMatrix.Columns.Count; i++)
                         {
-                        <td>
-                            <a href="" data-code='@Model.artifactMatrix.Columns[i].ColumnName'
-                               onclick="RequirementDetails($(this)); return false;">
-                                @Html.Label(Model.artifactMatrix.Columns[i].ColumnName)
-                            </a>
-                        </td>
+                            <td>
+                                <a href="" data-code='@Model.artifactMatrix.Columns[i].ColumnName'
+                                   onclick="RequirementDetails($(this)); return false;">
+                                    @Html.Label(Model.artifactMatrix.Columns[i].ColumnName)
+                                </a>
+                            </td>
                         }
                     </tr>
                 </thead>
                 <tbody>
                     @for (int i = 0; i < Model.artifactMatrix.Rows.Count; i++)
                     {
-                    <tr>
-                        @for (int j = 0; j < Model.artifactMatrix.Columns.Count; j++)
+                        <tr>
+                            @for (int j = 0; j < Model.artifactMatrix.Columns.Count; j++)
                             {
-                        <td>
-                            @if (!string.IsNullOrEmpty(Model.artifactMatrix.Rows[i][j].ToString()))
+                                <td>
+                                    @if (!string.IsNullOrEmpty(Model.artifactMatrix.Rows[i][j].ToString()))
                                     {
                                         if (j.Equals(0))
                                         {
-                            <a href="" data-code='@Model.artifactMatrix.Rows[i][j].ToString()'
-                               onclick="ArtifactDetails($(this)); return false;">
-                                @Html.Label(Model.artifactMatrix.Rows[i][j].ToString())
-                            </a>
+                                            <a href="" data-code='@Model.artifactMatrix.Rows[i][j].ToString()'
+                                               onclick="ArtifactDetails($(this)); return false;">
+                                                @Html.Label(Model.artifactMatrix.Rows[i][j].ToString())
+                                            </a>
                                         }
                                         else
                                         {
-                            <a href="" onclick="ArtToReqLinkDetails($(this)); return false;"
-                               data-artifact='@Model.artifactMatrix.Rows[i][0].ToString()'
-                               data-requirement='@Model.artifactMatrix.Columns[j].ColumnName'>
-                                @Model.artifactMatrix.Rows[i][j].ToString()
-                            </a>
+                                            <a href="" onclick="ArtToReqLinkDetails($(this)); return false;"
+                                               data-artifact='@Model.artifactMatrix.Rows[i][0].ToString()'
+                                               data-requirement='@Model.artifactMatrix.Columns[j].ColumnName'>
+                                                @Model.artifactMatrix.Rows[i][j].ToString()
+                                            </a>
                                         }
                                     }
-                        </td>
+                                </td>
                             }
-                    </tr>
+                        </tr>
                     }
                 </tbody>
             </table>
@@ -339,29 +339,29 @@
                 </tr>
                 @foreach (var item in Model.artifacts)
                 {
-                <tr>
-                    <td>
-                        <a href="" data-code='@item.code'
-                           onclick="ArtifactDetails($(this)); return false;">
-                            @Html.DisplayFor(modelItem => item.code)
-                        </a>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.description)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ArtifactType.description)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Importance.description)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Users.name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.creationDate)
-                    </td>
-                </tr>
+                    <tr>
+                        <td>
+                            <a href="" data-code='@item.code'
+                               onclick="ArtifactDetails($(this)); return false;">
+                                @Html.DisplayFor(modelItem => item.code)
+                            </a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ArtifactType.description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Importance.description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Users.name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.creationDate)
+                        </td>
+                    </tr>
                 }
             </table>
         </div>
@@ -376,23 +376,23 @@
                 </tr>
                 @foreach (var item in Model.history)
                 {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Users.name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.changedDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.descriptionPhases)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.startDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.endDate)
-                    </td>
-                </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Users.name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.changedDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.descriptionPhases)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.startDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.endDate)
+                        </td>
+                    </tr>
                 }
             </table>
         </div>
@@ -410,24 +410,24 @@
                 <tbody>
                     @foreach (var item in Model.stakeholders)
                     {
-                    <tr>
-                        <td>@Html.DisplayFor(modelItem => item.DisplayName)</td>
-                        <td>@Html.DisplayFor(modelItem => item.description)</td>
-                        <td>@Html.DisplayFor(modelItem => item.importanceValue)</td>
-                        <td>@Html.DisplayFor(modelItem => item.creationDate)</td>
-                        <td>
-                            <p>
-                                @Html.ActionLink("Edit", "Edit",
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.DisplayName)</td>
+                            <td>@Html.DisplayFor(modelItem => item.description)</td>
+                            <td>@Html.DisplayFor(modelItem => item.importanceValue)</td>
+                            <td>@Html.DisplayFor(modelItem => item.creationDate)</td>
+                            <td>
+                                <p>
+                                    @Html.ActionLink("Edit", "Edit",
                             "StakeholdersProject",
                             new { id = item.StakeholdersProjectID }, null)
-                            </p>
-                            <p>
-                                @Html.ActionLink("Delete", "Delete",
+                                </p>
+                                <p>
+                                    @Html.ActionLink("Delete", "Delete",
                             "StakeholdersProject",
                             new { id = item.StakeholdersProjectID }, null)
-                            </p>
-                        </td>
-                    </tr>
+                                </p>
+                            </td>
+                        </tr>
                     }
                 </tbody>
             </table>
@@ -476,16 +476,16 @@
                             @Html.DropDownList("StakeholdersID", Enumerable.Empty<SelectListItem>(), "SELECT THE STAKEHOLDER", htmlAttributes: new { @class = "form-control" })
                         </div>
                     </div>
-                    @*<div class="form-group">
+                    <div class="form-group">
                         @Html.Label("Activities/Roles", htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
                             <textarea id="stakeholderDescription" rows="5" style="resize:none;" class="form-control"></textarea>
                         </div>
-                    </div>*@
+                    </div>
                     <div class="form-group">
                         @Html.Label("Importance", htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            <select id="stakeholderRating" class="rating">
+                            <select id="stakeholderRating">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -815,8 +815,14 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 
+    <link href="~/Scripts/css/fontawesome-stars.css" rel="stylesheet">
+    <script src="~/Scripts/jquery.barrating.min.js"></script>
+
     <script type="text/javascript">
         $(document).ready(function () {
+            $('#stakeholderRating').barrating({
+                theme: 'fontawesome-stars'
+            });
             $('#requirementsTable').dataTable();
             var ProjectID = $('#ID').val();
             $.get('@Url.Action("GetRequirementCostByProject", "Requirement")',

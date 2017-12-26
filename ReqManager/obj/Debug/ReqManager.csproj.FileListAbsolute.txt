@@ -224,3 +224,5 @@ C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\DataTables.Mvc.dll
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\DataTables.Mvc.dll
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\Vereyon.Web.FlashMessage.dll
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\itextsharp.xmlworker.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\Vereyon.Web.FlashMessage.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\itextsharp.xmlworker.dll

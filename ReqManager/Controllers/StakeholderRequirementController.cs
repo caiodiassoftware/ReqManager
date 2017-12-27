@@ -31,7 +31,6 @@ namespace ReqManager.Controllers
         {
             StakeholderRequirementEntity entity = Service.get(StakeholderRequirementID);
             entity.importanceValue = importanceValue;
-
             return base.Edit(entity);
         }
 

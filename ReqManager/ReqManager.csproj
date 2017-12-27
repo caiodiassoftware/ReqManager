@@ -215,12 +215,17 @@
     <Compile Include="Controllers\TypeLinkController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UsersRolesController.cs" />
+    <Compile Include="Filters\NotifierFilterAttribute.cs" />
     <Compile Include="Filters\Permissions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="ManagerController\BaseController.cs" />
     <Compile Include="ManagerController\ControlAccessController.cs" />
+    <Compile Include="Notifications\Classes\Message.cs" />
+    <Compile Include="Notifications\Classes\NotifierExtensions.cs" />
+    <Compile Include="Notifications\Classes\NotifierService.cs" />
+    <Compile Include="Notifications\Interfaces\INotifierService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\DataTableViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
@@ -671,7 +676,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

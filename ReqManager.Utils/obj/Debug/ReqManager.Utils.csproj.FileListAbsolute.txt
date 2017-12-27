@@ -16,3 +16,5 @@ C:\Users\cdias\Desktop\ReqManager\ReqManager.Utils\bin\Debug\AutoMapper.dll
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Utils\bin\Debug\AutoMapper.dll
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Utils\bin\Debug\AutoMapper.xml
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Utils\obj\Debug\ReqManager.Utils.csprojResolveAssemblyReference.cache
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Utils\bin\Debug\AutoMapper.xml
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Utils\obj\Debug\ReqManager.Utils.csprojResolveAssemblyReference.cache

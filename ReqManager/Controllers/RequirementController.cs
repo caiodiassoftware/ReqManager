@@ -283,7 +283,7 @@ namespace ReqManager.Controllers
                     RequirementEntity entity = Mapper.Map<RequirementViewModel, RequirementEntity>(vm);
                     setIdUser(ref entity);
                     Service.add(ref entity);
-                    TempData["ControllerMessage"] = String.Format("Register was made with Success!");
+                    success("Register was made with Success!");
                     return RedirectToAction("Details", "Projects", new { id = vm.ProjectID });
                 }
                 else
@@ -312,6 +312,7 @@ namespace ReqManager.Controllers
                 {
                     req = Mapper.Map<RequirementEditViewModel, RequirementEntity>(vm);
                     requirementService.update(ref req, vm.RequirementRequestForChangesID, vm.rationale);
+                    success("Register has been successfully edited!");
                     return RedirectToAction("Details", "Requirement", new { id = req.RequirementID });
                 }
                 else

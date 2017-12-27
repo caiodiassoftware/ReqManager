@@ -1,5 +1,7 @@
 ﻿using DataTables.Mvc;
 using ReqManager.Filters;
+using ReqManager.Notifications.Classes;
+using ReqManager.Notifications.Interfaces;
 using ReqManager.Services.Estructure;
 using System;
 using System.Collections.Generic;
@@ -22,6 +24,7 @@ namespace ReqManager.ManagerController
         #region Attributes
 
         protected IService<TEntity> Service { get; set; }
+        protected INotifierService notifier { get; set; }
 
         #endregion
 
@@ -30,11 +33,12 @@ namespace ReqManager.ManagerController
         public ControlAccessController(IService<TEntity> service)
         {
             this.Service = service;
+            notifier = DependencyResolver.Current.GetService<INotifierService>();
         }
 
         #endregion
 
-        #region GETS
+        #region Gets
 
         public virtual ActionResult Get(int? ID)
         {
@@ -206,6 +210,26 @@ namespace ReqManager.ManagerController
             TempData["ControllerMessage"] = String.Concat("Error Detected in View validation! ", string.Join("; ", ModelState.Values
                                                     .SelectMany(x => x.Errors)
                                                     .Select(x => x.ErrorMessage)));
+        }
+
+        protected void success(string message)
+        {
+            notifier.Success(message);
+        }
+
+        protected void info(string message)
+        {
+            notifier.Info(message);
+        }
+
+        protected void warning(string message)
+        {
+            notifier.Warning(message);
+        }
+
+        protected void danger(string message)
+        {
+            notifier.Error(message);
         }
 
         #endregion

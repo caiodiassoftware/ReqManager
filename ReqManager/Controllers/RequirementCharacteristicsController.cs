@@ -26,6 +26,7 @@ namespace ReqManager.Controllers
                 RequirementCharacteristicsEntity entity = Service.get(RequirementCharacteristicsID);
                 entity.check = check;
                 Service.update(ref entity);
+                success("Register has been successfully checked!");
             }
             catch (Exception ex)
             {
@@ -40,7 +41,6 @@ namespace ReqManager.Controllers
             {
                 if (id == null)                
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-
                 return View();
             }
             catch (Exception ex)

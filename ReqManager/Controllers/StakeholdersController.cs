@@ -14,7 +14,5 @@ namespace ReqManager.Views
             ViewBag.UserID = new SelectList(userService.getAll(), "UserID", "name");
             ViewBag.ClassificationID = new SelectList(classService.getAll(), "ClassificationID", "description");
         }
-
-        
     }
 }

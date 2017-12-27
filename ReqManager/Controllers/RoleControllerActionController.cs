@@ -8,7 +8,7 @@ namespace ReqManager.Controllers
 {
     public class RoleControllerActionController : BaseController<RoleControllerActionEntity>
     {
-        public RoleControllerActionController(IRoleControllerActionService service, IControllerActionService caService, IRoleService roleService) : base(service)
+        public RoleControllerActionController(IRoleControllerActionService service) : base(service)
         {
 
         }

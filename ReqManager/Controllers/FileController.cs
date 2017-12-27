@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace ReqManager.Controllers
 {
+    [HandleError(ExceptionType = typeof(Exception), View = "Error")]
     public class FileController : Controller
     {
         private IScanDirectoryService directory { get; set; }
@@ -20,28 +21,35 @@ namespace ReqManager.Controllers
 
         public void RenderFile(string FilePath, string Title)
         {
-            string extension = Path.GetExtension(FilePath);
+            try
+            {
+                string extension = Path.GetExtension(FilePath);
 
-            if (!CheckExtensions(FilePath))
-            {
-                Response.Clear();
-                Response.ContentType = "application/pdf";
-                Response.ContentType = "application/octet-stream";
-                Response.Cache.SetCacheability(HttpCacheability.NoCache);
-                Response.AddHeader("content-disposition", "inline;filename= " + Title + DateTime.Now.ToString() + ".pdf");
-                Response.Buffer = true;
-                Response.Clear();
-                var bytes = ReadAllBytes(FilePath);
-                Response.OutputStream.Write(bytes, 0, bytes.Length);
-                Response.OutputStream.Flush();
+                if (!CheckExtensions(FilePath))
+                {
+                    Response.Clear();
+                    Response.ContentType = "application/pdf";
+                    Response.ContentType = "application/octet-stream";
+                    Response.Cache.SetCacheability(HttpCacheability.NoCache);
+                    Response.AddHeader("content-disposition", "inline;filename= " + Title + DateTime.Now.ToString() + ".pdf");
+                    Response.Buffer = true;
+                    Response.Clear();
+                    var bytes = ReadAllBytes(FilePath);
+                    Response.OutputStream.Write(bytes, 0, bytes.Length);
+                    Response.OutputStream.Flush();
+                }
+                else
+                {
+                    System.Diagnostics.Process proc = new System.Diagnostics.Process();
+                    proc.EnableRaisingEvents = false;
+                    proc.StartInfo.FileName = FilePath;
+                    proc.Start();
+                    proc.Close();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                System.Diagnostics.Process proc = new System.Diagnostics.Process();
-                proc.EnableRaisingEvents = false;
-                proc.StartInfo.FileName = FilePath;
-                proc.Start();
-                proc.Close();
+                throw ex;
             }
         }
 
@@ -63,20 +71,27 @@ namespace ReqManager.Controllers
 
         private byte[] ReadAllBytes(string fileName)
         {
-            using (var ms = new MemoryStream())
+            try
             {
-                using (var doc = new Document(PageSize.A4, 40, 40, 40, 80))
+                using (var ms = new MemoryStream())
                 {
-                    using (var writer = PdfWriter.GetInstance(doc, ms))
+                    using (var doc = new Document(PageSize.A4, 40, 40, 40, 80))
                     {
-                        doc.Open();
-                        string file = System.IO.File.ReadAllText(fileName);
-                        doc.Add(new Paragraph(file));
-                        doc.Close();
+                        using (var writer = PdfWriter.GetInstance(doc, ms))
+                        {
+                            doc.Open();
+                            string file = System.IO.File.ReadAllText(fileName);
+                            doc.Add(new Paragraph(file));
+                            doc.Close();
+                        }
                     }
-                }
 
-                return ms.ToArray();
+                    return ms.ToArray();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 

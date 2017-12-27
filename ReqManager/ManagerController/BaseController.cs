@@ -26,8 +26,7 @@ namespace ReqManager.ManagerController
             }
             catch (Exception ex)
             {
-                TempData["ControllerMessage"] = String.Format("There was an Error while viewing logs! " + ex.Message);
-                return RedirectToAction("Index");
+                return filterException(ex);
             }
         }
 
@@ -48,8 +47,7 @@ namespace ReqManager.ManagerController
             }
             catch (Exception ex)
             {
-                TempData["ControllerMessage"] = String.Format("Error occurred while showing Details! " + ex.Message);
-                return RedirectToAction("Index");
+                return filterException(ex);
             }
         }
 
@@ -61,8 +59,7 @@ namespace ReqManager.ManagerController
             }
             catch (Exception ex)
             {
-                TempData["ControllerMessage"] = String.Format("Error occurred while creating! " + ex.Message);
-                return RedirectToAction("Index");
+                return filterException(ex);
             }
         }
 
@@ -83,8 +80,7 @@ namespace ReqManager.ManagerController
             }
             catch (Exception ex)
             {
-                TempData["ControllerMessage"] = String.Format("Error occurred while editing! " + ex.Message);
-                return RedirectToAction("Index");
+                return filterException(ex);
             }
         }
 
@@ -105,8 +101,7 @@ namespace ReqManager.ManagerController
             }
             catch (Exception ex)
             {
-                TempData["ControllerMessage"] = String.Format("Error occurred while deleting! " + ex.Message);
-                return RedirectToAction("Index");
+                return filterException(ex);
             }
         }
 
@@ -127,7 +122,7 @@ namespace ReqManager.ManagerController
                 {
                     Service.add(ref entity);
                     ModelState.Clear();
-                    TempData["ControllerMessage"] = String.Format("Register was made with Success!");
+                    success("Register was made with Success!");
                     return RedirectToAction("Index");
                 }
                 else
@@ -153,7 +148,7 @@ namespace ReqManager.ManagerController
                 if (ModelState.IsValid)
                 {
                     Service.update(ref entity);
-                    TempData["ControllerMessage"] = String.Format("Registration has been successfully edited!!");
+                    success("Register has been successfully edited!");
                     return RedirectToAction("Index");
                 }
                 else
@@ -177,13 +172,12 @@ namespace ReqManager.ManagerController
             try
             {
                 Service.delete(id);
-                TempData["ControllerMessage"] = String.Format("Registration has been successfully deleted!!");
+                success("Registration has been successfully deleted!");
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
-                TempData["ControllerMessage"] = String.Format("Error Detected! " + ex.Message);
-                return RedirectToAction("Index");
+                return filterException(ex);
             }
         }
 

@@ -138,6 +138,7 @@ namespace ReqManager.Controllers
                 if (ModelState.IsValid)
                 {
                     projectService.update(ref entity, getIdUser());
+                    success("Register has been successfully edited!");
                     return RedirectToAction("Details", "Projects", new { id = entity.ProjectID});
                 }
                 else

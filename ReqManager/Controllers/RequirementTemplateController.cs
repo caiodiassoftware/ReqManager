@@ -163,7 +163,7 @@ namespace ReqManager.Controllers
                     RequirementTemplateEntity entity = Mapper.Map<RequirementTemplateViewModel, RequirementTemplateEntity>(vm);
                     setIdUser(ref entity);
                     Service.add(ref entity);
-                    ViewBag.MessageReqManager = String.Format("Register was made with Success!");
+                    success("Register was made with Success!");
                     return RedirectToAction("Index");
                 }
 
@@ -188,6 +188,7 @@ namespace ReqManager.Controllers
                 {
                     entity = Mapper.Map<RequirementTemplateViewModel, RequirementTemplateEntity>(vm);
                     Service.update(ref entity);
+                    success("Register has been successfully edited!");
                     return RedirectToAction("Index");
                 }
 
@@ -208,13 +209,12 @@ namespace ReqManager.Controllers
             try
             {
                 Service.delete(id);
-                Service.saveChanges();
+                success("Registration has been successfully deleted!");
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
-                ViewBag.MessageReqManager = String.Format("Error Detected! " + ex.Message);
-                return RedirectToAction("Index");
+                throw ex;
             }
         }
 

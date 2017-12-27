@@ -5,7 +5,6 @@ using ReqManager.Services.Project.Interfaces;
 using System;
 using System.Net;
 using ReqManager.Services.Requirements.Interfaces;
-using ReqManager.Entities.Requirement;
 
 namespace ReqManager.Controllers
 {
@@ -73,8 +72,7 @@ namespace ReqManager.Controllers
                 if (TryValidateModel(approval))
                 {
                     Service.add(ref approval);
-                    ModelState.Clear();
-                    TempData["ControllerMessage"] = String.Format("Register was made with Success!");
+                    success("Register was made with Success!");
                     Response.Redirect("~/Requirement/Details/" + ID);
                 }
                 else

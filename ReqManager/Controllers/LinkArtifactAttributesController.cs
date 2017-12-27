@@ -21,9 +21,6 @@ namespace ReqManager.Controllers
         {
             this.reqArtService = reqArtService;
             this.service = service;
-
-            //ViewData.Add("AttributeID", new SelectList(attributeService.getAll(), "AttributeID", "description"));
-            //ViewData.Add("LinkArtifactRequirementID", new SelectList(reqArtService.getAll(), "LinkArtifactRequirementID", "DisplayName"));
         }
 
         public ActionResult CreateNewAttributeForLink(int? id)

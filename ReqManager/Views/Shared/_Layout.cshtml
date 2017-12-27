@@ -1,4 +1,6 @@
-﻿<!--
+﻿@using ReqManager.Notifications.Classes
+
+<!--
 Author: W3layouts
 Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
@@ -150,11 +152,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         <div class="profile_img">
 
                                             @*<div class="user-name">
-                                                @if (Session["name"] != null && Session["roles"] != null)
-                                                {
-                                                    <p>@Session["name"].ToString()<span>@Session["roles"].ToString()</span></p>
-                                                }
-                                            </div>*@
+                                                    @if (Session["name"] != null && Session["roles"] != null)
+                                                    {
+                                                        <p>@Session["name"].ToString()<span>@Session["roles"].ToString()</span></p>
+                                                    }
+                                                </div>*@
                                             <i class="lnr lnr-chevron-down"></i>
                                             <i class="lnr lnr-chevron-up"></i>
                                             <div class="clearfix"></div>
@@ -172,20 +174,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <!--notification menu end -->
             </div>
 
-            @if (TempData["ControllerMessage"] != null)
-            {
-                <script type="text/javascript">
-                    window.onload = function () {
-                        alert("@TempData["ControllerMessage"]");
-                    };
-                </script>
-                TempData.Remove("ControllerMessage");
-            }
-
             <!-- //header-ends -->
             <div id="page-wrapper">
                 <div class="graphs">
                     <h3 class="blank1">@ViewBag.Title</h3>
+                    <div id="MessageContainer">
+                        <div class="container">
+                            @Html.ViewContext.DisplayMessages()
+                        </div>
+                    </div>
                     <div class="xs tabls">
                         <div class="bs-example4" data-example-id="simple-responsive-table">
                             <div class="table-responsive">
@@ -242,7 +239,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 theme: 'fontawesome-stars'
             });
             $('.money').maskMoney({
-                thousands : ""
+                thousands: ""
             });
         });
 

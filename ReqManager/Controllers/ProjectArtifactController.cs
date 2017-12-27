@@ -63,6 +63,7 @@ namespace ReqManager.Controllers
                 if (ModelState.IsValid)
                 {
                     service.update(entity, getLoginUser());
+                    success("Register has been successfully edited!");
                     return RedirectToAction("Index");
                 }
                 else

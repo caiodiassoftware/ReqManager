@@ -51,6 +51,7 @@ namespace ReqManager.Controllers
             this.projectService = projectService;
 
             ViewData.Add("ProjectPhasesID", new SelectList(phasesService.getAll(), "ProjectPhasesID", "description"));
+            ViewData.Add("CreationUserID", new SelectList(userService.getAll(), "UserID", "name"));
         }
 
         public void PrintDocumentRequirement(int ProjectID, int RequirementTypeID)

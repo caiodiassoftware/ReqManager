@@ -16,6 +16,7 @@ using System.Web.Security;
 namespace ReqManager.ManagerController
 {
     [Permissions]
+    [HandleError(ExceptionType = typeof(Exception), View = "Error")]
     public class ControlAccessController<TEntity> : Controller where TEntity : class
     {
         #region Attributes
@@ -24,10 +25,14 @@ namespace ReqManager.ManagerController
 
         #endregion
 
+        #region Constructor
+
         public ControlAccessController(IService<TEntity> service)
         {
             this.Service = service;
         }
+
+        #endregion
 
         #region GETS
 
@@ -149,18 +154,32 @@ namespace ReqManager.ManagerController
             return ticket;
         }
 
-        protected ActionResult getMessageDbValidation(TEntity entity, DbEntityValidationException ex)
+        protected ActionResult filterException(Exception ex)
+        {
+            if (ex is DbEntityValidationException)
+            {
+                getMessageDbValidation((DbEntityValidationException) ex);
+            }
+            else if (ex is DbUpdateException)
+            {
+                getMessageDbUpdateException((DbUpdateException) ex);
+            }
+
+            return View("Error");
+        }
+
+        protected void getMessageDbValidation(DbEntityValidationException ex)
         {
             var errorMessages = ex.EntityValidationErrors
                                 .SelectMany(x => x.ValidationErrors)
                                 .Select(x => x.ErrorMessage);
 
             var fullErrorMessage = string.Join("; ", errorMessages);
-            TempData["ControllerMessage"] = String.Format("Error Detected in DataBase validation! " + fullErrorMessage);
-            return RedirectToAction("Index");
+            string message = String.Format("Error Detected in DataBase validation! " + fullErrorMessage);
+            throw new Exception(message);
         }
 
-        protected ActionResult getMessageDbUpdateException(TEntity entity, DbUpdateException ex)
+        protected void getMessageDbUpdateException(DbUpdateException ex)
         {
             var builder = new StringBuilder("Erro was detected while saving changes. ");
 
@@ -179,14 +198,7 @@ namespace ReqManager.ManagerController
 
             string message = builder.ToString() + " - " + ex.InnerException.InnerException.Message;
             ModelState.Clear();
-            TempData["ControllerMessage"] = message;
-            return RedirectToAction("Index");
-        }
-
-        protected ActionResult getMessageGeralException(TEntity entity, Exception ex)
-        {
-            TempData["ControllerMessage"] = String.Format("Error Detected! " + ex.Message);
-            return RedirectToAction("Index");
+            throw new Exception(message);
         }
 
         protected void getModelStateValidations()

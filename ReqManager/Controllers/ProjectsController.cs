@@ -147,17 +147,9 @@ namespace ReqManager.Controllers
 
                 return View(entity);
             }
-            catch (DbEntityValidationException ex)
-            {
-                return getMessageDbValidation(entity, ex);
-            }
-            catch (DbUpdateException ex)
-            {
-                return getMessageDbUpdateException(entity, ex);
-            }
             catch (Exception ex)
             {
-                return getMessageGeralException(entity, ex);
+                return filterException(ex);
             }
         }
     }

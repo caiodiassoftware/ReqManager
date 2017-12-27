@@ -12,7 +12,6 @@ namespace ReqManager.Controllers
     //ART2
     public class ProjectArtifactController : BaseController<ProjectArtifactEntity>
     {
-        private IHistoryProjectArtifactService historyServiceArtifact { get; set; }
         private IProjectArtifactService service { get; set; }
 
         public ProjectArtifactController(
@@ -20,15 +19,14 @@ namespace ReqManager.Controllers
             IUserService userService,
             IArtifactTypeService typeService,
             IImportanceService measureService,
-            IProjectService projectService,
-            IHistoryProjectArtifactService historyServiceArtifact) : base(service)
+            IProjectService projectService) : base(service)
         {
             this.service = service;
-            this.historyServiceArtifact = historyServiceArtifact;
 
             ViewData.Add("ArtifactTypeID", new SelectList(typeService.getAll(), "ArtifactTypeID", "description"));
             ViewData.Add("ImportanceID", new SelectList(measureService.getAll(), "ImportanceID", "description"));
             ViewData.Add("ProjectID", new SelectList(projectService.getAll(), "ProjectID", "description"));
+            ViewData.Add("CreationUserID", new SelectList(userService.getAll(), "UserID", "name"));
         }
 
         public JsonResult GetWithCode(string code)
@@ -56,27 +54,15 @@ namespace ReqManager.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [AllowAnonymous]
+        [OutputCache(NoStore = true, Location = System.Web.UI.OutputCacheLocation.None)]
         public override ActionResult Edit(ProjectArtifactEntity entity)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    Service.update(ref entity);
-
-                    HistoryProjectArtifactEntity history = new HistoryProjectArtifactEntity();
-                    ProjectArtifactEntity artifact = Service.get(entity.ProjectArtifactID);
-                    history.ProjectArtifactID = artifact.ProjectArtifactID;
-                    history.description = artifact.description;
-                    history.descriptionImportance = artifact.Importance.description;
-                    history.descriptionTypeArtifact = artifact.ArtifactType.description;
-                    history.login = getLoginUser();
-                    history.path = artifact.path;
-
-                    historyServiceArtifact.add(ref history);
-
-                    Service.saveChanges();
+                    service.update(entity, getLoginUser());
                     return RedirectToAction("Index");
                 }
                 else
@@ -86,17 +72,9 @@ namespace ReqManager.Controllers
 
                 return View(entity);
             }
-            catch (DbEntityValidationException ex)
-            {
-                return getMessageDbValidation(entity, ex);
-            }
-            catch (DbUpdateException ex)
-            {
-                return getMessageDbUpdateException(entity, ex);
-            }
             catch (Exception ex)
             {
-                return getMessageGeralException(entity, ex);
+                return filterException(ex);
             }
         }
     }

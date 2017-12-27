@@ -49,7 +49,11 @@ namespace ReqManager.Controllers
         {
             try
             {
-                return Json(directory.getFolders(path), JsonRequestBehavior.AllowGet);
+                dynamic json = "Search Again!";
+
+                if(Directory.Exists(path))
+                    json = directory.getFolders(path);
+                return Json(json, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

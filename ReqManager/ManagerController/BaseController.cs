@@ -1,7 +1,5 @@
 ﻿using ReqManager.Services.Estructure;
 using System;
-using System.Data.Entity.Infrastructure;
-using System.Data.Entity.Validation;
 using System.Net;
 using System.Web.Mvc;
 
@@ -19,13 +17,12 @@ namespace ReqManager.ManagerController
         #endregion
 
         #region GETS
-        
 
         public virtual ActionResult Index()
         {
             try
             {
-                return View(Service.getAll(5));
+                return View(Service.getAll(10));
             }
             catch (Exception ex)
             {
@@ -140,17 +137,9 @@ namespace ReqManager.ManagerController
 
                 return View();
             }
-            catch (DbEntityValidationException ex)
-            {
-                return getMessageDbValidation(entity, ex);
-            }
-            catch (DbUpdateException ex)
-            {
-                return getMessageDbUpdateException(entity, ex);
-            }
             catch (Exception ex)
             {
-                return getMessageGeralException(entity, ex);
+                return filterException(ex);
             }
         }
 
@@ -174,17 +163,9 @@ namespace ReqManager.ManagerController
 
                 return View(entity);
             }
-            catch (DbEntityValidationException ex)
-            {
-                return getMessageDbValidation(entity, ex);
-            }
-            catch (DbUpdateException ex)
-            {
-                return getMessageDbUpdateException(entity, ex);
-            }
             catch (Exception ex)
             {
-                return getMessageGeralException(entity, ex);
+                return filterException(ex);
             }
         }
 

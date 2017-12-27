@@ -8,5 +8,6 @@ namespace ReqManager.Services.Project.Interfaces
     {
         IEnumerable<ProjectArtifactEntity> getArtifactsByProject(int ProjectID);
         ProjectArtifactEntity GetWithCode(string code);
+        void update(ProjectArtifactEntity entity, string login);
     }
 }

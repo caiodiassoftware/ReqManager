@@ -89,7 +89,7 @@ namespace ReqManager.Controllers
                 {
                     Service.update(ref entity);
                     TempData["ControllerMessage"] = String.Format("Registration has been successfully edited!!");
-                    return RedirectToAction("Details", "Requirement", new { id = entity.RequirementID});
+                    return RedirectToAction("Details", "Requirement", new { id = entity.RequirementID });
                 }
                 else
                 {
@@ -98,17 +98,9 @@ namespace ReqManager.Controllers
 
                 return View(entity);
             }
-            catch (DbEntityValidationException ex)
-            {
-                return getMessageDbValidation(entity, ex);
-            }
-            catch (DbUpdateException ex)
-            {
-                return getMessageDbUpdateException(entity, ex);
-            }
             catch (Exception ex)
             {
-                return getMessageGeralException(entity, ex);
+                return filterException(ex);
             }
         }
     }

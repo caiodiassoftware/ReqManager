@@ -30,34 +30,6 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.code)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.RequirementOrigin.code)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.RequirementTarget.code)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TypeLink.description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Users.name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.creationDate)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id=item.LinkRequirementsID }) |
-                    @Html.ActionLink("Details", "Details", new { id=item.LinkRequirementsID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.LinkRequirementsID })
-                </td>
-            </tr>
-        }
     </tbody>
 </table>
 

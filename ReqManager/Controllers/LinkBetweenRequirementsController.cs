@@ -16,6 +16,7 @@ namespace ReqManager.Controllers
         private IRequirementTraceabilityMatrixService matrixService { get; set; }
         private ILinkBetweenRequirementsService linkService { get; set; }
         private IRequirementService requirementService { get; set; }
+        private ITypeLinkService typeLinkService { get; set; }
 
         public LinkBetweenRequirementsController(
             ILinkBetweenRequirementsService linkService,
@@ -24,13 +25,10 @@ namespace ReqManager.Controllers
             IUserService userService,
             IRequirementTraceabilityMatrixService matrixService) : base(linkService)
         {
+            this.typeLinkService = typeLinkService;
             this.matrixService = matrixService;
             this.linkService = linkService;
             this.requirementService = requirementService;
-
-            ViewData.Add("RequirementOriginID", new SelectList(requirementService.getAll(), "RequirementID", "code"));
-            ViewData.Add("RequirementTargetID", new SelectList(requirementService.getAll(), "RequirementID", "code"));
-            ViewData.Add("TypeLinkID", new SelectList(typeLinkService.getAll(), "TypeLinkID", "description"));
         }
 
         #region GETS
@@ -46,6 +44,38 @@ namespace ReqManager.Controllers
             {
                 throw ex;
             }
+        }
+
+        public override ActionResult Index()
+        {
+            return View();
+        }
+
+        public override ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            LinkBetweenRequirementsEntity link = Service.get(id);
+
+            if (link == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewData.Add("RequirementOriginID", new SelectList(
+                        new List<RequirementEntity>() { link.RequirementOrigin }, "RequirementID", 
+                        "DisplayName", link.RequirementOrigin.RequirementID));
+
+            ViewData.Add("RequirementTargetID", new SelectList(
+                        new List<RequirementEntity>() { link.RequirementTarget }, "RequirementID", 
+                        "DisplayName", link.RequirementTarget.RequirementID));
+
+            ViewData.Add("TypeLinkID", new SelectList(typeLinkService.getAll(), "TypeLinkID", "description", link.TypeLinkID));
+
+            return View(link);
         }
 
         public ActionResult CreateNewLink(int? id)

@@ -4,8 +4,6 @@ using ReqManager.Entities.Project;
 using ReqManager.ManagerController;
 using ReqManager.Services.Project.Interfaces;
 using ReqManager.Services.Acess.Interfaces;
-using System.Data.Entity.Validation;
-using System.Data.Entity.Infrastructure;
 using ReqManager.Services.Directories.Interfaces;
 using ReqManager.ViewModels;
 using ReqManager.Services.Requirements.Interfaces;

@@ -4,8 +4,6 @@
     ViewBag.Title = "Stakeholder Details";
 }
 
-<h2>Details</h2>
-
 <div>
     <hr />
     <dl class="dl-horizontal">
@@ -22,7 +20,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ClassificationID)
+            @Html.DisplayFor(model => model.StakeHolderClassification.description)
         </dd>
 
     </dl>

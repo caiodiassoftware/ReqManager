@@ -4,7 +4,6 @@ using ReqManager.ManagerController;
 using ReqManager.Services.Requirements.Interfaces;
 using ReqManager.Services.Link.Interfaces;
 using ReqManager.Services.Acess.Interfaces;
-using ReqManager.ViewModels;
 using System;
 using System.Collections.Generic;
 using ReqManager.Entities.Requirement;
@@ -29,6 +28,7 @@ namespace ReqManager.Controllers
             this.linkService = linkService;
             this.requirementService = requirementService;
 
+            ViewData.Add("RequirementOriginID", new SelectList(requirementService.getAll(), "RequirementID", "code"));
             ViewData.Add("RequirementTargetID", new SelectList(requirementService.getAll(), "RequirementID", "code"));
             ViewData.Add("TypeLinkID", new SelectList(typeLinkService.getAll(), "TypeLinkID", "description"));
         }

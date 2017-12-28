@@ -2,8 +2,6 @@
 using ReqManager.ManagerController;
 using ReqManager.Services.Requirements.Interfaces;
 using System;
-using System.Data.Entity.Infrastructure;
-using System.Data.Entity.Validation;
 using System.Net;
 using System.Web.Mvc;
 
@@ -26,7 +24,6 @@ namespace ReqManager.Controllers
                 RequirementCharacteristicsEntity entity = Service.get(RequirementCharacteristicsID);
                 entity.check = check;
                 Service.update(ref entity);
-                success("Register has been successfully checked!");
             }
             catch (Exception ex)
             {
@@ -64,7 +61,7 @@ namespace ReqManager.Controllers
                 {
                     Service.add(ref characteristic);
                     ModelState.Clear();
-                    TempData["ControllerMessage"] = String.Format("Register was made with Success!");
+                    success("Register was made with Success!");
                     Response.Redirect("~/RequirementCharacteristics/Create/" + ID);
                 }
                 else
@@ -88,7 +85,7 @@ namespace ReqManager.Controllers
                 if (ModelState.IsValid)
                 {
                     Service.update(ref entity);
-                    TempData["ControllerMessage"] = String.Format("Registration has been successfully edited!!");
+                    success("Registration has been successfully edited!");
                     return RedirectToAction("Details", "Requirement", new { id = entity.RequirementID });
                 }
                 else

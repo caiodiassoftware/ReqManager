@@ -72,8 +72,10 @@ namespace ReqManager.Services.Documents.Classes
             try
             {
                 List<RequirementEntity> requirements =
-                    requirementService.getRequirementsByProject(ProjectID).
-                    Where(r => r.RequirementTypeID.Equals(RequirementTypeID)).ToList();
+                    requirementService.getRequirementsByProject(ProjectID).ToList();
+
+                if (RequirementTypeID != 0)
+                    requirements.RemoveAll(r => !r.RequirementTypeID.Equals(RequirementTypeID));
 
                 ProjectEntity project = projectService.get(ProjectID);
 

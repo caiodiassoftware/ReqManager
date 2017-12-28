@@ -283,7 +283,7 @@ namespace ReqManager.Controllers
                     RequirementEntity entity = Mapper.Map<RequirementViewModel, RequirementEntity>(vm);
                     setIdUser(ref entity);
                     Service.add(ref entity);
-                    success("Register was made with Success!");
+                    success("Register was made with Success! " + entity.DisplayName);
                     return RedirectToAction("Details", "Projects", new { id = vm.ProjectID });
                 }
                 else

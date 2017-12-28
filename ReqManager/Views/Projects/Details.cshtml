@@ -875,13 +875,13 @@
         function requestPrintDocumentRequirement() {
             var id = $("#ID").val();
             clearDropDown("RequirementTypeID");
-            $('#RequirementTypeID').append("<option value='" + 0 + "'>SELECT THE REQUIREMENT TYPE</option>");
+            $('#RequirementTypeID').append("<option value='" + 0 + "'>PRINT ALL REQUIREMENTS</option>");
 
             $.getJSON('@Url.Action("GetRequirementsFromProject", "Projects")', { ProjectID: id }, function (response) {
                 $.each(response, function (index, item) {
                     var optionExists = ($('#RequirementTypeID option[value=' + item.RequirementTypeID + ']').length > 0);
                     if (!optionExists)
-                        $('#RequirementTypeID').append("<option value='" + item.RequirementTypeID + "'>" + item.RequirementType.description + "</option>");
+                        $('#RequirementTypeID').append("<option value='" + item.RequirementTypeID + "'> By Type " + item.RequirementType.description + "</option>");
                 });
             });
 
@@ -928,8 +928,6 @@
 
             $.getJSON('@Url.Action("GetLink", "LinkBetweenRequirements")',
                 { ReqOrigin: ReqOrigin, ReqTarget: ReqTarget }, function (response) {
-                    console.log(response);
-
                     $("#mdLinkRequirementCode").html(response.code);
                     $('#mdLinkRequirementName').html(response.DisplayName);
                     $('#mdLinkRequirementOrigin').html(response.RequirementOrigin.DisplayName);
@@ -954,12 +952,8 @@
             var ArtifactCode = link.attr('data-artifact');
             var RequirementCode = link.attr('data-requirement');
 
-            console.log(ArtifactCode);
-            console.log(RequirementCode);
-
             $.getJSON('@Url.Action("GetLink", "LinkBetweenRequirementsArtifact")',
                 { ArtifactCode: ArtifactCode, RequirementCode: RequirementCode }, function (response) {
-                    console.log(response);
 
                     $("#mdLinkArtifactCode").html(response.code);
                     $('#mdLinkArtifactName').html(response.DisplayName);

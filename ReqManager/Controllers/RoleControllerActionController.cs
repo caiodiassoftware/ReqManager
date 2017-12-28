@@ -8,9 +8,13 @@ namespace ReqManager.Controllers
 {
     public class RoleControllerActionController : BaseController<RoleControllerActionEntity>
     {
-        public RoleControllerActionController(IRoleControllerActionService service) : base(service)
+        public RoleControllerActionController(
+            IRoleControllerActionService service,
+            IControllerActionService actions,
+            IRoleService role) : base(service)
         {
-
+            ViewData.Add("ControllerActionID", new SelectList(actions.getAll(), "ControllerActionID", "DisplayName"));
+            ViewData.Add("RoleID", new SelectList(role.getAll(), "RoleID", "description"));
         }
 
         public override ActionResult Index()

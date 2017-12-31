@@ -29,14 +29,14 @@ namespace ReqManager.Controllers
             {
                 if (id == null)
                 {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    throw new ArgumentException("Invalid Request!");
                 }
 
                 LinkBetweenRequirementsArtifactsEntity link = reqArtService.get(id);
 
                 if (link == null)
                 {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    throw new ArgumentException("Invalid Request!");
                 }
 
                 ViewData.Add("LinkArtifactRequirementID", new SelectList(

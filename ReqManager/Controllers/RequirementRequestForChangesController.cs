@@ -41,7 +41,7 @@ namespace ReqManager.Controllers
             {
                 RequirementRequestForChangesEntity request = Service.get(RequirementRequestForChangesID);
                 request.RequestStatusID = RequestStatusID;
-                base.Edit(request);
+                Service.update(ref request);
             }
             catch (Exception ex)
             {
@@ -55,14 +55,14 @@ namespace ReqManager.Controllers
             {
                 if (id == null)
                 {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    throw new ArgumentException("Invalid Request!");
                 }
 
                 StakeholderRequirementEntity stakeholder = stakeholderRequirement.get(Convert.ToInt32(id), getIdUser());
 
                 if (stakeholder == null)
                 {
-                    return new HttpStatusCodeResult(HttpStatusCode.Unauthorized, "You are not Stakeholder interesed in this Requirement!");
+                    throw new ArgumentException("You are not a Stakeholder bound by this Requirement");
                 }
 
                 if (service.validateRequestForRequirement(Convert.ToInt32(id)))
@@ -72,7 +72,10 @@ namespace ReqManager.Controllers
                     return View();
                 }
                 else
-                    return new HttpStatusCodeResult(HttpStatusCode.Unauthorized, "This requirement already has a change request!");
+                {
+                    info("This requirement already has a change request!");
+                    return RedirectToAction("Details", "Requirement", new { id = id });
+                }
             }
             catch (Exception ex)
             {
@@ -95,7 +98,7 @@ namespace ReqManager.Controllers
                 reqRequest.RequestStatusID = 1;
                 reqRequest.creationDate = DateTime.Now;
                 reqRequest.request = request;
-                base.Create(reqRequest);
+                Service.add(ref reqRequest);
                 Response.Redirect("~/Requirement/Details/" + id);
             }
             catch (Exception ex)

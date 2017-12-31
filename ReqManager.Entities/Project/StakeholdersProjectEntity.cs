@@ -17,7 +17,7 @@ namespace ReqManager.Entities.Project
         public int StakeholderID { get; set; }
         [Required]
         [Display(Name = "Creation Date")]
-        public DateTime creationDate { get; set; } = DateTime.Now;
+        public DateTime creationDate { get; set; }
         [Required]
         [MaxLength(255)]
         public string description { get; set; }

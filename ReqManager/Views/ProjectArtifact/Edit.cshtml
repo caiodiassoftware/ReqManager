@@ -41,7 +41,7 @@
         <div class="form-group">
             @Html.Label("Artifact Type", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("ArtifactTypeID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("ArtifactTypeID", null, htmlAttributes: new { @class = "form-control select2" })
                 @Html.ValidationMessageFor(model => model.ArtifactTypeID, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -49,7 +49,7 @@
         <div class="form-group">
             @Html.Label("Importance", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("ImportanceID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("ImportanceID", null, htmlAttributes: new { @class = "form-control select2" })
                 @Html.ValidationMessageFor(model => model.ImportanceID, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -57,7 +57,7 @@
         <div class="form-group">
             @Html.Label("Project", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("ProjectID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("ProjectID", null, htmlAttributes: new { @class = "form-control select2" })
                 @Html.ValidationMessageFor(model => model.ProjectID, "", new { @class = "text-danger" })
             </div>
         </div>

@@ -42,7 +42,7 @@
     $(document).ready(function () {
         $('#requirement').dataTable({
             "bServerSide": true,
-            "bProcessing": false,
+            "bProcessing": true,
             ajax: {
                 "url": '@Url.Action("GetFilter", "Requirement")',
                 "type": 'POST',

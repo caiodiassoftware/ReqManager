@@ -282,6 +282,7 @@ namespace ReqManager.Controllers
                 {
                     RequirementEntity entity = Mapper.Map<RequirementViewModel, RequirementEntity>(vm);
                     setIdUser(ref entity);
+                    setCreationDate(ref entity);
                     Service.add(ref entity);
                     success("Register was made with Success!");
                     return RedirectToAction("Details", "Projects", new { id = vm.ProjectID });
@@ -338,13 +339,11 @@ namespace ReqManager.Controllers
             try
             {
                 requirementService.delete(id);
-                requirementService.saveChanges();
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
-                ViewBag.MessageReqManager = String.Format("Error Detected! " + ex.Message);
-                return RedirectToAction("Index");
+                throw ex;
             }
         }
 

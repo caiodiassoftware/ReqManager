@@ -20,7 +20,7 @@ namespace ReqManager.Entities.Acess
         [Display(Name = "Task-User")]
         public int UserTaskID { get; set; }
         [Display(Name = "Creation Date")]
-        public System.DateTime creationDate { get; set; } = DateTime.Now;
+        public System.DateTime creationDate { get; set; }
         [MinLength(3)]
         [MaxLength(1000)]
         [Required]

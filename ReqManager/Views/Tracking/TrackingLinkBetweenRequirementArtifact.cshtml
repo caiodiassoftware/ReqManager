@@ -9,16 +9,18 @@
 
     <div class="col-lg-5">
         <div class="form-group">
-            @Html.Label("R to A", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Link", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("LinkBetweenArtifactRequirement", Enumerable.Empty<SelectListItem>(), htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("LinkBetweenArtifactRequirement", 
+               Enumerable.Empty<SelectListItem>(), htmlAttributes: new { @class = "form-control select2" })
                 @Html.ValidationMessage("LinkBetweenArtifactRequirement", "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
             @Html.Label("Project", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Project", Enumerable.Empty<SelectListItem>(), "SELECT THE PROJECT", htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("Project", Enumerable.Empty<SelectListItem>(), 
+               "SELECT THE PROJECT", htmlAttributes: new { @class = "form-control select2" })
                 @Html.ValidationMessage("Project", "", new { @class = "text-danger" })
             </div>
         </div>
@@ -38,24 +40,25 @@
         </div>
     </div>
     <div class="col-lg-5">
-        <div class="form-group">
+        <div id="foldersDiv" style="display:none;" class="form-group">
             @Html.Label("Folders", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("Folders", Enumerable.Empty<SelectListItem>(), "SELECT THE FOLDER",
-               htmlAttributes: new { @data_something = "", @class = "form-control" })
+               htmlAttributes: new { @class = "form-control select2" })
                 @Html.ValidationMessage("Folders", "", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="form-group">
+        <div id="filesDiv" style="display:none;" class="form-group">
             @Html.Label("Files", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Files", Enumerable.Empty<SelectListItem>(), "SELECT THE FILE PATH", htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("Files", Enumerable.Empty<SelectListItem>(), 
+               "SELECT THE FILE PATH", htmlAttributes: new { @class = "form-control select2" })
                 @Html.ValidationMessage("Files", "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <button id="track" class="btn btn-default">Track</button>
+                <button id="track" class="btn btn-default" style="display:none;">Track</button>
             </div>
         </div>
     </div>
@@ -76,7 +79,6 @@
                 });
                 $.getJSON('@Url.Action("Get", "ProjectArtifact")', { ID: response.ProjectArtifactID }, function (response) {
                     var optionExists = ($('#Project option[value=' + response.Project.ProjectID + ']').length > 0);
-                    console.log(optionExists);
                     if (!optionExists)
                         $('#Project').append("<option value='" + response.Project.ProjectID + "'>" + response.Project.DisplayName + "</option>");
                 });
@@ -85,12 +87,15 @@
 
         $("#Folders").change(function () {
             clearDropDown("Files");
+            $('#filesDiv').hide();
             $('#Files').append("<option value='" + 0 + "'>SELECT THE FILE</option>");
         });
 
         $("#Project").change(function () {
             var ProjectID = $(this).val();
-
+            $('#foldersDiv').hide();
+            $('#filesDiv').hide();
+            $('#track').hide();
             $.getJSON('@Url.Action("Get", "Projects")', { ID: ProjectID }, function (response) {
                 $('#PathForTraceability').val(response.pathForTraceability);
             });
@@ -100,6 +105,8 @@
             var path = $('#PathForTraceability').val();
             clearDropDown('Folders');
             clearDropDown('Files');
+
+            $('#filesDiv').hide();
 
             $.getJSON(
                 '@Url.Action("GetFolders", "File")',
@@ -111,8 +118,8 @@
                     $.each(response, function (index, item) {
                         $('#Folders').append("<option value='" + item + "'>" + item + "</option>");
                     });
-                }).error(function () {
-                    alert('Error');
+                    $('#foldersDiv').show();
+                    $('#track').show();
                 });
         });
 
@@ -133,6 +140,7 @@
                         if (!optionExists)
                             $('#Files').append("<option value='" + item + "'>" + item + "</option>");
                     });
+                    $('#filesDiv').show();
                 });
         });
 

@@ -15,7 +15,7 @@ namespace ReqManager.Entities.Project
         [Display(Name = "Requirement")]
         public int RequirementID { get; set; }
         [Display(Name = "Creation Date")]
-        public DateTime creationDate { get; set; } = DateTime.Now;
+        public DateTime creationDate { get; set; }
         [Required]
         [Range(0, 9)]
         [Display(Name = "Importance to Requirement")]

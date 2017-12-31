@@ -30,7 +30,7 @@
         <div class="form-group">
             @Html.Label("Phases", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("ProjectPhasesID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("ProjectPhasesID", null, htmlAttributes: new { @class = "form-control select2" })
                 @Html.ValidationMessageFor(model => model.ProjectPhasesID, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -54,7 +54,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.startDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.startDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                @Html.EditorFor(model => model.startDate, new { htmlAttributes = new { @class = "form-control datepicker date", @placeHolder = "mm/dd/yyyy" } })
                 @Html.ValidationMessageFor(model => model.startDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -62,7 +62,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.endDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.endDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
+                @Html.EditorFor(model => model.endDate, new { htmlAttributes = new { @class = "form-control datepicker date", @placeHolder = "mm/dd/yyyy" } })
                 @Html.ValidationMessageFor(model => model.endDate, "", new { @class = "text-danger" })
             </div>
         </div>

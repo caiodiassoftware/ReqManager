@@ -45,7 +45,7 @@ namespace ReqManager.Controllers
 
                 if (stakeholder == null)
                 {
-                    return new HttpStatusCodeResult(HttpStatusCode.Unauthorized, "You are not Stakeholder interesed in this Requirement!");
+                    throw new ArgumentException("You are not Stakeholder interesed in this Requirement!");
                 }
 
                 return View();
@@ -72,7 +72,6 @@ namespace ReqManager.Controllers
                 if (TryValidateModel(approval))
                 {
                     Service.add(ref approval);
-                    success("Register was made with Success!");
                     Response.Redirect("~/Requirement/Details/" + ID);
                 }
                 else

@@ -37,7 +37,7 @@ namespace ReqManager.Entities.Artifact
         [DataType(DataType.MultilineText)]
         public string description { get; set; }
         [Display(Name = "Creation Data")]
-        public DateTime creationDate { get; set; } = DateTime.Now;
+        public DateTime creationDate { get; set; }
 
         public String DisplayName
         {

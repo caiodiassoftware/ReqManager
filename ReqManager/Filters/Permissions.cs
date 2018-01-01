@@ -34,7 +34,6 @@ namespace ReqManager.Filters
 
                         UserEntity user = userService.get(UserID);
                         HttpContext.Current.Session["name"] = user.nickName;
-                        HttpContext.Current.Session["roles"] = "Admin";
 
                         authCookie.Expires = DateTime.Now.AddMinutes(30);
                         HttpContext.Current.Response.Cookies.Add(authCookie);

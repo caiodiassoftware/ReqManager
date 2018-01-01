@@ -51,3 +51,4 @@ C:\Users\cdias\Desktop\ReqManager\ReqManager.Data\obj\Debug\ReqManager.Data.cspr
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\obj\Debug\ReqManager.Data.Migrations.InitialCreate.resources
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\obj\Debug\ReqManager.Data.csproj.GenerateResource.Cache
 C:\Users\cdias\Desktop\ReqManager\ReqManager.Data\obj\Debug\ReqManager.Data.Migrations.InitialCreate.resources
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\obj\Debug\ReqManager.Data.Migrations.StakeholderRequirementIndex.resources

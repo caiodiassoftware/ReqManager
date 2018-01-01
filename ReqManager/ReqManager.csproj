@@ -642,7 +642,6 @@
     <Content Include="Views\Characteristics\Index.cshtml" />
     <Content Include="Views\RequirementCharacteristics\Create.cshtml" />
     <Content Include="Views\RequirementCharacteristics\Delete.cshtml" />
-    <Content Include="Views\RequirementCharacteristics\Edit.cshtml" />
     <Content Include="Views\RequirementSubType\Create.cshtml" />
     <Content Include="Views\RequirementSubType\Delete.cshtml" />
     <Content Include="Views\RequirementSubType\Details.cshtml" />
@@ -652,10 +651,7 @@
     <Content Include="Views\RequirementRequestForChanges\Delete.cshtml" />
     <Content Include="Views\RequirementRequestForChanges\Details.cshtml" />
     <Content Include="Views\RequirementRequestForChanges\Edit.cshtml" />
-    <Content Include="Views\RequestStatus\Create.cshtml" />
-    <Content Include="Views\RequestStatus\Delete.cshtml" />
     <Content Include="Views\RequestStatus\Details.cshtml" />
-    <Content Include="Views\RequestStatus\Edit.cshtml" />
     <Content Include="Views\RequestStatus\Index.cshtml" />
     <Content Include="Views\StakeholderRequirementApproval\Approve.cshtml" />
     <Content Include="Views\Projects\PrintDocumentRequirement.cshtml" />

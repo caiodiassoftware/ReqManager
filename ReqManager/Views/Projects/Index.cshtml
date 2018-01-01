@@ -2,65 +2,69 @@
 @{
     ViewBag.Title = "Projects";
 }
-<p>5
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table id="projects" class="display">
-    <thead>
-        <tr> 
-            <th>
-                @Html.DisplayNameFor(model => model.code)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProjectPhases.description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Users.name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.startDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.endDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.creationDate)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+
+    <div class="form-group">
+        @Html.ActionLink("Create New", "Create", "Projects", null, new { @class = "btn btn-primary" })
+    </div>
+
+    <table id="projects" class="display">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.code)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProjectPhases.description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Users.name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.startDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.endDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.creationDate)
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.code)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProjectPhases.description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Users.name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.startDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.endDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.creationDate)
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.code)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProjectPhases.description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Users.name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.startDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.endDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.creationDate)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function () {
         $('#projects').dataTable({

@@ -4,6 +4,7 @@ using ReqManager.Services.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Reflection;
 
 namespace ReqManager.Services.Estructure
 {
@@ -36,6 +37,7 @@ namespace ReqManager.Services.Estructure
         {
             try
             {
+                setCreationDate(ref entity);
                 TModel model = convertEntityToModel(entity);
                 repository.add(model);
                 commit(persistir);
@@ -141,21 +143,30 @@ namespace ReqManager.Services.Estructure
             }
         }
 
-        public virtual void saveChanges()
+        #endregion
+
+        #region Privates Methods
+
+        protected void setCreationDate(ref TEntity entity)
         {
             try
             {
-                unit.Commit();
+                PropertyInfo prop = entity.GetType().
+                    GetProperty("creationDate",
+                    BindingFlags.Public | BindingFlags.Instance);
+                if (null != prop && prop.CanWrite)
+                    prop.SetValue(entity, DateTime.Now, null);
+                prop = entity.GetType().
+                    GetProperty("CreationDate",
+                    BindingFlags.Public | BindingFlags.Instance);
+                if (null != prop && prop.CanWrite)
+                    prop.SetValue(entity, DateTime.Now, null);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-
-        #endregion
-
-        #region Privates Methods
 
         protected TModel convertEntityToModel(TEntity entity)
         {

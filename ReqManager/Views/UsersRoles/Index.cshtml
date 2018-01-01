@@ -1,12 +1,12 @@
 ﻿@model IEnumerable<ReqManager.Entities.Acess.UserRoleEntity>
 
 @{
-    ViewBag.Title = "Relationships between Users and Roles";
+    ViewBag.Title = "User Roles";
 }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<div class="form-group">
+    @Html.ActionLink("Create New", "Create", "UserRoles", null, new { @class = "btn btn-primary" })
+</div>
 <table class="table">
     <tr>
         <th>

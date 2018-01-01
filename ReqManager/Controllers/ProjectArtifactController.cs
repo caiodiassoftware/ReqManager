@@ -4,8 +4,6 @@ using ReqManager.Entities.Artifact;
 using ReqManager.ManagerController;
 using ReqManager.Services.Project.Interfaces;
 using ReqManager.Services.Acess.Interfaces;
-using System.Data.Entity.Validation;
-using System.Data.Entity.Infrastructure;
 
 namespace ReqManager.Controllers
 {

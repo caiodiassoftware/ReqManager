@@ -57,6 +57,9 @@ namespace ReqManager.Controllers
                 characteristic.RequirementID = Convert.ToInt32(ID);
                 characteristic.CharacteristicsID = Convert.ToInt32(CharacteristicsID);
 
+                setCreationDate(ref characteristic);
+                setIdUser(ref characteristic);
+
                 if(TryValidateModel(characteristic))
                 {
                     Service.add(ref characteristic);

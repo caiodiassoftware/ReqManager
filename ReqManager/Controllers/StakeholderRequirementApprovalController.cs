@@ -69,6 +69,9 @@ namespace ReqManager.Controllers
                 approval.description = description;
                 approval.approved = Convert.ToBoolean(approved);
 
+                setCreationDate(ref approval);
+                setIdUser(ref approval);
+
                 if (TryValidateModel(approval))
                 {
                     Service.add(ref approval);

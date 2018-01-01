@@ -142,16 +142,16 @@
             </div>
             <div class="row">
 
-            <dl class="dl-horizontal">
-                <dt>
-                    Info
-                </dt>
+                <dl class="dl-horizontal">
+                    <dt>
+                        Info
+                    </dt>
 
-                <dd>
-                    @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control" } })
-                </dd>
+                    <dd>
+                        @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control" } })
+                    </dd>
 
-            </dl>
+                </dl>
             </div>
         </div>
         <div id="rr">
@@ -394,9 +394,6 @@
                         <td>
                             @if (!item.Characteristics.required)
                             {
-                                <p>
-                                    @Html.ActionLink("Edit", "Edit", "RequirementCharacteristics", new { id = item.RequirementCharacteristicsID }, null)
-                                </p>
                                 <p>
                                     @Html.ActionLink("Delete", "Delete", "RequirementCharacteristics", new { id = item.RequirementCharacteristicsID }, null)
                                 </p>
@@ -886,25 +883,7 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 
-    <script src="~/Scripts/tinymce/tinymce.min.js"></script>
     <script type="text/javascript">
-        tinymce.init({
-            selector: '#description',
-            height: 350,
-            readonly : true,
-            menubar: false,
-            content_css: [
-                '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
-                '//www.tinymce.com/css/codepen.min.css']
-        });
-    </script>
-
-    <script type="text/javascript">
-
-        $(function () {
-            tinyMCE.activeEditor.setContent(@Model.description);
-        });
-
         function checkCharacteristic(element, ID) {
             $.post('@Url.Action("Check", "RequirementCharacteristics")',
                 { RequirementCharacteristicsID: ID, check: element.checked }, function () {
@@ -934,7 +913,6 @@
         };
 
         function addStakeholder() {
-
             var RequirementID = $('#ID').val();
 
             $.getJSON('@Url.Action("Get", "Requirement")',
@@ -1065,5 +1043,16 @@
         };
 
     </script>
-
+    <script src="~/Scripts/tinymce/tinymce.min.js"></script>
+    <script type="text/javascript">
+        tinymce.init({
+            selector: '#description',
+            height: 350,
+            readonly: true,
+            menubar: false,
+            content_css: [
+                '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+                '//www.tinymce.com/css/codepen.min.css']
+        });
+    </script>
 }

@@ -24,7 +24,8 @@ namespace ReqManager.Controllers
         {
             StakeholdersProjectEntity entity = Service.get(StakeholdersProjectID);
             entity.importanceValue = importanceValue;
-            return base.Edit(entity);
+            Service.update(ref entity);
+            return View("Index");
         }
 
         [HttpPost]
@@ -37,7 +38,12 @@ namespace ReqManager.Controllers
                 stakeholderProject.StakeholderID = StakeholderID;
                 stakeholderProject.description = description;
                 stakeholderProject.importanceValue = importanceValue;
-                base.Create(stakeholderProject);
+                setCreationDate(ref stakeholderProject);
+                setIdUser(ref stakeholderProject);
+                if(TryValidateModel(stakeholderProject))
+                {
+                    Service.add(ref stakeholderProject);
+                }
             }
             catch (Exception ex)
             {

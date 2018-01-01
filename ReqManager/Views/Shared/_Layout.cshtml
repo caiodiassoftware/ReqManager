@@ -54,10 +54,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="left-side sticky-left-side">
 
             <div class="logo">
-                <h1><a href="index.html">Req<span>Manager</span></a></h1>
+                <h1><a href="#">Req<span>Manager</span></a></h1>
             </div>
             <div class="logo-icon text-center">
-                <a href="index.html"><i class="glyphicon glyphicon-home"></i> </a>
+                <a href="#"><i class="glyphicon glyphicon-home"></i> </a>
             </div>
 
             <div class="left-side-inner">
@@ -148,27 +148,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="menu-right">
                     <div class="user-panel-top">
                         <div class="profile_details">
-                            <ul>
-                                <li class="dropdown profile_details_drop">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <div class="profile_img">
-
-                                            @*<div class="user-name">
-                                                    @if (Session["name"] != null && Session["roles"] != null)
-                                                    {
-                                                        <p>@Session["name"].ToString()<span>@Session["roles"].ToString()</span></p>
-                                                    }
-                                                </div>*@
-                                            <i class="lnr lnr-chevron-down"></i>
-                                            <i class="lnr lnr-chevron-up"></i>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                    </a>
-                                    <ul class="dropdown-menu drp-mnu">
-                                        <li> <a href="#" onclick="LogOut(); return false;"><i class="fa fa-sign-out"></i>Logout</a></li>
+                            <div class="form-group">
+                                
+                                    @if (Session["name"] != null)
+                                    {
+                                        <p style="color:orangered;">@Session["name"].ToString()</p>
+                                    }
+                                    
+                                    <ul>
+                                        <li class="dropdown profile_details_drop">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                <i class="lnr lnr-chevron-down"></i>
+                                                <i class="lnr lnr-chevron-up"></i>
+                                            </a>
+                                            <ul class="dropdown-menu drp-mnu pull-right">
+                                                <li> <a href="#" onclick="LogOut(); return false;"><i class="fa fa-sign-out"></i>Logout</a></li>
+                                            </ul>
+                                        </li>
                                     </ul>
-                                </li>
-                            </ul>
+                                </div>
                         </div>
                         <div class="clearfix"></div>
                     </div>

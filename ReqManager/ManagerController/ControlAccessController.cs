@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -78,7 +79,7 @@ namespace ReqManager.ManagerController
                     {
                         foreach (PropertyInfo pi in item.GetType().GetProperties())
                         {
-                            string json = new JavaScriptSerializer().Serialize(item).ToLower(); ;
+                            string json = new JavaScriptSerializer().Serialize(item).ToLower();
                             if (json.Contains(searchValue.ToLower()))
                             {
                                 result.Add(item);
@@ -89,12 +90,11 @@ namespace ReqManager.ManagerController
                 }
                 else
                 {
-                    result = entities.Take(5).ToList();
+                    result = entities.Take(10).ToList();
                 }
 
                 return Json(new
                 {
-                    //sEcho = requestModel.Search.Value,
                     iTotalRecords = result.Count(),
                     iTotalDisplayRecords = result.Count(),
                     aaData = result
@@ -127,6 +127,27 @@ namespace ReqManager.ManagerController
             try
             {
                 return getAuthToken().Name;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        protected void setCreationDate(ref TEntity entity)
+        {
+            try
+            {
+                PropertyInfo prop = entity.GetType().
+                    GetProperty("creationDate",
+                    BindingFlags.Public | BindingFlags.Instance);
+                if (null != prop && prop.CanWrite)
+                    prop.SetValue(entity, DateTime.Now, null);
+                prop = entity.GetType().
+                    GetProperty("CreationDate",
+                    BindingFlags.Public | BindingFlags.Instance);
+                if (null != prop && prop.CanWrite)
+                    prop.SetValue(entity, DateTime.Now, null);
             }
             catch (Exception ex)
             {
@@ -185,24 +206,7 @@ namespace ReqManager.ManagerController
 
         protected void getMessageDbUpdateException(DbUpdateException ex)
         {
-            var builder = new StringBuilder("Erro was detected while saving changes. ");
-
-            try
-            {
-                foreach (var result in ex.Entries)
-                {
-                    builder.AppendFormat("Type: {0} was part of the problem. ", result.Entity.GetType().Name);
-                    builder.AppendFormat(!string.IsNullOrEmpty(ex.InnerException.Message) ? ex.InnerException.Message : ex.Message);
-                }
-            }
-            catch (Exception e)
-            {
-                builder.Append("Error parsing DbUpdateException: " + e.ToString());
-            }
-
-            string message = builder.ToString() + " - " + ex.InnerException.InnerException.Message;
-            ModelState.Clear();
-            throw new Exception(message);
+            throw new Exception(ex.InnerException.InnerException.Message);
         }
 
         protected void getModelStateValidations()

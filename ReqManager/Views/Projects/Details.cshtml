@@ -129,7 +129,7 @@
                 </dd>
 
                 <dt>
-                    Requirements Cost
+                    Requirements Sum
                 </dt>
 
                 <dd id="requirementCost">
@@ -824,9 +824,11 @@
                 theme: 'fontawesome-stars'
             });
             $('#requirementsTable').dataTable();
+            $('#requirementCost').html('Calculating...');
             var ProjectID = $('#ID').val();
             $.get('@Url.Action("GetRequirementCostByProject", "Requirement")',
                 { ProjectID: ProjectID }, function (data) {
+                    $('#requirementCost').empty();
                     $('#requirementCost').html(data);
                 });
         });

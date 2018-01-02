@@ -4,9 +4,10 @@
     ViewBag.Title = "Artifacts";
 }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<div class="form-group">
+    @Html.ActionLink("Create New", "Create", "ProjectArtifact", null, new { @class = "btn btn-primary" })
+</div>
+
 <table id="artifacts" class="display">
     <thead>
         <tr>

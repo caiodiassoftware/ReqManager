@@ -43,7 +43,11 @@ namespace ReqManager.Controllers
                 stakeholder.StakeholdersProjectID = StakeholderProjectID;
                 stakeholder.RequirementID = RequirementID;
                 stakeholder.importanceValue = importanceValue;
-                base.Create(stakeholder);
+                setCreationDate(ref stakeholder);
+                if(TryValidateModel(stakeholder))
+                {
+                    Service.add(ref stakeholder);
+                }
             }
             catch (Exception ex)
             {

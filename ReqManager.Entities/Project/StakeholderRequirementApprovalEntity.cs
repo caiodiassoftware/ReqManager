@@ -9,7 +9,7 @@ namespace ReqManager.Entities.Project
         public int StakeholderRequirementApprovalID { get; set; }
         [Range(1, Double.PositiveInfinity)]
         public int StakeholderRequirementID { get; set; }
-        public DateTime creationDate { get; set; } = DateTime.Now;
+        public DateTime creationDate { get; set; }
         [MinLength(6)]
         [MaxLength(1000)]
         [Required]

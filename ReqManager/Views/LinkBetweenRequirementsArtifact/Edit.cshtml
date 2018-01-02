@@ -7,7 +7,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -16,30 +16,32 @@
         @Html.HiddenFor(model => model.ProjectArtifactID)
         @Html.HiddenFor(model => model.RequirementID)
         @Html.HiddenFor(model => model.CreationUserID)
-
         <fieldset disabled>
+
             <div class="form-group">
-                @Html.LabelFor(model => model.code, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.Label("Link", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.code, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.DisplayName, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.code, "", new { @class = "text-danger" })
                 </div>
             </div>
-        <div class="form-group">
-            @Html.Label("Artifact", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("ProjectArtifactID", null, "SELECT THE ARTIFACT", htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.ProjectArtifactID, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.Label("Requirement", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("RequirementID", null, "SELECT THE REQUIREMENT", htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.RequirementID, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.Label("Artifact", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.ProjectArtifactID, null, "SELECT THE ARTIFACT", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ProjectArtifactID, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
+
+            <div class="form-group">
+                @Html.Label("Requirement", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.RequirementID, null, "SELECT THE REQUIREMENT", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.RequirementID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </fieldset>
 
         </fieldset>
 
@@ -47,7 +49,8 @@
         <div class="form-group">
             @Html.Label("Type Link", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("TypeLinkID", null, "SELECT THE TYPE LINK", htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.TypeLinkID, null, "SELECT THE TYPE LINK",
+               htmlAttributes: new { @class = "form-control select2" })
                 @Html.ValidationMessageFor(model => model.TypeLinkID, "", new { @class = "text-danger" })
             </div>
         </div>

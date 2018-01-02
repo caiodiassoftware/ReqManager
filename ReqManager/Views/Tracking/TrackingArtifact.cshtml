@@ -14,7 +14,7 @@
         <div class="form-group">
             @Html.Label("Artifacts", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Artifacts", null, "SELECT THE ARTIFACT", htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("Artifacts", null, "SELECT THE ARTIFACT", htmlAttributes: new { @class = "form-control select2" })
                 @Html.ValidationMessage("Artifacts", "", new { @class = "text-danger" })
             </div>
         </div>
@@ -33,32 +33,33 @@
         </div>
 
         <div>
-            @Html.ActionLink("Back to Artifact", "Details", "ProjectArtifact", new { id = Request.Url.Segments[3].ToString() }, null)
+            @Html.ActionLink("Back to Artifact", "Details", "ProjectArtifact", 
+           new { id = Request.Url.Segments[3].ToString() }, null)
         </div>
 
     </div>
 
     <div class="col-lg-5">
 
-        <div class="form-group">
+        <div id="foldersDiv" class="form-group" style="display:none;">
             @Html.Label("Folders", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Folders", Enumerable.Empty<SelectListItem>(), "SEARCH THE FOLDERS", htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("Folders", Enumerable.Empty<SelectListItem>(), "SEARCH THE FOLDERS", htmlAttributes: new { @class = "form-control select2" })
                 @Html.ValidationMessage("Folders", "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
+        <div id="filesDiv" style="display:none;" class="form-group">
             @Html.Label("Files", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Files", Enumerable.Empty<SelectListItem>(), "SELECT THE FILE PATH", htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("Files", Enumerable.Empty<SelectListItem>(), "SELECT THE FILE PATH", htmlAttributes: new { @class = "form-control select2" })
                 @Html.ValidationMessage("Files", "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <button id="track" class="btn btn-default">Track</button>
+                <button id="track" class="btn btn-default" style="display:none;">Track</button>
             </div>
         </div>
     </div>
@@ -79,6 +80,7 @@
         $("#search").click(function () {
             var path = $('#PathForTraceability').val();
             clearDropDown('Folders');
+            $('#filesDiv').hide();
 
             $.getJSON(
                 '@Url.Action("GetFolders", "File")',
@@ -89,13 +91,14 @@
                     $.each(response, function (index, item) {
                         $('#Folders').append("<option value='" + item + "'>" + item + "</option>");
                     });
-                }).error(function () {
-                    alert('Error');
+                    $('#foldersDiv').show();
+                    $('#track').show();
                 });
         });
 
         $("#Folders").change(function () {
             clearDropDown("Files");
+            $('#filesDiv').hide();
             $('#Files').append("<option value='" + 0 + "'>SELECT THE FILE</option>");
         });
 
@@ -114,6 +117,7 @@
                     $.each(response, function (index, item) {
                         $('#Files').append("<option value='" + item + "'>" + item + "</option>");
                     });
+                    $('#filesDiv').show();
                 });
         });
 

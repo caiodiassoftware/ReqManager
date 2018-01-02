@@ -10,6 +10,7 @@ using ReqManager.Services.Requirements.Interfaces;
 using ReqManager.Services.Documents.Interfaces;
 using System.Web;
 using ReqManager.Services.Artifact.Interfaces;
+using System.Linq;
 
 namespace ReqManager.Controllers
 {
@@ -80,7 +81,8 @@ namespace ReqManager.Controllers
         {
             try
             {
-                return Json(requirementService.getRequirementsByProject(ProjectID), JsonRequestBehavior.AllowGet);
+                var json = requirementService.getRequirementsByProject(ProjectID);
+                return Json(json, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

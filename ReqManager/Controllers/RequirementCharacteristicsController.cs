@@ -36,8 +36,8 @@ namespace ReqManager.Controllers
         {
             try
             {
-                if (id == null)                
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                    throw new ArgumentException("Invalid Request!");
                 return View();
             }
             catch (Exception ex)
@@ -48,14 +48,17 @@ namespace ReqManager.Controllers
 
         [HttpPost]
         [AcceptVerbs(HttpVerbs.Post)]
-        public void CreateConfirmed(int? ID, int? CharacteristicsID, bool? active)
+        public void CreateConfirmed(int? ID, int? CharacteristicsID, bool? check)
         {
             try
             {
                 RequirementCharacteristicsEntity characteristic = new RequirementCharacteristicsEntity();
-                characteristic.check = Convert.ToBoolean(active);
+                characteristic.check = Convert.ToBoolean(check);
                 characteristic.RequirementID = Convert.ToInt32(ID);
                 characteristic.CharacteristicsID = Convert.ToInt32(CharacteristicsID);
+
+                setCreationDate(ref characteristic);
+                setIdUser(ref characteristic);
 
                 if(TryValidateModel(characteristic))
                 {
@@ -73,6 +76,19 @@ namespace ReqManager.Controllers
             {
                 throw ex;
             }
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [OutputCache(NoStore = true, Location = System.Web.UI.OutputCacheLocation.None)]
+        public override ActionResult DeleteConfirmed(int id)
+        {
+            var req = Service.get(id);
+            int RequirementID = req.RequirementID;
+
+            Service.delete(id);
+            success("Registration has been successfully deleted!");
+            return RedirectToAction("Details", "Requirement", new { id = RequirementID });
         }
 
         [HttpPost]

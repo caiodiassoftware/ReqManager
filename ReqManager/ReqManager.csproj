@@ -357,9 +357,17 @@
     <Content Include="Scripts\js\scripts.js" />
     <Content Include="Scripts\js\uisearch.js" />
     <Content Include="Scripts\js\wow.min.js" />
+    <Content Include="Scripts\mask\jquery.mask.js" />
+    <Content Include="Scripts\mask\jquery.mask.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\select2\css\select2.css" />
+    <Content Include="Scripts\select2\css\select2.min.css" />
+    <Content Include="Scripts\select2\js\select2.full.js" />
+    <Content Include="Scripts\select2\js\select2.full.min.js" />
+    <Content Include="Scripts\select2\js\select2.js" />
+    <Content Include="Scripts\select2\js\select2.min.js" />
     <Content Include="Scripts\tinymce\jquery.tinymce.min.js" />
     <Content Include="Scripts\tinymce\license.txt" />
     <Content Include="Scripts\tinymce\plugins\advlist\plugin.js" />
@@ -634,7 +642,6 @@
     <Content Include="Views\Characteristics\Index.cshtml" />
     <Content Include="Views\RequirementCharacteristics\Create.cshtml" />
     <Content Include="Views\RequirementCharacteristics\Delete.cshtml" />
-    <Content Include="Views\RequirementCharacteristics\Edit.cshtml" />
     <Content Include="Views\RequirementSubType\Create.cshtml" />
     <Content Include="Views\RequirementSubType\Delete.cshtml" />
     <Content Include="Views\RequirementSubType\Details.cshtml" />
@@ -644,10 +651,7 @@
     <Content Include="Views\RequirementRequestForChanges\Delete.cshtml" />
     <Content Include="Views\RequirementRequestForChanges\Details.cshtml" />
     <Content Include="Views\RequirementRequestForChanges\Edit.cshtml" />
-    <Content Include="Views\RequestStatus\Create.cshtml" />
-    <Content Include="Views\RequestStatus\Delete.cshtml" />
     <Content Include="Views\RequestStatus\Details.cshtml" />
-    <Content Include="Views\RequestStatus\Edit.cshtml" />
     <Content Include="Views\RequestStatus\Index.cshtml" />
     <Content Include="Views\StakeholderRequirementApproval\Approve.cshtml" />
     <Content Include="Views\Projects\PrintDocumentRequirement.cshtml" />

@@ -29,7 +29,7 @@ namespace ReqManager.Entities.Link
         [Display(Name = "R-A Code")]
         public string code { get; set; }
         [Display(Name = "Creation Date")]
-        public System.DateTime creationDate { get; set; } = DateTime.Now;
+        public System.DateTime creationDate { get; set; }
 
         public string DisplayName
         {

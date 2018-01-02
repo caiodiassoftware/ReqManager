@@ -1,5 +1,4 @@
-﻿
-@model IEnumerable<ReqManager.ViewModels.RequirementViewModel>
+﻿@model IEnumerable<ReqManager.ViewModels.RequirementViewModel>
 
 @{
     ViewBag.Title = "Requirements";
@@ -42,7 +41,7 @@
     $(document).ready(function () {
         $('#requirement').dataTable({
             "bServerSide": true,
-            "bProcessing": false,
+            "bProcessing": true,
             ajax: {
                 "url": '@Url.Action("GetFilter", "Requirement")',
                 "type": 'POST',

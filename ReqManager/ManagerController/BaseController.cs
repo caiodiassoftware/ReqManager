@@ -117,6 +117,7 @@ namespace ReqManager.ManagerController
             try
             {
                 setIdUser(ref entity);
+                setCreationDate(ref entity);
 
                 if (ModelState.IsValid)
                 {

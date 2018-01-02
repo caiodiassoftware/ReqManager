@@ -16,7 +16,9 @@ namespace ReqManager.Model
 
         [Key]
         public int StakeholderRequirementID { get; set; }
+        [Index("IX_STAKEHOLDER_REQUIREMENT", 1, IsUnique = true)]
         public int StakeholdersProjectID { get; set; }
+        [Index("IX_STAKEHOLDER_REQUIREMENT", 2, IsUnique = true)]
         public int RequirementID { get; set; }
         public DateTime creationDate { get; set; }
         [Required]

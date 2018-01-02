@@ -1,14 +1,9 @@
 ﻿@model IEnumerable<ReqManager.Entities.Requirement.RequestStatusEntity>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Request Changes";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -23,9 +18,7 @@
             @Html.DisplayFor(modelItem => item.description)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.RequestStatusID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.RequestStatusID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.RequestStatusID })
+            @Html.ActionLink("Details", "Details", new { id=item.RequestStatusID })
         </td>
     </tr>
 }

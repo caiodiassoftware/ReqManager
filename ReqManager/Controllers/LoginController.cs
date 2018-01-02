@@ -43,11 +43,13 @@ namespace ReqManager.Controllers
 
                         if (user.password.Equals(encodingPasswordString))
                         {
+                            Session["name"] = user.nickName;
+
                             FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(
                                     1,
                                     model.login,
                                     DateTime.Now,
-                                    DateTime.Now.AddMinutes(120),
+                                    DateTime.Now.AddHours(1),
                                     true,
                                     user.UserID.ToString(),
                                     FormsAuthentication.FormsCookiePath);
@@ -56,6 +58,8 @@ namespace ReqManager.Controllers
 
                             HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
                             cookie.HttpOnly = true;
+                            cookie.Domain = "ReqManager";
+                            cookie.Expires = DateTime.Now.AddHours(1);
                             Response.Cookies.Add(cookie);
 
                             Response.Redirect(@"~/Requirement/Index", false);

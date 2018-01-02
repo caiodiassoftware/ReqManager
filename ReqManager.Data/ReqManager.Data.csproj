@@ -67,6 +67,10 @@
     <Compile Include="Migrations\201712242021404_InitialCreate.Designer.cs">
       <DependentUpon>201712242021404_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712312057382_StakeholderRequirementIndex.cs" />
+    <Compile Include="Migrations\201712312057382_StakeholderRequirementIndex.Designer.cs">
+      <DependentUpon>201712312057382_StakeholderRequirementIndex.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\Artifact\Classes\ArtifactRequirementTraceabilityMatrixRepository.cs" />
     <Compile Include="Repositories\Artifact\Classes\ArtifactTypeRepository.cs" />
@@ -174,6 +178,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201712242021404_InitialCreate.resx">
       <DependentUpon>201712242021404_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712312057382_StakeholderRequirementIndex.resx">
+      <DependentUpon>201712312057382_StakeholderRequirementIndex.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

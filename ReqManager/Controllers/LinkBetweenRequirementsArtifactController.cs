@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using ReqManager.Services.Link.Interfaces;
 using ReqManager.Services.Requirements.Interfaces;
 using System.Net;
+using System.Linq;
 
 namespace ReqManager.Controllers
 {
@@ -35,6 +36,10 @@ namespace ReqManager.Controllers
             this.matrix = matrix;
             this.linkService = linkService;
             this.requirementService = requirementService;
+
+            //ViewData.Add("RequirementID", new SelectList(requirementService.getAll(), "RequirementID", "DisplayName"));
+            ViewData.Add("ProjectArtifactID", new SelectList(artifactService.getAll(), "ProjectArtifactID", "DisplayName"));
+            ViewData.Add("TypeLinkID", new SelectList(typeService.getAll(), "TypeLinkID", "description"));
         }
 
         #region GETS
@@ -70,14 +75,14 @@ namespace ReqManager.Controllers
             {
                 if (id == null)
                 {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    throw new ArgumentException("Invalid Request!");
                 }
 
                 RequirementEntity reqOrigin = requirementService.get(id);
 
                 if (reqOrigin == null)
                 {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    throw new ArgumentException("Invalid Request!");
                 }
 
                 ViewData.Add("RequirementID", new SelectList(
@@ -88,6 +93,12 @@ namespace ReqManager.Controllers
             {
                 throw ex;
             }
+        }
+
+        public override ActionResult Edit(int? id)
+        {
+            ViewData.Add("RequirementID", new SelectList(requirementService.getAll(), "RequirementID", "DisplayName"));
+            return base.Edit(id);
         }
 
         public JsonResult GetLinkArtifactsRequirementsFromProject(string ProjectID)

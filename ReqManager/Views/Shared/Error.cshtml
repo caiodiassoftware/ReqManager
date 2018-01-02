@@ -1,4 +1,4 @@
-﻿@model System.Web.Mvc.HandleErrorInfo
+﻿@model HandleErrorInfo
 
 <!DOCTYPE html>
 <html>
@@ -10,7 +10,7 @@
         <h1 class="text-danger">Error</h1>
         <h2 class="text-danger">An error occurred while processing your request.</h2>
         <div class="clear"></div>
-        <h3>Details: @Model.Exception.Message</h3>
-    <p>@Html.ActionLink("Back", @Model.ActionName, @Model.ControllerName, new { @class = "btn btn-default"})</p>
+        <h3>@Model.Exception.Message</h3>
+    <p>@Html.ActionLink("Back", @Model.ActionName, @Model.ControllerName, null, new { @class = "btn btn-default" })</p>
 </body>
 </html>

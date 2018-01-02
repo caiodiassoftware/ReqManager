@@ -43,7 +43,7 @@ namespace ReqManager.Entities.Project
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime endDate { get; set; }
         [Display(Name = "Creation Date")]
-        public DateTime creationDate { get; set; } = DateTime.Now;
+        public DateTime creationDate { get; set; }
         [Display(Name = "Prj. Code")]
         public string code { get; set; }
         [Required]
@@ -54,7 +54,7 @@ namespace ReqManager.Entities.Project
         {
             get
             {
-                return this.code;
+                return this.code + ": " + this.description + " - " + this.ProjectPhases.description;
             }
         }
 

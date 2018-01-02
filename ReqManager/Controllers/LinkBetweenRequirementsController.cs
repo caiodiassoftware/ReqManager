@@ -55,14 +55,14 @@ namespace ReqManager.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                throw new ArgumentException("Invalid Request!");
             }
 
             LinkBetweenRequirementsEntity link = Service.get(id);
 
             if (link == null)
             {
-                return HttpNotFound();
+                throw new ArgumentException("Invalid Request!");
             }
 
             ViewData.Add("RequirementOriginID", new SelectList(
@@ -84,7 +84,7 @@ namespace ReqManager.Controllers
             {
                 if (id == null)
                 {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    throw new ArgumentException("Invalid Request!");
                 }
 
                 RequirementEntity reqOrigin = requirementService.get(id);

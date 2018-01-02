@@ -28,7 +28,7 @@ namespace ReqManager.Entities.Artifact
         [Display(Name = "Artifact Description")]
         public string description { get; set; }
         [Display(Name = "Creation Date")]
-        public DateTime creationDate { get; set; } = DateTime.Now;
+        public DateTime creationDate { get; set; }
         [Required]
         [MaxLength(25), MinLength(5)]
         [Display(Name = "Login")]

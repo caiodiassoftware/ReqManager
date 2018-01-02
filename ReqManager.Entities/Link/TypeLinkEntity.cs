@@ -18,7 +18,7 @@ namespace ReqManager.Entities.Link
         [DataType(DataType.MultilineText)]
         public string description { get; set; }
         [Display(Name = "Creation Date")]
-        public System.DateTime creationDate { get; set; } = DateTime.Now;
+        public System.DateTime creationDate { get; set; }
 
         public String DisplayName
         {

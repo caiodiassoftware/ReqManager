@@ -14,6 +14,5 @@ namespace ReqManager.Services.Estructure
         TEntity get(Expression<Func<TEntity, bool>> where);
         IEnumerable<TEntity> getAll(int total = 0);
         IEnumerable<TEntity> filter(Expression<Func<TEntity, bool>> where);
-        void saveChanges();
     }
 }

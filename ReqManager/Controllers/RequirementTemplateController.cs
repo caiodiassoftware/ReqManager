@@ -24,7 +24,6 @@ namespace ReqManager.Controllers
                 cfg.CreateAutomaticMapping<RequirementTemplateEntity, RequirementTemplateViewModel>();
             });
 
-            Service = service;
             ViewData.Add("CreationUserID", new SelectList(userService.getAll(), "UserID", "DisplayName"));
             ViewData.Add("RequirementTypeID", new SelectList(type.getAll(), "RequirementTypeID", "description"));
         }
@@ -162,6 +161,7 @@ namespace ReqManager.Controllers
                 {
                     RequirementTemplateEntity entity = Mapper.Map<RequirementTemplateViewModel, RequirementTemplateEntity>(vm);
                     setIdUser(ref entity);
+                    setCreationDate(ref entity);
                     Service.add(ref entity);
                     success("Register was made with Success!");
                     return RedirectToAction("Index");

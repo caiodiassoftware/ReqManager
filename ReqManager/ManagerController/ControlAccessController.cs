@@ -207,9 +207,10 @@ namespace ReqManager.ManagerController
 
         protected void getModelStateValidations()
         {
-            TempData["ControllerMessage"] = String.Concat("Error Detected in View validation! ", string.Join("; ", ModelState.Values
+            string message = String.Concat("Error Detected in View validation! ", string.Join("; ", ModelState.Values
                                                     .SelectMany(x => x.Errors)
                                                     .Select(x => x.ErrorMessage)));
+            throw new Exception(message);
         }
 
         protected void success(string message)

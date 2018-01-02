@@ -19,6 +19,8 @@ namespace ReqManager.Controllers
         private IArtifactRequirementTraceabilityMatrixService matrix { get; set; }
         private ILinkBetweenRequirementsArtifactsService linkService { get; set; }
         private IRequirementService requirementService { get; set; }
+        private IService<ProjectArtifactEntity> artifactService { get; set; }
+        private IService<TypeLinkEntity> typeService { get; set; }
 
         public LinkBetweenRequirementsArtifactController(
             ILinkBetweenRequirementsArtifactsService linkService,
@@ -28,12 +30,11 @@ namespace ReqManager.Controllers
             IService<TypeLinkEntity> typeService,
             IArtifactRequirementTraceabilityMatrixService matrix) : base(linkService)
         {
+            this.typeService = typeService;
+            this.artifactService = artifactService;
             this.matrix = matrix;
             this.linkService = linkService;
             this.requirementService = requirementService;
-
-            ViewData.Add("ProjectArtifactID", new SelectList(artifactService.getAll(), "ProjectArtifactID", "code"));
-            ViewData.Add("TypeLinkID", new SelectList(typeService.getAll(), "TypeLinkID", "description"));
         }
 
         #region GETS
@@ -110,6 +111,33 @@ namespace ReqManager.Controllers
             {
                 throw ex;
             }
+        }
+
+        public override ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            LinkBetweenRequirementsArtifactsEntity link = Service.get(id);
+
+            if (link == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewData.Add("RequirementID", new SelectList(
+                        new List<RequirementEntity>() { link.Requirement }, "RequirementID",
+                        "DisplayName", link.Requirement.RequirementID));
+
+            ViewData.Add("ProjectArtifactID", new SelectList(
+                artifactService.getAll(), "ProjectArtifactID", "DisplayName", link.ProjectArtifact.ProjectArtifactID));
+
+            ViewData.Add("TypeLinkID", new SelectList(
+                typeService.getAll(), "TypeLinkID", "description", link.TypeLinkID));
+
+            return View(link);
         }
 
         #endregion

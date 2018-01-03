@@ -95,12 +95,6 @@ namespace ReqManager.Controllers
             }
         }
 
-        public override ActionResult Edit(int? id)
-        {
-            ViewData.Add("RequirementID", new SelectList(requirementService.getAll(), "RequirementID", "DisplayName"));
-            return base.Edit(id);
-        }
-
         public JsonResult GetLinkArtifactsRequirementsFromProject(string ProjectID)
         {
             try

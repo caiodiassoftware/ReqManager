@@ -44,7 +44,8 @@
         <div id="foldersDiv" class="form-group" style="display:none;">
             @Html.Label("Folders", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Folders", Enumerable.Empty<SelectListItem>(), "SEARCH THE FOLDERS", htmlAttributes: new { @class = "form-control select2" })
+                @Html.DropDownList("Folders", Enumerable.Empty<SelectListItem>(),
+               "SEARCH THE FOLDERS", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessage("Folders", "", new { @class = "text-danger" })
             </div>
         </div>
@@ -52,7 +53,8 @@
         <div id="filesDiv" style="display:none;" class="form-group">
             @Html.Label("Files", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Files", Enumerable.Empty<SelectListItem>(), "SELECT THE FILE PATH", htmlAttributes: new { @class = "form-control select2" })
+                @Html.DropDownList("Files", Enumerable.Empty<SelectListItem>(),
+               "SELECT THE FILE PATH", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessage("Files", "", new { @class = "text-danger" })
             </div>
         </div>
@@ -93,7 +95,7 @@
                     });
                     $('#foldersDiv').show();
                     $('#track').show();
-                });
+                }).fail(function () { alert('The informed path was not found!'); });
         });
 
         $("#Folders").change(function () {

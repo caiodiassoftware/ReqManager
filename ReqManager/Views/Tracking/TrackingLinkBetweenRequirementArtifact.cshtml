@@ -44,7 +44,7 @@
             @Html.Label("Folders", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("Folders", Enumerable.Empty<SelectListItem>(), "SELECT THE FOLDER",
-               htmlAttributes: new { @class = "form-control select2" })
+               htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessage("Folders", "", new { @class = "text-danger" })
             </div>
         </div>
@@ -52,7 +52,7 @@
             @Html.Label("Files", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("Files", Enumerable.Empty<SelectListItem>(), 
-               "SELECT THE FILE PATH", htmlAttributes: new { @class = "form-control select2" })
+               "SELECT THE FILE PATH", htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessage("Files", "", new { @class = "text-danger" })
             </div>
         </div>
@@ -120,7 +120,7 @@
                     });
                     $('#foldersDiv').show();
                     $('#track').show();
-                });
+                }).fail(function () { alert('The informed path was not found!'); });
         });
 
         $("#track").click(function () {

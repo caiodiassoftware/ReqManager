@@ -58,7 +58,6 @@ namespace ReqManager.Controllers
 
                             HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
                             cookie.HttpOnly = true;
-                            cookie.Domain = "ReqManager";
                             cookie.Expires = DateTime.Now.AddHours(1);
                             Response.Cookies.Add(cookie);
 

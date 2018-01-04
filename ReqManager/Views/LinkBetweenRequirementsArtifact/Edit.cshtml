@@ -14,6 +14,7 @@
         @Html.HiddenFor(model => model.code)
         @Html.HiddenFor(model => model.LinkArtifactRequirementID)
         @Html.HiddenFor(model => model.ProjectArtifactID)
+        @Html.HiddenFor(model => model.creationDate)
         @Html.HiddenFor(model => model.RequirementID)
         @Html.HiddenFor(model => model.CreationUserID)
         <fieldset disabled>
@@ -41,8 +42,6 @@
                     @Html.ValidationMessageFor(model => model.RequirementID, "", new { @class = "text-danger" })
                 </div>
             </div>
-        </fieldset>
-
         </fieldset>
 
 

@@ -38,8 +38,8 @@ namespace ReqManager.Controllers
             this.requirementService = requirementService;
 
             //ViewData.Add("RequirementID", new SelectList(requirementService.getAll(), "RequirementID", "DisplayName"));
-            ViewData.Add("ProjectArtifactID", new SelectList(artifactService.getAll(), "ProjectArtifactID", "DisplayName"));
-            ViewData.Add("TypeLinkID", new SelectList(typeService.getAll(), "TypeLinkID", "description"));
+            //ViewData.Add("ProjectArtifactID", new SelectList(artifactService.getAll(), "ProjectArtifactID", "DisplayName"));
+            //ViewData.Add("TypeLinkID", new SelectList(typeService.getAll(), "TypeLinkID", "description"));
         }
 
         #region GETS

@@ -173,7 +173,7 @@ namespace ReqManager.ManagerController
             try
             {
                 Service.delete(id);
-                success("Registration has been successfully deleted!");
+                success("Record has been successfully deleted!");
                 return RedirectToAction("Index");
             }
             catch (Exception ex)

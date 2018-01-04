@@ -617,11 +617,9 @@
     <Content Include="Views\LinkBetweenRequirements\Index.cshtml" />
     <Content Include="Views\LinkRequirementAttributes\Delete.cshtml" />
     <Content Include="Views\LinkRequirementAttributes\Details.cshtml" />
-    <Content Include="Views\LinkRequirementAttributes\Edit.cshtml" />
     <Content Include="Views\LinkRequirementAttributes\Index.cshtml" />
     <Content Include="Views\LinkArtifactAttributes\Delete.cshtml" />
     <Content Include="Views\LinkArtifactAttributes\Details.cshtml" />
-    <Content Include="Views\LinkArtifactAttributes\Edit.cshtml" />
     <Content Include="Views\LinkArtifactAttributes\Index.cshtml" />
     <Content Include="Views\LinkBetweenRequirementsArtifact\Delete.cshtml" />
     <Content Include="Views\LinkBetweenRequirementsArtifact\Details.cshtml" />

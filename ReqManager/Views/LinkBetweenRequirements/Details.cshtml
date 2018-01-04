@@ -8,7 +8,14 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.RequirementOrigin.code)
+            Link Code
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.code)
+        </dd>
+        <dt>
+            Origin
         </dt>
 
         <dd>
@@ -16,7 +23,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.RequirementTarget.code)
+            Target
         </dt>
 
         <dd>
@@ -47,13 +54,6 @@
             @Html.DisplayFor(model => model.creationDate)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.code)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.code)
-        </dd>
 
     </dl>
 </div>

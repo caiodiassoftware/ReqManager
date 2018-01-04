@@ -1,18 +1,26 @@
 ﻿@model ReqManager.Entities.Link.LinkBetweenRequirementsArtifactsEntity
 
 @{
-    ViewBag.Title = "Details Link between Req. and Art.";
+    ViewBag.Title = "Link between Requirements and Artifacts Details";
 }
 
 <div>
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.code)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.ProjectArtifact.code)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ProjectArtifact.code)
+            @Html.DisplayFor(model => model.ProjectArtifact.DisplayName)
         </dd>
 
         <dt>
@@ -20,7 +28,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Requirement.code)
+            @Html.DisplayFor(model => model.Requirement.DisplayName)
         </dd>
 
         <dt>
@@ -39,13 +47,6 @@
             @Html.DisplayFor(model => model.Users.name)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.code)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.code)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.creationDate)

@@ -21,9 +21,6 @@ namespace ReqManager.Controllers
         {
             this.service = service;
             this.linkRequirementsService = linkRequirementsService;
-
-            //ViewData.Add("AttributeID", new SelectList(attributeService.getAll(), "AttributeID", "description"));
-            //ViewData.Add("LinkRequirementsID", new SelectList(linkRequirementsService.getAll(), "LinkRequirementsID", "code"));
         }
 
         public ActionResult CreateNewAttributeForLink(int? id)

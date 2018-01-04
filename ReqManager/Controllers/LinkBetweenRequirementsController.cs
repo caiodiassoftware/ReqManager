@@ -103,7 +103,6 @@ namespace ReqManager.Controllers
                 throw ex;
             }
         }
-        
 
         public JsonResult GetLink(string ReqOrigin, string ReqTarget)
         {

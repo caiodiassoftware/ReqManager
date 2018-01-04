@@ -11,6 +11,6 @@
         <h2 class="text-danger">An error occurred while processing your request.</h2>
         <div class="clear"></div>
         <h3>@Model.Exception.Message</h3>
-    <p>@Html.ActionLink("Back", @Model.ActionName, @Model.ControllerName, null, new { @class = "btn btn-default" })</p>
+    <a href="javascript: window.history.go(-1)" class="btn btn-default">Go Back to Previous Page</a>
 </body>
 </html>

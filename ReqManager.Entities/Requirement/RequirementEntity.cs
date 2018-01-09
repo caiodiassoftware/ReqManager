@@ -54,6 +54,8 @@ namespace ReqManager.Entities.Requirement
         public decimal cost { get; set; }
         [Required]
         public bool active { get; set; }
+        [MaxLength(1000), MinLength(10)]
+        public string rationale { get; set; }
 
         public String DisplayName
         {

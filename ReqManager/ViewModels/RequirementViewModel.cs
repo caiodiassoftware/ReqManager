@@ -72,6 +72,9 @@ namespace ReqManager.ViewModels
         public decimal cost { get; set; }
         [Required]
         public bool active { get; set; }
+        [MaxLength(1000), MinLength(10)]
+        [DataType(DataType.MultilineText)]
+        public string rationale { get; set; }
 
         public String DisplayName
         {

@@ -50,6 +50,8 @@ namespace ReqManager.Model
         public decimal cost { get; set; }
         [Required]
         public bool active { get; set; }
+        [MaxLength(1000)]
+        public string rationale { get; set; }
 
         public virtual ICollection<RequirementVersions> RequirementVersions { get; set; }
         public virtual ICollection<RequirementCharacteristics> RequirementCharacteristics { get; set; }

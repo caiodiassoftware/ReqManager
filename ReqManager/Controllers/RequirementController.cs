@@ -285,7 +285,7 @@ namespace ReqManager.Controllers
                     setCreationDate(ref entity);
                     Service.add(ref entity);
                     success("Register was made with Success!");
-                    return RedirectToAction("Details", "Projects", new { id = vm.ProjectID });
+                    return RedirectToAction("Details", "Requirement", new { id = entity.RequirementID });
                 }
                 else
                 {

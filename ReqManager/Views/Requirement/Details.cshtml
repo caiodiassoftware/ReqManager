@@ -153,6 +153,20 @@
 
                 </dl>
             </div>
+            <div class="row">
+
+                <dl class="dl-horizontal">
+                    <dt>
+                        Rationale
+                    </dt>
+
+                    <dd>
+                        @Html.EditorFor(model => model.rationale,
+                       new { htmlAttributes = new { @class = "form-control", @rows = 10, @style = "resize:none;", @disabled = "disabled" } })
+                    </dd>
+
+                </dl>
+            </div>
         </div>
         <div id="rr">
             <table class="table">

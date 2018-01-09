@@ -8,7 +8,7 @@ namespace ReqManager.Data.DataAcess
     {
         public ReqManagerEntities() : base("ReqManagerDataEntities")
         {
-            Database.SetInitializer(new ReqManagerContextInitializer());
+
         }
 
         public virtual void Commit()

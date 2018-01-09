@@ -36,10 +36,6 @@ namespace ReqManager.Controllers
             this.matrix = matrix;
             this.linkService = linkService;
             this.requirementService = requirementService;
-
-            //ViewData.Add("RequirementID", new SelectList(requirementService.getAll(), "RequirementID", "DisplayName"));
-            //ViewData.Add("ProjectArtifactID", new SelectList(artifactService.getAll(), "ProjectArtifactID", "DisplayName"));
-            //ViewData.Add("TypeLinkID", new SelectList(typeService.getAll(), "TypeLinkID", "description"));
         }
 
         #region GETS
@@ -87,6 +83,9 @@ namespace ReqManager.Controllers
 
                 ViewData.Add("RequirementID", new SelectList(
                         new List<RequirementEntity>() { reqOrigin }, "RequirementID", "DisplayName", id));
+
+                ViewData.Add("ProjectArtifactID", new SelectList(artifactService.getAll(), "ProjectArtifactID", "DisplayName"));
+                ViewData.Add("TypeLinkID", new SelectList(typeService.getAll(), "TypeLinkID", "description"));
                 return View();
             }
             catch (Exception ex)

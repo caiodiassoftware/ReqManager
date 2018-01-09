@@ -11,7 +11,7 @@ namespace ReqManager.Entities.Acess
         [Required]
         [MinLength(3)]
         [MaxLength(100)]
-        [Display(Name = "Name/Maker")]
+        [Display(Name = "User Name")]
         public string name { get; set; }
         [Required]
         [MinLength(3)]

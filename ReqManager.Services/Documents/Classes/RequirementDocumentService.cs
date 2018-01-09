@@ -149,7 +149,8 @@ namespace ReqManager.Services.Documents.Classes
                                  < p style = ""padding-left: 30px;"" >< strong > Importance </ strong >: " + requirement.Importance.description + @"</ p >
                                            < p style = ""padding-left: 30px;"" >< strong > Type </ strong >: " + requirement.RequirementType.description + @"</ p >
                                                      < p style = ""padding-left: 30px;"" >< strong > SubType </ strong >: " + subType + @"</ p >
-                                                               < p style = ""padding-left: 30px;"" >< strong > Description </ strong >: " + requirement.description + @"</ p >
+                                                            < p style = ""padding-left: 30px;"" >< strong > Rationale </ strong >: " + requirement.rationale + @"</ p >
+                                                               < p style = ""padding-left: 30px;"" >< strong > Requirement Info </ strong >: " + requirement.description + @"</ p >
                                                                          <br />< hr />
                                                                          < p > &nbsp;</ p > ";
             }

@@ -53,3 +53,5 @@ C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\obj\Debug\ReqManager.Da
 C:\Users\cdias\Desktop\ReqManager\ReqManager.Data\obj\Debug\ReqManager.Data.Migrations.InitialCreate.resources
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\obj\Debug\ReqManager.Data.Migrations.StakeholderRequirementIndex.resources
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\obj\Debug\ReqManager.Data.Migrations.IncludeRationaleFieldInRequirements.resources
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Data\obj\Debug\ReqManager.Data.Migrations.StakeholderRequirementIndex.resources
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Data\obj\Debug\ReqManager.Data.Migrations.IncludeRationaleFieldInRequirements.resources

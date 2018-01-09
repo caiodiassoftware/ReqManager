@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using ReqManager.Entities.Requirement;
 using System.Net;
+using System.Linq;
 
 namespace ReqManager.Controllers
 {
@@ -96,6 +97,13 @@ namespace ReqManager.Controllers
 
                 ViewData.Add("RequirementOriginID", new SelectList(
                         new List<RequirementEntity>() { reqOrigin }, "RequirementID", "DisplayName", id));
+
+                ViewData.Add("RequirementTargetID", new SelectList(
+                        requirementService.getAll().Where(r => r.RequirementID != reqOrigin.RequirementID), "RequirementID",
+                        "DisplayName"));
+
+                ViewData.Add("TypeLinkID", new SelectList(typeLinkService.getAll(), "TypeLinkID", "description"));
+
                 return View();
             }
             catch (Exception ex)

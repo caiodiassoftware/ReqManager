@@ -13,6 +13,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using ReqManager.Services.Documents.Interfaces;
+using ReqManager.Entities.Project;
+using System.Collections.Generic;
 
 namespace ReqManager.Controllers
 {
@@ -198,7 +200,8 @@ namespace ReqManager.Controllers
                 ViewData.Add("RequirementTypeID", new SelectList(typeService.getAll(), "RequirementTypeID", "description"));
                 ViewData.Add("RequirementSubTypeID", new SelectList(subTypeService.getAll(), "RequirementSubTypeID", "description"));
                 ViewData.Add("CreationUserID", new SelectList(userService.getAll(), "UserID", "name"));
-                ViewData.Add("ProjectID", new SelectList(projectService.getAll(), "ProjectID", "DisplayName", id == null ? 0 : id));
+
+                ViewData.Add("ProjectID", new SelectList(new List<ProjectEntity>() { projectService.get(id) }, "ProjectID", "DisplayName", id == null ? 0 : id));
                 return View();
             }
             catch (Exception ex)

@@ -50,7 +50,7 @@ namespace ReqManager.Entities.Requirement
         public Nullable<DateTime> endDate { get; set; }
         [Required]
         [RegularExpression(@"^\d+\.\d{0,2}$")]
-        [Range(0, 9999999999999999.99)]
+        [Range(0.00, 9999999999999999.99)]
         public decimal cost { get; set; }
         [Required]
         public bool active { get; set; }

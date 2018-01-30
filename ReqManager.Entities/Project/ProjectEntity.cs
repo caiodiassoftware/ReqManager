@@ -46,8 +46,8 @@ namespace ReqManager.Entities.Project
         public DateTime creationDate { get; set; }
         [Display(Name = "Prj. Code")]
         public string code { get; set; }
-        [Required]
         [Display(Name = "Cost")]
+        [Range(0.00, 9999999999999999.99)]
         public decimal cost { get; set; }
 
         public String DisplayName

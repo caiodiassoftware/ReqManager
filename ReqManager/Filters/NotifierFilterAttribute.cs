@@ -13,9 +13,7 @@ namespace ReqManager.Filters
         {
             var messages = Notifier.Messages;
             if (messages.Any())
-            {
                 filterContext.Controller.TempData[Constants.TempDataKey] = messages;
-            }
         }
     }
 }

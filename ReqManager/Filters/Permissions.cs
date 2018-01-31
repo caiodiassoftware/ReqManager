@@ -12,6 +12,7 @@ namespace ReqManager.Filters
 {
     public class Permissions : ActionFilterAttribute, IActionFilter
     {
+        [HandleError(ExceptionType = typeof(Exception), View = "Error")]
         void IActionFilter.OnActionExecuting(ActionExecutingContext filterContext)
         {
             try
@@ -42,11 +43,8 @@ namespace ReqManager.Filters
                         IPrincipal principal = new GenericPrincipal(id, null);
                         HttpContext.Current.Request.RequestContext.HttpContext.User = principal;
 
-                        if (!caService.CanAccess(UserID, controllerName, actionName))
-                        {
-                            filterContext.Result = new HttpUnauthorizedResult(
-                                "You don't have Permissions to Access " + controllerName + " : " + actionName);
-                        }
+                        if (!caService.CanAccess(UserID, controllerName, actionName))                        
+                            throw new Exception("You don't have Permissions to " + actionName + " " + controllerName);
 
                         if(controllerName.Equals("Login") && actionName.Equals("Login"))
                         {

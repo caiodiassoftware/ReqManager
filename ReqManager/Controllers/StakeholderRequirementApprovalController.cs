@@ -34,6 +34,7 @@ namespace ReqManager.Controllers
 
         }
 
+        [HandleError(ExceptionType = typeof(Exception), View = "Error")]
         public ActionResult Approve(int? id)
         {
             try
@@ -44,9 +45,7 @@ namespace ReqManager.Controllers
                 StakeholderRequirementEntity stakeholder = stakeholderRequirementService.get(Convert.ToInt32(id), getIdUser());
 
                 if (stakeholder == null)
-                {
                     throw new ArgumentException("You are not Stakeholder interesed in this Requirement!");
-                }
 
                 return View();
             }

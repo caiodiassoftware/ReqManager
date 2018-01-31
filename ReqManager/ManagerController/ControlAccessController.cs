@@ -69,12 +69,13 @@ namespace ReqManager.ManagerController
         {
             try
             {
-                List<TEntity> entities = Service.getAll().ToList();
                 List<TEntity> result = new List<TEntity>();
                 string searchValue = requestModel.Search.Value;
 
                 if (!string.IsNullOrEmpty(searchValue))
                 {
+                    List<TEntity> entities = Service.getAll().ToList();
+
                     foreach (TEntity item in entities)
                     {
                         foreach (PropertyInfo pi in item.GetType().GetProperties())
@@ -90,7 +91,7 @@ namespace ReqManager.ManagerController
                 }
                 else
                 {
-                    result = entities.Take(10).ToList();
+                    result = Service.getAll(10).ToList();
                 }
 
                 return Json(new

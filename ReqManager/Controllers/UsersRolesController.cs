@@ -9,8 +9,8 @@ namespace ReqManager.Controllers
     {
         public UsersRolesController(IUserRoleService service, IRoleService roleService, IUserService userService) : base(service)
         {
-            ViewBag.RoleID = new SelectList(roleService.getAll(), "RoleID", "description");
-            ViewBag.UserID = new SelectList(userService.getAll(), "UserID", "name");
+            ViewBag.RoleID = new SelectList(roleService.getAll(), "RoleID", "DisplayName");
+            ViewBag.UserID = new SelectList(userService.getAll(), "UserID", "DisplayName");
         }
     }
 }

@@ -51,11 +51,11 @@ namespace ReqManager.Entities.Acess
         [Display(Name = "Active")]
         public Boolean active { get; set; }
 
-        public String DisplayName
+        public string DisplayName
         {
             get
             {
-                return nickName + " - " + login;
+                return login + " - " + nickName;
             }
         }
     }

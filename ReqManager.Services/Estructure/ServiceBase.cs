@@ -118,11 +118,11 @@ namespace ReqManager.Services.Estructure
             }
         }
 
-        public virtual IEnumerable<TEntity> getAll(int total = 0)
+        public virtual IEnumerable<TEntity> getAll(int top = 0)
         {
             try
             {
-                return Mapper.Map<IEnumerable<TModel>, IEnumerable<TEntity>>(repository.getAll(total));
+                return Mapper.Map<IEnumerable<TModel>, IEnumerable<TEntity>>(repository.getAll(top));
             }
             catch (Exception ex)
             {

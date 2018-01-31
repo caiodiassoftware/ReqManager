@@ -12,7 +12,7 @@ namespace ReqManager.Services.Estructure
         void delete(Expression<Func<TEntity, bool>> where);
         TEntity get(int? id);
         TEntity get(Expression<Func<TEntity, bool>> where);
-        IEnumerable<TEntity> getAll(int total = 0);
+        IEnumerable<TEntity> getAll(int top = 0);
         IEnumerable<TEntity> filter(Expression<Func<TEntity, bool>> where);
     }
 }

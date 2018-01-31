@@ -55,7 +55,7 @@ namespace ReqManager.Services.Others.Classes
         }
 
         public void send(String subject, String receiverMail, 
-            String receiverName, String applicationName = "ReqManager", List<string> attachments = null)
+            String receiverName, String applicationName = "T-RM", List<string> attachments = null)
         {
             try
             {                
@@ -71,7 +71,7 @@ namespace ReqManager.Services.Others.Classes
                 foreach (String c in this.body)
                     body.Append(c);
 
-                body.Append("<p style=\"font-size:12px; color:#999; text-align:center;\">This email was sent by the ReqManager application.</p>");
+                body.Append("<p style=\"font-size:12px; color:#999; text-align:center;\">This email was sent by the T-RM application.</p>");
                 body.Append("</div></body></html>");
 
                 mensagem.Body = body.ToString();
@@ -106,7 +106,7 @@ namespace ReqManager.Services.Others.Classes
         }
 
         public void send(String subject, Dictionary<String, String> receiversMails, 
-            String applicationName = "ReqManager", List<string> attachments = null)
+            String applicationName = "T-RM", List<string> attachments = null)
         {
             try
             {
@@ -121,7 +121,7 @@ namespace ReqManager.Services.Others.Classes
 
         private void setSender()
         {
-            from = new MailAddress("reqmanageraadsp@gmail.com", "ReqManager Notifications");
+            from = new MailAddress("reqmanageraadsp@gmail.com", "T-RM Notifications");
         }
 
         private void setClient()

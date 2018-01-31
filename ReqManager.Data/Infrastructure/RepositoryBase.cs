@@ -160,11 +160,11 @@ namespace ReqManager.Data.Infrastructure
             }            
         }
 
-        public virtual IEnumerable<TModel> getAll(int total = 0)
+        public virtual IEnumerable<TModel> getAll(int top = 0)
         {
             try
             {
-                return (total != 0) ? dbSet.AsNoTracking().ToList().Take(total) : dbSet.AsNoTracking().ToList();
+                return (top != 0) ? dbSet.AsNoTracking().Take(top).ToList() : dbSet.AsNoTracking().ToList();
             }
             catch (Exception ex)
             {

@@ -49,6 +49,7 @@ namespace ReqManager.Controllers
             }
         }
 
+        [HandleError(ExceptionType = typeof(Exception), View = "Error")]
         public ActionResult RequestNewChange(int? id)
         {
             try

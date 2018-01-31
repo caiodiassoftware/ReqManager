@@ -20,11 +20,11 @@ namespace ReqManager.Entities.Acess
         [DataType(DataType.MultilineText)]
         public string description { get; set; }
 
-        public String DisplayName
+        public string DisplayName
         {
             get
             {
-                return this.name + " - " + this.description;
+                return name + " : " + description;
             }
         }
 

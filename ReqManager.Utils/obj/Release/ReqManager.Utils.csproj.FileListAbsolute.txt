@@ -4,3 +4,10 @@ C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Utils\bin\Release\AutoMapper
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Utils\bin\Release\AutoMapper.xml
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Utils\obj\Release\ReqManager.Utils.dll
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Utils\obj\Release\ReqManager.Utils.pdb
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Utils\bin\Release\ReqManager.Utils.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Utils\bin\Release\ReqManager.Utils.pdb
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Utils\bin\Release\AutoMapper.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Utils\bin\Release\AutoMapper.xml
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Utils\obj\Release\ReqManager.Utils.csprojResolveAssemblyReference.cache
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Utils\obj\Release\ReqManager.Utils.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Utils\obj\Release\ReqManager.Utils.pdb

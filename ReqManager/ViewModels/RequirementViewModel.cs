@@ -24,7 +24,6 @@ namespace ReqManager.ViewModels
 
         [Key]
         public int RequirementID { get; set; }
-        [Required]
         [Display(Name = "Template")]
         public Nullable<int> RequirementTemplateID { get; set; }
         [Required]
@@ -39,7 +38,6 @@ namespace ReqManager.ViewModels
         [Required]
         [Display(Name = "Type")]
         public int RequirementTypeID { get; set; }
-        [Required]
         [Display(Name = "SubType")]
         public Nullable<int> RequirementSubTypeID { get; set; }
         [Display(Name = "Version Number")]

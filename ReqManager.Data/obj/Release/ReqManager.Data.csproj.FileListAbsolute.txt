@@ -12,3 +12,19 @@ C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\obj\Release\ReqManager.
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\obj\Release\ReqManager.Data.csproj.GenerateResource.Cache
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\obj\Release\ReqManager.Data.dll
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\obj\Release\ReqManager.Data.pdb
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Data\bin\Release\ReqManager.Data.dll.config
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Data\bin\Release\ReqManager.Data.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Data\bin\Release\ReqManager.Data.pdb
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Data\bin\Release\EntityFramework.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Data\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Data\bin\Release\ReqManager.Model.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Data\bin\Release\ReqManager.Model.pdb
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Data\bin\Release\EntityFramework.xml
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Data\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Data\obj\Release\ReqManager.Data.csprojResolveAssemblyReference.cache
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Data\obj\Release\ReqManager.Data.Migrations.InitialCreate.resources
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Data\obj\Release\ReqManager.Data.Migrations.StakeholderRequirementIndex.resources
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Data\obj\Release\ReqManager.Data.Migrations.IncludeRationaleFieldInRequirements.resources
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Data\obj\Release\ReqManager.Data.csproj.GenerateResource.Cache
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Data\obj\Release\ReqManager.Data.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Data\obj\Release\ReqManager.Data.pdb

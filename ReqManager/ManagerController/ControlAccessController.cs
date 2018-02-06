@@ -7,10 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
@@ -184,14 +182,21 @@ namespace ReqManager.ManagerController
         {
             if (ex is DbEntityValidationException)
             {
-                getMessageDbValidation((DbEntityValidationException) ex);
+                getMessageDbValidation((DbEntityValidationException)ex);
             }
             else if (ex is DbUpdateException)
             {
-                getMessageDbUpdateException((DbUpdateException) ex);
+                getMessageDbUpdateException((DbUpdateException)ex);
             }
+            else
+                getMessageException(ex);
 
             return View("Error");
+        }
+
+        protected void getMessageException(Exception ex)
+        {
+            throw new Exception(ex.Message);
         }
 
         protected void getMessageDbValidation(DbEntityValidationException ex)
@@ -212,7 +217,7 @@ namespace ReqManager.ManagerController
 
         protected void getModelStateValidations()
         {
-            string message = String.Concat("Error Detected in View validation! ", string.Join("; ", ModelState.Values
+            string message = String.Concat("Error Detected in Validation! ", string.Join("; ", ModelState.Values
                                                     .SelectMany(x => x.Errors)
                                                     .Select(x => x.ErrorMessage)));
             throw new Exception(message);

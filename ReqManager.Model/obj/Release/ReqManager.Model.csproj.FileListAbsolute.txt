@@ -7,3 +7,13 @@ C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Model\bin\Release\EntityFram
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Model\bin\Release\EntityFramework.SqlServer.xml
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Model\obj\Release\ReqManager.Model.dll
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Model\obj\Release\ReqManager.Model.pdb
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Model\bin\Release\ReqManager.Model.dll.config
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Model\bin\Release\ReqManager.Model.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Model\bin\Release\ReqManager.Model.pdb
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Model\bin\Release\EntityFramework.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Model\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Model\bin\Release\EntityFramework.xml
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Model\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Model\obj\Release\ReqManager.Model.csprojResolveAssemblyReference.cache
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Model\obj\Release\ReqManager.Model.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Model\obj\Release\ReqManager.Model.pdb

@@ -24,7 +24,6 @@ namespace ReqManager.Entities.Requirement
         [Required]
         [Display(Name = "Type")]
         public int RequirementTypeID { get; set; }
-        [Required]
         [Display(Name = "SubType")]
         public Nullable<int> RequirementSubTypeID { get; set; }
         [Required]

@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ReqManager.Entities.Project.CharacteristicsEntity>
+
+@{
+    ViewBag.Title = "Requirements Characteristics";
+}
+
+<div class="form-group">
+    @Html.ActionLink("Create New", "Create", "Characteristics", null, new { @class = "btn btn-primary" })
+</div>
+<table id="characteristics" class="display">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Is It Required?
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+          
+    </tbody>
+
+</table>
+
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function () {
+        $('#characteristics').dataTable({
+            "bServerSide": true,
+            "bProcessing": false,
+            ajax: {
+                "url": '@Url.Action("GetFilter", "Characteristics")',
+                "type": 'POST',
+                "dataSrc": function (json) {
+                    var return_data = new Array();                    
+                    for (var i = 0; i < json.aaData.length; i++) {
+                        return_data.push({
+                            'name': json.aaData[i].name,
+                            'description': json.aaData[i].description,
+                            'required': json.aaData[i].required,
+                            'action': '<a href=\"/Characteristics/Edit/' +
+                                json.aaData[i].CharacteristicsID + '\">Edit</a> | <a href=\"/Characteristics/Details/' +
+                                json.aaData[i].CharacteristicsID + '\">Details</a> | <a href=\"/Characteristics/Delete/' +
+                                json.aaData[i].CharacteristicsID + '\">Delete</a>'
+                        })
+                    }
+
+                    return return_data;
+                }
+            },
+            "aoColumns": [
+                { 'data': 'name' },
+                { 'data': 'description' },
+                { 'data': 'required' },
+                { 'data': 'action' }
+            ]
+        });
+    });
+</script>

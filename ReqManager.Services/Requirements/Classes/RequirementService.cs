@@ -184,7 +184,8 @@ namespace ReqManager.Services.Requirements.Classes
             try
             {
                 ProjectEntity project = projectService.get(ProjectID);
-                return getRequirementCostByProject(ProjectID) + requirementCost < project.cost ? true : false;
+                return projectService.hasBalance(ProjectID) && 
+                    getRequirementCostByProject(ProjectID) + requirementCost < project.cost ? true : false;
             }
             catch (Exception ex)
             {

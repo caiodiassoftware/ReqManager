@@ -2,3 +2,8 @@ C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Entities\bin\Release\ReqMana
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Entities\bin\Release\ReqManager.Entities.pdb
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Entities\obj\Release\ReqManager.Entities.dll
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Entities\obj\Release\ReqManager.Entities.pdb
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Entities\bin\Release\ReqManager.Entities.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Entities\bin\Release\ReqManager.Entities.pdb
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Entities\obj\Release\ReqManager.Entities.csprojResolveAssemblyReference.cache
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Entities\obj\Release\ReqManager.Entities.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Entities\obj\Release\ReqManager.Entities.pdb

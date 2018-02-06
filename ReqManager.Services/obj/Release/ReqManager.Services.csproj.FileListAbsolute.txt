@@ -19,3 +19,27 @@ C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Services\bin\Release\EntityF
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Services\obj\Release\ReqManager.Services.csprojResolveAssemblyReference.cache
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Services\obj\Release\ReqManager.Services.dll
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Services\obj\Release\ReqManager.Services.pdb
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Release\ReqManager.Services.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Release\ReqManager.Services.pdb
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Release\AutoMapper.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Release\itextsharp.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Release\itextsharp.xmlworker.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Release\MoreLinq.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Release\ReqManager.Data.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Release\ReqManager.Entities.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Release\ReqManager.Model.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Release\ReqManager.Utils.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Release\System.ValueTuple.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Release\EntityFramework.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Release\ReqManager.Data.pdb
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Release\ReqManager.Entities.pdb
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Release\ReqManager.Model.pdb
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Release\ReqManager.Utils.pdb
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Release\AutoMapper.xml
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Release\itextsharp.xml
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Release\MoreLinq.xml
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Release\System.ValueTuple.xml
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Release\EntityFramework.xml
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\obj\Release\ReqManager.Services.csprojResolveAssemblyReference.cache
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\obj\Release\ReqManager.Services.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\obj\Release\ReqManager.Services.pdb

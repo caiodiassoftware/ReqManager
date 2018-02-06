@@ -192,6 +192,8 @@ namespace ReqManager.Controllers
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 if (projectService.get(Convert.ToInt32(id)) == null)
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (!projectService.hasBalance(Convert.ToInt32(id)))
+                    throw new Exception("This project don't have balance to register new Requirements!");
 
                 ViewData.Add("RequirementTemplateID", new SelectList(templateService.getAll(), "RequirementTemplateID", "description"));
                 ViewData.Add("StakeholdersProjectID", new SelectList(stakeholdersProject.getAll(), "StakeholdersProjectID", "DisplayName"));
@@ -206,7 +208,7 @@ namespace ReqManager.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                return filterException(ex);
             }
         }
 
@@ -281,21 +283,14 @@ namespace ReqManager.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
-                {
-                    RequirementEntity entity = Mapper.Map<RequirementViewModel, RequirementEntity>(vm);
-                    setIdUser(ref entity);
-                    setCreationDate(ref entity);
-                    Service.add(ref entity);
-                    success("Register was made with Success!");
-                    return RedirectToAction("Details", "Requirement", new { id = entity.RequirementID });
-                }
-                else
-                {
+                if (!ModelState.IsValid)
                     getModelStateValidations();
-                }
-
-                return Create(vm.ProjectID);
+                RequirementEntity entity = Mapper.Map<RequirementViewModel, RequirementEntity>(vm);
+                setIdUser(ref entity);
+                setCreationDate(ref entity);
+                Service.add(ref entity);
+                success("Register was made with Success!");
+                return RedirectToAction("Details", "Requirement", new { id = entity.RequirementID });
             }
             catch (Exception ex)
             {
@@ -311,21 +306,13 @@ namespace ReqManager.Controllers
         {
             try
             {
-                RequirementEntity req = new RequirementEntity();
-
-                if (ModelState.IsValid)
-                {
-                    req = Mapper.Map<RequirementEditViewModel, RequirementEntity>(vm);
-                    requirementService.update(ref req, vm.RequirementRequestForChangesID, vm.rationale);
-                    success("Register has been successfully edited!");
-                    return RedirectToAction("Details", "Requirement", new { id = req.RequirementID });
-                }
-                else
-                {
+                if (!ModelState.IsValid)
                     getModelStateValidations();
-                }
-
-                return View(req);
+                RequirementEntity req = new RequirementEntity();
+                req = Mapper.Map<RequirementEditViewModel, RequirementEntity>(vm);
+                requirementService.update(ref req, vm.RequirementRequestForChangesID, vm.rationale);
+                success("Register has been successfully edited!");
+                return RedirectToAction("Details", "Requirement", new { id = req.RequirementID });
             }
             catch (Exception ex)
             {

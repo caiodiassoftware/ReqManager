@@ -61,7 +61,7 @@ namespace ReqManager.Controllers
                             cookie.Expires = DateTime.Now.AddHours(1);
                             Response.Cookies.Add(cookie);
 
-                            Response.Redirect(@"~/Requirement/Index", false);
+                            Response.Redirect(@"~/Projects/Index", false);
                         }
                         else
                         {

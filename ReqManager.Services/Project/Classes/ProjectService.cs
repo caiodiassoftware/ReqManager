@@ -1,8 +1,10 @@
 ﻿using ReqManager.Data.Infrastructure;
 using ReqManager.Data.Repositories.Project.Interfaces;
+using ReqManager.Data.Repositories.Requirements.Interfaces;
 using ReqManager.Entities.Project;
 using ReqManager.Services.Estructure;
 using ReqManager.Services.Project.Interfaces;
+using ReqManager.Services.Requirements.Interfaces;
 using System;
 
 
@@ -18,6 +20,18 @@ namespace ReqManager.Services.Project.Classes
             IUnitOfWork unit) : base(repository, unit)
         {
             this.historyProjectService = historyProjectService;
+        }
+
+        public bool hasBalance(int ProjectID)
+        {
+            try
+            {
+                return get(ProjectID).cost != 0;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void update(ref ProjectEntity entity, int UserID)

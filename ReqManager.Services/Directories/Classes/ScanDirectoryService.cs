@@ -38,7 +38,7 @@ namespace ReqManager.Services.Directories.Classes
         {
             try
             {
-                return Directory.Exists(path) ? Directory.EnumerateFileSystemEntries(path) : null;
+                return Directory.Exists(path) ? Directory.EnumerateFileSystemEntries(path) : new List<string>();
             }
             catch (Exception ex)
             {

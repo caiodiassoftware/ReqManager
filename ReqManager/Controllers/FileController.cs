@@ -25,7 +25,7 @@ namespace ReqManager.Controllers
             {
                 string extension = Path.GetExtension(FilePath);
 
-                if (!CheckExtensions(FilePath))
+                if (!CheckExtensions(extension))
                 {
                     Response.Clear();
                     Response.ContentType = "application/pdf";

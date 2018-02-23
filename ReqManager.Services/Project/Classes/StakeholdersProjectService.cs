@@ -1,4 +1,5 @@
-﻿using ReqManager.Data.Infrastructure;
+﻿using AutoMapper;
+using ReqManager.Data.Infrastructure;
 using ReqManager.Data.Repositories.Project.Interfaces;
 using ReqManager.Entities.Project;
 using ReqManager.Model;
@@ -7,14 +8,18 @@ using ReqManager.Services.Project.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace ReqManager.Services.Project.Classes
 {
     public class StakeholdersProjectService : ServiceBase<StakeholdersProject, StakeholdersProjectEntity>, 
         IStakeholdersProjectService
     {
+        private IStakeholdersProjectRepository repository { get; set; }
+
         public StakeholdersProjectService(IStakeholdersProjectRepository repository, IUnitOfWork unit) : base(repository, unit)
         {
+            this.repository = repository;
         }
 
         public StakeholdersProjectEntity getByProjectAndUser(int ProjectID, int UserID)
@@ -34,7 +39,7 @@ namespace ReqManager.Services.Project.Classes
         {
             try
             {
-                return getAll().Where(p => p.ProjectID.Equals(ProjectID));
+                return Mapper.Map<IEnumerable<StakeholdersProject>, IEnumerable<StakeholdersProjectEntity>>(repository.getStakeholderByProject(ProjectID));
             }
             catch (Exception ex)
             {

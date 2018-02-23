@@ -147,7 +147,7 @@ namespace ReqManager.Services.Requirements.Classes
         {
             try
             {
-                return getAll().Where(r => r.ProjectID.Equals(ProjectID));
+                return filter(r => r.ProjectID == ProjectID);
             }
             catch (Exception ex)
             {
@@ -159,7 +159,7 @@ namespace ReqManager.Services.Requirements.Classes
         {
             try
             {
-                return getAll().Where(r => r.code.Equals(code)).SingleOrDefault();
+                return filter(r => r.code == code).SingleOrDefault();
             }
             catch (Exception ex)
             {

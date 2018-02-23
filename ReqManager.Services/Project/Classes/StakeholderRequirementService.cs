@@ -32,7 +32,7 @@ namespace ReqManager.Services.Project.Classes
         {
             try
             {
-                return getAll().Where(r => r.RequirementID.Equals(RequirementID));
+                return filter(r => r.RequirementID == RequirementID);
             }
             catch (Exception ex)
 

@@ -41,7 +41,7 @@ namespace ReqManager.Entities.Project
         public DateTime startDate { get; set; }
         [Display(Name = "End Date")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime endDate { get; set; }
+        public DateTime? endDate { get; set; }
         [Display(Name = "Creation Date")]
         public DateTime creationDate { get; set; }
         [Display(Name = "Prj. Code")]

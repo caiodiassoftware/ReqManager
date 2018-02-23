@@ -29,7 +29,7 @@ namespace ReqManager.Entities.Project
         public virtual ProjectEntity Project { get; set; }
         public virtual StakeholdersEntity Stakeholders { get; set; }
 
-        [Display(Name = "Stakeholder")]
+        [Display(Name = "Stakeholders")]
         public String DisplayName
         {
             get

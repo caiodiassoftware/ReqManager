@@ -56,15 +56,15 @@ namespace ReqManager.Entities.Requirement
         [MaxLength(1000), MinLength(10)]
         public string rationale { get; set; }
 
-        public String DisplayName
+        public string DisplayName
         {
             get
             {
-                return this.RequirementType.abbreviation + " - " + this.code + " : " + this.RequirementStatus.description;
+                return this.RequirementType.abbreviation + " - " + this.code + " - " + title + " : " + this.RequirementStatus.description;
             }
         }
 
-        public String DisplayType
+        public string DisplayType
         {
             get
             {

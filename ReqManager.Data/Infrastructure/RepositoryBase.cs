@@ -6,6 +6,9 @@ using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Data.Entity.Migrations;
+using System.Reflection;
+using System.Web.Script.Serialization;
+using Newtonsoft.Json;
 
 namespace ReqManager.Data.Infrastructure
 {
@@ -47,7 +50,7 @@ namespace ReqManager.Data.Infrastructure
             catch (Exception ex)
             {
                 throw ex;
-            }            
+            }
         }
 
         public virtual void add(IEnumerable<TModel> entities)
@@ -72,7 +75,7 @@ namespace ReqManager.Data.Infrastructure
             catch (Exception ex)
             {
                 throw ex;
-            }            
+            }
         }
 
         public virtual void delete(int? id)
@@ -88,12 +91,12 @@ namespace ReqManager.Data.Infrastructure
                 catch (Exception ex)
                 {
                     throw ex;
-                }                
+                }
             }
             catch (Exception ex)
             {
                 throw ex;
-            }        
+            }
         }
 
         public virtual void delete(List<int> entitiesID)
@@ -106,7 +109,7 @@ namespace ReqManager.Data.Infrastructure
             catch (Exception ex)
             {
                 throw ex;
-            }            
+            }
         }
 
         public virtual void delete(Expression<Func<TModel, bool>> where)
@@ -145,7 +148,7 @@ namespace ReqManager.Data.Infrastructure
             catch (Exception ex)
             {
                 throw ex;
-            }            
+            }
         }
 
         public TModel get(Expression<Func<TModel, bool>> where)
@@ -157,7 +160,35 @@ namespace ReqManager.Data.Infrastructure
             catch (Exception ex)
             {
                 throw ex;
-            }            
+            }
+        }
+
+        public virtual IEnumerable<TModel> filterByValue(string value)
+        {
+            try
+            {
+                List<TModel> result = new List<TModel>();
+                var entities = dbSet.AsNoTracking();
+
+                foreach (TModel item in entities)
+                {
+                    foreach (PropertyInfo pi in item.GetType().GetProperties())
+                    {
+                        string output = JsonConvert.SerializeObject(item);
+                        string json = new JavaScriptSerializer().Serialize(item).ToLower();
+                        if (json.Contains(value.ToLower()))
+                        {
+                            result.Add(item);
+                            break;
+                        }
+                    }
+                }
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public virtual IEnumerable<TModel> getAll(int top = 0)
@@ -181,7 +212,7 @@ namespace ReqManager.Data.Infrastructure
             catch (Exception ex)
             {
                 throw ex;
-            }            
+            }
         }
 
         #endregion

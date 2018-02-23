@@ -15,9 +15,13 @@ namespace ReqManager.Controllers
 {
     public class RequirementTemplateController : ControlAccessController<RequirementTemplateEntity>
     {
+        private IRequirementTemplateService service { get; set; }
+
         public RequirementTemplateController
             (IRequirementTemplateService service, IUserService userService, IRequirementTypeService type) : base(service)
         {
+            this.service = service;
+
             Mapper.Initialize(cfg =>
             {
                 cfg.CreateAutomaticMapping<RequirementTemplateViewModel, RequirementTemplateEntity>();
@@ -34,7 +38,7 @@ namespace ReqManager.Controllers
         {
             try
             {
-                JsonResult json = Json(Service.getAll().Where(t => t.RequirementType.RequirementTypeID.Equals(type)), JsonRequestBehavior.AllowGet);
+                JsonResult json = Json(service.filterByRequirementType(type), JsonRequestBehavior.AllowGet);
                 return json;
             }
             catch (Exception ex)

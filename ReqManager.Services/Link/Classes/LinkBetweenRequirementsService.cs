@@ -31,7 +31,7 @@ namespace ReqManager.Services.Link.Classes
                 if (!entity.RequirementOriginID.Equals(entity.RequirementTargetID))
                     base.add(ref entity, persistir);
                 else
-                    throw new ArgumentException("Requirement Origin must be different from B!");
+                    throw new ArgumentException("Requirement Origin must be different from Requirement Target!");
             }
             catch (Exception ex)
             {
@@ -43,7 +43,7 @@ namespace ReqManager.Services.Link.Classes
         {
             try
             {
-                return getAll().Where(l => l.RequirementOrigin.code.Equals(ReqOrigin) && l.RequirementTarget.code.Equals(ReqTarget)).SingleOrDefault();
+                return filter(l => l.RequirementOrigin.code == ReqOrigin && l.RequirementTarget.code == ReqTarget).SingleOrDefault();
             }
             catch (Exception ex)
             {
@@ -55,7 +55,7 @@ namespace ReqManager.Services.Link.Classes
         {
             try
             {
-                return getAll().Where(l => l.code.Equals(code)).SingleOrDefault();
+                return filter(l => l.code == code).SingleOrDefault();
             }
             catch (Exception ex)
             {

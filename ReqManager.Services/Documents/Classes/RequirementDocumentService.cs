@@ -121,7 +121,7 @@ namespace ReqManager.Services.Documents.Classes
                     <p><strong>Environmental Information</strong>: " + project.environmentalInformation + @"</p>
                     <p><strong>Management Information</strong>: " + project.managementInformation + @"</p>
                     <p><strong>Start Date</strong>: " + project.startDate.ToShortDateString() + @"</p>
-                    <p><strong>End Date</strong>: " + project.endDate.ToShortDateString() + @"</p>
+                    <p><strong>End Date</strong>: " + Convert.ToDateTime(project.endDate).ToShortDateString() + @"</p>
                     <br />
                     <hr />
                     <h2>Requirements</h2>";

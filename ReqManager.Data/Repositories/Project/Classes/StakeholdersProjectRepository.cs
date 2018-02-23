@@ -4,8 +4,6 @@ using ReqManager.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReqManager.Data.Repositories.Project.Classes
 {
@@ -13,6 +11,19 @@ namespace ReqManager.Data.Repositories.Project.Classes
     {
         public StakeholdersProjectRepository(IDbFactory dbFactory) : base(dbFactory)
         {
+        }
+
+        public IEnumerable<StakeholdersProject> getStakeholderByProject(int ProjectID)
+        {
+            try
+            {
+                IEnumerable<StakeholdersProject> teste = DbContext.StakeholdersProject.Where(p => p.ProjectID == ProjectID);
+                return DbContext.StakeholdersProject.Where(p => p.ProjectID == ProjectID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

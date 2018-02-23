@@ -27,7 +27,7 @@ namespace ReqManager.Services.Link.Classes
         {
             try
             {
-                return getAll().Where(l => l.code.Equals(code)).SingleOrDefault();
+                return filter(l => l.code == code).SingleOrDefault();
             }
             catch (Exception ex)
             {
@@ -39,7 +39,7 @@ namespace ReqManager.Services.Link.Classes
         {
             try
             {
-                return getAll().Where(l => l.ProjectArtifact.code.Equals(ArtifactCode) && l.Requirement.code.Equals(RequirementCode)).SingleOrDefault();
+                return filter(l => l.ProjectArtifact.code == ArtifactCode && l.Requirement.code == RequirementCode).SingleOrDefault();
             }
             catch (Exception ex)
             {

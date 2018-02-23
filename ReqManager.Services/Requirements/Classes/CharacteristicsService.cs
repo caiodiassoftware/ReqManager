@@ -20,7 +20,7 @@ namespace ReqManager.Services.Requirements.Classes
         {
             try
             {
-                return getAll().Where(c => c.required);
+                return filter(c => c.required);
             }
             catch (Exception ex)
             {

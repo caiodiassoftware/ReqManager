@@ -80,3 +80,5 @@ C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Services\bin\Debug\itextshar
 C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Debug\itextsharp.dll
 C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Debug\itextsharp.xmlworker.dll
 C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Debug\itextsharp.xml
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Debug\Newtonsoft.Json.dll
+C:\Users\cdias\Desktop\ReqManager\ReqManager.Services\bin\Debug\Newtonsoft.Json.xml

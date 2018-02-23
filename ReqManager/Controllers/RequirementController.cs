@@ -44,7 +44,7 @@ namespace ReqManager.Controllers
         private IRequirementVersionsService versions { get; set; }
         private IRequirementDocumentService reqDocument { get; set; }
         private IStakeholderRequirementApprovalService stakeholderApproval { get; set; }
-        IStakeholderRequirementService stakeholderRequirementService { get; set; }
+        private IStakeholderRequirementService stakeholderRequirementService { get; set; }
 
         public RequirementController(
             IRequirementService requirementService,
@@ -162,19 +162,18 @@ namespace ReqManager.Controllers
             try
             {
                 RequirementViewModel vm = Mapper.Map<RequirementEntity, RequirementViewModel>(requirementService.get(id));
-                vm.linkReq = linkRequirementService.getAll().Where(r => r.RequirementOriginID.Equals(id) || r.RequirementTargetID.Equals(id)).ToList();
-                vm.linkReqArt = linkReqArtifactService.getAll().Where(r => r.RequirementID.Equals(id)).ToList();
-                vm.characteristics = reqCharacteristics.getAll().Where(r => r.RequirementID.Equals(id)).ToList();
-                vm.request = requestService.getAll().Where(r => r.StakeholderRequirement.RequirementID.Equals(id)).ToList();
 
-                var versionsRequested = versions.getAll().Where(r => r.RequirementRequestForChanges != null).ToList();
-                var versionsCreated = versions.getAll().Where(r => r.RequirementRequestForChanges == null).ToList();
+                vm.linkReqArt = linkReqArtifactService.filter(r => r.RequirementID == id).ToList();
+                vm.linkReq = linkRequirementService.filter(r => r.RequirementOriginID == id || r.RequirementTargetID == id).ToList();
+                vm.characteristics = reqCharacteristics.filter(r => r.RequirementID == id).ToList();
+                var versionsRequested = versions.filter(r => r.RequirementRequestForChanges != null).ToList();
+                var versionsCreated = versions.filter(r => r.RequirementRequestForChanges == null).ToList();
+                vm.versions = versionsRequested.Where(r => r.RequirementRequestForChanges.StakeholderRequirement.RequirementID == id).ToList();
+                vm.versions.AddRange(versions.filter(r => r.RequirementID == id));
+                vm.stakeholders = stakeholderRequirementService.filter(r => r.RequirementID == id).ToList();
 
-                vm.versions = versionsRequested.Where(r => r.RequirementRequestForChanges.StakeholderRequirement.RequirementID.Equals(id)).ToList();
-                vm.versions.AddRange(versions.getAll().Where(r => r.RequirementID.Equals(id)));
-
-                vm.stakeholdersApproval = stakeholderApproval.getAll().Where(r => r.StakeholderRequirement.RequirementID.Equals(id)).ToList();
-                vm.stakeholders = stakeholderRequirementService.getAll().Where(r => r.RequirementID.Equals(id)).ToList();
+                vm.stakeholdersApproval = stakeholderApproval.filterByRequirement(Convert.ToInt32(id));
+                vm.request = requestService.filterByRequirement(Convert.ToInt32(id));
 
                 return View(vm);
             }
@@ -289,7 +288,7 @@ namespace ReqManager.Controllers
                 setIdUser(ref entity);
                 setCreationDate(ref entity);
                 Service.add(ref entity);
-                success("Register was made with Success!");
+                success("The Requirement " + entity.title + " was made with Success!");
                 return RedirectToAction("Details", "Requirement", new { id = entity.RequirementID });
             }
             catch (Exception ex)

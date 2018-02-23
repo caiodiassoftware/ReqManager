@@ -27,7 +27,7 @@ namespace ReqManager.Services.Project.Classes
         {
             try
             {
-                return getAll().Where(p => p.ProjectID.Equals(ProjectID));
+                return filter(p => p.ProjectID == ProjectID);
             }
             catch (Exception ex)
             {
@@ -39,7 +39,7 @@ namespace ReqManager.Services.Project.Classes
         {
             try
             {
-                return getAll().Where(p => p.code.Equals(code)).SingleOrDefault();
+                return filter(p => p.code == code).SingleOrDefault();
             }
             catch (Exception ex)
             {

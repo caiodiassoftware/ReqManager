@@ -18,6 +18,7 @@ namespace ReqManager.Services.Estructure
             this.unit = unit;
             Mapper.Initialize(cfg =>
             {
+                cfg.AddGlobalIgnore("DisplayName");
                 cfg.CreateAutomaticMapping<TModel, TEntity>();
             });
         }
@@ -136,6 +137,18 @@ namespace ReqManager.Services.Estructure
             {
                 Expression<Func<TModel, bool>> newWhere = Mapper.Map<Expression<Func<TModel, bool>>>(where);
                 return Mapper.Map<IEnumerable<TModel>, IEnumerable<TEntity>>(repository.filter(newWhere));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public virtual IEnumerable<TEntity> filterByValue(string value)
+        {
+            try
+            {
+                return Mapper.Map<IEnumerable<TModel>, IEnumerable<TEntity>>(repository.filterByValue(value));
             }
             catch (Exception ex)
             {

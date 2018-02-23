@@ -59,7 +59,7 @@ namespace ReqManager.Controllers
         {
             try
             {
-                return Json(Service.getAll().Where(s => s.RequirementID.Equals(RequirementID)), JsonRequestBehavior.AllowGet);
+                return Json(Service.filter(s => s.RequirementID == RequirementID), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

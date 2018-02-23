@@ -1,11 +1,8 @@
 ﻿using ReqManager.Data.Infrastructure;
 using ReqManager.Data.Repositories.Requirements.Interfaces;
 using ReqManager.Model;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReqManager.Data.Repositories.Requirements.Classes
 {
@@ -13,6 +10,11 @@ namespace ReqManager.Data.Repositories.Requirements.Classes
     {
         public RequirementTemplateRepository(IDbFactory dbFactory) : base(dbFactory)
         {
+        }
+
+        public List<RequirementTemplate> filterByRequirementType(int RequirementType)
+        {
+            return DbContext.RequirementTemplate.Where(t => t.RequirementTypeID == RequirementType).ToList();
         }
     }
 }

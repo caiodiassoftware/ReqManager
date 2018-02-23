@@ -21,7 +21,7 @@ namespace ReqManager.Services.Acess.Classes
         {
             try
             {
-                return getAll().Where(r => r.UserID.Equals(UserID));
+                return filter(r => r.UserID == UserID);
             }
             catch (Exception ex)
             {
@@ -33,7 +33,7 @@ namespace ReqManager.Services.Acess.Classes
         {
             try
             {
-                return getAll().Where(r => r.UserID.Equals(UserID) && r.RoleID.Equals(RoleID)) != null;
+                return filter(r => r.UserID == UserID && r.RoleID == RoleID) != null;
             }
             catch (Exception ex)
             {

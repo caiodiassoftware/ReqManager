@@ -56,7 +56,7 @@ namespace ReqManager.Controllers
         {
             try
             {
-                var item = Service.getAll().Where(a => a.TypeLinkID.Equals(type)).Select(a => a.Attributes);
+                var item = Service.filter(a => a.TypeLinkID == type).Select(a => a.Attributes);
                 return Json(item, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)

@@ -17,5 +17,6 @@ namespace ReqManager.Data.Infrastructure
         TModel get(Expression<Func<TModel, bool>> where);
         IEnumerable<TModel> getAll(int top = 0);
         IEnumerable<TModel> filter(Expression<Func<TModel, bool>> where);
+        IEnumerable<TModel> filterByValue(string value);
     }
 }

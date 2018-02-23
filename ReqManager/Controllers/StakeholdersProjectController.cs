@@ -55,7 +55,7 @@ namespace ReqManager.Controllers
         {
             try
             {
-                return Json(Service.getAll().Where(s => s.ProjectID.Equals(ProjectID)), JsonRequestBehavior.AllowGet);
+                return Json(Service.filter(s => s.ProjectID == ProjectID), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

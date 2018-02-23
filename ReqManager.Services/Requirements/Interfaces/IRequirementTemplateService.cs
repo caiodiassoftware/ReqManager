@@ -11,6 +11,6 @@ namespace ReqManager.Services.Requirements.Interfaces
 {
     public interface IRequirementTemplateService : IService<RequirementTemplateEntity>
     {
-
+        List<RequirementTemplateEntity> filterByRequirementType(int RequirementType);
     }
 }

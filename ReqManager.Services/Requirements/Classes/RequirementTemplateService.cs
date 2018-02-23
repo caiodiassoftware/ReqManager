@@ -1,21 +1,37 @@
-﻿using ReqManager.Data.Infrastructure;
+﻿using System;
+using System.Collections.Generic;
+using ReqManager.Data.Infrastructure;
 using ReqManager.Data.Repositories.Requirements.Interfaces;
 using ReqManager.Entities.Requirement;
 using ReqManager.Model;
 using ReqManager.Services.Estructure;
 using ReqManager.Services.Requirements.Interfaces;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using AutoMapper;
 
 namespace ReqManager.Services.Requirements.Classes
 {
-    public class RequirementTemplateService : ServiceBase<RequirementTemplate, RequirementTemplateEntity>, IRequirementTemplateService
+    public class RequirementTemplateService : 
+        ServiceBase<RequirementTemplate, RequirementTemplateEntity>,
+        IRequirementTemplateService
     {
+        private IRequirementTemplateRepository repository { get; set; }
+
         public RequirementTemplateService(IRequirementTemplateRepository repository, IUnitOfWork unit) : base(repository, unit)
         {
+            this.repository = repository;
+        }
+
+        public List<RequirementTemplateEntity> filterByRequirementType(int RequirementType)
+        {
+            try
+            {
+                return Mapper.Map<IEnumerable<RequirementTemplate>, IEnumerable<RequirementTemplateEntity>>(repository.filterByRequirementType(RequirementType)).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

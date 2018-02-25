@@ -53,7 +53,9 @@ namespace ReqManager.Controllers
         {
             try
             {
-                return Json(service.filter(l => l.LinkArtifactRequirementID == LinkArtifactRequirementID), JsonRequestBehavior.AllowGet);
+                
+                return Json(service.filter(l => l.LinkArtifactRequirementID == LinkArtifactRequirementID),
+                    JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

@@ -17,8 +17,7 @@ namespace ReqManager.Data.Repositories.Project.Classes
         {
             try
             {
-                IEnumerable<StakeholdersProject> teste = DbContext.StakeholdersProject.Where(p => p.ProjectID == ProjectID);
-                return DbContext.StakeholdersProject.Where(p => p.ProjectID == ProjectID);
+                return DbContext.StakeholdersProject.AsNoTracking().Where(p => p.ProjectID == ProjectID).ToList();
             }
             catch (Exception ex)
             {

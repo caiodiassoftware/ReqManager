@@ -43,7 +43,7 @@ namespace ReqManager.Services.Link.Classes
         {
             try
             {
-                return filter(l => l.RequirementOrigin.code == ReqOrigin && l.RequirementTarget.code == ReqTarget).SingleOrDefault();
+                return convertModelToEntity(repository.filter(l => l.RequirementOrigin.code == ReqOrigin && l.RequirementTarget.code == ReqTarget).SingleOrDefault());
             }
             catch (Exception ex)
             {
@@ -55,7 +55,7 @@ namespace ReqManager.Services.Link.Classes
         {
             try
             {
-                return filter(l => l.code == code).SingleOrDefault();
+                return convertModelToEntity(repository.filter(l => l.code == code).SingleOrDefault());
             }
             catch (Exception ex)
             {

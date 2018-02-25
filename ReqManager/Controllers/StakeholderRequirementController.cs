@@ -12,12 +12,14 @@ namespace ReqManager.Controllers
     {
         private IRequirementService requirementService { get; set; }
         private IStakeholdersProjectService stakeholderProjectService { get; set; }
+        private IStakeholderRequirementService service { get; set; }
 
         public StakeholderRequirementController(
             IStakeholderRequirementService service,
             IRequirementService requirementService,
             IStakeholdersProjectService stakeholderProjectService) : base(service)
         {
+            this.service = service;
             this.requirementService = requirementService;
             this.stakeholderProjectService = stakeholderProjectService;
 
@@ -59,7 +61,7 @@ namespace ReqManager.Controllers
         {
             try
             {
-                return Json(Service.filter(s => s.RequirementID == RequirementID), JsonRequestBehavior.AllowGet);
+                return Json(service.getStakeholdersFromRequirement(RequirementID), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

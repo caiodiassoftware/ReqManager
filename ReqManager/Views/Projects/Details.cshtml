@@ -209,12 +209,12 @@
 
                                 @if (item.startDate != null)
                                 {
-                                    if (Convert.ToDateTime(item.startDate).CompareTo(Model.project.endDate) > 0)
+                                    if (Convert.ToDateTime(item.startDate).CompareTo(Convert.ToDateTime(Model.project.endDate)) > 0)
                                     {
                                         @Html.Label("Requirement will start after project completion!")
                                     }
 
-                                    if (Model.project.endDate.CompareTo(item.startDate) > 0)
+                                    if (Convert.ToDateTime(Model.project.endDate).CompareTo(Convert.ToDateTime(item.startDate)) > 0)
                                     {
                                         @Html.Label(Convert.ToDateTime(item.endDate).Subtract(DateTime.Now).Days.ToString() +
                                        " Days to End!")

@@ -27,7 +27,7 @@ namespace ReqManager.Services.Link.Classes
         {
             try
             {
-                return filter(l => l.code == code).SingleOrDefault();
+                return convertModelToEntity(repository.filter(l => l.code == code).SingleOrDefault());
             }
             catch (Exception ex)
             {
@@ -39,7 +39,7 @@ namespace ReqManager.Services.Link.Classes
         {
             try
             {
-                return filter(l => l.ProjectArtifact.code == ArtifactCode && l.Requirement.code == RequirementCode).SingleOrDefault();
+                return convertModelToEntity(repository.filter(l => l.ProjectArtifact.code == ArtifactCode && l.Requirement.code == RequirementCode).SingleOrDefault());
             }
             catch (Exception ex)
             {

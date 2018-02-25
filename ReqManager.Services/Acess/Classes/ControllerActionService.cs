@@ -8,28 +8,22 @@ using ReqManager.Model;
 using System.Linq;
 using ReqManager.Entities;
 using AutoMapper;
-using ReqManager.Services.Extensions;
-using ReqManager.Services.Acess.Interfaces;
-using ReqManager.Entities.Acess;
 
 namespace ReqManager.Services.Acess
 {
     public class ControllerActionService : ServiceBase<ControllerAction, ControllerActionEntity>, IControllerActionService
     {
-        private readonly IRoleControllerActionService roleControllerActionService;
-        private readonly IRoleService roleService;
-        private readonly IUserRoleService userRoleService;
+        private IUserRoleRepository urRepository { get; set; }
+        private IRoleControllerActionRepository actionsRepository { get; set; }
 
         public ControllerActionService(
             IControllerActionRepository repository,
-            IRoleControllerActionService roleControllerActionService,
-            IRoleService roleService,
-            IUserRoleService userRoleService,
+            IUserRoleRepository urRepository,
+            IRoleControllerActionRepository actionsRepository,
             IUnitOfWork unit) : base(repository, unit)
         {
-            this.roleControllerActionService = roleControllerActionService;
-            this.roleService = roleService;
-            this.userRoleService = userRoleService;
+            this.urRepository = urRepository;
+            this.actionsRepository = actionsRepository;
         }
 
 
@@ -37,12 +31,6 @@ namespace ReqManager.Services.Acess
         {
             try
             {
-                Mapper.Initialize(cfg =>
-                {
-                    cfg.CreateMap<ControllerActionEntity, ControllerAction>();
-                    cfg.IgnoreUnmapped();
-                });
-
                 IEnumerable<ControllerAction> listControllerActionApplication = Mapper.Map<IEnumerable<ControllerActionEntity>, IEnumerable<ControllerAction>>(controllerActionApplication);
                 List<ControllerAction> listControllerActionDataBase = repository.getAll().Cast<ControllerAction>().ToList();
 
@@ -53,8 +41,6 @@ namespace ReqManager.Services.Acess
                     Where(ca => !listControllerActionApplication.Any(db => db.action.Equals(ca.action) &&
                 db.controller.Equals(ca.controller))).Cast<ControllerAction>().ToList();
 
-
-
                 repository.add(newControllerActions.GroupBy(ca => new { ca.controller, ca.action }).Select(group => group.First()).ToList());
                 repository.delete(deletedControllerActions.Select(d => d.ControllerActionID).ToList());
             }
@@ -64,25 +50,11 @@ namespace ReqManager.Services.Acess
             }
         }
 
-        public bool CanAccess(int UserID, string controllerName, string actionName)
+        public bool CanAccess(List<ControllerActionEntity> controllerActions, string controllerName, string actionName)
         {
             try
             {
-                var roles = roleService.getAll().ToList();
-                var rcas = roleControllerActionService.getAll().ToList();
-                var cas = getAll().ToList();
-                var userroles = userRoleService.getAll().ToList();
-
-                var permissions = from ur in userroles
-                       join role in roles on ur.RoleID equals role.RoleID
-                       join rca in rcas on role.RoleID equals rca.RoleID
-                       join ca in cas on rca.ControllerActionID equals ca.ControllerActionID
-                       where ur.UserID.Equals(UserID) && ca.controller.Equals(controllerName + "Controller") && ca.action.Equals(actionName)
-                       select ca;
-
-                List<ControllerActionEntity> actions = permissions.ToList();
-
-                return actions.Count > 0 ? true : false;
+                return controllerActions.Any(ca => ca.controller.Equals(controllerName + "Controller") && ca.action.Equals(actionName));
             }
             catch (Exception ex)
             {
@@ -90,5 +62,23 @@ namespace ReqManager.Services.Acess
             }
         }
 
+        public List<ControllerActionEntity> GetPermissions(int UserID)
+        {
+            try
+            {
+                List<ControllerAction> controllerActions = new List<ControllerAction>();
+
+                var userRoles = urRepository.filter(u => u.UserID == UserID);
+                var roles = userRoles.Select(r => r.Role);
+
+                foreach (var role in roles)
+                    controllerActions.AddRange(actionsRepository.filter(r => r.RoleID == role.RoleID).Select(a => a.ControllerAction));
+                return convertEnumerableModelToEntity(controllerActions).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

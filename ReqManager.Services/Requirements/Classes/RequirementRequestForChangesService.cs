@@ -24,15 +24,16 @@ namespace ReqManager.Services.Requirements.Classes
 
         public List<RequirementRequestForChangesEntity> filterByRequirement(int RequirementID)
         {
-            return Mapper.Map<IEnumerable<RequirementRequestForChanges>, IEnumerable<RequirementRequestForChangesEntity>>(repository.filterByRequirement(RequirementID)).ToList();
+            return convertEnumerableModelToEntity(repository.filterByRequirement(RequirementID)).ToList();
         }
 
         public bool validateRequestForRequirement(int RequirementID)
         {
             try
             {
-                var request = getAll().Where(r => r.StakeholderRequirement.RequirementID.Equals(RequirementID) && r.RequestStatusID.Equals(1)).SingleOrDefault();
-                return request == null ? true : false;
+                return !repository.filter(r => 
+                    r.StakeholderRequirement.RequirementID.Equals(RequirementID)
+                    && r.RequestStatusID.Equals(1)).Any();
             }
             catch (System.Exception ex)
             {

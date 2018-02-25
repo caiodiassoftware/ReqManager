@@ -4,9 +4,10 @@
     ViewBag.Title = "Controller/Actions";
 }
 
-<p>
-    @Html.ActionLink("Refresh", "Refresh")
-</p>
+<div class="form-group">
+    @Html.ActionLink("Refresh", "Refresh", "ControllerAction", null, new { @class = "btn btn-primary" })
+</div>
+
 <table id="actions" class="display">
     <thead>
         <tr>
@@ -44,6 +45,7 @@
         $('#actions').dataTable({
             "bServerSide": true,
             "bProcessing": false,
+            searchDelay: 2000,
             ajax: {
                 "url": '@Url.Action("GetFilter", "ControllerAction")',
                 "type": 'POST',

@@ -7,7 +7,6 @@ using ReqManager.Services.Requirements.Interfaces;
 
 namespace ReqManager.Services.Requirements.Classes
 {
-
     public class RequestStatusService : ServiceBase<RequestStatus, RequestStatusEntity>, IRequestStatusService
     {
         public RequestStatusService(IRequestStatusRepository repository, IUnitOfWork unit) : base(repository, unit)

@@ -55,7 +55,7 @@ namespace ReqManager.ManagerController
         {
             try
             {
-                return Json(Service.getAll(5), JsonRequestBehavior.AllowGet);
+                return Json(Service.getAll(10), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
@@ -67,7 +67,15 @@ namespace ReqManager.ManagerController
         {
             try
             {
-                List<TEntity> result = !string.IsNullOrEmpty(requestModel.Search.Value) ? Service.filterByValue(requestModel.Search.Value).ToList() : Service.getAll(5).ToList();
+                string value = requestModel.Search.Value;
+                List<TEntity> result = null;
+                if (!string.IsNullOrEmpty(requestModel.Search.Value))
+                {
+                    result = value.Length > 3 ? Service.filterByValue(requestModel.Search.Value).ToList()
+                        : Service.getAll(10).ToList();
+                }
+                else
+                    result = Service.getAll(10).ToList();
 
                 return Json(new
                 {

@@ -23,8 +23,7 @@ namespace ReqManager.Services.Requirements.Classes
 
         public List<RequirementSubTypeEntity> filterByRequirementType(int RequirementTypeID)
         {
-            return Mapper.Map<IEnumerable<RequirementSubType>, 
-                IEnumerable<RequirementSubTypeEntity>>(repository.filterByRequirementType(RequirementTypeID)).ToList();
+            return convertEnumerableModelToEntity(repository.filter(s => s.RequirementTypeID == RequirementTypeID)).ToList();
         }
     }
 }

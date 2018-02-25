@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using ReqManager.Data.Infrastructure;
+﻿using ReqManager.Data.Infrastructure;
 using ReqManager.Data.Repositories.Project.Interfaces;
 using ReqManager.Entities.Project;
 using ReqManager.Model;
@@ -8,7 +7,6 @@ using ReqManager.Services.Project.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 
 namespace ReqManager.Services.Project.Classes
 {
@@ -26,8 +24,8 @@ namespace ReqManager.Services.Project.Classes
         {
             try
             {
-                return getAll().Where(p => p.ProjectID.Equals(ProjectID) &&
-                p.Stakeholders.UserID.Equals(UserID)).FirstOrDefault();
+                return convertModelToEntity(repository.filter(p => p.ProjectID.Equals(ProjectID) &&
+                p.Stakeholders.UserID.Equals(UserID)).FirstOrDefault());
             }
             catch (Exception ex)
             {
@@ -39,7 +37,7 @@ namespace ReqManager.Services.Project.Classes
         {
             try
             {
-                return Mapper.Map<IEnumerable<StakeholdersProject>, IEnumerable<StakeholdersProjectEntity>>(repository.getStakeholderByProject(ProjectID));
+                return convertEnumerableModelToEntity(repository.getStakeholderByProject(ProjectID));
             }
             catch (Exception ex)
             {

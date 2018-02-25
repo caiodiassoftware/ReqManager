@@ -80,6 +80,7 @@
         $('#artifacts').dataTable({
             "bServerSide": true,
             "bProcessing": false,
+            searchDelay: 2000,
             ajax: {
                 "url": '@Url.Action("GetFilter", "ProjectArtifact")',
                 "type": 'POST',

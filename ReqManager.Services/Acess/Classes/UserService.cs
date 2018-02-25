@@ -49,7 +49,7 @@ namespace ReqManager.Services.Acess.Classes
         {
             try
             {
-                Users user = repository.filter(u => u.login.Equals(login)).FirstOrDefault();
+                Users user = repository.filter(u => u.login == login).FirstOrDefault();
                 return convertModelToEntity(user);
             }
             catch (Exception ex)

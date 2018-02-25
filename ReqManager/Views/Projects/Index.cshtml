@@ -64,12 +64,12 @@
         </tbody>
     </table>
 
-
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function () {
         $('#projects').dataTable({
             "bServerSide": true,
             "bProcessing": false,
+            searchDelay: 2000,
             ajax: {
                 "url": '@Url.Action("GetFilter", "Projects")',
                 "type": 'POST',

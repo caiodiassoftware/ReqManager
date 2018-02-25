@@ -6,7 +6,6 @@ using ReqManager.Entities.Project;
 using ReqManager.Model;
 using ReqManager.Services.Estructure;
 using ReqManager.Services.Project.Interfaces;
-using System.Linq;
 
 namespace ReqManager.Services.Project.Classes
 {
@@ -21,7 +20,7 @@ namespace ReqManager.Services.Project.Classes
         {
             try
             {
-                return filter(p => p.ProjectID == ProjectID);
+                return convertEnumerableModelToEntity(repository.filter(p => p.ProjectID == ProjectID));
             }
             catch (Exception ex)
             {

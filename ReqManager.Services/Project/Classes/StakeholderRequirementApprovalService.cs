@@ -26,8 +26,7 @@ namespace ReqManager.Services.Project.Classes
         {
             try
             {
-                return Mapper.Map<IEnumerable<StakeholderRequirementApproval>,
-                    IEnumerable<StakeholderRequirementApprovalEntity>>(repository.filterByRequirement(RequirementID)).ToList();
+                return convertEnumerableModelToEntity(repository.filterByRequirement(RequirementID)).ToList();
             }
             catch (System.Exception ex)
             {
@@ -39,7 +38,7 @@ namespace ReqManager.Services.Project.Classes
         {
             try
             {
-                return getAll().Where(s => s.StakeholderRequirement.StakeholdersProject.Stakeholders.UserID.Equals(UserID)).SingleOrDefault();
+                return convertModelToEntity(repository.filter(s => s.StakeholderRequirement.StakeholdersProject.Stakeholders.UserID.Equals(UserID)).SingleOrDefault());
             }
             catch (System.Exception ex)
             {

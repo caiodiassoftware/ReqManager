@@ -26,7 +26,7 @@ namespace ReqManager.Services.Requirements.Classes
         {
             try
             {
-                return Mapper.Map<IEnumerable<RequirementTemplate>, IEnumerable<RequirementTemplateEntity>>(repository.filterByRequirementType(RequirementType)).ToList();
+                return convertEnumerableModelToEntity(repository.filter(r => r.RequirementTypeID == RequirementType)).ToList();
             }
             catch (Exception ex)
             {

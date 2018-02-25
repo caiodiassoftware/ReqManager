@@ -37,15 +37,16 @@
 
 </table>
 
-<script type="text/javascript" charset="utf-8">    
+<script type="text/javascript" charset="utf-8">
     $(document).ready(function () {
+
         $('#requirement').dataTable({
             "bServerSide": true,
             "bProcessing": true,
+            searchDelay : 2000,
             ajax: {
                 "url": '@Url.Action("GetFilter", "Requirement")',
                 "type": 'POST',
-
                 "dataSrc": function (json) {
                     var return_data = new Array();
                     for (var i = 0; i < json.aaData.length; i++) {

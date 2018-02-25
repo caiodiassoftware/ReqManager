@@ -9,6 +9,7 @@ using System.Data.Entity.Migrations;
 using System.Reflection;
 using System.Web.Script.Serialization;
 using Newtonsoft.Json;
+using System.Collections;
 
 namespace ReqManager.Data.Infrastructure
 {
@@ -167,23 +168,73 @@ namespace ReqManager.Data.Infrastructure
         {
             try
             {
-                List<TModel> result = new List<TModel>();
-                var entities = dbSet.AsNoTracking();
+                HashSet<TModel> result = new HashSet<TModel>();
+                value = value.ToLower();
 
-                foreach (TModel item in entities)
+                var entities = dbSet.ToList();
+                foreach (var item in entities)
                 {
-                    foreach (PropertyInfo pi in item.GetType().GetProperties())
+                    PropertyInfo[] props = item.GetType().GetProperties().Where(p => !p.PropertyType.IsInterface).ToArray();
+                    PropertyInfo[] primitiveProps = props.Where(p => p.PropertyType.IsPrimitive || p.PropertyType == typeof(string)).ToArray();
+                    PropertyInfo[] specificProps = props.Where(p => p.PropertyType.IsClass && p.PropertyType != typeof(string)).ToArray();
+
+                    #region Specific
+                    foreach (var sp in specificProps)
                     {
-                        string output = JsonConvert.SerializeObject(item);
-                        string json = new JavaScriptSerializer().Serialize(item).ToLower();
-                        if (json.Contains(value.ToLower()))
+                        try
                         {
-                            result.Add(item);
-                            break;
+                            object attribute = sp.GetValue(item, null);
+                            PropertyInfo[] finesse = attribute.GetType().GetProperties().
+                                Where(p => p.PropertyType.IsPrimitive || p.PropertyType == typeof(string)).ToArray();
+                            foreach (PropertyInfo f in finesse)
+                            {
+                                try
+                                {
+                                    string val = f.GetValue(attribute, null).ToString();
+                                    if (!string.IsNullOrEmpty(val))
+                                        if (val.ToLower().Contains(value))
+                                        {
+                                            result.Add(item);
+                                            break;
+                                        }
+                                }
+                                catch (Exception)
+                                {
+                                    continue;
+                                }
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            continue;
                         }
                     }
+                    #endregion
+
+                    #region Primitive
+
+                    foreach (var pp in primitiveProps)
+                    {
+                        try
+                        {
+                            string attribute = pp.GetValue(item, null).ToString();
+                            if (!string.IsNullOrEmpty(attribute))
+                                if (attribute.ToLower().Contains(value))
+                                {
+                                    result.Add(item);
+                                    break;
+                                }
+                        }
+                        catch (Exception)
+                        {
+                            continue;
+                        }
+                    }
+
+                    #endregion
                 }
-                return result;
+
+                return result.Count > 20 ? result.Take(20) : result;
             }
             catch (Exception ex)
             {
@@ -216,6 +267,5 @@ namespace ReqManager.Data.Infrastructure
         }
 
         #endregion
-
     }
 }

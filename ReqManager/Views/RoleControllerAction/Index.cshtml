@@ -35,6 +35,7 @@
         $('#roleControllerActions').dataTable({
             "bServerSide": true,
             "bProcessing": false,
+            searchDelay: 2000,
             ajax: {
                 "url": '@Url.Action("GetFilter", "RoleControllerAction")',
                 "type": 'POST',

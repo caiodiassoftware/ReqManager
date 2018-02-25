@@ -9,7 +9,6 @@ using System.Net;
 using AutoMapper;
 using ReqManager.Services.Extensions;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace ReqManager.Controllers
 {

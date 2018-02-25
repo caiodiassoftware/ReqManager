@@ -14,11 +14,13 @@ namespace ReqManager.Controllers
     public class LoginController : Controller
     {
         private IUserService userService { get; set; }
+        private IControllerActionService caService { get; set; }
 
         public LoginController(
             IUserService userService,
             IControllerActionService caService)
         {
+            this.caService = caService;
             this.userService = userService;
         }
 
@@ -44,6 +46,7 @@ namespace ReqManager.Controllers
                         if (user.password.Equals(encodingPasswordString))
                         {
                             Session["name"] = user.nickName;
+                            Session["permissions"] = caService.GetPermissions(user.UserID);
 
                             FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(
                                     1,

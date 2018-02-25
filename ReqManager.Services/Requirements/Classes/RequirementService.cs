@@ -14,7 +14,8 @@ using System.Linq;
 
 namespace ReqManager.Services.Requirements.Classes
 {
-    public class RequirementService : ServiceBase<Requirement, RequirementEntity>, IRequirementService
+    public class RequirementService : 
+        ServiceBase<Requirement, RequirementEntity>, IRequirementService
     {
         private IRequirementVersionsService versionService { get; set; }
         private IRequirementRequestForChangesService requestService { get; set; }
@@ -147,7 +148,7 @@ namespace ReqManager.Services.Requirements.Classes
         {
             try
             {
-                return filter(r => r.ProjectID == ProjectID);
+                return convertEnumerableModelToEntity(repository.filter(r => r.ProjectID == ProjectID));
             }
             catch (Exception ex)
             {
@@ -159,7 +160,7 @@ namespace ReqManager.Services.Requirements.Classes
         {
             try
             {
-                return filter(r => r.code == code).SingleOrDefault();
+                return convertModelToEntity(repository.filter(r => r.code == code).SingleOrDefault());
             }
             catch (Exception ex)
             {
@@ -186,6 +187,18 @@ namespace ReqManager.Services.Requirements.Classes
                 ProjectEntity project = projectService.get(ProjectID);
                 return projectService.hasBalance(ProjectID) && 
                     getRequirementCostByProject(ProjectID) + requirementCost < project.cost ? true : false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public IEnumerable<RequirementEntity> getRequirementsToLink(int RequirementID)
+        {
+            try
+            {
+                return convertEnumerableModelToEntity(repository.filter(r => r.RequirementID != RequirementID));
             }
             catch (Exception ex)
             {

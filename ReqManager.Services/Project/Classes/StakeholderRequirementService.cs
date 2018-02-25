@@ -32,7 +32,7 @@ namespace ReqManager.Services.Project.Classes
         {
             try
             {
-                return filter(r => r.RequirementID == RequirementID);
+                return convertEnumerableModelToEntity(repository.filter(r => r.RequirementID == RequirementID));
             }
             catch (Exception ex)
 
@@ -48,8 +48,8 @@ namespace ReqManager.Services.Project.Classes
                 RequirementEntity req = requirement.get(RequirementID);
                 StakeholdersProjectEntity stakeProject = stakeholderProjectService.getByProjectAndUser(req.ProjectID, UserID);
 
-                return getAll().Where(s => s.RequirementID.Equals(RequirementID) && 
-                s.StakeholdersProject.StakeholdersProjectID.Equals(stakeProject.StakeholdersProjectID)).SingleOrDefault();
+                return convertModelToEntity(repository.filter(s => s.RequirementID == RequirementID &&
+                s.StakeholdersProject.StakeholdersProjectID == stakeProject.StakeholdersProjectID).SingleOrDefault());
             }
             catch (Exception ex)
             {

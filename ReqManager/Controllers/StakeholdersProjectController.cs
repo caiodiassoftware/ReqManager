@@ -9,11 +9,14 @@ namespace ReqManager.Controllers
 {
     public class StakeholdersProjectController : BaseController<StakeholdersProjectEntity>
     {
+        private IStakeholdersProjectService service { get; set; }
+
         public StakeholdersProjectController(
             IStakeholdersProjectService service,
             IProjectService projectService,
             IStakeholdersService stakeholderService) : base(service)
         {
+            this.service = service;
             ViewBag.ProjectID = new SelectList(projectService.getAll(), "ProjectID", "description");
             ViewBag.StakeholderID = new SelectList(stakeholderService.getAll(), "StakeholderID", "DisplayName");
         }
@@ -55,7 +58,7 @@ namespace ReqManager.Controllers
         {
             try
             {
-                return Json(Service.filter(s => s.ProjectID == ProjectID), JsonRequestBehavior.AllowGet);
+                return Json(service.getStakeholderByProject(ProjectID), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

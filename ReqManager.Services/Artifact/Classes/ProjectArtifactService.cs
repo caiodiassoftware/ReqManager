@@ -27,7 +27,7 @@ namespace ReqManager.Services.Project.Classes
         {
             try
             {
-                return filter(p => p.ProjectID == ProjectID);
+                return convertEnumerableModelToEntity(repository.filter(p => p.ProjectID == ProjectID));
             }
             catch (Exception ex)
             {
@@ -39,7 +39,7 @@ namespace ReqManager.Services.Project.Classes
         {
             try
             {
-                return filter(p => p.code == code).SingleOrDefault();
+                return convertModelToEntity(repository.filter(p => p.code == code).SingleOrDefault());
             }
             catch (Exception ex)
             {

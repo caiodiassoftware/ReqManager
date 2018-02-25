@@ -1,7 +1,9 @@
-﻿using ReqManager.Entities.Acess;
+﻿using ReqManager.Entities;
+using ReqManager.Entities.Acess;
 using ReqManager.Services.Acess.Interfaces;
 using ReqManager.Services.InterfacesServices;
 using System;
+using System.Collections.Generic;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
@@ -26,10 +28,11 @@ namespace ReqManager.Filters
                 {
                     IControllerActionService caService = DependencyResolver.Current.GetService<IControllerActionService>();
                     IUserService userService = DependencyResolver.Current.GetService<IUserService>();
+                    List<ControllerActionEntity> cas = HttpContext.Current.Session["permissions"] as List<ControllerActionEntity>;
 
                     FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
 
-                    if (!authTicket.Expired)
+                    if (!authTicket.Expired && cas != null)
                     {
                         int UserID = Convert.ToInt32(authTicket.UserData);
 
@@ -43,7 +46,7 @@ namespace ReqManager.Filters
                         IPrincipal principal = new GenericPrincipal(id, null);
                         HttpContext.Current.Request.RequestContext.HttpContext.User = principal;
 
-                        if (!caService.CanAccess(UserID, controllerName, actionName))                        
+                        if (!caService.CanAccess(cas, controllerName, actionName))                        
                             throw new Exception("You don't have Permissions to " + actionName + " " + controllerName);
 
                         if(controllerName.Equals("Login") && actionName.Equals("Login"))

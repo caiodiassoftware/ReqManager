@@ -99,7 +99,7 @@ namespace ReqManager.Controllers
                         new List<RequirementEntity>() { reqOrigin }, "RequirementID", "DisplayName", id));
 
                 ViewData.Add("RequirementTargetID", new SelectList(
-                        requirementService.filter(r => r.RequirementID != reqOrigin.RequirementID), "RequirementID",
+                        requirementService.getRequirementsToLink(reqOrigin.RequirementID), "RequirementID",
                         "DisplayName"));
 
                 ViewData.Add("TypeLinkID", new SelectList(typeLinkService.getAll(), "TypeLinkID", "description"));

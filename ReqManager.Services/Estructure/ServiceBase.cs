@@ -123,7 +123,7 @@ namespace ReqManager.Services.Estructure
         {
             try
             {
-                return Mapper.Map<IEnumerable<TModel>, IEnumerable<TEntity>>(repository.getAll(top));
+                return convertEnumerableModelToEntity(repository.getAll(top));
             }
             catch (Exception ex)
             {
@@ -189,6 +189,22 @@ namespace ReqManager.Services.Estructure
         protected TEntity convertModelToEntity(TModel model)
         {
             return Mapper.Map<TModel, TEntity>(model);
+        }
+
+        protected IEnumerable<TEntity> convertEnumerableModelToEntity(IEnumerable<TModel> models)
+        {
+            try
+            {
+                List<TEntity> entities = new List<TEntity>();
+                foreach (TModel item in models)
+                    entities.Add(convertModelToEntity(item));
+                return entities;
+                //return Mapper.Map<IEnumerable<TModel>, IEnumerable<TEntity>>(models);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         private void commit(bool persistir)

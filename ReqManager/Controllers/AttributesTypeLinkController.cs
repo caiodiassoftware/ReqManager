@@ -13,12 +13,14 @@ namespace ReqManager.Controllers
     public class AttributesTypeLinkController : BaseController<AttributesTypeLinkEntity>
     {
         private ITypeLinkService typeLinkService { get; set; }
+        private IAttributesTypeLinkService service { get; set; }
 
         public AttributesTypeLinkController(
             IAttributesTypeLinkService service,
             IAttributesService attributeService,
             ITypeLinkService typeLinkService) : base(service)
         {
+            this.service = service;
             this.typeLinkService = typeLinkService;
 
             ViewData.Add("AttributeID", new SelectList(attributeService.getAll(), "AttributeID", "description"));
@@ -56,8 +58,7 @@ namespace ReqManager.Controllers
         {
             try
             {
-                var item = Service.filter(a => a.TypeLinkID == type).Select(a => a.Attributes);
-                return Json(item, JsonRequestBehavior.AllowGet);
+                return Json(service.GetByTypeLink(type).Select(a => a.Attributes), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

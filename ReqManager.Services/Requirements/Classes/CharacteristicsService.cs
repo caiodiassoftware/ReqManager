@@ -6,7 +6,6 @@ using ReqManager.Services.Estructure;
 using ReqManager.Services.Requirements.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace ReqManager.Services.Requirements.Classes
 {
@@ -20,7 +19,7 @@ namespace ReqManager.Services.Requirements.Classes
         {
             try
             {
-                return filter(c => c.required);
+                return convertEnumerableModelToEntity(repository.filter(c => c.required));
             }
             catch (Exception ex)
             {

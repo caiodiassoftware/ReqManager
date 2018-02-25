@@ -15,14 +15,9 @@ namespace ReqManager.Data.Repositories
         {
         }
 
-        public IEnumerable<Role> GetRoles()
+        public IEnumerable<UserRole> GetUserRoles(int UserID)
         {
-            return DbContext.role.ToList();
-        }
-
-        public IEnumerable<Users> GetUsers()
-        {
-            return DbContext.user.ToList();
+            return DbContext.userRole.Where(u => u.UserID == UserID).ToList();
         }
     }
 }

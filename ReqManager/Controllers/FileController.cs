@@ -21,6 +21,29 @@ namespace ReqManager.Controllers
 
         public void RenderFile(string FilePath, string Title)
         {
+            renderFile(FilePath, Title);
+        }
+
+        public JsonResult GetFolders(string path)
+        {
+            try
+            {
+                if (CheckExtensions(Path.GetExtension(path)))
+                {
+                    renderFile(path, "OpenFile");
+                    return Json("", JsonRequestBehavior.AllowGet);
+                }
+                else
+                    return Json(directory.getFolders(path), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private void renderFile(string FilePath, string Title)
+        {
             try
             {
                 string extension = Path.GetExtension(FilePath);
@@ -46,18 +69,6 @@ namespace ReqManager.Controllers
                     proc.Start();
                     proc.Close();
                 }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public JsonResult GetFolders(string path)
-        {
-            try
-            {
-                return Json(directory.getFolders(path), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
@@ -97,6 +108,8 @@ namespace ReqManager.Controllers
             extensions.Add(".jpg");
             extensions.Add(".png");
             extensions.Add(".pdf");
+            extensions.Add(".txt");
+            extensions.Add(".doc");
             return extensions.Contains(extension);
         }
     }

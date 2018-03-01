@@ -19,13 +19,23 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.Label("Path", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.Editor("PathForTraceability", new { htmlAttributes = new { @class = "form-control" } })
-            </div>
-        </div>
+        <fieldset disabled>
 
+            <div class="form-group">
+                @Html.Label("Project", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.Editor("ProjectPath", new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
+
+        </fieldset>
+            <div class="form-group">
+                @Html.Label("Path", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.Editor("PathForTraceability", new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <button id="search" class="btn btn-default">Search</button>
@@ -70,7 +80,8 @@
             var ID = $("#ID").val();
 
             $.getJSON('@Url.Action("Get", "ProjectArtifact")', { ID: ID }, function (response) {
-                $('#PathForTraceability').val(response.Project.pathForTraceability);
+                $('#ProjectPath').val(response.Project.pathForTraceability);
+                $('#PathForTraceability').val(response.path);
             });
         });
 
@@ -84,13 +95,15 @@
                 { path: path },
                 function (response) {
                     clearDropDown("Folders");
+                    $('#foldersDiv').hide();
+                    $('#track').hide();
                     $('#Folders').append("<option value='" + 0 + "'>SELECT THE FOLDER</option>");
                     $.each(response, function (index, item) {
                         $('#Folders').append("<option value='" + item + "'>" + item + "</option>");
+                        $('#foldersDiv').show();
+                        $('#track').show();
                     });
-                    $('#foldersDiv').show();
-                    $('#track').show();
-                }).fail(function () { alert('The informed path was not found!'); });
+                }).fail(function (response) { alert('The informed path was not found!'); });
         });
 
         $("#Folders").change(function () {

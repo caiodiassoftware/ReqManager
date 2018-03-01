@@ -84,14 +84,15 @@
                 { path: path },
                 function (response) {
                     clearDropDown("Folders");
+                    $('#foldersDiv').hide();
+                    $('#track').hide();
                     $('#Folders').append("<option value='" + 0 + "'>SELECT THE FOLDER</option>");
                     $('#Files').append("<option value='" + 0 + "'>SELECT THE FILES</option>");
                     $.each(response, function (index, item) {
                         $('#Folders').append("<option value='" + item + "'>" + item + "</option>");
+                        $('#foldersDiv').show();
+                        $('#track').show();
                     });
-                    $('#foldersDiv').show();
-                    $('#track').show();
-
                 }).fail(function () { alert('The informed path was not found!'); });
         });
 

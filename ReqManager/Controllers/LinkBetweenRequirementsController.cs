@@ -34,6 +34,13 @@ namespace ReqManager.Controllers
 
         #region GETS
 
+        public override ActionResult Create(LinkBetweenRequirementsEntity entity)
+        {
+            base.Create(entity);
+            ModelState.Clear();
+            return RedirectToAction("CreateNewLink", new { id = entity.RequirementOriginID });
+        }
+
         public JsonResult GetWithCode(string code)
         {
             try

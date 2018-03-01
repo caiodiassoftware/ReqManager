@@ -16,6 +16,7 @@ namespace ReqManager.Model
         [Key]
         public int LinkRequirementsID { get; set; }
         public int CreationUserID { get; set; }
+        [Index("IX_LINK_BETWEEN_REQUIREMENT", 3, IsUnique = true)]
         public int TypeLinkID { get; set; }
         [Index("IX_LINK_BETWEEN_REQUIREMENT", 1, IsUnique = true)]
         public int RequirementOriginID { get; set; }

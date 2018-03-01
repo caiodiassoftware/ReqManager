@@ -65,6 +65,13 @@ namespace ReqManager.Controllers
             }
         }
 
+        public override ActionResult Create(LinkBetweenRequirementsArtifactsEntity entity)
+        {
+            base.Create(entity);
+            ModelState.Clear();
+            return RedirectToAction("CreateNewLink", new { id = entity.RequirementID });
+        }
+
         public ActionResult CreateNewLink(int? id)
         {
             try

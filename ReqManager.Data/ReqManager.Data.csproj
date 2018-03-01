@@ -79,6 +79,10 @@
     <Compile Include="Migrations\201801082338144_IncludeRationaleFieldInRequirements.Designer.cs">
       <DependentUpon>201801082338144_IncludeRationaleFieldInRequirements.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802282340476_AddIndexTypeLinkInLinkBetweenRequirements.cs" />
+    <Compile Include="Migrations\201802282340476_AddIndexTypeLinkInLinkBetweenRequirements.Designer.cs">
+      <DependentUpon>201802282340476_AddIndexTypeLinkInLinkBetweenRequirements.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\Artifact\Classes\ArtifactRequirementTraceabilityMatrixRepository.cs" />
     <Compile Include="Repositories\Artifact\Classes\ArtifactTypeRepository.cs" />
@@ -192,6 +196,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801082338144_IncludeRationaleFieldInRequirements.resx">
       <DependentUpon>201801082338144_IncludeRationaleFieldInRequirements.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802282340476_AddIndexTypeLinkInLinkBetweenRequirements.resx">
+      <DependentUpon>201802282340476_AddIndexTypeLinkInLinkBetweenRequirements.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

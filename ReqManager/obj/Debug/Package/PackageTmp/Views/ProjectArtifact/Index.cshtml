@@ -1,0 +1,122 @@
+﻿@model IEnumerable<ReqManager.Entities.Artifact.ProjectArtifactEntity>
+
+@{
+    ViewBag.Title = "Artifacts";
+}
+
+<div class="form-group">
+    @Html.ActionLink("Create New", "Create", "ProjectArtifact", null, new { @class = "btn btn-primary" })
+</div>
+
+<table id="artifacts" class="display">
+    <thead>
+        <tr>
+            <th>
+                Code
+            </th>
+            <th>
+                Artifact Description
+            </th>
+            <th>
+                Project Title
+            </th>
+            <th>
+                Importance
+            </th>
+            <th>
+                Create By
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Path
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.creationDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Importance.description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Project.description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Users.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArtifactType.description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.path)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.creationDate)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.ProjectArtifactID }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.ProjectArtifactID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.ProjectArtifactID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function () {
+        $('#artifacts').dataTable({
+            "bServerSide": true,
+            "bProcessing": false,
+            searchDelay: 2000,
+            ajax: {
+                "url": '@Url.Action("GetFilter", "ProjectArtifact")',
+                "type": 'POST',
+                "dataSrc": function (json) {
+                    var return_data = new Array();
+                    for (var i = 0; i < json.aaData.length; i++) {
+                        return_data.push({
+                            'code': json.aaData[i].code,
+                            'description': json.aaData[i].description,
+                            'project': json.aaData[i].Project.description,
+                            'importance': json.aaData[i].Importance.description,
+                            'user': json.aaData[i].Users.name,
+                            'type': json.aaData[i].ArtifactType.description,
+                            'path': json.aaData[i].path,
+                            'creationDate': fixDateTime(json.aaData[i].creationDate),
+                            'action': '<a href=\"../ProjectArtifact/Edit/' +
+                                json.aaData[i].ProjectArtifactID + '\">Edit</a> | <a href=\"../ProjectArtifact/Details/' +
+                                json.aaData[i].ProjectArtifactID + '\">Details</a> | <a href=\"../ProjectArtifact/Delete/' +
+                                json.aaData[i].ProjectArtifactID + '\">Delete</a>'
+                        })
+                    }
+
+                    return return_data;
+                }
+            },
+            "aoColumns": [
+                { 'data': 'code' },
+                { 'data': 'description' },
+                { 'data': 'project' },
+                { 'data': 'importance' },
+                { 'data': 'user' },
+                { 'data': 'type' },
+                { 'data': 'path' },
+                { 'data': 'creationDate' },
+                { 'data': 'action' },
+            ]
+        });
+    });
+</script>

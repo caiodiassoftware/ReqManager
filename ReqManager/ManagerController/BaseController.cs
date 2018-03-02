@@ -22,7 +22,7 @@ namespace ReqManager.ManagerController
         {
             try
             {
-                return View(Service.getAll(10));
+                return View(Service.getAll(top));
             }
             catch (Exception ex)
             {

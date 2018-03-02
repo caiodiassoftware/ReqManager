@@ -12,7 +12,7 @@ using System.Linq;
 
 namespace ReqManager.Services.Project.Classes
 {
-    public class StakeholderRequirementService : 
+    public class StakeholderRequirementService :
         ServiceBase<StakeholderRequirement, StakeholderRequirementEntity>, IStakeholderRequirementService
     {
         private IRequirementService requirement { get; set; }
@@ -21,7 +21,7 @@ namespace ReqManager.Services.Project.Classes
         public StakeholderRequirementService(
             IRequirementService requirement,
             IStakeholdersProjectService stakeholderProjectService,
-            IStakeholderRequirementRepository repository, IUnitOfWork unit) : 
+            IStakeholderRequirementRepository repository, IUnitOfWork unit) :
             base(repository, unit)
         {
             this.requirement = requirement;
@@ -45,11 +45,17 @@ namespace ReqManager.Services.Project.Classes
         {
             try
             {
+                StakeholderRequirementEntity stakeholderReq = null;
                 RequirementEntity req = requirement.get(RequirementID);
                 StakeholdersProjectEntity stakeProject = stakeholderProjectService.getByProjectAndUser(req.ProjectID, UserID);
 
-                return convertModelToEntity(repository.filter(s => s.RequirementID == RequirementID &&
-                s.StakeholdersProject.StakeholdersProjectID == stakeProject.StakeholdersProjectID).SingleOrDefault());
+                if (stakeProject != null)
+                {
+                    stakeholderReq = convertModelToEntity(repository.filter(s => s.RequirementID == RequirementID &&
+                        s.StakeholdersProject.StakeholdersProjectID == stakeProject.StakeholdersProjectID).SingleOrDefault());
+                }
+
+                return stakeholderReq;
             }
             catch (Exception ex)
             {

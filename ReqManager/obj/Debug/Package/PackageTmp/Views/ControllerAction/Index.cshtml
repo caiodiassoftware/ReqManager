@@ -1,0 +1,72 @@
+﻿@model IEnumerable<ReqManager.Entities.ControllerActionEntity>
+
+@{
+    ViewBag.Title = "Controller/Actions";
+}
+
+<div class="form-group">
+    @Html.ActionLink("Refresh", "Refresh", "ControllerAction", null, new { @class = "btn btn-primary" })
+</div>
+
+<table id="actions" class="display">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.controller)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.action)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsGet)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.controller)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.action)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsGet)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function () {
+        $('#actions').dataTable({
+            "bServerSide": true,
+            "bProcessing": false,
+            searchDelay: 2000,
+            ajax: {
+                "url": '@Url.Action("GetFilter", "ControllerAction")',
+                "type": 'POST',
+                "dataSrc": function (json) {
+                    var return_data = new Array();
+                    for (var i = 0; i < json.aaData.length; i++) {
+                        return_data.push({
+                            'controller': json.aaData[i].controller,
+                            'action': json.aaData[i].action,
+                            'IsGet': json.aaData[i].IsGet
+                        })
+                    }
+
+                    return return_data;
+                }
+            },
+            "aoColumns": [
+                { 'data': 'controller' },
+                { 'data': 'action' },
+                { 'data': 'IsGet' }
+            ]
+        });
+    });
+</script>

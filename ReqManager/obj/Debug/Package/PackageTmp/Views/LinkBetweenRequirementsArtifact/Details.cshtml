@@ -1,0 +1,64 @@
+﻿@model ReqManager.Entities.Link.LinkBetweenRequirementsArtifactsEntity
+
+@{
+    ViewBag.Title = "Link between Requirements and Artifacts Details";
+}
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProjectArtifact.code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProjectArtifact.DisplayName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Requirement.code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Requirement.DisplayName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeLink.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypeLink.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Users.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Users.name)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.creationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.creationDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Tracking", "TrackingLinkBetweenRequirementArtifact", "Tracking", new { id = Model.LinkArtifactRequirementID }, null) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.LinkArtifactRequirementID })
+</p>

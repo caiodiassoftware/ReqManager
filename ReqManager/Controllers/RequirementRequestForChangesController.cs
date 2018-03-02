@@ -63,7 +63,8 @@ namespace ReqManager.Controllers
 
                 if (stakeholder == null)
                 {
-                    throw new ArgumentException("You are not a Stakeholder bound by this Requirement");
+                    info("You are not a Stakeholder bound by this Requirement!");
+                    return RedirectToAction("Details", "Requirement", new { id = id });
                 }
 
                 if (service.validateRequestForRequirement(Convert.ToInt32(id)))

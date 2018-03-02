@@ -1,0 +1,22 @@
+﻿@model ReqManager.Entities.Project.ProjectPhasesEntity
+
+@{
+    ViewBag.Title = "Project Phase Details";
+}
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProjectPhasesID })
+</p>

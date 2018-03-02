@@ -1,0 +1,77 @@
+﻿@model IEnumerable<ReqManager.Entities.Link.LinkBetweenRequirementsEntity>
+
+@{
+    ViewBag.Title = "Links between Requirements";
+}
+
+<table id="linkRequirements" class="display">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.code)
+            </th>
+            <th>
+                Origin Code
+            </th>
+            <th>
+                Target Code
+            </th>
+            <th>
+                Type Link
+            </th>
+            <th>
+                Create By
+            </th>
+            <th>
+                Date
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function () {
+        $('#linkRequirements').dataTable({
+            "bServerSide": true,
+            "bProcessing": false,
+            searchDelay: 2000,
+            ajax: {
+                "url": '@Url.Action("GetFilter", "LinkBetweenRequirements")',
+                "type": 'POST',
+                "dataSrc": function (json) {
+                    var return_data = new Array();
+                    for (var i = 0; i < json.aaData.length; i++) {
+                        return_data.push({
+                            'code': json.aaData[i].code,
+                            'origin': json.aaData[i].RequirementOrigin.code,
+                            'target': json.aaData[i].RequirementTarget.code,
+                            'type': json.aaData[i].TypeLink.description,
+                            'name': json.aaData[i].Users.name,
+                            'creationDate': fixDateTime(json.aaData[i].creationDate),
+                            'action': '<a href=\"../LinkBetweenRequirements/Edit/' +
+                                json.aaData[i].LinkRequirementsID + '\">Edit</a> | <a href=\"../LinkBetweenRequirements/Details/' +
+                                json.aaData[i].LinkRequirementsID + '\">Details</a> | <a href=\"../LinkBetweenRequirements/Delete/' +
+                                json.aaData[i].LinkRequirementsID + '\">Delete</a> | <a href=\"../LinkRequirementAttributes/CreateNewAttributeForLink/' +
+                                json.aaData[i].LinkRequirementsID + '\">Add Attribute</a>'
+                        })
+                    }
+
+                    return return_data;
+                }
+            },
+            "aoColumns": [
+                { 'data': 'code' },
+                { 'data': 'origin' },
+                { 'data': 'target' },
+                { 'data': 'type' },
+                { 'data': 'name' },
+                { 'data': 'creationDate' },
+                { 'data': 'action' },
+            ]
+        });
+    });
+</script>

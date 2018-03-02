@@ -1,0 +1,30 @@
+﻿@model ReqManager.Entities.Acess.RoleControllerActionEntity
+
+@{
+    ViewBag.Title = "Role and Actions Details";
+}
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Role.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Role.description)
+        </dd>
+
+        <dt>
+            @Html.Label("Controller/Action")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ControllerAction.DisplayName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RoleControllerActionID })
+</p>

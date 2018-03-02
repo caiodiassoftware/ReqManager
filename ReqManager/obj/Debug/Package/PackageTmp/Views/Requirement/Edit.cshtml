@@ -1,0 +1,245 @@
+﻿@model ReqManager.ViewModels.RequirementEditViewModel
+
+@{
+    ViewBag.Title = "Edit Requirement";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.RequirementID)
+        @Html.HiddenFor(model => model.ProjectID)
+        @Html.HiddenFor(model => model.CreationUserID)
+        @Html.HiddenFor(model => model.creationDate)
+        @Html.HiddenFor(model => model.code)
+        @Html.HiddenFor(model => model.RequirementRequestForChangesID)
+        @Html.HiddenFor(model => model.versionNumber)
+
+        <div class="alert alert-info">
+            <p>Modifications to Requirements may affect project timelines and costs and impact other requirements and artifacts to which it may relate.</p>
+        </div>
+
+        <fieldset disabled>
+            <div class="form-group">
+                @Html.LabelFor(model => model.code, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.code, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.code, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.versionNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.versionNumber, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.versionNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Created By", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("CreationUserID", null, "SELECT THE USER", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CreationUserID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </fieldset>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Status", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("RequirementStatusID", null,
+               "SELECT THE STATUS", htmlAttributes: new { @class = "form-control select2" })
+                @Html.ValidationMessageFor(model => model.RequirementStatusID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Type", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("RequirementTypeID", null, "SELECT THE TYPE", 
+               htmlAttributes: new { @class = "form-control select2" })
+                @Html.ValidationMessageFor(model => model.RequirementTypeID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("SubType", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("RequirementSubTypeID", Enumerable.Empty<SelectListItem>(),
+               "SELECT THE REQUIREMENT SUB TYPE", htmlAttributes: new { @class = "form-control select2" })
+                @Html.ValidationMessageFor(model => model.RequirementSubTypeID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Template", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("RequirementTemplateID", Enumerable.Empty<SelectListItem>(),
+               "SELECT THE TEMPLATE", htmlAttributes: new { @class = "form-control select2" })
+                @Html.ValidationMessageFor(model => model.RequirementTemplateID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Importance", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("ImportanceID", null, "SELECT THE IMPORTANCE",
+               htmlAttributes: new { @class = "form-control select2" })
+                @Html.ValidationMessageFor(model => model.ImportanceID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Cost", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.cost, new { htmlAttributes = new { @class = "form-control money" } })
+                @Html.ValidationMessageFor(model => model.cost, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Start Date", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.startDate, new { htmlAttributes = new { @class = "form-control datepicker date", @placeHolder = "mm/dd/yyyy" } })
+                @Html.ValidationMessageFor(model => model.startDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("End Date", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.endDate, new { htmlAttributes = new { @class = "form-control datepicker date", @placeHolder = "mm/dd/yyyy" } })
+                @Html.ValidationMessageFor(model => model.endDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.active, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.CheckBoxFor(model => model.active, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.active, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Info", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Rationale", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.rationale, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.rationale, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+
+        $(function () {
+            var RequirementID = $('#RequirementID').val();
+            var RequirementTypeID = $('#RequirementTypeID').val();
+
+            $.getJSON('@Url.Action("Get", "Requirement")', { ID: RequirementID }, function (response) {
+                $("#RequirementSubTypeID").val(response.RequirementSubTypeID);
+                $("#RequirementTemplateID").val(response.RequirementTemplateID);
+            });
+
+            $.getJSON('@Url.Action("GetTemplatesOfRequirementType", "RequirementTemplate")', { type: RequirementTypeID }, function (response) {
+                $.each(response, function (index, item) {
+                    var optionExists = ($('#RequirementTemplateID option[value=' + item.RequirementTemplateID + ']').length > 0);
+                    if (!optionExists)
+                        $('#RequirementTemplateID').append("<option value='" + item.RequirementTemplateID + "'>" + item.description + "</option>");
+                });
+            });
+
+            $.getJSON('@Url.Action("GetSubType", "RequirementSubType")', { type: RequirementTypeID }, function (response) {
+                $.each(response, function (index, item) {
+                    var optionExists = ($('#RequirementSubTypeID option[value=' + item.RequirementSubTypeID + ']').length > 0);
+                    if (!optionExists)
+                        $('#RequirementSubTypeID').append("<option value='" + item.RequirementSubTypeID + "'>" + item.description + "</option>");
+                });
+            });
+        });
+
+        $("#RequirementTypeID").change(function () {
+            var id = $(this).val();
+            clearDropDown("RequirementTemplateID");
+            clearDropDown("RequirementSubTypeID");
+
+            $('#RequirementTemplateID').append("<option value='" + 0 + "'>SELECT THE REQUIREMENT TEMPLATE</option>");
+            $('#RequirementSubTypeID').append("<option value='" + 0 + "'>SELECT THE REQUIREMENT SUB TYPE</option>");
+
+            $.getJSON('@Url.Action("GetTemplatesOfRequirementType", "RequirementTemplate")', { type: id }, function (response) {
+                $.each(response, function (index, item) {
+                    var optionExists = ($('#RequirementTemplateID option[value=' + item.RequirementTemplateID + ']').length > 0);
+                    if (!optionExists)
+                        $('#RequirementTemplateID').append("<option value='" + item.RequirementTemplateID + "'>" + item.description + "</option>");
+                });
+            });
+
+            $.getJSON('@Url.Action("GetSubType", "RequirementSubType")', { type: id }, function (response) {
+                $.each(response, function (index, item) {
+                    var optionExists = ($('#RequirementSubTypeID option[value=' + item.RequirementSubTypeID + ']').length > 0);
+                    if (!optionExists)
+                        $('#RequirementSubTypeID').append("<option value='" + item.RequirementSubTypeID + "'>" + item.description + "</option>");
+                });
+            });
+        });
+
+
+        $("#RequirementTemplateID").change(function () {
+            var id = $(this).val();
+            $.getJSON('@Url.Action("GetTemplateHtml", "RequirementTemplate")', { id: id }, function (response) {
+                tinyMCE.activeEditor.setContent(response.templateHtml);
+            });
+        });
+    </script>
+
+    <script src="~/Scripts/tinymce/tinymce.min.js"></script>
+    <script type="text/javascript">
+        tinymce.init({
+            selector: '#description',
+            height: 350,
+            menubar: false,
+            plugins: [
+                'advlist autolink lists link image charmap print preview anchor textcolor',
+                'searchreplace visualblocks code fullscreen',
+                'insertdatetime media table contextmenu paste code help'
+            ],
+            toolbar: 'insert | undo redo |  formatselect | bold italic backcolor  | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
+            content_css: [
+                '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+                '//www.tinymce.com/css/codepen.min.css']
+        });
+    </script>
+
+}

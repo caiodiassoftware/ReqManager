@@ -47,6 +47,7 @@ namespace ReqManager.Controllers
             try
             {
                 string extension = Path.GetExtension(FilePath);
+                byte[] bytes = null;
 
                 if (!CheckExtensions(extension))
                 {
@@ -57,7 +58,7 @@ namespace ReqManager.Controllers
                     Response.AddHeader("content-disposition", "inline;filename= " + Title + DateTime.Now.ToString() + ".pdf");
                     Response.Buffer = true;
                     Response.Clear();
-                    var bytes = ReadAllBytes(FilePath);
+                    bytes = ReadAllBytes(FilePath);
                     Response.OutputStream.Write(bytes, 0, bytes.Length);
                     Response.OutputStream.Flush();
                 }

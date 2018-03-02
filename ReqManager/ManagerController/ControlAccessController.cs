@@ -11,7 +11,6 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Script.Serialization;
 using System.Web.Security;
 
 namespace ReqManager.ManagerController
@@ -22,6 +21,7 @@ namespace ReqManager.ManagerController
     {
         #region Attributes
 
+        protected int top = 20;
         protected IService<TEntity> Service { get; set; }
         protected INotifierService notifier { get; set; }
 
@@ -55,7 +55,7 @@ namespace ReqManager.ManagerController
         {
             try
             {
-                return Json(Service.getAll(10), JsonRequestBehavior.AllowGet);
+                return Json(Service.getAll(top), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
@@ -72,10 +72,10 @@ namespace ReqManager.ManagerController
                 if (!string.IsNullOrEmpty(requestModel.Search.Value))
                 {
                     result = value.Length > 3 ? Service.filterByValue(requestModel.Search.Value).ToList()
-                        : Service.getAll(10).ToList();
+                        : Service.getAll(top).ToList();
                 }
                 else
-                    result = Service.getAll(10).ToList();
+                    result = Service.getAll(top).ToList();
 
                 return Json(new
                 {
@@ -202,7 +202,7 @@ namespace ReqManager.ManagerController
 
         protected void getModelStateValidations()
         {
-            string message = String.Concat("Error Detected in Validation! ", string.Join("; ", ModelState.Values
+            string message = string.Concat("Error Detected in Validation! ", string.Join("; ", ModelState.Values
                                                     .SelectMany(x => x.Errors)
                                                     .Select(x => x.ErrorMessage)));
             throw new Exception(message);

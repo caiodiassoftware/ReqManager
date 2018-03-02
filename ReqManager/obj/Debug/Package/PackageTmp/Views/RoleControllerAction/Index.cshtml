@@ -1,0 +1,68 @@
+﻿@model IEnumerable<ReqManager.Entities.Acess.RoleControllerActionEntity>
+
+@{
+    ViewBag.Title = "Roles Actions";
+}
+
+<div class="form-group">
+    @Html.ActionLink("Create New", "Create", "RoleControllerAction", null, new { @class = "btn btn-primary" })
+</div>
+<table id="roleControllerActions" class="display">
+    <thead>
+        <tr>
+            <th>
+                Role
+            </th>
+            <th>
+                Controller
+            </th>
+            <th>
+                Action
+            </th>
+            <th>
+                It Is HttpGet?
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+<tbody></tbody>
+
+</table>
+
+<script type="text/javascript" charset="utf-8">
+
+    $(document).ready(function () {
+        $('#roleControllerActions').dataTable({
+            "bServerSide": true,
+            "bProcessing": false,
+            searchDelay: 2000,
+            ajax: {
+                "url": '@Url.Action("GetFilter", "RoleControllerAction")',
+                "type": 'POST',
+                "dataSrc": function (json) {
+                    var return_data = new Array();
+                    for (var i = 0; i < json.aaData.length; i++) {
+                        return_data.push({
+                            'role': json.aaData[i].Role.name,
+                            'controller': json.aaData[i].ControllerAction.controller,
+                            'actions': json.aaData[i].ControllerAction.action,
+                            'isGet': json.aaData[i].ControllerAction.IsGet,
+                            'action': '<a href=\"../RoleControllerAction/Details/' + json.aaData[i].RoleControllerActionID +
+                                '\">Details</a> | <a href=\"../RoleControllerAction/Delete/' +
+                                json.aaData[i].RoleControllerActionID + '\">Delete</a>'
+                        })
+                    }
+
+                    return return_data;
+                }
+            },
+            "aoColumns": [
+                { 'data': 'role' },
+                { 'data': 'controller' },
+                { 'data': 'actions' },
+                { 'data': 'isGet' },
+                { 'data': 'action' }
+            ]
+        });
+    });
+</script>

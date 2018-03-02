@@ -1,0 +1,37 @@
+﻿@model IEnumerable<ReqManager.Entities.Acess.UserRoleEntity>
+
+@{
+    ViewBag.Title = "User Roles";
+}
+
+<div class="form-group">
+    @Html.ActionLink("Create New", "Create", "UsersRoles", null, new { @class = "btn btn-primary" })
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Role.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Role.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.UserRoleID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.UserRoleID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.UserRoleID })
+        </td>
+    </tr>
+}
+
+</table>

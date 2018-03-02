@@ -1,0 +1,63 @@
+﻿@model ReqManager.Entities.Link.LinkBetweenRequirementsEntity
+
+@{
+    ViewBag.Title = "Link between Requirements Details";
+}
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Link Code
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.code)
+        </dd>
+        <dt>
+            Origin
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequirementOrigin.code)
+        </dd>
+
+        <dt>
+            Target
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequirementTarget.code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeLink.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypeLink.description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Users.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Users.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.creationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.creationDate)
+        </dd>
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Tracking", "TrackingLinkBetweenRequirement", "Tracking", new { id = Model.LinkRequirementsID }, null) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.LinkRequirementsID })
+</p>

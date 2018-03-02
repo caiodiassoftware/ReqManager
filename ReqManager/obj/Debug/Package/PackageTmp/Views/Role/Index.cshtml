@@ -1,0 +1,37 @@
+﻿@model IEnumerable<ReqManager.Entities.Acess.RoleEntity>
+
+@{
+    ViewBag.Title = "Roles";
+}
+
+<div class="form-group">
+    @Html.ActionLink("Create New", "Create", "Role", null, new { @class = "btn btn-primary" })
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.RoleID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.RoleID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.RoleID })
+        </td>
+    </tr>
+}
+
+</table>

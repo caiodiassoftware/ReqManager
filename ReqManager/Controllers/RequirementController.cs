@@ -289,7 +289,8 @@ namespace ReqManager.Controllers
                 setCreationDate(ref entity);
                 Service.add(ref entity);
                 success("The Requirement " + entity.title + " was made with Success!");
-                return RedirectToAction("Details", "Requirement", new { id = entity.RequirementID });
+                ModelState.Clear();
+                return RedirectToAction("Create", new { id = entity.ProjectID });
             }
             catch (Exception ex)
             {

@@ -175,71 +175,76 @@ namespace ReqManager.Data.Infrastructure
                 foreach (var item in entities)
                 {
                     PropertyInfo[] props = item.GetType().GetProperties().Where(p => !p.PropertyType.IsInterface).ToArray();
-                    PropertyInfo[] primitiveProps = props.Where(p => p.PropertyType.IsPrimitive || p.PropertyType == typeof(string)).ToArray();
-                    PropertyInfo[] specificProps = props.Where(p => p.PropertyType.IsClass && p.PropertyType != typeof(string)).ToArray();
 
-                    #region Specific
-                    foreach (var sp in specificProps)
-                    {
-                        try
-                        {
-                            object attribute = sp.GetValue(item, null);
-                            PropertyInfo[] finesse = attribute.GetType().GetProperties().
-                                Where(p => p.PropertyType.IsPrimitive || p.PropertyType == typeof(string)).ToArray();
-                            foreach (PropertyInfo f in finesse)
-                            {
-                                try
-                                {
-                                    string val = f.GetValue(attribute, null).ToString();
-                                    if (!string.IsNullOrEmpty(val))
-                                        if (val.ToLower().Contains(value))
-                                        {
-                                            result.Add(item);
-                                            break;
-                                        }
-                                }
-                                catch (Exception)
-                                {
-                                    continue;
-                                }
-                            }
-                        }
-                        catch (Exception)
-                        {
-                            continue;
-                        }
-                    }
-                    #endregion
-
-                    #region Primitive
-
-                    foreach (var pp in primitiveProps)
-                    {
-                        try
-                        {
-                            string attribute = pp.GetValue(item, null).ToString();
-                            if (!string.IsNullOrEmpty(attribute))
-                                if (attribute.ToLower().Contains(value))
-                                {
-                                    result.Add(item);
-                                    break;
-                                }
-                        }
-                        catch (Exception)
-                        {
-                            continue;
-                        }
-                    }
-
-                    #endregion
+                    if (checkValueInPrimitiveProperties(item, props, value))
+                        result.Add(item);
+                    else if (checkValueInSpecificProperties(item, props, value))
+                        result.Add(item);
                 }
 
-                return result.Count > 20 ? result.Take(20) : result;
+                return result;
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+        }
+
+        private bool checkValueInPrimitiveProperties(TModel model, PropertyInfo[] props, string value)
+        {
+            PropertyInfo[] primitiveProps = props.Where(p => p.PropertyType.IsPrimitive || 
+            p.PropertyType == typeof(string)).ToArray();
+
+            foreach (var pp in primitiveProps)
+            {
+                try
+                {
+                    string attribute = pp.GetValue(model, null).ToString();
+                    if (!string.IsNullOrEmpty(attribute))
+                        if (attribute.ToLower().Contains(value))
+                            return true;
+                }
+                catch (Exception)
+                {
+                    continue;
+                }
+            }
+
+            return false;
+        }
+
+        private bool checkValueInSpecificProperties(TModel model, PropertyInfo[] props, string value)
+        {
+            PropertyInfo[] specificProps = props.Where(p => p.PropertyType.IsClass && p.PropertyType != typeof(string)).ToArray();
+            foreach (var sp in specificProps)
+            {
+                try
+                {
+                    object attribute = sp.GetValue(model, null);
+                    PropertyInfo[] specificProperties = attribute.GetType().GetProperties().
+                        Where(p => p.PropertyType.IsPrimitive || p.PropertyType == typeof(string)).ToArray();
+
+                    foreach (PropertyInfo f in specificProperties)
+                    {
+                        try
+                        {
+                            string val = f.GetValue(attribute, null).ToString();
+                            if (!string.IsNullOrEmpty(val))
+                                if (val.ToLower().Contains(value))
+                                    return true;
+                        }
+                        catch (Exception)
+                        {
+                            continue;
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    continue;
+                }
+            }
+            return false;
         }
 
         public virtual IEnumerable<TModel> getAll(int top = 0)

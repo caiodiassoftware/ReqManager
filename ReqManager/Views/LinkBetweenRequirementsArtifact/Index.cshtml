@@ -79,11 +79,18 @@
                             'type': json.aaData[i].TypeLink.description,
                             'name': json.aaData[i].Users.name,
                             'creationDate': fixDateTime(json.aaData[i].creationDate),
-                            'action': '<a href=\"../LinkBetweenRequirementsArtifact/Edit/' +
-                                json.aaData[i].LinkArtifactRequirementID + '\">Edit</a> | <a href=\"../LinkBetweenRequirementsArtifact/Details/' +
-                                json.aaData[i].LinkArtifactRequirementID + '\">Details</a> | <a href=\"../LinkBetweenRequirementsArtifact/Delete/' +
-                                json.aaData[i].LinkArtifactRequirementID + '\">Delete</a> | <a href=\"../LinkArtifactAttributes/CreateNewAttributeForLink/' +
-                                json.aaData[i].LinkArtifactRequirementID + '\">Add Attribute</a>'
+                            'action':
+                                '<div class="dropdown">' +
+                                '<a href="#" title="Options" class="btn btn-default" data-toggle="dropdown" aria-expanded="false">' +
+                                '<i class="fa fa-chevron-down icon_8"></i>' +
+                                '<div class="ripple-wrapper"></div>' +
+                                '</a>' +
+                                '<ul class="dropdown-menu dropdown-menu-right">' +
+                                '<li><a href=\"../LinkBetweenRequirementsArtifact/Edit/' + json.aaData[i].LinkArtifactRequirementID + '\">Edit</a></li>' +
+                                '<li><a href=\"../LinkBetweenRequirementsArtifact/Details/' + json.aaData[i].LinkArtifactRequirementID + '\">Details</a></li>' +
+                                '<li><a href=\"../LinkBetweenRequirementsArtifact/Delete/' + json.aaData[i].LinkArtifactRequirementID + '\">Delete</a></li>' +
+                                '<li><a href=\"../LinkArtifactAttributes/CreateNewAttributeForLink/' + json.aaData[i].LinkArtifactRequirementID + '\">Add Attribute</a></li>' +
+                                '</ul>'
                         })
                     }
 

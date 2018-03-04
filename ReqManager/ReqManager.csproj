@@ -569,7 +569,6 @@
     <Content Include="Views\RequirementStatus\Edit.cshtml" />
     <Content Include="Views\RequirementStatus\Index.cshtml" />
     <Content Include="Views\RequirementTypes\Create.cshtml" />
-    <Content Include="Views\RequirementTypes\Delete.cshtml" />
     <Content Include="Views\RequirementTypes\Details.cshtml" />
     <Content Include="Views\RequirementTypes\Edit.cshtml" />
     <Content Include="Views\RequirementTypes\Index.cshtml" />

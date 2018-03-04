@@ -30,7 +30,7 @@
 
 
 <div>
-    @Html.Hidden("ID", Request.Url.Segments[3].ToString())
+    @Html.Hidden("ID", Request.Url.Segments.Last().ToString())
     <div id="tabs">
         <ul>
             <li><a href="#prj">Project</a></li>

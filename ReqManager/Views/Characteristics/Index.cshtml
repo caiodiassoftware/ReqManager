@@ -43,11 +43,18 @@
                         return_data.push({
                             'name': json.aaData[i].name,
                             'description': json.aaData[i].description,
-                            'required': json.aaData[i].required,
-                            'action': '<a href=\"../Characteristics/Edit/' +
-                                json.aaData[i].CharacteristicsID + '\">Edit</a> | <a href=\"../Characteristics/Details/' +
-                                json.aaData[i].CharacteristicsID + '\">Details</a> | <a href=\"../Characteristics/Delete/' +
-                                json.aaData[i].CharacteristicsID + '\">Delete</a>'
+                            'required': json.aaData[i].required ? '<input type="checkbox" checked disabled>' : '<input type="checkbox" disabled>',
+                            'action':
+                                '<div class="dropdown">' +
+                                '<a href="#" title="Options" class="btn btn-default" data-toggle="dropdown" aria-expanded="false">' +
+                                '<i class="fa fa-chevron-down icon_8"></i>' +
+                                '<div class="ripple-wrapper"></div>' +
+                                '</a>' +
+                                '<ul class="dropdown-menu dropdown-menu-right">' +
+                                '<li><a href=\"../Characteristics/Edit/' + json.aaData[i].CharacteristicsID + '\">Edit</a></li>' +
+                                '<li><a href=\"../Characteristics/Details/' + json.aaData[i].CharacteristicsID + '\">Details</a></li>' +
+                                '<li><a href=\"../Characteristics/Delete/' + json.aaData[i].CharacteristicsID + '\">Delete</a></li>' +
+                                '</ul>'
                         })
                     }
 

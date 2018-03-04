@@ -46,10 +46,17 @@
                             'role': json.aaData[i].Role.name,
                             'controller': json.aaData[i].ControllerAction.controller,
                             'actions': json.aaData[i].ControllerAction.action,
-                            'isGet': json.aaData[i].ControllerAction.IsGet,
-                            'action': '<a href=\"../RoleControllerAction/Details/' + json.aaData[i].RoleControllerActionID +
-                                '\">Details</a> | <a href=\"../RoleControllerAction/Delete/' +
-                                json.aaData[i].RoleControllerActionID + '\">Delete</a>'
+                            'isGet': json.aaData[i].ControllerAction.IsGet ? '<input type="checkbox" checked disabled>' : '<input type="checkbox" disabled>',
+                            'action':
+                                '<div class="dropdown">' +
+                                '<a href="#" title="Options" class="btn btn-default" data-toggle="dropdown" aria-expanded="false">' +
+                                '<i class="fa fa-chevron-down icon_8"></i>' +
+                                '<div class="ripple-wrapper"></div>' +
+                                '</a>' +
+                                '<ul class="dropdown-menu dropdown-menu-right">' +
+                                '<li><a href=\"../RoleControllerAction/Details/' + json.aaData[i].RoleControllerActionID + '\">Details</a></li>' +
+                                '<li><a href=\"../Projects/Delete/' + json.aaData[i].ProjectID + '\">Delete</a></li>' +
+                                '</ul>'
                         })
                     }
 

@@ -96,10 +96,17 @@
                             'profession': json.aaData[i].profession,
                             'document': json.aaData[i].document,
                             'active': json.aaData[i].active,
-                            'action': '<a href=\"../User/Edit/' +
-                                json.aaData[i].UserID + '\">Edit</a> | <a href=\"../User/Details/' +
-                                json.aaData[i].UserID + '\">Details</a> | <a href=\"../User/Delete/' +
-                                json.aaData[i].UserID + '\">Delete</a>'
+                            'action':
+                                '<div class="dropdown">' +
+                                '<a href="#" title="Options" class="btn btn-default" data-toggle="dropdown" aria-expanded="false">' +
+                                '<i class="fa fa-chevron-down icon_8"></i>' +
+                                '<div class="ripple-wrapper"></div>' +
+                                '</a>' +
+                                '<ul class="dropdown-menu dropdown-menu-right">' +
+                                '<li><a href=\"../User/Edit/' + json.aaData[i].UserID + '\">Edit</a></li>' +
+                                '<li><a href=\"../User/Details/' + json.aaData[i].UserID + '\">Details</a></li>' +
+                                '<li><a href=\"../User/Delete/' + json.aaData[i].UserID + '\">Delete</a></li>' +
+                                '</ul>'
                         })
                     }
 

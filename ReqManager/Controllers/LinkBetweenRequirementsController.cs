@@ -74,11 +74,11 @@ namespace ReqManager.Controllers
             }
 
             ViewData.Add("RequirementOriginID", new SelectList(
-                        new List<RequirementEntity>() { link.RequirementOrigin }, "RequirementID",
+                        new List<RequirementEntity>() { link.RequirementOrigin }, "RequirementID", 
                         "DisplayName", link.RequirementOrigin.RequirementID));
 
             ViewData.Add("RequirementTargetID", new SelectList(
-                        new List<RequirementEntity>() { link.RequirementTarget }, "RequirementID",
+                        new List<RequirementEntity>() { link.RequirementTarget }, "RequirementID", 
                         "DisplayName", link.RequirementTarget.RequirementID));
 
             ViewData.Add("TypeLinkID", new SelectList(typeLinkService.getAll(), "TypeLinkID", "description", link.TypeLinkID));

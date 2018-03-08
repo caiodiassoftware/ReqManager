@@ -57,3 +57,6 @@ C:\Users\cdias\Desktop\ReqManager\ReqManager.Data\obj\Debug\ReqManager.Data.Migr
 C:\Users\cdias\Desktop\ReqManager\ReqManager.Data\obj\Debug\ReqManager.Data.Migrations.IncludeRationaleFieldInRequirements.resources
 C:\Users\cdias\Desktop\ReqManager\ReqManager.Data\bin\Debug\Newtonsoft.Json.dll
 C:\Users\cdias\Desktop\ReqManager\ReqManager.Data\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\obj\Debug\ReqManager.Data.Migrations.AddIndexTypeLinkInLinkBetweenRequirements.resources

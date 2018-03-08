@@ -1,9 +1,7 @@
 ﻿@model ReqManager.ViewModels.ProjectDetailsViewModel
-
 @{
     ViewBag.Title = "Project Details";
 }
-
 <div class="form-group">
     <div class="dropdown">
         <a href="#" title="Options" class="btn btn-default" data-toggle="dropdown" aria-expanded="false">
@@ -28,7 +26,6 @@
     </div>
 </div>
 
-
 <div>
     @Html.Hidden("ID", Request.Url.Segments.Last().ToString())
     <div id="tabs">
@@ -47,92 +44,69 @@
                 <dt>
                     Description
                 </dt>
-
                 <dd>
                     @Html.DisplayFor(model => model.project.description)
                 </dd>
-
                 <dt>
                     Phase
                 </dt>
-
                 <dd>
                     @Html.DisplayFor(model => model.project.ProjectPhases.description)
                 </dd>
-
                 <dt>
                     Create By
                 </dt>
-
                 <dd>
                     @Html.DisplayFor(model => model.project.Users.name)
                 </dd>
 
-
                 <dt>
                     @Html.DisplayNameFor(model => model.project.pathForTraceability)
                 </dt>
-
                 <dd>
                     @Html.DisplayFor(model => model.project.pathForTraceability)
                 </dd>
-
                 <dt>
                     @Html.DisplayNameFor(model => model.project.environmentalInformation)
                 </dt>
-
                 <dd>
                     @Html.DisplayFor(model => model.project.environmentalInformation)
                 </dd>
-
                 <dt>
                     @Html.DisplayNameFor(model => model.project.managementInformation)
                 </dt>
-
                 <dd>
                     @Html.DisplayFor(model => model.project.managementInformation)
                 </dd>
-
                 <dt>
                     @Html.DisplayNameFor(model => model.project.startDate)
                 </dt>
-
                 <dd>
                     @Html.DisplayFor(model => model.project.startDate)
                 </dd>
-
                 <dt>
                     @Html.DisplayNameFor(model => model.project.endDate)
                 </dt>
-
                 <dd>
                     @Html.DisplayFor(model => model.project.endDate)
                 </dd>
-
                 <dt>
                     @Html.DisplayNameFor(model => model.project.creationDate)
                 </dt>
-
                 <dd>
                     @Html.DisplayFor(model => model.project.creationDate)
                 </dd>
-
                 <dt>
                     Project Cost
                 </dt>
-
                 <dd>
                     @Html.DisplayFor(model => model.project.cost)
                 </dd>
-
                 <dt>
                     Requirements Sum
                 </dt>
-
                 <dd id="requirementCost">
-
                 </dd>
-
             </dl>
         </div>
         <div id="req">
@@ -191,7 +165,6 @@
                                 @Html.DisplayFor(modelItem => item.cost)
                             </td>
                             <td>
-
                                 @if (item.endDate != null)
                                 {
                                     if (Convert.ToDateTime(item.endDate).CompareTo(Model.project.endDate) > 0
@@ -206,7 +179,6 @@
                                         @Html.Label("Out of Time!")
                                     }
                                 }
-
                                 @if (item.startDate != null)
                                 {
                                     if (Convert.ToDateTime(item.startDate).CompareTo(Convert.ToDateTime(Model.project.endDate)) > 0)
@@ -220,9 +192,13 @@
                                        " Days to End!")
                                     }
                                 }
-
                             </td>
                             <td>
+                                <a href="" data-code='@item.code'
+                                   onclick="AddLinkRR($(this)); return false;">
+                                    Add Link
+                                </a>
+
                                 @Html.ActionLink("Details", "Details", "Requirement", new { id = item.RequirementID }, null)
                             </td>
                         </tr>
@@ -431,7 +407,55 @@
         </div>
     </div>
 </div>
-
+<div id="modal-createNewLink" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title">Create new Link R-R</h4>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("Create", "LinkBetweenRequirements", FormMethod.Post))
+                {
+                    <div class="form-horizontal">
+                            <div class="form-group">
+                                @Html.Label("Requirement Origin", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("RequirementOriginID", Enumerable.Empty<SelectListItem>(),
+                               htmlAttributes: new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Requirement Target", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("RequirementTargetID", Enumerable.Empty<SelectListItem>(),
+                               "REQUIREMENT TARGET", htmlAttributes: new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("Type Link", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownList("TypeLinkID", Enumerable.Empty<SelectListItem>(), "TYPE LINK",
+                               htmlAttributes: new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Create" class="btn btn-default" />
+                                </div>
+                            </div>
+                    </div>
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div id="modal-requirementDocument" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -457,7 +481,6 @@
         </div>
     </div>
 </div>
-
 <div id="modal-addStakeholder" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -504,7 +527,6 @@
         </div>
     </div>
 </div>
-
 <div id="modal-requirementDetails" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -514,51 +536,39 @@
             </div>
             <div class="modal-body">
                 <dl class="dl-horizontal">
-
                     <dt>
                         Title
                     </dt>
-
                     <dd>
                         <label id="title"></label>
                     </dd>
-
                     <dt>
                         Importance
                     </dt>
-
                     <dd>
                         <label id="importance"></label>
                     </dd>
-
                     <dt>
                         Status
                     </dt>
-
                     <dd>
                         <label id="status"></label>
                     </dd>
-
                     <dt>
                         Type
                     </dt>
-
                     <dd>
                         <label id="type"></label>
                     </dd>
-
                     <dt>
                         Create By
                     </dt>
-
                     <dd>
                         <label id="user"></label>
                     </dd>
-
                     <dt>
                         Creation Date
                     </dt>
-
                     <dd>
                         <label id="creationDate"></label>
                     </dd>
@@ -570,7 +580,6 @@
         </div>
     </div>
 </div>
-
 <div id="modal-artifactDetails" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -583,59 +592,45 @@
                     <dt>
                         Importance
                     </dt>
-
                     <dd>
                         <label id="mdArtifactImportance"></label>
                     </dd>
-
                     <dt>
                         Project
                     </dt>
-
                     <dd>
                         <label id="mdArtifactProject"></label>
                     </dd>
-
                     <dt>
                         Create By
                     </dt>
-
                     <dd>
                         <label id="mdArtifactCreateBy"></label>
                     </dd>
-
                     <dt>
                         Type
                     </dt>
-
                     <dd>
                         <label id="mdArtifactType"></label>
                     </dd>
-
                     <dt>
                         Code
                     </dt>
-
                     <dd>
                         <label id="mdArtifactCode"></label>
                     </dd>
-
                     <dt>
                         Description
                     </dt>
-
                     <dd>
                         <label id="mdArtifactDescription"></label>
                     </dd>
-
                     <dt>
                         Date
                     </dt>
-
                     <dd>
                         <label id="mdArtifactDate"></label>
                     </dd>
-
                 </dl>
             </div>
             <div class="modal-footer">
@@ -644,7 +639,6 @@
         </div>
     </div>
 </div>
-
 <div id="modal-linkBetweenRequirements" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -654,59 +648,45 @@
             </div>
             <div class="modal-body">
                 <dl class="dl-horizontal">
-
                     <dt>
                         Code
                     </dt>
-
                     <dd>
                         <label id="mdLinkRequirementCode"></label>
                     </dd>
-
                     <dt>
                         Link Name
                     </dt>
-
                     <dd>
                         <label id="mdLinkRequirementName"></label>
                     </dd>
-
                     <dt>
                         Code Origin
                     </dt>
-
                     <dd>
                         <label id="mdLinkRequirementOrigin"></label>
                     </dd>
-
                     <dt>
                         Code Target
                     </dt>
-
                     <dd>
                         <label id="mdLinkRequirementTarget"></label>
                     </dd>
-
                     <dt>
                         Create By
                     </dt>
-
                     <dd>
                         <label id="mdLinkRequirementUser"></label>
                     </dd>
-
                     <dt>
                         Type Link
                     </dt>
-
                     <dd>
                         <label id="mdLinkRequirementTypeLink"></label>
                     </dd>
-
                     <dt>
                         Creation Date
                     </dt>
-
                     <dd>
                         <label id="mdLinkRequirementCreationDate"></label>
                     </dd>
@@ -725,7 +705,6 @@
         </div>
     </div>
 </div>
-
 <div id="modal-linkBetweenArtifact" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -737,59 +716,45 @@
             </div>
             <div class="modal-body">
                 <dl class="dl-horizontal">
-
                     <dt>
                         Code
                     </dt>
-
                     <dd>
                         <label id="mdLinkArtifactCode"></label>
                     </dd>
-
                     <dt>
                         Link Name
                     </dt>
-
                     <dd>
                         <label id="mdLinkArtifactName"></label>
                     </dd>
-
                     <dt>
                         Artifact Code
                     </dt>
-
                     <dd>
                         <label id="mdLinkArtifact"></label>
                     </dd>
-
                     <dt>
                         Requirement Code
                     </dt>
-
                     <dd>
                         <label id="mdLinkArtifactRequirement"></label>
                     </dd>
-
                     <dt>
                         Create By
                     </dt>
-
                     <dd>
                         <label id="mdLinkArtifactUser"></label>
                     </dd>
-
                     <dt>
                         Type Link
                     </dt>
-
                     <dd>
                         <label id="mdLinkArtifactTypeLink"></label>
                     </dd>
-
                     <dt>
                         Creation Date
                     </dt>
-
                     <dd>
                         <label id="mdLinkArtifactCreationDate"></label>
                     </dd>
@@ -808,13 +773,10 @@
         </div>
     </div>
 </div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-
     <link href="~/Scripts/css/fontawesome-stars.css" rel="stylesheet">
     <script src="~/Scripts/jquery.barrating.min.js"></script>
-
     <script type="text/javascript">
         $(document).ready(function () {
             $('#stakeholderRating').barrating({
@@ -904,6 +866,39 @@
             jQuery('#modal-artifactDetails').modal();
         };
 
+        function AddLinkRR(requirement) {
+
+            var code = requirement.attr('data-code');
+
+            $.getJSON('@Url.Action("GetWithCode", "Requirement")',
+                { code: code }, function (response) {
+                    var dropdown = $('#RequirementOriginID');
+                    dropdown.append(
+                        $("<option></option>").text(response.DisplayName).val(response.RequirementID)
+                    );
+                });
+
+            $.getJSON('@Url.Action("GetAll", "TypeLink")', function (response) {
+                var dropdown = $('#TypeLinkID');
+                $.each(response, function () {
+                    dropdown.append(
+                        $("<option></option>").text(this.description).val(this.TypeLinkID)
+                    );
+                });
+            });
+
+            $.getJSON('@Url.Action("GetAll", "Requirement")', function (response) {
+                var dropdown = $('#RequirementTargetID');
+                $.each(response, function () {
+                    dropdown.append(
+                        $("<option></option>").text(this.DisplayName).val(this.RequirementID)
+                    );
+                });
+            });
+
+            jQuery('#modal-createNewLink').modal();
+        };
+
         function RequirementDetails(requirement) {
 
             var code = requirement.attr('data-code');
@@ -974,5 +969,4 @@
             jQuery('#modal-linkBetweenArtifact').modal();
         };
     </script>
-
 }

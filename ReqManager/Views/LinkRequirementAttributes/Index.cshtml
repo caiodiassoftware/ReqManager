@@ -30,8 +30,17 @@
             @Html.DisplayFor(modelItem => item.value)
         </td>
         <td>
-            @Html.ActionLink("Details", "Details", new { id=item.RequirementAttributeID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.RequirementAttributeID })
+            <div class="dropdown">
+                <a href="#" title="Options" class="btn btn-default" data-toggle="dropdown" aria-expanded="false">
+                    <i class="fa fa-chevron-down icon_8"></i>
+                    <div class="ripple-wrapper"></div>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li>@Html.ActionLink("Edit", "Edit", new { id = item.RequirementAttributeID })</li>
+                    <li>@Html.ActionLink("Details", "Details", new { id = item.RequirementAttributeID })</li>
+                    <li>@Html.ActionLink("Delete", "Delete", new { id = item.RequirementAttributeID })</li>
+                </ul>
+            </div>
         </td>
     </tr>
 }

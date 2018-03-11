@@ -31,8 +31,17 @@
             @Html.DisplayFor(modelItem => item.value)
         </td>
         <td>
-            @Html.ActionLink("Details", "Details", new { id=item.ArtefactAttributeID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ArtefactAttributeID })
+            <div class="dropdown">
+                <a href="#" title="Options" class="btn btn-default" data-toggle="dropdown" aria-expanded="false">
+                    <i class="fa fa-chevron-down icon_8"></i>
+                    <div class="ripple-wrapper"></div>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li>@Html.ActionLink("Edit", "Edit", new { id = item.ArtefactAttributeID })</li>
+                    <li>@Html.ActionLink("Details", "Details", new { id = item.ArtefactAttributeID })</li>
+                    <li>@Html.ActionLink("Delete", "Delete", new { id = item.ArtefactAttributeID })</li>
+                </ul>
+            </div>
         </td>
     </tr>
 }

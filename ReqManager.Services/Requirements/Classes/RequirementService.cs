@@ -11,6 +11,7 @@ using ReqManager.Services.Requirements.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data;
 
 namespace ReqManager.Services.Requirements.Classes
 {
@@ -22,6 +23,7 @@ namespace ReqManager.Services.Requirements.Classes
         private IProjectService projectService { get; set; }
         private ICharacteristicsService characteristicsService { get; set; }
         private IRequirementCharacteristicsService requirementCharacteristicsService { get; set; }
+        private IRequirementRepository requirementRepository { get; set; }
 
         public RequirementService(
             IRequirementRepository repository,
@@ -32,6 +34,7 @@ namespace ReqManager.Services.Requirements.Classes
             IRequirementVersionsService versionService,
             IUnitOfWork unit) : base(repository, unit)
         {
+            requirementRepository = repository;
             this.requirementCharacteristicsService = requirementCharacteristicsService;
             this.characteristicsService = characteristicsService;
             this.projectService = projectService;
@@ -204,6 +207,21 @@ namespace ReqManager.Services.Requirements.Classes
             {
                 throw ex;
             }
+        }
+
+        public DataTable getDataSetRequirementPreconditions(int ProjectID = 0)
+        {
+            return requirementRepository.getDataSetRequirementPreconditions(ProjectID);
+        }
+
+        public DataTable getDataSetRequirementPreconditionsAndImportanceAndCost(int ProjectID = 0)
+        {
+            return requirementRepository.getDataSetRequirementPreconditionsAndImportanceAndCost(ProjectID);
+        }
+
+        public DataTable getDataSetRequirementImportanceAndCost(int ProjectID = 0)
+        {
+            return requirementRepository.getDataSetRequirementImportanceAndCost(ProjectID);
         }
     }
 }

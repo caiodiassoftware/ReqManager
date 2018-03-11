@@ -4,6 +4,7 @@ using ReqManager.ManagerController;
 using ReqManager.Services.Project.Interfaces;
 using System;
 using System.Linq;
+using System.Data.Entity.Infrastructure;
 
 namespace ReqManager.Controllers
 {
@@ -32,8 +33,11 @@ namespace ReqManager.Controllers
         }
 
         [HttpPost]
-        public void Add(int StakeholderID, int ProjectID, string description, int importanceValue)
+        public JsonResult Add(int StakeholderID, int ProjectID, string description, int importanceValue)
         {
+            bool success = false;
+            string message = string.Empty;
+
             try
             {
                 StakeholdersProjectEntity stakeholderProject = new StakeholdersProjectEntity();
@@ -43,15 +47,23 @@ namespace ReqManager.Controllers
                 stakeholderProject.importanceValue = importanceValue;
                 setCreationDate(ref stakeholderProject);
                 setIdUser(ref stakeholderProject);
-                if(TryValidateModel(stakeholderProject))
+                if (TryValidateModel(stakeholderProject))
                 {
                     Service.add(ref stakeholderProject);
+                    success = true;
+                    message = "Register was mage with Success!";
+                }
+                else
+                {
+                    message = "Please enter all the fields!";
                 }
             }
-            catch (Exception ex)
+            catch (DbUpdateException)
             {
-                throw ex;
+                message = "This stakeholder is already linked to this project!";
             }
+
+            return Json(new { success, message }, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetStakeholdersFromProject(int ProjectID)

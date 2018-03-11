@@ -90,16 +90,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </li>
                     <li class="menu-list">
                         <a href="#">
-                            <i class="glyphicon glyphicon-file"></i>
-                            <span>Artifact</span>
-                        </a>
-                        <ul class="sub-menu-list">
-                            <li>@Html.ActionLink("Artifacts", "Index", "ProjectArtifact")</li>
-                            <li>@Html.ActionLink("Types", "Index", "ArtifactType")</li>
-                        </ul>
-                    </li>
-                    <li class="menu-list">
-                        <a href="#">
                             <i class="glyphicon glyphicon-registration-mark"></i>
                             <span>Requirements</span>
                         </a>
@@ -110,6 +100,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <li>@Html.ActionLink("SubTypes", "Index", "RequirementSubType")</li>
                             <li>@Html.ActionLink("Status", "Index", "RequirementStatus")</li>
                             <li>@Html.ActionLink("Templates", "Index", "RequirementTemplate")</li>
+                        </ul>
+                    </li>
+                    <li class="menu-list">
+                        <a href="#">
+                            <i class="glyphicon glyphicon-education"></i>
+                            <span>Requirement DataSet</span>
+                        </a>
+                        <ul class="sub-menu-list">
+                            <li>@Html.ActionLink("Preconditions (Xls)", "DataSetRequirementPreconditionsXls", "DataSet")</li>
+                            <li>@Html.ActionLink("Preconditions (Json)", "DataSetRequirementPreconditionsJson", "DataSet")</li>
+                            <li>@Html.ActionLink("Importance and Cost (Xls)", "DataSetRequirementImportanceAndCostXls", "DataSet")</li>
+                            <li>@Html.ActionLink("Importance and Cost (Json)", "DataSetRequirementImportanceAndCostJson", "DataSet")</li>
+                            <li>@Html.ActionLink("Preconditions, Importance and Cost (Xls)", "DataSetRequirementPreconditionsAndImportanceAndCostXls", "DataSet")</li>
+                            <li>@Html.ActionLink("Preconditions, Importance and Cost (Json)", "DataSetRequirementPreconditionsAndImportanceAndCostJson", "DataSet")</li>
+                        </ul>
+                    </li>
+                    <li class="menu-list">
+                        <a href="#">
+                            <i class="glyphicon glyphicon-file"></i>
+                            <span>Artifact</span>
+                        </a>
+                        <ul class="sub-menu-list">
+                            <li>@Html.ActionLink("Artifacts", "Index", "ProjectArtifact")</li>
+                            <li>@Html.ActionLink("Types", "Index", "ArtifactType")</li>
                         </ul>
                     </li>
                     <li class="menu-list">
@@ -178,7 +192,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="graphs">
                     <div class="row">
                         <div class="col-xs-6 text-left"><h3 class="blank1">@ViewBag.Title</h3></div>
-                        <div class="col-xs-6 text-right"><a href="javascript: window.history.go(-1)" class="btn btn-default">Previous Page</a></div>
+                        <div class="col-xs-6 text-right">
+                            <a href="@Request.UrlReferrer" class="btn btn-default btn-lg" title="Previous Page">
+                                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+                            </a>
+                        </div>
                     </div>
                     <div id="MessageContainer">
                         <div class="container">

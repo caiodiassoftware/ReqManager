@@ -3,6 +3,7 @@ using ReqManager.ManagerController;
 using ReqManager.Services.Project.Interfaces;
 using ReqManager.Services.Requirements.Interfaces;
 using System;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -37,8 +38,11 @@ namespace ReqManager.Controllers
         }
 
         [HttpPost]
-        public void Add(int StakeholderProjectID, int RequirementID, int importanceValue)
+        public JsonResult Add(int StakeholderProjectID, int RequirementID, int importanceValue)
         {
+            bool success = false;
+            string message = string.Empty;
+
             try
             {
                 StakeholderRequirementEntity stakeholder = new StakeholderRequirementEntity();
@@ -46,15 +50,23 @@ namespace ReqManager.Controllers
                 stakeholder.RequirementID = RequirementID;
                 stakeholder.importanceValue = importanceValue;
                 setCreationDate(ref stakeholder);
-                if(TryValidateModel(stakeholder))
+                if (TryValidateModel(stakeholder))
                 {
                     Service.add(ref stakeholder);
+                    success = true;
+                    message = "Register was made with Success!";
+                }
+                else
+                {
+                    message = "Please enter all the fields!";
                 }
             }
-            catch (Exception ex)
+            catch (DbUpdateException)
             {
-                throw ex;
+                message = "This requirement is already linked to this stakeholder!";
             }
+
+            return Json(new { success, message }, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetStakeholdersFromRequirement(int RequirementID)

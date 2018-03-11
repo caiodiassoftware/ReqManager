@@ -95,7 +95,7 @@
                             'dateOfBirth': fixDateTime(json.aaData[i].dateOfBirth),
                             'profession': json.aaData[i].profession,
                             'document': json.aaData[i].document,
-                            'active': json.aaData[i].active,
+                            'active': json.aaData[i].active ? '<input type="checkbox" checked disabled>' : '<input type="checkbox" disabled>',
                             'action':
                                 '<div class="dropdown">' +
                                 '<a href="#" title="Options" class="btn btn-default" data-toggle="dropdown" aria-expanded="false">' +
@@ -106,7 +106,7 @@
                                 '<li><a href=\"../User/Edit/' + json.aaData[i].UserID + '\">Edit</a></li>' +
                                 '<li><a href=\"../User/Details/' + json.aaData[i].UserID + '\">Details</a></li>' +
                                 '<li><a href=\"../User/Delete/' + json.aaData[i].UserID + '\">Delete</a></li>' +
-                                '</ul>'
+                                '</ul></div>'
                         })
                     }
 

@@ -5,6 +5,7 @@ using System.Web.Mvc;
 
 namespace ReqManager.ManagerController
 {
+    [HandleError(ExceptionType = typeof(Exception), View = "Error")]
     public class BaseController<TEntity> : ControlAccessController<TEntity> where TEntity : class
     {
         #region Constructor

@@ -950,24 +950,32 @@
             var importanceValue = $('#stakeholderRating').val();
 
             $.post('@Url.Action("Add", "StakeholderRequirement")',
-                { StakeholderProjectID: StakeholderProjectID, RequirementID: RequirementID, importanceValue: importanceValue }, function () {
-                    jQuery('#modal-addStakeholder').modal('hide');
-                    alert("Register was made with Success!");
+                { StakeholderProjectID: StakeholderProjectID, RequirementID: RequirementID, importanceValue: importanceValue },
+                function (response) {
 
-                    $.getJSON('@Url.Action("GetStakeholdersFromRequirement", "StakeholderRequirement")',
-                        { RequirementID: RequirementID }, function (response) {
-                            $('#stakeholderRequirement tbody').remove();
-                            $.each(response, function (index, item) {
-                                $('#stakeholderRequirement').append(
-                                    '<tr><td>' + item.Requirement.DisplayName +
-                                    '</td><td>' + item.StakeholdersProject.DisplayName +
-                                    '</td><td>' + item.StakeholdersProject.importanceValue +
-                                    '</td><td>' + fixDateTime(item.creationDate) + '</td><td>' +
-                                    '<a href=\"/StakeholderRequirement/Delete/' + item.StakeholderRequirementID +
-                                '\">Details</a>'
-                                    + '</td></tr>');
+                    if (response.success) {
+                        jQuery('#modal-addStakeholder').modal('hide');
+                        alert(response.message);
+
+                        $.getJSON('@Url.Action("GetStakeholdersFromRequirement", "StakeholderRequirement")',
+                            { RequirementID: RequirementID }, function (response) {
+                                $('#stakeholderRequirement tbody').remove();
+                                $.each(response, function (index, item) {
+                                    $('#stakeholderRequirement').append(
+                                        '<tr><td>' + item.Requirement.DisplayName +
+                                        '</td><td>' + item.StakeholdersProject.DisplayName +
+                                        '</td><td>' + item.StakeholdersProject.importanceValue +
+                                        '</td><td>' + fixDateTime(item.creationDate) + '</td><td>' +
+                                        '<a href=\"/StakeholderRequirement/Delete/' + item.StakeholderRequirementID +
+                                    '\">Details</a>'
+                                        + '</td></tr>');
+                                });
                             });
-                        });
+                    }
+                    else {
+                        jQuery('#modal-addStakeholder').modal('hide');
+                        alert(response.message);
+                    }
                 });
         };
 

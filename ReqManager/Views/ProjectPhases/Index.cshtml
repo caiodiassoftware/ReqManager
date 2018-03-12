@@ -21,9 +21,17 @@
             @Html.DisplayFor(modelItem => item.description)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ProjectPhasesID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ProjectPhasesID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ProjectPhasesID })
+            <div class="dropdown">
+                <a href="#" title="Options" class="btn btn-default" data-toggle="dropdown" aria-expanded="false">
+                    <i class="fa fa-chevron-down icon_8"></i>
+                    <div class="ripple-wrapper"></div>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li>@Html.ActionLink("Edit", "Edit", new { id = item.ProjectPhasesID })</li>
+                    <li>@Html.ActionLink("Details", "Details", new { id = item.ProjectPhasesID })</li>
+                    <li>@Html.ActionLink("Delete", "Delete", new { id = item.ProjectPhasesID })</li>
+                </ul>
+            </div>
         </td>
     </tr>
 }

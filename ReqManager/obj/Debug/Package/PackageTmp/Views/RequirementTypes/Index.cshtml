@@ -5,7 +5,7 @@
 }
 
 <div class="form-group">
-    @Html.ActionLink("Create New", "Create", "RequirementType", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Create New", "Create", "RequirementTypes", null, new { @class = "btn btn-primary" })
 </div>
 <table class="table">
     <tr>
@@ -28,8 +28,7 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.RequirementTypeID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.RequirementTypeID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.RequirementTypeID })
+            @Html.ActionLink("Details", "Details", new { id=item.RequirementTypeID })
         </td>
     </tr>
 }

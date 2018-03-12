@@ -52,11 +52,17 @@
                             'type': json.aaData[i].TypeLink.description,
                             'name': json.aaData[i].Users.name,
                             'creationDate': fixDateTime(json.aaData[i].creationDate),
-                            'action': '<a href=\"../LinkBetweenRequirements/Edit/' +
-                                json.aaData[i].LinkRequirementsID + '\">Edit</a> | <a href=\"../LinkBetweenRequirements/Details/' +
-                                json.aaData[i].LinkRequirementsID + '\">Details</a> | <a href=\"../LinkBetweenRequirements/Delete/' +
-                                json.aaData[i].LinkRequirementsID + '\">Delete</a> | <a href=\"../LinkRequirementAttributes/CreateNewAttributeForLink/' +
-                                json.aaData[i].LinkRequirementsID + '\">Add Attribute</a>'
+                            'action':
+                                '<div class="dropdown">' +
+                                '<a href="#" title="Options" class="btn btn-default" data-toggle="dropdown" aria-expanded="false">' +
+                                '<i class="fa fa-chevron-down icon_8"></i>' +
+                                '<div class="ripple-wrapper"></div>' +
+                                '</a>' +
+                                '<ul class="dropdown-menu dropdown-menu-right">' +
+                                '<li><a href=\"../LinkBetweenRequirements/Details/' + json.aaData[i].LinkRequirementsID + '\">Details</a></li>' +
+                                '<li><a href=\"../LinkBetweenRequirements/Delete/' + json.aaData[i].LinkRequirementsID + '\">Delete</a></li>' +
+                                '<li><a href=\"../LinkRequirementAttributes/CreateNewAttributeForLink/' + json.aaData[i].LinkRequirementsID + '\">Add Attribute</a></li>' +
+                                '</ul>'
                         })
                     }
 

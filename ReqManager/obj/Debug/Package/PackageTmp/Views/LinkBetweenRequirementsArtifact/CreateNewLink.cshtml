@@ -7,7 +7,7 @@
 @using (Html.BeginForm("Create", "LinkBetweenRequirementsArtifact", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    @Html.Hidden("ID", Request.Url.Segments[3].ToString())
+    @Html.Hidden("ID", Request.Url.Segments.Last().ToString())
 
     <div class="form-horizontal">
         <hr />
@@ -45,7 +45,7 @@
             </div>
         </div>
 
-        @Html.ActionLink("Back to Requirement", "Details", "Requirement", new { id = Request.Url.Segments[3].ToString() }, null)
+        @Html.ActionLink("Back to Requirement", "Details", "Requirement", new { id = Request.Url.Segments.Last().ToString() }, null)
     </div>
 }
 

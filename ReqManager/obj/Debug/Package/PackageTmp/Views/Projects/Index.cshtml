@@ -84,10 +84,17 @@
                             'startDate': fixDateTime(json.aaData[i].startDate),
                             'endDate': fixDateTime(json.aaData[i].endDate),
                             'creationDate': fixDateTime(json.aaData[i].creationDate),
-                            'action': '<a href=\"../Projects/Edit/' +
-                                json.aaData[i].ProjectID + '\">Edit</a> | <a href=\"../Projects/Details/' +
-                                json.aaData[i].ProjectID + '\">Details</a> | <a href=\"../Projects/Delete/' +
-                                json.aaData[i].ProjectID + '\">Delete</a>'
+                            'action':
+                                '<div class="dropdown">' +
+                                '<a href="#" title="Options" class="btn btn-default" data-toggle="dropdown" aria-expanded="false">' +
+                                '<i class="fa fa-chevron-down icon_8"></i>' +
+                                '<div class="ripple-wrapper"></div>' +
+                                '</a>' +
+                                '<ul class="dropdown-menu dropdown-menu-right">' +
+                                '<li><a href=\"../Projects/Edit/' + json.aaData[i].ProjectID + '\">Edit</a></li>' +
+                                '<li><a href=\"../Projects/Details/' + json.aaData[i].ProjectID + '\">Details</a></li>' +
+                                '<li><a href=\"../Projects/Delete/' + json.aaData[i].ProjectID + '\">Delete</a></li>' +
+                                '</ul>'
                         })
                     }
 

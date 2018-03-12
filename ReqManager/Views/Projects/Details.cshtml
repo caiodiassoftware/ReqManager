@@ -194,7 +194,26 @@
                                 }
                             </td>
                             <td>
-                                @Html.ActionLink("Details", "Details", "Requirement", new { id = item.RequirementID }, null)
+                                <div class="dropdown">
+                                    <a href="#" title="Options" class="btn btn-default" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa fa-chevron-down icon_8"></i>
+                                        <div class="ripple-wrapper"></div>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li>
+                                            @Html.ActionLink("Add Link to other Requirement", "CreateNewLink", "LinkBetweenRequirements", new { id = item.RequirementID }, null)
+                                        </li>
+                                        <li>
+                                            @Html.ActionLink("Add Link to Artifact", "CreateNewLink", "LinkBetweenRequirementsArtifact", new { id = item.RequirementID }, null)
+                                        </li>
+                                        <li>
+                                            @Html.ActionLink("Details", "Details", "Requirement", new { id = item.RequirementID }, null)
+                                        </li>
+                                        <li>
+                                            <a href="" onclick="printDocumentRequirement(@item.RequirementID); return false;">Print Requirement</a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </td>
                         </tr>
                     }
@@ -861,6 +880,10 @@
                 });
 
             jQuery('#modal-linkBetweenRequirements').modal();
+        };
+
+        function printDocumentRequirement(RequirementID) {
+            window.open('../../Requirement/PrintDocumentRequirement?RequirementID=' + RequirementID);
         };
 
         function ArtToReqLinkDetails(link) {

@@ -446,46 +446,45 @@
                             @Html.DisplayFor(modelItem => item.creationDate)
                         </td>
                         <td>
-                            @switch (item.RequestStatus.RequestStatusID)
-                            {
-                                case 1:
+
+                            <div class="dropdown">
+                                <a href="#" title="Options" class="btn btn-default" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa fa-chevron-down icon_8"></i>
+                                    <div class="ripple-wrapper"></div>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    @switch (item.RequestStatus.RequestStatusID)
                                     {
-                                        <p>
-                                            @Html.ActionLink("Approve", "Edit", new { id = item.RequirementRequestForChangesID })
-                                        </p>
-                                        <p>
-                                            <a href="" onclick="requestInAnalysis(@item.RequirementRequestForChangesID); return false;">In Analysis</a>
-                                        </p>
-                                        <p>
-                                            <a href="" onclick="requestReject(@item.RequirementRequestForChangesID); return false;">Reject</a>
-                                        </p>
-                                        break;
+                                        case 1:
+                                            {
+                                                <li>
+                                                    @Html.ActionLink("Approve", "Edit", new { id = item.RequirementRequestForChangesID })
+                                                </li>
+                                                <li>
+                                                    <a href="" onclick="requestInAnalysis(@item.RequirementRequestForChangesID); return false;">In Analysis</a>
+                                                </li>
+                                                <li>
+                                                    <a href="" onclick="requestReject(@item.RequirementRequestForChangesID); return false;">Reject</a>
+                                                </li>
+                                                break;
+                                            }
+                                        case 2:
+                                            {
+                                                <li>
+                                                    @Html.ActionLink("Approve", "Edit", new { id = item.RequirementRequestForChangesID })
+                                                </li>
+                                                <li>
+                                                    <a href="" onclick="requestReject(@item.RequirementRequestForChangesID); return false;">Reject</a>
+                                                </li>
+                                                break;
+                                            }
+                                        default:
+                                            {
+                                                break;
+                                            }
                                     }
-                                case 2:
-                                    {
-                                        <p>
-                                            @Html.ActionLink("Approve", "Edit", new { id = item.RequirementRequestForChangesID })
-                                        </p>
-                                        <p>
-                                            <a href="" onclick="requestReject(@item.RequirementRequestForChangesID); return false;">Reject</a>
-                                        </p>
-                                        break;
-                                    }
-                                case 3:
-                                    {
-                                        @Html.Label("Approved!");
-                                        break;
-                                    }
-                                case 4:
-                                    {
-                                        @Html.Label("Rejected!");
-                                        break;
-                                    }
-                                default:
-                                    {
-                                        break;
-                                    }
-                            }
+                                </ul>
+                            </div>
                         </td>
                     </tr>
                 }

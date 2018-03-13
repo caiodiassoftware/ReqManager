@@ -4,6 +4,8 @@ using ReqManager.Entities.Artifact;
 using ReqManager.ManagerController;
 using ReqManager.Services.Project.Interfaces;
 using ReqManager.Services.Acess.Interfaces;
+using System.Web;
+using System.IO;
 
 namespace ReqManager.Controllers
 {
@@ -25,6 +27,49 @@ namespace ReqManager.Controllers
             ViewData.Add("ImportanceID", new SelectList(measureService.getAll(), "ImportanceID", "description"));
             ViewData.Add("ProjectID", new SelectList(projectService.getAll(), "ProjectID", "description"));
             ViewData.Add("CreationUserID", new SelectList(userService.getAll(), "UserID", "name"));
+        }
+
+        [HttpPost]
+        public ActionResult CreateNewArtifact(ProjectArtifactEntity entity)
+        {
+            try
+            {
+                if(Request.Files.Count > 0)
+                {
+                    HttpPostedFileBase file = Request.Files[0];
+
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        string fileName = Path.GetFileName(file.FileName);
+                        string directory = Server.MapPath("~/Uploads/Artifacts/");
+                        if (!Directory.Exists(directory))
+                            Directory.CreateDirectory(directory);
+                        string path = Path.Combine(Server.MapPath("~/Uploads/Artifacts/"), fileName);
+                        entity.path = path;
+
+                        if (ModelState.IsValid)
+                        {
+                            base.Create(entity);
+                            file.SaveAs(path);
+                        }
+                        else
+                        {
+                            getModelStateValidations();
+                        }
+                    }
+                    else
+                    {
+                        warning("Empty File!");
+                        return View();
+                    }
+                }
+
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                return filterException(ex);
+            }
         }
 
         public JsonResult GetWithCode(string code)
@@ -54,7 +99,7 @@ namespace ReqManager.Controllers
         [HttpPost]
         [AllowAnonymous]
         [OutputCache(NoStore = true, Location = System.Web.UI.OutputCacheLocation.None)]
-        public override ActionResult Edit(ProjectArtifactEntity entity)
+        public ActionResult EditArtifact(ProjectArtifactEntity entity)
         {
             try
             {

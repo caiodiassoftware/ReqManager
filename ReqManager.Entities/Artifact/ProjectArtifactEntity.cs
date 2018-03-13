@@ -27,7 +27,6 @@ namespace ReqManager.Entities.Artifact
         public int ProjectID { get; set; }
         [Display(Name = "Art. Code")]
         public string code { get; set; }
-        [Required]
         [MaxLength(500)]
         [Display(Name = "Path")]
         public string path { get; set; }

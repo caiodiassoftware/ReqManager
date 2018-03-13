@@ -30,49 +30,13 @@
                 Type
             </th>
             <th>
-                Path
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.creationDate)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Importance.description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Project.description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Users.name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ArtifactType.description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.code)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.path)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.creationDate)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id=item.ProjectArtifactID }) |
-                    @Html.ActionLink("Details", "Details", new { id=item.ProjectArtifactID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.ProjectArtifactID })
-                </td>
-            </tr>
-        }
+
     </tbody>
 </table>
 <script type="text/javascript" charset="utf-8">
@@ -94,7 +58,6 @@
                             'importance': json.aaData[i].Importance.description,
                             'user': json.aaData[i].Users.name,
                             'type': json.aaData[i].ArtifactType.description,
-                            'path': json.aaData[i].path,
                             'creationDate': fixDateTime(json.aaData[i].creationDate),
                             'action':
                                 '<div class="dropdown">' +
@@ -120,7 +83,6 @@
                 { 'data': 'importance' },
                 { 'data': 'user' },
                 { 'data': 'type' },
-                { 'data': 'path' },
                 { 'data': 'creationDate' },
                 { 'data': 'action' },
             ]

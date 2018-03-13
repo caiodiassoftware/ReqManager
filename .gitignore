@@ -11,3 +11,7 @@
 /.vs/ReqManager/v14/.suo
 /.vs/ReqManager/v14
 /.vs/ReqManager
+/packages
+*.dll
+*.xml
+*.resources

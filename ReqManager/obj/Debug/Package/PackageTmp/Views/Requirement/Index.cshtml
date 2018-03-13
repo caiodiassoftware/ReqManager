@@ -43,7 +43,7 @@
         $('#requirement').dataTable({
             "bServerSide": true,
             "bProcessing": true,
-            searchDelay : 2000,
+            searchDelay : 1500,
             ajax: {
                 "url": '@Url.Action("GetFilter", "Requirement")',
                 "type": 'POST',
@@ -58,10 +58,17 @@
                             'name': json.aaData[i].Users.name,
                             'title': json.aaData[i].title,
                             'creationDate': fixDateTime(json.aaData[i].creationDate),
-                            'action': '<a href=\"../Requirement/Details/' + json.aaData[i].RequirementID +
-                                '\">Details</a> | <a href=\"../Requirement/Delete/' +
-                                json.aaData[i].RequirementID + '\">Delete</a>'
-                        })
+                            'action':
+                                '<div class="dropdown">' +
+                                '<a href="#" title="Options" class="btn btn-default" data-toggle="dropdown" aria-expanded="false">' +
+                                '<i class="fa fa-chevron-down icon_8"></i>' +
+                                '<div class="ripple-wrapper"></div>' +
+                                '</a>' +
+                                '<ul class="dropdown-menu dropdown-menu-right">' +
+                                '<li><a href=\"../Requirement/Details/' + json.aaData[i].RequirementID + '\">Details</a></li>' +
+                                '<li><a href=\"../Requirement/Delete/' + json.aaData[i].RequirementID + '\">Delete</a></li>' +
+                                '</ul>'
+                        });
                     }
 
                     return return_data;

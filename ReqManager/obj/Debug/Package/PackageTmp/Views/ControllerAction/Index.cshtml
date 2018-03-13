@@ -55,7 +55,7 @@
                         return_data.push({
                             'controller': json.aaData[i].controller,
                             'action': json.aaData[i].action,
-                            'IsGet': json.aaData[i].IsGet
+                            'isGet': json.aaData[i].IsGet ? '<input type="checkbox" checked disabled>' : '<input type="checkbox" disabled>',
                         })
                     }
 

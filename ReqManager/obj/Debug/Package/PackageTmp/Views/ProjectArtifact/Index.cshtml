@@ -96,10 +96,17 @@
                             'type': json.aaData[i].ArtifactType.description,
                             'path': json.aaData[i].path,
                             'creationDate': fixDateTime(json.aaData[i].creationDate),
-                            'action': '<a href=\"../ProjectArtifact/Edit/' +
-                                json.aaData[i].ProjectArtifactID + '\">Edit</a> | <a href=\"../ProjectArtifact/Details/' +
-                                json.aaData[i].ProjectArtifactID + '\">Details</a> | <a href=\"../ProjectArtifact/Delete/' +
-                                json.aaData[i].ProjectArtifactID + '\">Delete</a>'
+                            'action':
+                                '<div class="dropdown">' +
+                                '<a href="#" title="Options" class="btn btn-default" data-toggle="dropdown" aria-expanded="false">' +
+                                '<i class="fa fa-chevron-down icon_8"></i>' +
+                                '<div class="ripple-wrapper"></div>' +
+                                '</a>' +
+                                '<ul class="dropdown-menu dropdown-menu-right">' +
+                                '<li><a href=\"../ProjectArtifact/Edit/' + json.aaData[i].ProjectArtifactID + '\">Edit</a></li>' +
+                                '<li><a href=\"../ProjectArtifact/Details/' + json.aaData[i].ProjectArtifactID + '\">Details</a></li>' +
+                                '<li><a href=\"../ProjectArtifact/Delete/' + json.aaData[i].ProjectArtifactID + '\">Delete</a></li>' +
+                                '</ul>'
                         })
                     }
 

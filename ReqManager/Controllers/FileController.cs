@@ -108,9 +108,15 @@ namespace ReqManager.Controllers
             List<String> extensions = new List<String>();
             extensions.Add(".jpg");
             extensions.Add(".png");
+            extensions.Add(".svg");
+            extensions.Add(".bpm");
             extensions.Add(".pdf");
             extensions.Add(".txt");
             extensions.Add(".doc");
+            extensions.Add(".docx");
+            extensions.Add(".xlsx");
+            extensions.Add(".csv");
+            extensions.Add(".xls");
             return extensions.Contains(extension);
         }
     }

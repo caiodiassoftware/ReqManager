@@ -87,6 +87,10 @@
     <Compile Include="Migrations\201803121019061_JsonArchive.Designer.cs">
       <DependentUpon>201803121019061_JsonArchive.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803141851324_ArtifactsPath.cs" />
+    <Compile Include="Migrations\201803141851324_ArtifactsPath.Designer.cs">
+      <DependentUpon>201803141851324_ArtifactsPath.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\Artifact\Classes\ArtifactRequirementTraceabilityMatrixRepository.cs" />
     <Compile Include="Repositories\Artifact\Classes\ArtifactTypeRepository.cs" />
@@ -206,6 +210,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803121019061_JsonArchive.resx">
       <DependentUpon>201803121019061_JsonArchive.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803141851324_ArtifactsPath.resx">
+      <DependentUpon>201803141851324_ArtifactsPath.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

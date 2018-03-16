@@ -147,30 +147,6 @@ namespace ReqManager.Services.Requirements.Classes
             }
         }
 
-        public IEnumerable<RequirementEntity> getRequirementsByProject(int ProjectID)
-        {
-            try
-            {
-                return convertEnumerableModelToEntity(repository.filter(r => r.ProjectID == ProjectID));
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public RequirementEntity getWithCode(string code)
-        {
-            try
-            {
-                return convertModelToEntity(repository.filter(r => r.code == code).SingleOrDefault());
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
         public decimal getRequirementCostByProject(int ProjectID)
         {
             try
@@ -197,6 +173,30 @@ namespace ReqManager.Services.Requirements.Classes
             }
         }
 
+        public RequirementEntity getWithCode(string code)
+        {
+            try
+            {
+                return convertModelToEntity(repository.filter(r => r.code == code).SingleOrDefault());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public IEnumerable<RequirementEntity> getRequirementsByProject(int ProjectID)
+        {
+            try
+            {
+                return convertEnumerableModelToEntity(repository.filter(r => r.ProjectID == ProjectID));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public IEnumerable<RequirementEntity> getRequirementsToLink(int RequirementID)
         {
             try
@@ -209,19 +209,28 @@ namespace ReqManager.Services.Requirements.Classes
             }
         }
 
-        public DataTable getDataSetRequirementPreconditions(int ProjectID = 0)
+        #region DataSets
+
+        public DataTable DataSetDependencies(int ProjectID = 0)
         {
-            return requirementRepository.getDataSetRequirementPreconditions(ProjectID);
+            return requirementRepository.DataSetDependencies(ProjectID);
         }
 
-        public DataTable getDataSetRequirementPreconditionsAndImportanceAndCost(int ProjectID = 0)
+        public DataTable DataSetPriorities(int ProjectID = 0)
         {
-            return requirementRepository.getDataSetRequirementPreconditionsAndImportanceAndCost(ProjectID);
+            return requirementRepository.DataSetPriorities(ProjectID);
         }
 
-        public DataTable getDataSetRequirementImportanceAndCost(int ProjectID = 0)
+        public DataTable DataSetRequirementsCost(int ProjectID = 0)
         {
-            return requirementRepository.getDataSetRequirementImportanceAndCost(ProjectID);
+            return requirementRepository.DataSetRequirementsCost(ProjectID);
         }
+
+        public DataTable DataSetStakeholderImportances(int ProjectID = 0)
+        {
+            return requirementRepository.DataSetStakeholderImportances(ProjectID);
+        }
+
+        #endregion
     }
 }

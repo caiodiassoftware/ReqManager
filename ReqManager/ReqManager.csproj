@@ -694,12 +694,10 @@
     <Content Include="Views\RequirementTemplate\Details.cshtml" />
     <Content Include="Views\RequirementTemplate\Edit.cshtml" />
     <Content Include="Views\RequirementTemplate\Index.cshtml" />
-    <Content Include="Views\DataSet\DataSetRequirementPreconditionsXls.cshtml" />
-    <Content Include="Views\DataSet\DataSetRequirementPreconditionsAndImportanceAndCostXls.cshtml" />
-    <Content Include="Views\DataSet\DataSetRequirementImportanceAndCostXls.cshtml" />
-    <Content Include="Views\DataSet\DataSetRequirementPreconditionsJson.cshtml" />
-    <Content Include="Views\DataSet\DataSetRequirementPreconditionsAndImportanceAndCostJson.cshtml" />
-    <Content Include="Views\DataSet\DataSetRequirementImportanceAndCostJson.cshtml" />
+    <Content Include="Views\DataSet\DataSetDependencies.cshtml" />
+    <Content Include="Views\DataSet\DataSetPriorities.cshtml" />
+    <Content Include="Views\DataSet\DataSetRequirementsCost.cshtml" />
+    <Content Include="Views\DataSet\DataSetStakeholderImportances.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -12,8 +12,9 @@ namespace ReqManager.Services.Requirements.Interfaces
         IEnumerable<RequirementEntity> getRequirementsToLink(int RequirementID);
         RequirementEntity getWithCode(string code);
         decimal getRequirementCostByProject(int ProjectID);
-        DataTable getDataSetRequirementPreconditions(int ProjectID = 0);
-        DataTable getDataSetRequirementPreconditionsAndImportanceAndCost(int ProjectID = 0);
-        DataTable getDataSetRequirementImportanceAndCost(int ProjectID = 0);
+        DataTable DataSetDependencies(int ProjectID = 0);
+        DataTable DataSetPriorities(int ProjectID = 0);
+        DataTable DataSetRequirementsCost(int ProjectID = 0);
+        DataTable DataSetStakeholderImportances(int ProjectID = 0);
     }
 }

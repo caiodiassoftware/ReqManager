@@ -26,44 +26,28 @@ namespace ReqManager.Controllers
 
         #region Xls
 
-        public void DataSetRequirementPreconditionsXls(int ProjectID = 0)
+        public void DataSetDependencies(int ProjectID = 0)
         {
             string name = System.Reflection.MethodBase.GetCurrentMethod().Name + DateTime.Now.ToString();
-            renderDataSetXls(requirementService.getDataSetRequirementPreconditions(ProjectID), name);
+            renderDataSetXls(requirementService.DataSetDependencies(ProjectID), name);
         }
 
-        public void DataSetRequirementPreconditionsAndImportanceAndCostXls(int ProjectID = 0)
+        public void DataSetPriorities(int ProjectID = 0)
         {
             string name = System.Reflection.MethodBase.GetCurrentMethod().Name + DateTime.Now.ToString();
-            renderDataSetXls(requirementService.getDataSetRequirementPreconditionsAndImportanceAndCost(ProjectID), name);
+            renderDataSetXls(requirementService.DataSetPriorities(ProjectID), name);
         }
 
-        public void DataSetRequirementImportanceAndCostXls(int ProjectID = 0)
+        public void DataSetRequirementsCost(int ProjectID = 0)
         {
             string name = System.Reflection.MethodBase.GetCurrentMethod().Name + DateTime.Now.ToString();
-            renderDataSetXls(requirementService.getDataSetRequirementImportanceAndCost(ProjectID), name);
+            renderDataSetXls(requirementService.DataSetRequirementsCost(ProjectID), name);
         }
 
-        #endregion
-
-        #region Json
-
-        public void DataSetRequirementPreconditionsJson(int ProjectID = 0)
+        public void DataSetStakeholderImportances(int ProjectID = 0)
         {
             string name = System.Reflection.MethodBase.GetCurrentMethod().Name + DateTime.Now.ToString();
-            renderDataSetJson(requirementService.getDataSetRequirementPreconditions(ProjectID), name);
-        }
-
-        public void DataSetRequirementPreconditionsAndImportanceAndCostJson(int ProjectID = 0)
-        {
-            string name = System.Reflection.MethodBase.GetCurrentMethod().Name + DateTime.Now.ToString();
-            renderDataSetJson(requirementService.getDataSetRequirementPreconditionsAndImportanceAndCost(ProjectID), name);
-        }
-
-        public void DataSetRequirementImportanceAndCostJson(int ProjectID = 0)
-        {
-            string name = System.Reflection.MethodBase.GetCurrentMethod().Name + DateTime.Now.ToString();
-            renderDataSetJson(requirementService.getDataSetRequirementImportanceAndCost(ProjectID), name);
+            renderDataSetXls(requirementService.DataSetStakeholderImportances(ProjectID), name);
         }
 
         #endregion

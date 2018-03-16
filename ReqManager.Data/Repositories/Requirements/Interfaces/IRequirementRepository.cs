@@ -6,8 +6,9 @@ namespace ReqManager.Data.Repositories.Requirements.Interfaces
 {
     public interface IRequirementRepository : IRepository<Requirement>
     {
-        DataTable getDataSetRequirementPreconditions(int ProjectID = 0);
-        DataTable getDataSetRequirementPreconditionsAndImportanceAndCost(int ProjectID = 0);
-        DataTable getDataSetRequirementImportanceAndCost(int ProjectID = 0);
+        DataTable DataSetDependencies(int ProjectID = 0);
+        DataTable DataSetPriorities(int ProjectID = 0);
+        DataTable DataSetRequirementsCost(int ProjectID = 0);
+        DataTable DataSetStakeholderImportances(int ProjectID = 0);
     }
 }

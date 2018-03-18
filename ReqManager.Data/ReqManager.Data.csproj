@@ -91,6 +91,10 @@
     <Compile Include="Migrations\201803141851324_ArtifactsPath.Designer.cs">
       <DependentUpon>201803141851324_ArtifactsPath.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803181117530_Matrix.cs" />
+    <Compile Include="Migrations\201803181117530_Matrix.Designer.cs">
+      <DependentUpon>201803181117530_Matrix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\Artifact\Classes\ArtifactRequirementTraceabilityMatrixRepository.cs" />
     <Compile Include="Repositories\Artifact\Classes\ArtifactTypeRepository.cs" />
@@ -213,6 +217,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803141851324_ArtifactsPath.resx">
       <DependentUpon>201803141851324_ArtifactsPath.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803181117530_Matrix.resx">
+      <DependentUpon>201803181117530_Matrix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

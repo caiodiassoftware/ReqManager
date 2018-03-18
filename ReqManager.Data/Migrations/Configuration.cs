@@ -9,7 +9,7 @@ namespace ReqManager.Data.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
             ContextKey = "ReqManager.Data.DataAcess.ReqManagerEntities";
         }
 

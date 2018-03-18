@@ -115,7 +115,6 @@
                     <tr>
                         <th>Code</th>
                         <th>Title</th>
-                        <th>Create By</th>
                         <th>Status</th>
                         <th>Type</th>
                         <th>Pre-Traceability</th>
@@ -123,7 +122,6 @@
                         <th>Start</th>
                         <th>End</th>
                         <th>Cost</th>
-                        <th>Time</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -139,9 +137,6 @@
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.title)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Users.name)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.RequirementStatus.description)
@@ -165,35 +160,6 @@
                                 @Html.DisplayFor(modelItem => item.cost)
                             </td>
                             <td>
-                                @if (item.endDate != null)
-                                {
-                                    if (Convert.ToDateTime(item.endDate).CompareTo(Model.project.endDate) > 0
-                                        && !item.RequirementStatusID.Equals(7))
-                                    {
-                                        @Html.Label("End date after project completion!")
-                                    }
-
-                                    if (Convert.ToDateTime(item.endDate).CompareTo(DateTime.Now) < 0
-                                        && !item.RequirementStatusID.Equals(7))
-                                    {
-                                        @Html.Label("Out of Time!")
-                                    }
-                                }
-                                @if (item.startDate != null)
-                                {
-                                    if (Convert.ToDateTime(item.startDate).CompareTo(Convert.ToDateTime(Model.project.endDate)) > 0)
-                                    {
-                                        @Html.Label("Requirement will start after project completion!")
-                                    }
-
-                                    if (Convert.ToDateTime(Model.project.endDate).CompareTo(Convert.ToDateTime(item.startDate)) > 0)
-                                    {
-                                        @Html.Label(Convert.ToDateTime(item.endDate).Subtract(DateTime.Now).Days.ToString() +
-                                                 " Days to End!")
-                                    }
-                                }
-                            </td>
-                            <td>
                                 <div class="dropdown">
                                     <a href="#" title="Options" class="btn btn-default" data-toggle="dropdown" aria-expanded="false">
                                         <i class="fa fa-chevron-down icon_8"></i>
@@ -210,7 +176,7 @@
                                             @Html.ActionLink("Details", "Details", "Requirement", new { id = item.RequirementID }, null)
                                         </li>
                                         <li>
-                                            <a href="" onclick="printDocumentRequirement(@item.RequirementID); return false;">Print Requirement</a>
+                                            <a href="" onclick="printRequirement(@item.RequirementID); return false;">Print Requirement</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -445,7 +411,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="printDocumentRequirement(); return false;">Print</button>
+                <button type="button" class="btn btn-primary" onclick="printProjectDocumentRequirement(); return false;">Print</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
@@ -804,13 +770,6 @@
                 });
         };
 
-        function printDocumentRequirement() {
-            var ProjectID = $("#ID").val();
-            var RequirementTypeID = $("#RequirementTypeID").val();
-            window.open('../../Projects/PrintDocumentRequirement?ProjectID=' + ProjectID + '&RequirementTypeID=' + RequirementTypeID);
-            jQuery('#modal-requirementDocument').modal('hide');
-        };
-
         function requestPrintDocumentRequirement() {
             var id = $("#ID").val();
             clearDropDown("RequirementTypeID");
@@ -887,7 +846,16 @@
             jQuery('#modal-linkBetweenRequirements').modal();
         };
 
-        function printDocumentRequirement(RequirementID) {
+        function printProjectDocumentRequirement() {
+            var ProjectID = $("#ID").val();
+            console.log(ProjectID);
+            var RequirementTypeID = $("#RequirementTypeID").val();
+            window.open('../../Projects/PrintDocumentRequirement?ProjectID=' + ProjectID +
+                '&RequirementTypeID=' + RequirementTypeID);
+            jQuery('#modal-requirementDocument').modal('hide');
+        };
+
+        function printRequirement(RequirementID) {
             window.open('../../Requirement/PrintDocumentRequirement?RequirementID=' + RequirementID);
         };
 

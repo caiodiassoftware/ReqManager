@@ -493,12 +493,9 @@
         <div id="versions">
             <table class="table">
                 <tr>
-                    <th>Title</th>
                     <th>Version Number</th>
-                    <th>Importance</th>
                     <th>Status</th>
                     <th>Type</th>
-                    <th>SubType</th>
                     <th>Rationale</th>
                     <th>Start Date</th>
                     <th>End Date</th>
@@ -509,22 +506,13 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.title)
-                        </td>
-                        <td>
                             @Html.DisplayFor(modelItem => item.versionNumber)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Importance.description)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.RequirementStatus.description)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.RequirementType.description)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.RequirementSubType.description)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.rationale)

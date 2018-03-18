@@ -31,6 +31,9 @@ namespace ReqManager.Data.Repositories.Requirements.Classes
                                                             from LINK.LINK_BETWEEN_REQUIREMENT AS L
                                                             INNER JOIN REQ.REQUIREMENT AS R
 																ON R.RequirementID = L.RequirementTargetID
+                                                            INNER JOIN REQ.REQUIREMENT AS RO
+																ON RO.RequirementID = L.RequirementOriginID
+																AND R.ProjectID = " + ProjectID + @"
                                                             ) AS Tab
                                                             FOR XML PATH(''), TYPE
                                                             ).value('.', 'NVARCHAR(MAX)')

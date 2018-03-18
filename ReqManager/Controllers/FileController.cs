@@ -19,9 +19,13 @@ namespace ReqManager.Controllers
             this.directory = directory;
         }
 
-        public void RenderFile(string FilePath, string Title)
+        public FileResult RenderFile(string FilePath, string Title)
         {
-            renderFile(FilePath, Title);
+            byte[] fileBytes = System.IO.File.ReadAllBytes(FilePath);
+            string fileName = Title + Path.GetExtension(FilePath);
+            return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
+
+            //renderFile(FilePath, Title);
         }
 
         public JsonResult GetFolders(string path)
@@ -55,7 +59,7 @@ namespace ReqManager.Controllers
                     Response.ContentType = "application/pdf";
                     Response.ContentType = "application/octet-stream";
                     Response.Cache.SetCacheability(HttpCacheability.NoCache);
-                    Response.AddHeader("content-disposition", "inline;filename= " + Title + DateTime.Now.ToString() + ".pdf");
+                    Response.AddHeader("content-disposition", "attachment;filename= " + Title + DateTime.Now.ToString() + ".pdf");
                     Response.Buffer = true;
                     Response.Clear();
                     bytes = ReadAllBytes(FilePath);
@@ -65,10 +69,22 @@ namespace ReqManager.Controllers
                 else
                 {
                     System.Diagnostics.Process proc = new System.Diagnostics.Process();
-                    proc.EnableRaisingEvents = false;
-                    proc.StartInfo.FileName = FilePath;
-                    proc.Start();
-                    proc.Close();
+                    try
+                    {
+                        proc.EnableRaisingEvents = false;
+                        proc.StartInfo.Arguments = FilePath;
+                        proc.StartInfo.FileName = FilePath;
+                        proc.StartInfo.UseShellExecute = true;
+                        proc.Start();
+                    }
+                    catch (Exception)
+                    {
+                        throw;
+                    }
+                    finally
+                    {
+                        proc.Close();
+                    }
                 }
             }
             catch (Exception ex)
@@ -108,9 +124,15 @@ namespace ReqManager.Controllers
             List<String> extensions = new List<String>();
             extensions.Add(".jpg");
             extensions.Add(".png");
+            extensions.Add(".svg");
+            extensions.Add(".bpm");
             extensions.Add(".pdf");
             extensions.Add(".txt");
             extensions.Add(".doc");
+            extensions.Add(".docx");
+            extensions.Add(".xlsx");
+            extensions.Add(".csv");
+            extensions.Add(".xls");
             return extensions.Contains(extension);
         }
     }

@@ -34,7 +34,9 @@ namespace ReqManager.Data.Repositories.Artifact.Classes
 				                                        ',' + QUOTENAME(R.code) AS O
 			                                        FROM LINK.LINK_BETWEEN_REQUIREMENTS_ARTIFACTS AS L
 			                                        INNER JOIN REQ.REQUIREMENT AS R
-				                                        ON R.RequirementID = L.RequirementID) AS Tab
+				                                        ON R.RequirementID = L.RequirementID
+                                                        AND R.ProjectID = " + ProjectID + @"
+                                                    ) AS Tab
 		                                        FOR XML PATH (''), TYPE)
 	                                        .value('.', 'NVARCHAR(MAX)')
 	                                        , 1, 1, '');

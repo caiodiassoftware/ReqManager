@@ -189,7 +189,7 @@
                                     if (Convert.ToDateTime(Model.project.endDate).CompareTo(Convert.ToDateTime(item.startDate)) > 0)
                                     {
                                         @Html.Label(Convert.ToDateTime(item.endDate).Subtract(DateTime.Now).Days.ToString() +
-                                       " Days to End!")
+                                                 " Days to End!")
                                     }
                                 }
                             </td>
@@ -403,16 +403,21 @@
                             <td>@Html.DisplayFor(modelItem => item.importanceValue)</td>
                             <td>@Html.DisplayFor(modelItem => item.creationDate)</td>
                             <td>
-                                <p>
-                                    @Html.ActionLink("Edit", "Edit",
-                            "StakeholdersProject",
-                            new { id = item.StakeholdersProjectID }, null)
-                                </p>
-                                <p>
-                                    @Html.ActionLink("Delete", "Delete",
-                            "StakeholdersProject",
-                            new { id = item.StakeholdersProjectID }, null)
-                                </p>
+
+                                <div class="dropdown">
+                                    <a href="#" title="Options" class="btn btn-default" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa fa-chevron-down icon_8"></i>
+                                        <div class="ripple-wrapper"></div>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li>
+                                            @Html.ActionLink("Edit", "Edit", "StakeholdersProject", new { id = item.StakeholdersProjectID }, null)
+                                        </li>
+                                        <li>
+                                            @Html.ActionLink("Delete", "Delete", "StakeholdersProject", new { id = item.StakeholdersProjectID }, null)
+                                        </li>
+                                    </ul>
+                                </div>
                             </td>
                         </tr>
                     }
@@ -785,7 +790,7 @@
 
                         $.getJSON('@Url.Action("GetStakeholdersFromProject", "StakeholdersProject")',
                             { ProjectID: ProjectID }, function (response) {
-                                $('#stakeholderProject tbody').remove();
+                                $('#stakeholderProject tbody').empty();
                                 $.each(response, function (index, item) {
                                     $('#stakeholderProject').append(
                                         '<tr><td>' + item.DisplayName + '</td><td>' + item.description + '</td><td>' + item.importanceValue + '</td><td>' + fixDateTime(item.creationDate) + '</td></tr>');

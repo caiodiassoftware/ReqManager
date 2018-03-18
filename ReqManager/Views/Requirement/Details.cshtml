@@ -958,7 +958,7 @@
 
                         $.getJSON('@Url.Action("GetStakeholdersFromRequirement", "StakeholderRequirement")',
                             { RequirementID: RequirementID }, function (response) {
-                                $('#stakeholderRequirement tbody').remove();
+                                $('#stakeholderRequirement tbody').empty();
                                 $.each(response, function (index, item) {
                                     $('#stakeholderRequirement').append(
                                         '<tr><td>' + item.Requirement.DisplayName +

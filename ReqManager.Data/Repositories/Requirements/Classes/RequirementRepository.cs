@@ -14,107 +14,92 @@ namespace ReqManager.Data.Repositories.Requirements.Classes
         {
         }
 
-        public DataTable getDataSetRequirementImportanceAndCost(int ProjectID = 0)
+        public DataTable DataSetDependencies(int ProjectID = 0)
         {
-            try
-            {
-                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ReqManagerDataEntities"].ConnectionString);
-                conn.Open();
-
-                string sql = @"SELECT 
-                            P.code AS PrjCode,
-                            SP.StakeholderID as StakeholderProject,
-                            SP.importanceValue as StakeholderProjectImportance,
-                            R.code as ReqCode,
-                            SP.StakeholderID as StakeholderRequirement,
-                            SR.importanceValue as RequirementStakeholderImportance,
-                            R.cost as Cost
-                            FROM REQ.REQUIREMENT AS R
-                            INNER JOIN PROJ.STAKEHOLDER_REQUIREMENT AS SR
-	                            ON SR.RequirementID = R.RequirementID
-                            INNER JOIN PROJ.STAKEHOLDERS_PROJECT AS SP
-	                            ON SP.StakeholdersProjectID = SR.StakeholdersProjectID
-                            INNER JOIN PROJ.PROJECT AS P
-	                            ON P.ProjectID = R.ProjectID";
-
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                DataTable dt = new DataTable();
-                dt.Load(cmd.ExecuteReader());
-                conn.Close();
-
-                return dt;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            string sql = @"SELECT '[' + RO.code + ']' AS ReqCode, 
+                        (SELECT '[' + CAST(R.code AS VARCHAR(10)) + ']'
+                        FROM LINK.LINK_BETWEEN_REQUIREMENT as L
+                        INNER JOIN REQ.REQUIREMENT AS R
+	                        ON R.RequirementID = L.RequirementTargetID
+                        WHERE L.RequirementOriginID = RO.RequirementID
+                        FOR XML PATH('')) AS Dependecies
+                        FROM LINK.LINK_BETWEEN_REQUIREMENT as LR
+                        INNER JOIN REQ.REQUIREMENT AS RO
+		                        ON RO.RequirementID = LR.RequirementOriginID";
+            return generateDataTable(sql);
         }
 
-        public DataTable getDataSetRequirementPreconditions(int ProjectID = 0)
+        public DataTable DataSetPriorities(int ProjectID = 0)
         {
-            try
-            {
-                SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ReqManagerDataEntities"].ConnectionString);
-                conn.Open();
-
-                string sql = @"SELECT 
-                            LR.code AS LinkCode, 
-                            RequirementOrigin.code as ReqOriginCode, 
-                            T.description as LinkDescription, 
-                            RequirementTarget.code as ReqTargetCode
-                            FROM LINK.LINK_BETWEEN_REQUIREMENT AS LR
-                            INNER JOIN REQ.REQUIREMENT AS RequirementOrigin
-	                            ON RequirementOrigin.RequirementID = LR.RequirementOriginID
-                            INNER JOIN REQ.REQUIREMENT AS RequirementTarget
-	                            ON RequirementTarget.RequirementID = LR.RequirementTargetID
-                            INNER JOIN LINK.TYPE_LINK AS T
-	                            ON LR.TypeLinkID = T.TypeLinkID";
-
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                DataTable dt = new DataTable();
-                dt.Load(cmd.ExecuteReader());
-                conn.Close();
-
-                return dt;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            string sql = @"SELECT '[' + RO.code + ']' AS ReqCode, 
+                        (SELECT '[' + CAST(R.code AS VARCHAR(10)) + ']'
+                        FROM LINK.LINK_BETWEEN_REQUIREMENT as L
+                        INNER JOIN REQ.REQUIREMENT AS R
+	                        ON R.RequirementID = L.RequirementTargetID
+                        WHERE L.RequirementOriginID = RO.RequirementID
+                        FOR XML PATH('')) AS Dependecies
+                        FROM LINK.LINK_BETWEEN_REQUIREMENT as LR
+                        INNER JOIN REQ.REQUIREMENT AS RO
+		                        ON RO.RequirementID = LR.RequirementOriginID";
+            return generateDataTable(sql);
         }
 
-        public DataTable getDataSetRequirementPreconditionsAndImportanceAndCost(int ProjectID = 0)
+        public DataTable DataSetRequirementsCost(int ProjectID = 0)
+        {
+            string sql = @"SELECT code, cost FROM REQ.REQUIREMENT";
+            return generateDataTable(sql);
+        }
+
+        public DataTable DataSetStakeholderImportances(int ProjectID = 0)
+        {
+            string sql = @"DECLARE @Requirements NVARCHAR(MAX);
+                        DECLARE @Query NVARCHAR(2000);
+
+                        SELECT @Requirements = STUFF((
+                        SELECT DISTINCT(O) FROM(
+                        SELECT ',' + QUOTENAME(R.code) as O
+                        FROM REQ.REQUIREMENT AS R
+                        INNER JOIN PROJ.STAKEHOLDER_REQUIREMENT AS SR
+	                        ON SR.RequirementID = R.RequirementID
+                        INNER JOIN PROJ.STAKEHOLDERS_PROJECT AS SP
+	                        ON SP.StakeholdersProjectID = SR.StakeholdersProjectID
+                        ) AS Tab
+                        FOR XML PATH(''), TYPE
+                        ).value('.', 'NVARCHAR(MAX)')
+                        ,1,1,'');
+
+                        SET @Query = N'SELECT * FROM
+                        (
+                            SELECT U.nickName, 
+                            SP.importanceValue as ImportanceToProject, 
+                            R.code as ReqCode, 
+                            SR.importanceValue as importanceValueRequirement 
+                            FROM PROJ.STAKEHOLDERS_PROJECT AS SP
+                        INNER JOIN PROJ.STAKEHOLDERS AS S
+                        ON S.StakeholderID = SP.StakeholderID
+                        INNER JOIN ACCESS.USERS AS U
+	                        ON U.UserID = S.UserID
+                        INNER JOIN PROJ.STAKEHOLDER_REQUIREMENT AS SR
+	                        ON SR.StakeholdersProjectID = SP.StakeholdersProjectID
+                        INNER JOIN REQ.REQUIREMENT AS R
+	                        ON R.RequirementID = SR.RequirementID
+                        ) as x
+                        PIVOT
+                        (
+                            max(importanceValueRequirement)
+                            for ReqCode in ('+ @Requirements +')
+                        ) AS PIV
+                        ';
+                        EXEC SP_EXECUTESQL @Query";
+            return generateDataTable(sql);
+        }
+
+        private DataTable generateDataTable(string sql)
         {
             try
             {
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ReqManagerDataEntities"].ConnectionString);
                 conn.Open();
-
-                string sql = @"SELECT 
-                            P.code AS PrjCode,
-                            SP.StakeholderID as StakeholderProject,
-                            SP.importanceValue as StakeholderProjectImportance,
-                            LR.code AS LinkCode, 
-                            RequirementOrigin.code as ReqOriginCode, 
-                            T.description as LinkDescription, 
-                            RequirementTarget.code as ReqTargetCode,
-                            SP.StakeholderID as StakeholderRequirement,
-                            SR.importanceValue as RequirementStakeholderImportance,
-                            RequirementOrigin.cost as Cost
-                            FROM LINK.LINK_BETWEEN_REQUIREMENT AS LR
-                            INNER JOIN REQ.REQUIREMENT AS RequirementOrigin
-	                            ON RequirementOrigin.RequirementID = LR.RequirementOriginID
-                            INNER JOIN REQ.REQUIREMENT AS RequirementTarget
-	                            ON RequirementTarget.RequirementID = LR.RequirementTargetID
-                            INNER JOIN LINK.TYPE_LINK AS T
-	                            ON LR.TypeLinkID = T.TypeLinkID
-                            LEFT JOIN PROJ.STAKEHOLDER_REQUIREMENT AS SR
-	                            ON SR.RequirementID = RequirementOrigin.RequirementID
-                            LEFT JOIN PROJ.STAKEHOLDERS_PROJECT AS SP
-	                            ON SP.StakeholdersProjectID = SR.StakeholdersProjectID
-                            LEFT JOIN PROJ.PROJECT AS P
-	                            ON P.ProjectID = RequirementOrigin.ProjectID";
-
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 DataTable dt = new DataTable();
                 dt.Load(cmd.ExecuteReader());

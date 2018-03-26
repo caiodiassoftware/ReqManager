@@ -231,6 +231,11 @@ namespace ReqManager.Services.Requirements.Classes
             return requirementRepository.DataSetStakeholderImportances(ProjectID);
         }
 
+        public DataTable DataSetCostAvgValue(int ProjectID = 0)
+        {
+            return requirementRepository.DataSetCostAvgValue(ProjectID);
+        }
+
         #endregion
     }
 }

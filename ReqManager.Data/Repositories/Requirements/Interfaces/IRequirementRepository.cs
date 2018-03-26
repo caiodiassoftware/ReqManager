@@ -10,5 +10,6 @@ namespace ReqManager.Data.Repositories.Requirements.Interfaces
         DataTable DataSetPriorities(int ProjectID = 0);
         DataTable DataSetRequirementsCost(int ProjectID = 0);
         DataTable DataSetStakeholderImportances(int ProjectID = 0);
+        DataTable DataSetCostAvgValue(int ProjectID = 0);
     }
 }

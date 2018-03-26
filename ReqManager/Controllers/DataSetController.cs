@@ -50,6 +50,12 @@ namespace ReqManager.Controllers
             renderDataSetXls(requirementService.DataSetStakeholderImportances(ProjectID), name);
         }
 
+        public void DataSetCostAvgValue(int ProjectID = 0)
+        {
+            string name = System.Reflection.MethodBase.GetCurrentMethod().Name + DateTime.Now.ToString();
+            renderDataSetXls(requirementService.DataSetCostAvgValue(ProjectID), name);
+        }
+
         #endregion
 
         #region Private Methods

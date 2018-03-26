@@ -698,6 +698,7 @@
     <Content Include="Views\DataSet\DataSetPriorities.cshtml" />
     <Content Include="Views\DataSet\DataSetRequirementsCost.cshtml" />
     <Content Include="Views\DataSet\DataSetStakeholderImportances.cshtml" />
+    <Content Include="Views\DataSet\DataSetCostAvgValue.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

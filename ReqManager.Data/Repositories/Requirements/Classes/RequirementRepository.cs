@@ -94,6 +94,19 @@ namespace ReqManager.Data.Repositories.Requirements.Classes
             return generateDataTable(sql);
         }
 
+        public DataTable DataSetCostAvgValue(int ProjectID = 0)
+        {
+            string sql = @"SELECT 
+                        R.code, 
+                        SUM(R.cost) as cost, 
+                        AVG(SR.importanceValue) as AVGValue 
+                        FROM REQ.REQUIREMENT AS R
+                        INNER JOIN PROJ.STAKEHOLDER_REQUIREMENT AS SR
+	                        ON SR.RequirementID = R.RequirementID
+                        GROUP BY R.code";
+            return generateDataTable(sql);
+        }
+
         private DataTable generateDataTable(string sql)
         {
             try

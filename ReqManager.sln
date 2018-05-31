@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReqManager", "ReqManager\ReqManager.csproj", "{3DA00B90-2F6F-4AEE-B282-6D5BD3BD52FB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TAADSPRequirements", "ReqManager\TAADSPRequirements.csproj", "{3DA00B90-2F6F-4AEE-B282-6D5BD3BD52FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReqManager.Data", "ReqManager.Data\ReqManager.Data.csproj", "{42F12746-0006-4655-A60D-18DF61050C10}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TAADSPRequirements.Data", "ReqManager.Data\TAADSPRequirements.Data.csproj", "{42F12746-0006-4655-A60D-18DF61050C10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReqManager.Services", "ReqManager.Services\ReqManager.Services.csproj", "{8C9902B2-9C5C-4C2A-AD99-9D92BD4F970A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TAADSPRequirements.Services", "ReqManager.Services\TAADSPRequirements.Services.csproj", "{8C9902B2-9C5C-4C2A-AD99-9D92BD4F970A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReqManager.Model", "ReqManager.Model\ReqManager.Model.csproj", "{7E758419-8F0D-4813-8207-5561EC69C932}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TAADSPRequirements.Model", "ReqManager.Model\TAADSPRequirements.Model.csproj", "{7E758419-8F0D-4813-8207-5561EC69C932}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReqManager.Utils", "ReqManager.Utils\ReqManager.Utils.csproj", "{1D612B68-4A04-4FD0-A09A-7816FBAB867B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TAADSPRequirements.Utils", "ReqManager.Utils\TAADSPRequirements.Utils.csproj", "{1D612B68-4A04-4FD0-A09A-7816FBAB867B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReqManager.Entities", "ReqManager.Entities\ReqManager.Entities.csproj", "{0AF1DCE5-4F44-42B9-BFDD-E0DFBE3BC6ED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TAADSPRequirements.Entities", "ReqManager.Entities\TAADSPRequirements.Entities.csproj", "{0AF1DCE5-4F44-42B9-BFDD-E0DFBE3BC6ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

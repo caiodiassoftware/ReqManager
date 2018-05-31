@@ -1,0 +1,16 @@
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\bin\Debug\TAADSPRequirements.Data.dll.config
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\bin\Debug\TAADSPRequirements.Data.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\bin\Debug\TAADSPRequirements.Data.pdb
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\bin\Debug\EntityFramework.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\bin\Debug\TAADSPRequirements.Model.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\bin\Debug\TAADSPRequirements.Model.pdb
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\bin\Debug\EntityFramework.xml
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\obj\Debug\TAADSPRequirements.Data.csprojResolveAssemblyReference.cache
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\obj\Debug\ReqManager.Data.Migrations.InitialCreate.resources
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\obj\Debug\TAADSPRequirements.Data.csproj.GenerateResource.Cache
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\obj\Debug\TAADSPRequirements.Data.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Data\obj\Debug\TAADSPRequirements.Data.pdb

@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0AF1DCE5-4F44-42B9-BFDD-E0DFBE3BC6ED}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TAADSPRequirements.Entities</RootNamespace>
+    <AssemblyName>TAADSPRequirements.Entities</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Acess\ControllerActionEntity.cs" />
+    <Compile Include="Acess\RoleControllerActionEntity.cs" />
+    <Compile Include="Acess\RoleEntity.cs" />
+    <Compile Include="Artifact\ArtifactTypeEntity.cs" />
+    <Compile Include="Artifact\HistoryProjectArtifactEntity.cs" />
+    <Compile Include="Artifact\ProjectArtifactEntity.cs" />
+    <Compile Include="Link\AttributesEntity.cs" />
+    <Compile Include="Link\AttributesTypeLinkEntity.cs" />
+    <Compile Include="Link\LinkArtifactAttributesEntity.cs" />
+    <Compile Include="Link\LinkBetweenRequirementsArtifactsEntity.cs" />
+    <Compile Include="Link\LinkBetweenRequirementsEntity.cs" />
+    <Compile Include="Link\LinkRequirementAttributesEntity.cs" />
+    <Compile Include="Link\TypeLinkEntity.cs" />
+    <Compile Include="Project\StakeholderRequirementEntity.cs" />
+    <Compile Include="Requirement\CharacteristicsEntity.cs" />
+    <Compile Include="Project\HistoryProjectEntity.cs" />
+    <Compile Include="Project\ImportanceEntity.cs" />
+    <Compile Include="Project\ProjectEntity.cs" />
+    <Compile Include="Project\ProjectPhasesEntity.cs" />
+    <Compile Include="Project\StakeholderClassificationEntity.cs" />
+    <Compile Include="Acess\UserEntity.cs" />
+    <Compile Include="Project\StakeholderRequirementApprovalEntity.cs" />
+    <Compile Include="Project\StakeholdersEntity.cs" />
+    <Compile Include="Project\StakeholdersProjectEntity.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Requirement\RequestStatusEntity.cs" />
+    <Compile Include="Requirement\RequirementCharacteristicsEntity.cs" />
+    <Compile Include="Requirement\RequirementEntity.cs" />
+    <Compile Include="Requirement\RequirementVersionsEntity.cs" />
+    <Compile Include="Requirement\RequirementRequestForChangesEntity.cs" />
+    <Compile Include="Requirement\RequirementStatusEntity.cs" />
+    <Compile Include="Requirement\RequirementSubTypeEntity.cs" />
+    <Compile Include="Requirement\RequirementTypeEntity.cs" />
+    <Compile Include="Requirement\RequirementTemplateEntity.cs" />
+    <Compile Include="Task\HistoryTaskEntity.cs" />
+    <Compile Include="Task\StatusTaskEntity.cs" />
+    <Compile Include="Acess\UserRoleEntity.cs" />
+    <Compile Include="Task\SubtaskEntity.cs" />
+    <Compile Include="Task\TaskEntity.cs" />
+    <Compile Include="Task\TaskTypeEntity.cs" />
+    <Compile Include="Task\TaskTypeTemplateEntity.cs" />
+    <Compile Include="Task\UserTaskEntity.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

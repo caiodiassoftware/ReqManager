@@ -1,0 +1,4 @@
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Entities\bin\Debug\TAADSPRequirements.Entities.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Entities\bin\Debug\TAADSPRequirements.Entities.pdb
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Entities\obj\Debug\TAADSPRequirements.Entities.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Entities\obj\Debug\TAADSPRequirements.Entities.pdb

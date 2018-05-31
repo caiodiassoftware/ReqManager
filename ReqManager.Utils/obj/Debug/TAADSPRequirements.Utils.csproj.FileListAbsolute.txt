@@ -1,0 +1,6 @@
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Utils\bin\Debug\TAADSPRequirements.Utils.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Utils\bin\Debug\TAADSPRequirements.Utils.pdb
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Utils\obj\Debug\TAADSPRequirements.Utils.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Utils\obj\Debug\TAADSPRequirements.Utils.pdb
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Utils\bin\Debug\AutoMapper.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Utils\bin\Debug\AutoMapper.xml

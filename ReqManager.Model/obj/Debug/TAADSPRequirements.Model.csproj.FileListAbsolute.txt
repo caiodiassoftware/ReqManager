@@ -1,0 +1,9 @@
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Model\bin\Debug\TAADSPRequirements.Model.dll.config
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Model\bin\Debug\TAADSPRequirements.Model.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Model\bin\Debug\TAADSPRequirements.Model.pdb
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Model\bin\Debug\EntityFramework.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Model\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Model\bin\Debug\EntityFramework.xml
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Model\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Model\obj\Debug\TAADSPRequirements.Model.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager.Model\obj\Debug\TAADSPRequirements.Model.pdb

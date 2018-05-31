@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAcess\ConnectionString.cs" />
     <Compile Include="DataAcess\ReqManagerEntities.cs" />
     <Compile Include="Infrastructure\DbFactory.cs" />
     <Compile Include="Infrastructure\Disposable.cs" />
@@ -67,33 +68,9 @@
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
-    <Compile Include="Migrations\201712242021404_InitialCreate.cs" />
-    <Compile Include="Migrations\201712242021404_InitialCreate.Designer.cs">
-      <DependentUpon>201712242021404_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712312057382_StakeholderRequirementIndex.cs" />
-    <Compile Include="Migrations\201712312057382_StakeholderRequirementIndex.Designer.cs">
-      <DependentUpon>201712312057382_StakeholderRequirementIndex.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801082338144_IncludeRationaleFieldInRequirements.cs" />
-    <Compile Include="Migrations\201801082338144_IncludeRationaleFieldInRequirements.Designer.cs">
-      <DependentUpon>201801082338144_IncludeRationaleFieldInRequirements.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201802282340476_AddIndexTypeLinkInLinkBetweenRequirements.cs" />
-    <Compile Include="Migrations\201802282340476_AddIndexTypeLinkInLinkBetweenRequirements.Designer.cs">
-      <DependentUpon>201802282340476_AddIndexTypeLinkInLinkBetweenRequirements.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803121019061_JsonArchive.cs" />
-    <Compile Include="Migrations\201803121019061_JsonArchive.Designer.cs">
-      <DependentUpon>201803121019061_JsonArchive.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803141851324_ArtifactsPath.cs" />
-    <Compile Include="Migrations\201803141851324_ArtifactsPath.Designer.cs">
-      <DependentUpon>201803141851324_ArtifactsPath.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803181117530_Matrix.cs" />
-    <Compile Include="Migrations\201803181117530_Matrix.Designer.cs">
-      <DependentUpon>201803181117530_Matrix.cs</DependentUpon>
+    <Compile Include="Migrations\201805311340372_InitialCreate.cs" />
+    <Compile Include="Migrations\201805311340372_InitialCreate.Designer.cs">
+      <DependentUpon>201805311340372_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\Artifact\Classes\ArtifactRequirementTraceabilityMatrixRepository.cs" />
@@ -200,26 +177,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201712242021404_InitialCreate.resx">
-      <DependentUpon>201712242021404_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712312057382_StakeholderRequirementIndex.resx">
-      <DependentUpon>201712312057382_StakeholderRequirementIndex.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801082338144_IncludeRationaleFieldInRequirements.resx">
-      <DependentUpon>201801082338144_IncludeRationaleFieldInRequirements.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201802282340476_AddIndexTypeLinkInLinkBetweenRequirements.resx">
-      <DependentUpon>201802282340476_AddIndexTypeLinkInLinkBetweenRequirements.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803121019061_JsonArchive.resx">
-      <DependentUpon>201803121019061_JsonArchive.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803141851324_ArtifactsPath.resx">
-      <DependentUpon>201803141851324_ArtifactsPath.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803181117530_Matrix.resx">
-      <DependentUpon>201803181117530_Matrix.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201805311340372_InitialCreate.resx">
+      <DependentUpon>201805311340372_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -6,7 +6,7 @@ namespace ReqManager.Data.DataAcess
 {
     public class ReqManagerEntities : DbContext
     {
-        public ReqManagerEntities() : base("ReqManagerDataEntities")
+        public ReqManagerEntities() : base(ConnectionString.GetConnectionString())
         {
 
         }

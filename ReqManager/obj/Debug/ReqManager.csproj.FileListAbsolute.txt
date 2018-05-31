@@ -226,3 +226,10 @@ C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\Vereyon.Web.FlashMessage
 C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\itextsharp.xmlworker.dll
 C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\Vereyon.Web.FlashMessage.dll
 C:\Users\cdias\Desktop\ReqManager\ReqManager\bin\itextsharp.xmlworker.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\DocumentFormat.OpenXml.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\ExcelNumberFormat.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\FastMember.Signed.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\System.IO.FileSystem.Primitives.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\System.IO.Packaging.dll
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\DocumentFormat.OpenXml.xml
+C:\Users\Familia Dias\Desktop\ReqManager\ReqManager\bin\ExcelNumberFormat.xml

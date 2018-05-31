@@ -1,7 +1,7 @@
 namespace ReqManager.Data.Migrations
 {
     using System.Data.Entity.Migrations;
-
+    
     public partial class InitialCreate : DbMigration
     {
         public override void Up()
@@ -11,27 +11,27 @@ namespace ReqManager.Data.Migrations
             CreateTable(
                 "ART.ARTIFACT_TYPE",
                 c => new
-                {
-                    ArtifactTypeID = c.Int(nullable: false, identity: true),
-                    description = c.String(nullable: false, maxLength: 50),
-                })
+                    {
+                        ArtifactTypeID = c.Int(nullable: false, identity: true),
+                        description = c.String(nullable: false, maxLength: 50),
+                    })
                 .PrimaryKey(t => t.ArtifactTypeID)
                 .Index(t => t.description, unique: true);
-
+            
             CreateTable(
                 "PROJ.PROJECT_ARTIFACT",
                 c => new
-                {
-                    ProjectArtifactID = c.Int(nullable: false, identity: true),
-                    CreationUserID = c.Int(nullable: false),
-                    ArtifactTypeID = c.Int(nullable: false),
-                    ImportanceID = c.Int(nullable: false),
-                    ProjectID = c.Int(nullable: false),
-                    code = c.String(maxLength: 25),
-                    path = c.String(nullable: false, maxLength: 500),
-                    description = c.String(nullable: false, maxLength: 500),
-                    creationDate = c.DateTime(nullable: false),
-                })
+                    {
+                        ProjectArtifactID = c.Int(nullable: false, identity: true),
+                        CreationUserID = c.Int(nullable: false),
+                        ArtifactTypeID = c.Int(nullable: false),
+                        ImportanceID = c.Int(nullable: false),
+                        ProjectID = c.Int(nullable: false),
+                        code = c.String(maxLength: 25),
+                        path = c.String(nullable: false, maxLength: 500),
+                        description = c.String(nullable: false, maxLength: 500),
+                        creationDate = c.DateTime(nullable: false),
+                    })
                 .PrimaryKey(t => t.ProjectArtifactID)
                 .ForeignKey("ART.ARTIFACT_TYPE", t => t.ArtifactTypeID)
                 .ForeignKey("PROJ.IMPORTANCE", t => t.ImportanceID)
@@ -42,57 +42,58 @@ namespace ReqManager.Data.Migrations
                 .Index(t => t.ImportanceID)
                 .Index(t => t.ProjectID)
                 .Index(t => t.code, unique: true);
-
+            
             CreateTable(
                 "ART.HISTORY_PROJECT_ARTIFACT",
                 c => new
-                {
-                    HistoryArtefactID = c.Int(nullable: false, identity: true),
-                    ProjectArtifactID = c.Int(nullable: false),
-                    descriptionTypeArtifact = c.String(nullable: false, maxLength: 50),
-                    descriptionImportance = c.String(nullable: false, maxLength: 50),
-                    path = c.String(nullable: false, maxLength: 300),
-                    description = c.String(nullable: false, maxLength: 500),
-                    creationDate = c.DateTime(nullable: false),
-                    login = c.String(nullable: false, maxLength: 25),
-                })
+                    {
+                        HistoryArtefactID = c.Int(nullable: false, identity: true),
+                        ProjectArtifactID = c.Int(nullable: false),
+                        descriptionTypeArtifact = c.String(nullable: false, maxLength: 50),
+                        descriptionImportance = c.String(nullable: false, maxLength: 50),
+                        path = c.String(nullable: false, maxLength: 300),
+                        description = c.String(nullable: false, maxLength: 500),
+                        creationDate = c.DateTime(nullable: false),
+                        login = c.String(nullable: false, maxLength: 25),
+                    })
                 .PrimaryKey(t => t.HistoryArtefactID)
                 .ForeignKey("PROJ.PROJECT_ARTIFACT", t => t.ProjectArtifactID)
                 .Index(t => t.ProjectArtifactID);
-
+            
             CreateTable(
                 "PROJ.IMPORTANCE",
                 c => new
-                {
-                    ImportanceID = c.Int(nullable: false, identity: true),
-                    description = c.String(nullable: false, maxLength: 50),
-                })
+                    {
+                        ImportanceID = c.Int(nullable: false, identity: true),
+                        description = c.String(nullable: false, maxLength: 50),
+                    })
                 .PrimaryKey(t => t.ImportanceID)
                 .Index(t => t.description, unique: true);
-
+            
             CreateTable(
                 "REQ.REQUIREMENT",
                 c => new
-                {
-                    RequirementID = c.Int(nullable: false, identity: true),
-                    ProjectID = c.Int(nullable: false),
-                    RequirementTemplateID = c.Int(),
-                    CreationUserID = c.Int(nullable: false),
-                    RequirementStatusID = c.Int(nullable: false),
-                    RequirementTypeID = c.Int(nullable: false),
-                    RequirementSubTypeID = c.Int(),
-                    ImportanceID = c.Int(nullable: false),
-                    versionNumber = c.Int(nullable: false),
-                    code = c.String(maxLength: 25),
-                    description = c.String(nullable: false),
-                    title = c.String(nullable: false, maxLength: 100),
-                    creationDate = c.DateTime(nullable: false),
-                    startDate = c.DateTime(),
-                    endDate = c.DateTime(),
-                    preTraceability = c.Boolean(nullable: false),
-                    cost = c.Decimal(nullable: false, precision: 18, scale: 2),
-                    active = c.Boolean(nullable: false),
-                })
+                    {
+                        RequirementID = c.Int(nullable: false, identity: true),
+                        ProjectID = c.Int(nullable: false),
+                        RequirementTemplateID = c.Int(),
+                        CreationUserID = c.Int(nullable: false),
+                        RequirementStatusID = c.Int(nullable: false),
+                        RequirementTypeID = c.Int(nullable: false),
+                        RequirementSubTypeID = c.Int(),
+                        ImportanceID = c.Int(nullable: false),
+                        versionNumber = c.Int(nullable: false),
+                        code = c.String(maxLength: 25),
+                        description = c.String(nullable: false),
+                        title = c.String(nullable: false, maxLength: 100),
+                        creationDate = c.DateTime(nullable: false),
+                        startDate = c.DateTime(),
+                        endDate = c.DateTime(),
+                        preTraceability = c.Boolean(nullable: false),
+                        cost = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        active = c.Boolean(nullable: false),
+                        rationale = c.String(maxLength: 1000),
+                    })
                 .PrimaryKey(t => t.RequirementID)
                 .ForeignKey("PROJ.IMPORTANCE", t => t.ImportanceID)
                 .ForeignKey("PROJ.PROJECT", t => t.ProjectID)
@@ -110,19 +111,19 @@ namespace ReqManager.Data.Migrations
                 .Index(t => t.RequirementSubTypeID)
                 .Index(t => t.ImportanceID)
                 .Index(t => t.code, unique: true);
-
+            
             CreateTable(
                 "LINK.LINK_BETWEEN_REQUIREMENTS_ARTIFACTS",
                 c => new
-                {
-                    LinkArtifactRequirementID = c.Int(nullable: false, identity: true),
-                    CreationUserID = c.Int(nullable: false),
-                    ProjectArtifactID = c.Int(nullable: false),
-                    RequirementID = c.Int(nullable: false),
-                    TypeLinkID = c.Int(nullable: false),
-                    creationDate = c.DateTime(nullable: false),
-                    code = c.String(maxLength: 25),
-                })
+                    {
+                        LinkArtifactRequirementID = c.Int(nullable: false, identity: true),
+                        CreationUserID = c.Int(nullable: false),
+                        ProjectArtifactID = c.Int(nullable: false),
+                        RequirementID = c.Int(nullable: false),
+                        TypeLinkID = c.Int(nullable: false),
+                        creationDate = c.DateTime(nullable: false),
+                        code = c.String(maxLength: 25),
+                    })
                 .PrimaryKey(t => t.LinkArtifactRequirementID)
                 .ForeignKey("ACCESS.USERS", t => t.CreationUserID)
                 .ForeignKey("LINK.TYPE_LINK", t => t.TypeLinkID)
@@ -131,300 +132,299 @@ namespace ReqManager.Data.Migrations
                 .Index(t => t.CreationUserID)
                 .Index(t => new { t.ProjectArtifactID, t.RequirementID, t.TypeLinkID }, unique: true, name: "IX_artifact_requirement")
                 .Index(t => t.code, unique: true);
-
+            
             CreateTable(
                 "LINK.LINK_ARTIFACT_ATTRIBUTES",
                 c => new
-                {
-                    ArtefactAttributeID = c.Int(nullable: false, identity: true),
-                    AttributeID = c.Int(nullable: false),
-                    LinkArtifactRequirementID = c.Int(nullable: false),
-                    value = c.String(nullable: false),
-                })
+                    {
+                        ArtefactAttributeID = c.Int(nullable: false, identity: true),
+                        AttributeID = c.Int(nullable: false),
+                        LinkArtifactRequirementID = c.Int(nullable: false),
+                        value = c.String(nullable: false),
+                    })
                 .PrimaryKey(t => t.ArtefactAttributeID)
                 .ForeignKey("LINK.ATTRIBUTES", t => t.AttributeID)
                 .ForeignKey("LINK.LINK_BETWEEN_REQUIREMENTS_ARTIFACTS", t => t.LinkArtifactRequirementID)
                 .Index(t => t.AttributeID)
                 .Index(t => t.LinkArtifactRequirementID);
-
+            
             CreateTable(
                 "LINK.ATTRIBUTES",
                 c => new
-                {
-                    AttributeID = c.Int(nullable: false, identity: true),
-                    description = c.String(nullable: false, maxLength: 50),
-                })
+                    {
+                        AttributeID = c.Int(nullable: false, identity: true),
+                        description = c.String(nullable: false, maxLength: 50),
+                    })
                 .PrimaryKey(t => t.AttributeID)
                 .Index(t => t.description, unique: true);
-
+            
             CreateTable(
                 "LINK.ATTRIBUTES_TYPE_LINK",
                 c => new
-                {
-                    AttributesTypeLinkID = c.Int(nullable: false, identity: true),
-                    AttributeID = c.Int(nullable: false),
-                    TypeLinkID = c.Int(nullable: false),
-                })
+                    {
+                        AttributesTypeLinkID = c.Int(nullable: false, identity: true),
+                        AttributeID = c.Int(nullable: false),
+                        TypeLinkID = c.Int(nullable: false),
+                    })
                 .PrimaryKey(t => t.AttributesTypeLinkID)
                 .ForeignKey("LINK.ATTRIBUTES", t => t.AttributeID)
                 .ForeignKey("LINK.TYPE_LINK", t => t.TypeLinkID)
                 .Index(t => new { t.AttributeID, t.TypeLinkID }, unique: true, name: "IX_attribute_type");
-
+            
             CreateTable(
                 "LINK.TYPE_LINK",
                 c => new
-                {
-                    TypeLinkID = c.Int(nullable: false, identity: true),
-                    CreationUserID = c.Int(nullable: false),
-                    description = c.String(nullable: false, maxLength: 50),
-                    creationDate = c.DateTime(nullable: false),
-                })
+                    {
+                        TypeLinkID = c.Int(nullable: false, identity: true),
+                        CreationUserID = c.Int(nullable: false),
+                        description = c.String(nullable: false, maxLength: 50),
+                        creationDate = c.DateTime(nullable: false),
+                    })
                 .PrimaryKey(t => t.TypeLinkID)
                 .ForeignKey("ACCESS.USERS", t => t.CreationUserID)
                 .Index(t => t.CreationUserID)
                 .Index(t => t.description, unique: true);
-
+            
             CreateTable(
                 "LINK.LINK_BETWEEN_REQUIREMENT",
                 c => new
-                {
-                    LinkRequirementsID = c.Int(nullable: false, identity: true),
-                    CreationUserID = c.Int(nullable: false),
-                    TypeLinkID = c.Int(nullable: false),
-                    RequirementOriginID = c.Int(nullable: false),
-                    RequirementTargetID = c.Int(nullable: false),
-                    creationDate = c.DateTime(nullable: false),
-                    code = c.String(maxLength: 25),
-                })
+                    {
+                        LinkRequirementsID = c.Int(nullable: false, identity: true),
+                        CreationUserID = c.Int(nullable: false),
+                        TypeLinkID = c.Int(nullable: false),
+                        RequirementOriginID = c.Int(nullable: false),
+                        RequirementTargetID = c.Int(nullable: false),
+                        creationDate = c.DateTime(nullable: false),
+                        code = c.String(maxLength: 25),
+                    })
                 .PrimaryKey(t => t.LinkRequirementsID)
                 .ForeignKey("REQ.REQUIREMENT", t => t.RequirementOriginID)
                 .ForeignKey("REQ.REQUIREMENT", t => t.RequirementTargetID)
                 .ForeignKey("LINK.TYPE_LINK", t => t.TypeLinkID)
                 .ForeignKey("ACCESS.USERS", t => t.CreationUserID)
                 .Index(t => t.CreationUserID)
-                .Index(t => t.TypeLinkID)
-                .Index(t => new { t.RequirementOriginID, t.RequirementTargetID }, unique: true, name: "IX_LINK_BETWEEN_REQUIREMENT")
+                .Index(t => new { t.RequirementOriginID, t.RequirementTargetID, t.TypeLinkID }, unique: true, name: "IX_LINK_BETWEEN_REQUIREMENT")
                 .Index(t => t.code, unique: true);
-
+            
             CreateTable(
                 "LINK.LINK_REQUIREMENT_ATTRIBUTES",
                 c => new
-                {
-                    RequirementAttributeID = c.Int(nullable: false, identity: true),
-                    AttributeID = c.Int(nullable: false),
-                    LinkRequirementsID = c.Int(nullable: false),
-                    value = c.String(nullable: false),
-                })
+                    {
+                        RequirementAttributeID = c.Int(nullable: false, identity: true),
+                        AttributeID = c.Int(nullable: false),
+                        LinkRequirementsID = c.Int(nullable: false),
+                        value = c.String(nullable: false),
+                    })
                 .PrimaryKey(t => t.RequirementAttributeID)
                 .ForeignKey("LINK.ATTRIBUTES", t => t.AttributeID)
                 .ForeignKey("LINK.LINK_BETWEEN_REQUIREMENT", t => t.LinkRequirementsID)
                 .Index(t => t.AttributeID)
                 .Index(t => t.LinkRequirementsID);
-
+            
             CreateTable(
                 "ACCESS.USERS",
                 c => new
-                {
-                    UserID = c.Int(nullable: false, identity: true),
-                    name = c.String(nullable: false, maxLength: 100),
-                    nickName = c.String(nullable: false, maxLength: 10),
-                    password = c.String(maxLength: 1000),
-                    verificationCode = c.String(maxLength: 10),
-                    email = c.String(nullable: false, maxLength: 50),
-                    login = c.String(nullable: false, maxLength: 15),
-                    dateOfBirth = c.DateTime(nullable: false),
-                    profession = c.String(nullable: false, maxLength: 30),
-                    document = c.String(nullable: false, maxLength: 20),
-                    active = c.Boolean(nullable: false),
-                })
+                    {
+                        UserID = c.Int(nullable: false, identity: true),
+                        name = c.String(nullable: false, maxLength: 100),
+                        nickName = c.String(nullable: false, maxLength: 10),
+                        password = c.String(maxLength: 1000),
+                        verificationCode = c.String(maxLength: 10),
+                        email = c.String(nullable: false, maxLength: 50),
+                        login = c.String(nullable: false, maxLength: 15),
+                        dateOfBirth = c.DateTime(nullable: false),
+                        profession = c.String(nullable: false, maxLength: 30),
+                        document = c.String(nullable: false, maxLength: 20),
+                        active = c.Boolean(nullable: false),
+                    })
                 .PrimaryKey(t => t.UserID)
                 .Index(t => t.email, unique: true)
                 .Index(t => t.login, unique: true)
                 .Index(t => t.document, unique: true);
-
+            
             CreateTable(
                 "PROJ.HISTORY_PROJECT",
                 c => new
-                {
-                    HistoryProjectID = c.Int(nullable: false, identity: true),
-                    CreationUserID = c.Int(nullable: false),
-                    ProjectID = c.Int(nullable: false),
-                    descriptionPhases = c.String(nullable: false, maxLength: 50),
-                    startDate = c.DateTime(nullable: false),
-                    endDate = c.DateTime(nullable: false),
-                    changedDate = c.DateTime(nullable: false),
-                })
+                    {
+                        HistoryProjectID = c.Int(nullable: false, identity: true),
+                        CreationUserID = c.Int(nullable: false),
+                        ProjectID = c.Int(nullable: false),
+                        descriptionPhases = c.String(nullable: false, maxLength: 50),
+                        startDate = c.DateTime(nullable: false),
+                        endDate = c.DateTime(nullable: false),
+                        changedDate = c.DateTime(nullable: false),
+                    })
                 .PrimaryKey(t => t.HistoryProjectID)
                 .ForeignKey("PROJ.PROJECT", t => t.ProjectID)
                 .ForeignKey("ACCESS.USERS", t => t.CreationUserID)
                 .Index(t => t.CreationUserID)
                 .Index(t => t.ProjectID);
-
+            
             CreateTable(
                 "PROJ.PROJECT",
                 c => new
-                {
-                    ProjectID = c.Int(nullable: false, identity: true),
-                    CreationUserID = c.Int(nullable: false),
-                    ProjectPhasesID = c.Int(nullable: false),
-                    description = c.String(nullable: false, maxLength: 255),
-                    pathForTraceability = c.String(nullable: false, maxLength: 300),
-                    environmentalInformation = c.String(nullable: false, maxLength: 1000),
-                    managementInformation = c.String(nullable: false, maxLength: 1000),
-                    startDate = c.DateTime(nullable: false),
-                    endDate = c.DateTime(),
-                    creationDate = c.DateTime(nullable: false),
-                    code = c.String(maxLength: 25),
-                    cost = c.Decimal(nullable: false, precision: 18, scale: 2),
-                })
+                    {
+                        ProjectID = c.Int(nullable: false, identity: true),
+                        CreationUserID = c.Int(nullable: false),
+                        ProjectPhasesID = c.Int(nullable: false),
+                        description = c.String(nullable: false, maxLength: 255),
+                        pathForTraceability = c.String(nullable: false, maxLength: 300),
+                        environmentalInformation = c.String(nullable: false, maxLength: 1000),
+                        managementInformation = c.String(nullable: false, maxLength: 1000),
+                        startDate = c.DateTime(nullable: false),
+                        endDate = c.DateTime(),
+                        creationDate = c.DateTime(nullable: false),
+                        code = c.String(maxLength: 25),
+                        cost = c.Decimal(nullable: false, precision: 18, scale: 2),
+                    })
                 .PrimaryKey(t => t.ProjectID)
                 .ForeignKey("PROJ.PROJECT_PHASES", t => t.ProjectPhasesID)
                 .ForeignKey("ACCESS.USERS", t => t.CreationUserID)
                 .Index(t => t.CreationUserID)
                 .Index(t => t.ProjectPhasesID)
                 .Index(t => t.code, unique: true);
-
+            
             CreateTable(
                 "PROJ.PROJECT_PHASES",
                 c => new
-                {
-                    ProjectPhasesID = c.Int(nullable: false, identity: true),
-                    description = c.String(nullable: false, maxLength: 50),
-                })
+                    {
+                        ProjectPhasesID = c.Int(nullable: false, identity: true),
+                        description = c.String(nullable: false, maxLength: 50),
+                    })
                 .PrimaryKey(t => t.ProjectPhasesID)
                 .Index(t => t.description, unique: true);
-
+            
             CreateTable(
                 "PROJ.STAKEHOLDERS_PROJECT",
                 c => new
-                {
-                    StakeholdersProjectID = c.Int(nullable: false, identity: true),
-                    ProjectID = c.Int(nullable: false),
-                    StakeholderID = c.Int(nullable: false),
-                    creationDate = c.DateTime(nullable: false),
-                    description = c.String(nullable: false, maxLength: 255),
-                    importanceValue = c.Int(nullable: false),
-                })
+                    {
+                        StakeholdersProjectID = c.Int(nullable: false, identity: true),
+                        ProjectID = c.Int(nullable: false),
+                        StakeholderID = c.Int(nullable: false),
+                        creationDate = c.DateTime(nullable: false),
+                        description = c.String(nullable: false, maxLength: 255),
+                        importanceValue = c.Int(nullable: false),
+                    })
                 .PrimaryKey(t => t.StakeholdersProjectID)
                 .ForeignKey("PROJ.PROJECT", t => t.ProjectID)
                 .ForeignKey("PROJ.STAKEHOLDERS", t => t.StakeholderID)
                 .Index(t => new { t.ProjectID, t.StakeholderID }, unique: true, name: "IX_STAKEHOLDERS_PROJECT");
-
+            
             CreateTable(
                 "PROJ.STAKEHOLDER_REQUIREMENT",
                 c => new
-                {
-                    StakeholderRequirementID = c.Int(nullable: false, identity: true),
-                    StakeholdersProjectID = c.Int(nullable: false),
-                    RequirementID = c.Int(nullable: false),
-                    creationDate = c.DateTime(nullable: false),
-                    importanceValue = c.Int(nullable: false),
-                })
+                    {
+                        StakeholderRequirementID = c.Int(nullable: false, identity: true),
+                        StakeholdersProjectID = c.Int(nullable: false),
+                        RequirementID = c.Int(nullable: false),
+                        creationDate = c.DateTime(nullable: false),
+                        importanceValue = c.Int(nullable: false),
+                    })
                 .PrimaryKey(t => t.StakeholderRequirementID)
                 .ForeignKey("REQ.REQUIREMENT", t => t.RequirementID)
                 .ForeignKey("PROJ.STAKEHOLDERS_PROJECT", t => t.StakeholdersProjectID)
-                .Index(t => new { t.StakeholdersProjectID, t.RequirementID }, unique: true, name: "UNIQUE_STAKEHOLDER_REQUIREMENT");
-
+                .Index(t => new { t.StakeholdersProjectID, t.RequirementID }, unique: true, name: "IX_STAKEHOLDER_REQUIREMENT");
+            
             CreateTable(
                 "REQ.REQUIREMENT_REQUEST_FOR_CHANGES",
                 c => new
-                {
-                    RequirementRequestForChangesID = c.Int(nullable: false, identity: true),
-                    StakeholderRequirementID = c.Int(nullable: false),
-                    RequestStatusID = c.Int(nullable: false),
-                    request = c.String(nullable: false, maxLength: 1000),
-                    creationDate = c.DateTime(nullable: false),
-                })
+                    {
+                        RequirementRequestForChangesID = c.Int(nullable: false, identity: true),
+                        StakeholderRequirementID = c.Int(nullable: false),
+                        RequestStatusID = c.Int(nullable: false),
+                        request = c.String(nullable: false, maxLength: 1000),
+                        creationDate = c.DateTime(nullable: false),
+                    })
                 .PrimaryKey(t => t.RequirementRequestForChangesID)
                 .ForeignKey("REQ.REQUEST_STATUS", t => t.RequestStatusID)
                 .ForeignKey("PROJ.STAKEHOLDER_REQUIREMENT", t => t.StakeholderRequirementID)
                 .Index(t => t.StakeholderRequirementID)
                 .Index(t => t.RequestStatusID);
-
+            
             CreateTable(
                 "REQ.REQUEST_STATUS",
                 c => new
-                {
-                    RequestStatusID = c.Int(nullable: false, identity: true),
-                    description = c.String(nullable: false, maxLength: 50),
-                })
+                    {
+                        RequestStatusID = c.Int(nullable: false, identity: true),
+                        description = c.String(nullable: false, maxLength: 50),
+                    })
                 .PrimaryKey(t => t.RequestStatusID)
                 .Index(t => t.description, unique: true);
-
+            
             CreateTable(
                 "REQ.STAKEHOLDER_REQUIREMENT_APPROVAL",
                 c => new
-                {
-                    StakeholderRequirementApprovalID = c.Int(nullable: false, identity: true),
-                    StakeholderRequirementID = c.Int(nullable: false),
-                    creationDate = c.DateTime(nullable: false),
-                    description = c.String(nullable: false, maxLength: 1000),
-                    approved = c.Boolean(nullable: false),
-                })
+                    {
+                        StakeholderRequirementApprovalID = c.Int(nullable: false, identity: true),
+                        StakeholderRequirementID = c.Int(nullable: false),
+                        creationDate = c.DateTime(nullable: false),
+                        description = c.String(nullable: false, maxLength: 1000),
+                        approved = c.Boolean(nullable: false),
+                    })
                 .PrimaryKey(t => t.StakeholderRequirementApprovalID)
                 .ForeignKey("PROJ.STAKEHOLDER_REQUIREMENT", t => t.StakeholderRequirementID)
                 .Index(t => t.StakeholderRequirementID);
-
+            
             CreateTable(
                 "PROJ.STAKEHOLDERS",
                 c => new
-                {
-                    StakeholderID = c.Int(nullable: false, identity: true),
-                    UserID = c.Int(nullable: false),
-                    ClassificationID = c.Int(nullable: false),
-                })
+                    {
+                        StakeholderID = c.Int(nullable: false, identity: true),
+                        UserID = c.Int(nullable: false),
+                        ClassificationID = c.Int(nullable: false),
+                    })
                 .PrimaryKey(t => t.StakeholderID)
                 .ForeignKey("PROJ.STAKEHOLDER_CLASSIFICATION", t => t.ClassificationID)
                 .ForeignKey("ACCESS.USERS", t => t.UserID)
                 .Index(t => new { t.UserID, t.ClassificationID }, unique: true, name: "IX_STAKEHOLDERS");
-
+            
             CreateTable(
                 "PROJ.STAKEHOLDER_CLASSIFICATION",
                 c => new
-                {
-                    ClassificationID = c.Int(nullable: false, identity: true),
-                    description = c.String(maxLength: 50),
-                })
+                    {
+                        ClassificationID = c.Int(nullable: false, identity: true),
+                        description = c.String(maxLength: 50),
+                    })
                 .PrimaryKey(t => t.ClassificationID)
                 .Index(t => t.description, unique: true);
-
+            
             CreateTable(
                 "TASK.HISTORY_TASK",
                 c => new
-                {
-                    HistoryTaskID = c.Int(nullable: false, identity: true),
-                    CreationUserID = c.Int(nullable: false),
-                    TaskID = c.Int(nullable: false),
-                    startDate = c.DateTime(nullable: false),
-                    endDate = c.DateTime(nullable: false),
-                    description = c.String(nullable: false, maxLength: 1000),
-                    descriptionImportance = c.String(nullable: false, maxLength: 50),
-                    changedDate = c.DateTime(nullable: false),
-                })
+                    {
+                        HistoryTaskID = c.Int(nullable: false, identity: true),
+                        CreationUserID = c.Int(nullable: false),
+                        TaskID = c.Int(nullable: false),
+                        startDate = c.DateTime(nullable: false),
+                        endDate = c.DateTime(nullable: false),
+                        description = c.String(nullable: false, maxLength: 1000),
+                        descriptionImportance = c.String(nullable: false, maxLength: 50),
+                        changedDate = c.DateTime(nullable: false),
+                    })
                 .PrimaryKey(t => t.HistoryTaskID)
                 .ForeignKey("TASK.TASK", t => t.TaskID)
                 .ForeignKey("ACCESS.USERS", t => t.CreationUserID)
                 .Index(t => t.CreationUserID)
                 .Index(t => t.TaskID);
-
+            
             CreateTable(
                 "TASK.TASK",
                 c => new
-                {
-                    TaskID = c.Int(nullable: false, identity: true),
-                    CreationUserID = c.Int(nullable: false),
-                    ImportanceID = c.Int(nullable: false),
-                    StatusTaskID = c.Int(nullable: false),
-                    TaskTypeTemplateID = c.Int(nullable: false),
-                    TaskTypeID = c.Int(nullable: false),
-                    creationDate = c.DateTime(nullable: false),
-                    description = c.String(nullable: false, maxLength: 1000),
-                    startDate = c.DateTime(nullable: false),
-                    code = c.String(maxLength: 25),
-                    endDate = c.DateTime(),
-                    StatusTask_TaskStatusID = c.Int(),
-                    TaskType_TypeTaskID = c.Int(),
-                })
+                    {
+                        TaskID = c.Int(nullable: false, identity: true),
+                        CreationUserID = c.Int(nullable: false),
+                        ImportanceID = c.Int(nullable: false),
+                        StatusTaskID = c.Int(nullable: false),
+                        TaskTypeTemplateID = c.Int(nullable: false),
+                        TaskTypeID = c.Int(nullable: false),
+                        creationDate = c.DateTime(nullable: false),
+                        description = c.String(nullable: false, maxLength: 1000),
+                        startDate = c.DateTime(nullable: false),
+                        code = c.String(maxLength: 25),
+                        endDate = c.DateTime(),
+                        StatusTask_TaskStatusID = c.Int(),
+                        TaskType_TypeTaskID = c.Int(),
+                    })
                 .PrimaryKey(t => t.TaskID)
                 .ForeignKey("PROJ.IMPORTANCE", t => t.ImportanceID)
                 .ForeignKey("TASK.STATUS_TASK", t => t.StatusTask_TaskStatusID)
@@ -437,208 +437,208 @@ namespace ReqManager.Data.Migrations
                 .Index(t => t.code, unique: true)
                 .Index(t => t.StatusTask_TaskStatusID)
                 .Index(t => t.TaskType_TypeTaskID);
-
+            
             CreateTable(
                 "TASK.STATUS_TASK",
                 c => new
-                {
-                    TaskStatusID = c.Int(nullable: false, identity: true),
-                    description = c.String(maxLength: 50),
-                })
+                    {
+                        TaskStatusID = c.Int(nullable: false, identity: true),
+                        description = c.String(maxLength: 50),
+                    })
                 .PrimaryKey(t => t.TaskStatusID)
                 .Index(t => t.description, unique: true);
-
+            
             CreateTable(
                 "TASK.TASK_TYPE",
                 c => new
-                {
-                    TypeTaskID = c.Int(nullable: false, identity: true),
-                    description = c.String(nullable: false, maxLength: 50),
-                })
+                    {
+                        TypeTaskID = c.Int(nullable: false, identity: true),
+                        description = c.String(nullable: false, maxLength: 50),
+                    })
                 .PrimaryKey(t => t.TypeTaskID)
                 .Index(t => t.description, unique: true);
-
+            
             CreateTable(
                 "TASK.TASK_TYPE_TEMPLATE",
                 c => new
-                {
-                    TaskTypeTemplateID = c.Int(nullable: false, identity: true),
-                    CreationUserID = c.Int(nullable: false),
-                    TaskTypeID = c.Int(nullable: false),
-                    templateHtml = c.String(nullable: false, maxLength: 1000),
-                    creationDate = c.DateTime(nullable: false),
-                    TaskType_TypeTaskID = c.Int(),
-                })
+                    {
+                        TaskTypeTemplateID = c.Int(nullable: false, identity: true),
+                        CreationUserID = c.Int(nullable: false),
+                        TaskTypeID = c.Int(nullable: false),
+                        templateHtml = c.String(nullable: false, maxLength: 1000),
+                        creationDate = c.DateTime(nullable: false),
+                        TaskType_TypeTaskID = c.Int(),
+                    })
                 .PrimaryKey(t => t.TaskTypeTemplateID)
                 .ForeignKey("TASK.TASK_TYPE", t => t.TaskType_TypeTaskID)
                 .ForeignKey("ACCESS.USERS", t => t.CreationUserID)
                 .Index(t => t.CreationUserID)
                 .Index(t => t.TaskType_TypeTaskID);
-
+            
             CreateTable(
                 "TASK.USER_TASK",
                 c => new
-                {
-                    UserTaskID = c.Int(nullable: false, identity: true),
-                    UserID = c.Int(nullable: false),
-                    TaskID = c.Int(nullable: false),
-                    creationDate = c.DateTime(nullable: false),
-                })
+                    {
+                        UserTaskID = c.Int(nullable: false, identity: true),
+                        UserID = c.Int(nullable: false),
+                        TaskID = c.Int(nullable: false),
+                        creationDate = c.DateTime(nullable: false),
+                    })
                 .PrimaryKey(t => t.UserTaskID)
                 .ForeignKey("TASK.TASK", t => t.TaskID)
                 .ForeignKey("ACCESS.USERS", t => t.UserID)
                 .Index(t => new { t.UserID, t.TaskID }, unique: true, name: "IX_USER_TASK");
-
+            
             CreateTable(
                 "REQ.REQUIREMENT_TEMPLATE",
                 c => new
-                {
-                    RequirementTemplateID = c.Int(nullable: false, identity: true),
-                    CreationUserID = c.Int(nullable: false),
-                    RequirementTypeID = c.Int(nullable: false),
-                    description = c.String(nullable: false, maxLength: 50),
-                    templateHtml = c.String(nullable: false),
-                    createDate = c.DateTime(nullable: false),
-                })
+                    {
+                        RequirementTemplateID = c.Int(nullable: false, identity: true),
+                        CreationUserID = c.Int(nullable: false),
+                        RequirementTypeID = c.Int(nullable: false),
+                        description = c.String(nullable: false, maxLength: 50),
+                        templateHtml = c.String(nullable: false),
+                        createDate = c.DateTime(nullable: false),
+                    })
                 .PrimaryKey(t => t.RequirementTemplateID)
                 .ForeignKey("REQ.REQUIREMENT_TYPE", t => t.RequirementTypeID)
                 .ForeignKey("ACCESS.USERS", t => t.CreationUserID)
                 .Index(t => t.CreationUserID)
                 .Index(t => t.RequirementTypeID, unique: true);
-
+            
             CreateTable(
                 "REQ.REQUIREMENT_TYPE",
                 c => new
-                {
-                    RequirementTypeID = c.Int(nullable: false, identity: true),
-                    abbreviation = c.String(maxLength: 4),
-                    description = c.String(maxLength: 50),
-                })
+                    {
+                        RequirementTypeID = c.Int(nullable: false, identity: true),
+                        abbreviation = c.String(maxLength: 4),
+                        description = c.String(maxLength: 50),
+                    })
                 .PrimaryKey(t => t.RequirementTypeID)
                 .Index(t => t.abbreviation, unique: true)
                 .Index(t => t.description, unique: true);
-
+            
             CreateTable(
                 "REQ.REQUIREMENT_SUB_TYPE",
                 c => new
-                {
-                    RequirementSubTypeID = c.Int(nullable: false, identity: true),
-                    RequirementTypeID = c.Int(nullable: false),
-                    description = c.String(maxLength: 50),
-                })
+                    {
+                        RequirementSubTypeID = c.Int(nullable: false, identity: true),
+                        RequirementTypeID = c.Int(nullable: false),
+                        description = c.String(maxLength: 50),
+                    })
                 .PrimaryKey(t => t.RequirementSubTypeID)
                 .ForeignKey("REQ.REQUIREMENT_TYPE", t => t.RequirementTypeID)
                 .Index(t => t.RequirementTypeID)
                 .Index(t => t.description, unique: true);
-
+            
             CreateTable(
                 "ACCESS.USER_ROLE",
                 c => new
-                {
-                    UserRoleID = c.Int(nullable: false, identity: true),
-                    RoleID = c.Int(nullable: false),
-                    UserID = c.Int(nullable: false),
-                })
+                    {
+                        UserRoleID = c.Int(nullable: false, identity: true),
+                        RoleID = c.Int(nullable: false),
+                        UserID = c.Int(nullable: false),
+                    })
                 .PrimaryKey(t => t.UserRoleID)
                 .ForeignKey("ACCESS.ROLE", t => t.RoleID)
                 .ForeignKey("ACCESS.USERS", t => t.UserID)
                 .Index(t => new { t.RoleID, t.UserID }, unique: true, name: "IX_USER_ROLE");
-
+            
             CreateTable(
                 "ACCESS.ROLE",
                 c => new
-                {
-                    RoleID = c.Int(nullable: false, identity: true),
-                    name = c.String(maxLength: 50),
-                    description = c.String(maxLength: 255),
-                })
+                    {
+                        RoleID = c.Int(nullable: false, identity: true),
+                        name = c.String(maxLength: 50),
+                        description = c.String(maxLength: 255),
+                    })
                 .PrimaryKey(t => t.RoleID)
                 .Index(t => t.name, unique: true);
-
+            
             CreateTable(
                 "ACCESS.ROLE_CONTROLLER_ACTION",
                 c => new
-                {
-                    RoleControllerActionID = c.Int(nullable: false, identity: true),
-                    RoleID = c.Int(nullable: false),
-                    ControllerActionID = c.Int(nullable: false),
-                })
+                    {
+                        RoleControllerActionID = c.Int(nullable: false, identity: true),
+                        RoleID = c.Int(nullable: false),
+                        ControllerActionID = c.Int(nullable: false),
+                    })
                 .PrimaryKey(t => t.RoleControllerActionID)
                 .ForeignKey("ACCESS.CONTROLLER_ACTION", t => t.ControllerActionID)
                 .ForeignKey("ACCESS.ROLE", t => t.RoleID)
                 .Index(t => new { t.RoleID, t.ControllerActionID }, unique: true, name: "IX_ROLE_CONTROLLER_ACTION");
-
+            
             CreateTable(
                 "ACCESS.CONTROLLER_ACTION",
                 c => new
-                {
-                    ControllerActionID = c.Int(nullable: false, identity: true),
-                    controller = c.String(nullable: false, maxLength: 100),
-                    action = c.String(nullable: false, maxLength: 255),
-                    IsGet = c.Boolean(nullable: false),
-                })
+                    {
+                        ControllerActionID = c.Int(nullable: false, identity: true),
+                        controller = c.String(nullable: false, maxLength: 100),
+                        action = c.String(nullable: false, maxLength: 255),
+                        IsGet = c.Boolean(nullable: false),
+                    })
                 .PrimaryKey(t => t.ControllerActionID)
                 .Index(t => new { t.controller, t.action }, unique: true, name: "IX_CONTROLLER_ACTION");
-
+            
             CreateTable(
                 "REQ.REQUIREMENT_CHARACTERISTICS",
                 c => new
-                {
-                    RequirementCharacteristicsID = c.Int(nullable: false, identity: true),
-                    CharacteristicsID = c.Int(nullable: false),
-                    RequirementID = c.Int(nullable: false),
-                    check = c.Boolean(nullable: false),
-                })
+                    {
+                        RequirementCharacteristicsID = c.Int(nullable: false, identity: true),
+                        CharacteristicsID = c.Int(nullable: false),
+                        RequirementID = c.Int(nullable: false),
+                        check = c.Boolean(nullable: false),
+                    })
                 .PrimaryKey(t => t.RequirementCharacteristicsID)
                 .ForeignKey("REQ.CHARACTERISTICS", t => t.CharacteristicsID)
                 .ForeignKey("REQ.REQUIREMENT", t => t.RequirementID)
                 .Index(t => new { t.CharacteristicsID, t.RequirementID }, unique: true, name: "IX_REQUIREMENT_CHARACTERISTICS");
-
+            
             CreateTable(
                 "REQ.CHARACTERISTICS",
                 c => new
-                {
-                    CharacteristicsID = c.Int(nullable: false, identity: true),
-                    name = c.String(nullable: false, maxLength: 30),
-                    description = c.String(nullable: false, maxLength: 500),
-                    required = c.Boolean(nullable: false),
-                })
+                    {
+                        CharacteristicsID = c.Int(nullable: false, identity: true),
+                        name = c.String(nullable: false, maxLength: 30),
+                        description = c.String(nullable: false, maxLength: 500),
+                        required = c.Boolean(nullable: false),
+                    })
                 .PrimaryKey(t => t.CharacteristicsID)
                 .Index(t => t.name, unique: true);
-
+            
             CreateTable(
                 "REQ.REQUIREMENT_STATUS",
                 c => new
-                {
-                    RequirementStatusID = c.Int(nullable: false, identity: true),
-                    description = c.String(nullable: false, maxLength: 50),
-                })
+                    {
+                        RequirementStatusID = c.Int(nullable: false, identity: true),
+                        description = c.String(nullable: false, maxLength: 50),
+                    })
                 .PrimaryKey(t => t.RequirementStatusID)
                 .Index(t => t.description, unique: true);
-
+            
             CreateTable(
                 "REQ.REQUIREMENT_VERSIONS",
                 c => new
-                {
-                    RequirementVersionsID = c.Int(nullable: false, identity: true),
-                    RequirementRequestForChangesID = c.Int(),
-                    RequirementID = c.Int(),
-                    RequirementTypeID = c.Int(nullable: false),
-                    RequirementSubTypeID = c.Int(),
-                    ImportanceID = c.Int(nullable: false),
-                    RequirementStatusID = c.Int(nullable: false),
-                    RequirementTemplateID = c.Int(),
-                    versionNumber = c.Int(nullable: false),
-                    title = c.String(nullable: false, maxLength: 100),
-                    description = c.String(nullable: false),
-                    rationale = c.String(nullable: false, maxLength: 1000),
-                    creationDate = c.DateTime(nullable: false),
-                    startDate = c.DateTime(),
-                    endDate = c.DateTime(),
-                    preTraceability = c.Boolean(nullable: false),
-                    cost = c.Decimal(nullable: false, precision: 18, scale: 2),
-                    active = c.Boolean(nullable: false),
-                })
+                    {
+                        RequirementVersionsID = c.Int(nullable: false, identity: true),
+                        RequirementRequestForChangesID = c.Int(),
+                        RequirementID = c.Int(),
+                        RequirementTypeID = c.Int(nullable: false),
+                        RequirementSubTypeID = c.Int(),
+                        ImportanceID = c.Int(nullable: false),
+                        RequirementStatusID = c.Int(nullable: false),
+                        RequirementTemplateID = c.Int(),
+                        versionNumber = c.Int(nullable: false),
+                        title = c.String(nullable: false, maxLength: 100),
+                        description = c.String(nullable: false),
+                        rationale = c.String(nullable: false, maxLength: 1000),
+                        creationDate = c.DateTime(nullable: false),
+                        startDate = c.DateTime(),
+                        endDate = c.DateTime(),
+                        preTraceability = c.Boolean(nullable: false),
+                        cost = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        active = c.Boolean(nullable: false),
+                    })
                 .PrimaryKey(t => t.RequirementVersionsID)
                 .ForeignKey("PROJ.IMPORTANCE", t => t.ImportanceID)
                 .ForeignKey("REQ.REQUIREMENT", t => t.RequirementID)
@@ -654,23 +654,23 @@ namespace ReqManager.Data.Migrations
                 .Index(t => t.ImportanceID)
                 .Index(t => t.RequirementStatusID)
                 .Index(t => t.RequirementTemplateID);
-
+            
             CreateTable(
                 "TASK.SUBTASK",
                 c => new
-                {
-                    SubtaskID = c.Int(nullable: false, identity: true),
-                    StatusTaskID = c.Int(nullable: false),
-                    TaskTypeID = c.Int(nullable: false),
-                    UserTaskID = c.Int(nullable: false),
-                    creationDate = c.DateTime(nullable: false),
-                    description = c.String(nullable: false, maxLength: 1000),
-                    startDate = c.DateTime(nullable: false),
-                    endDate = c.DateTime(),
-                    code = c.String(maxLength: 25),
-                    StatusTask_TaskStatusID = c.Int(),
-                    TaskType_TypeTaskID = c.Int(),
-                })
+                    {
+                        SubtaskID = c.Int(nullable: false, identity: true),
+                        StatusTaskID = c.Int(nullable: false),
+                        TaskTypeID = c.Int(nullable: false),
+                        UserTaskID = c.Int(nullable: false),
+                        creationDate = c.DateTime(nullable: false),
+                        description = c.String(nullable: false, maxLength: 1000),
+                        startDate = c.DateTime(nullable: false),
+                        endDate = c.DateTime(),
+                        code = c.String(maxLength: 25),
+                        StatusTask_TaskStatusID = c.Int(),
+                        TaskType_TypeTaskID = c.Int(),
+                    })
                 .PrimaryKey(t => t.SubtaskID)
                 .ForeignKey("TASK.STATUS_TASK", t => t.StatusTask_TaskStatusID)
                 .ForeignKey("TASK.TASK_TYPE", t => t.TaskType_TypeTaskID)
@@ -684,7 +684,7 @@ namespace ReqManager.Data.Migrations
 
             #region Triggers
 
-            Sql(@"CREATE TRIGGER PROJ.GenerateCodeProject
+                Sql(@"CREATE TRIGGER PROJ.GenerateCodeProject
                 ON PROJ.PROJECT
                 AFTER INSERT
                 AS
@@ -705,139 +705,139 @@ namespace ReqManager.Data.Migrations
                 END CATCH
                 END");
 
-            Sql(@"CREATE TRIGGER TASK.GenerateCodeTask
-ON TASK.TASK
-AFTER INSERT
-AS
-BEGIN
-	BEGIN TRY
-		BEGIN TRANSACTION;
+                Sql(@"CREATE TRIGGER TASK.GenerateCodeTask
+                ON TASK.TASK
+                AFTER INSERT
+                AS
+                BEGIN
+	                BEGIN TRY
+		                BEGIN TRANSACTION;
 
-UPDATE TASK.TASK SET code = (SELECT 'T' + CONVERT(nvarchar, MAX(T.TaskID))
-FROM TASK.TASK AS T) WHERE TaskID = (SELECT TaskID from inserted)
+                UPDATE TASK.TASK SET code = (SELECT 'T' + CONVERT(nvarchar, MAX(T.TaskID))
+                FROM TASK.TASK AS T) WHERE TaskID = (SELECT TaskID from inserted)
 
-		COMMIT TRANSACTION;
-	END TRY
-BEGIN CATCH
-	SELECT
-        ERROR_NUMBER() as ErrorNumber,
-        ERROR_MESSAGE() as ErrorMessage;
-        ROLLBACK TRANSACTION;
-END CATCH
-END
-GO");
-            Sql(@"CREATE TRIGGER TASK.GenerateCodeSubtask
-ON TASK.SUBTASK
-AFTER INSERT
-AS
-BEGIN
-	BEGIN TRY
-		BEGIN TRANSACTION;
+		                COMMIT TRANSACTION;
+	                END TRY
+                BEGIN CATCH
+	                SELECT
+                        ERROR_NUMBER() as ErrorNumber,
+                        ERROR_MESSAGE() as ErrorMessage;
+                        ROLLBACK TRANSACTION;
+                END CATCH
+                END
+                GO");
+                Sql(@"CREATE TRIGGER TASK.GenerateCodeSubtask
+                ON TASK.SUBTASK
+                AFTER INSERT
+                AS
+                BEGIN
+	                BEGIN TRY
+		                BEGIN TRANSACTION;
 
-UPDATE TASK.SUBTASK SET code = (SELECT 'ST' + CONVERT(nvarchar, MAX(T.SubtaskID))
-FROM TASK.SUBTASK AS T) WHERE SubtaskID = (SELECT SubtaskID from inserted)
+                UPDATE TASK.SUBTASK SET code = (SELECT 'ST' + CONVERT(nvarchar, MAX(T.SubtaskID))
+                FROM TASK.SUBTASK AS T) WHERE SubtaskID = (SELECT SubtaskID from inserted)
 
-		COMMIT TRANSACTION;
-	END TRY
-BEGIN CATCH
-	SELECT
-        ERROR_NUMBER() as ErrorNumber,
-        ERROR_MESSAGE() as ErrorMessage;
-        ROLLBACK TRANSACTION;
-END CATCH
-END
-GO");
+		                COMMIT TRANSACTION;
+	                END TRY
+                BEGIN CATCH
+	                SELECT
+                        ERROR_NUMBER() as ErrorNumber,
+                        ERROR_MESSAGE() as ErrorMessage;
+                        ROLLBACK TRANSACTION;
+                END CATCH
+                END
+                GO");
 
-            Sql(@"CREATE TRIGGER REQ.GenerateCodeRequirement
-ON REQ.REQUIREMENT
-AFTER INSERT
-AS
-BEGIN
-	BEGIN TRY
-		BEGIN TRANSACTION;
+                Sql(@"CREATE TRIGGER REQ.GenerateCodeRequirement
+                ON REQ.REQUIREMENT
+                AFTER INSERT
+                AS
+                BEGIN
+	                BEGIN TRY
+		                BEGIN TRANSACTION;
 
-UPDATE REQ.REQUIREMENT SET code = (SELECT 'REQ' + CONVERT(nvarchar, MAX(R.RequirementID))
-FROM REQ.REQUIREMENT AS R) WHERE RequirementID = (SELECT RequirementID from inserted)
+                UPDATE REQ.REQUIREMENT SET code = (SELECT 'REQ' + CONVERT(nvarchar, MAX(R.RequirementID))
+                FROM REQ.REQUIREMENT AS R) WHERE RequirementID = (SELECT RequirementID from inserted)
 
-		COMMIT TRANSACTION;
-	END TRY
-BEGIN CATCH
-	SELECT
-        ERROR_NUMBER() as ErrorNumber,
-        ERROR_MESSAGE() as ErrorMessage;
-        ROLLBACK TRANSACTION;
-END CATCH
-END
-GO");
+		                COMMIT TRANSACTION;
+	                END TRY
+                BEGIN CATCH
+	                SELECT
+                        ERROR_NUMBER() as ErrorNumber,
+                        ERROR_MESSAGE() as ErrorMessage;
+                        ROLLBACK TRANSACTION;
+                END CATCH
+                END
+                GO");
 
-            Sql(@"CREATE TRIGGER PROJ.GenerateCodeProjectArtifact
-ON PROJ.PROJECT_ARTIFACT
-AFTER INSERT
-AS
-BEGIN
-	BEGIN TRY
-		BEGIN TRANSACTION;
+                Sql(@"CREATE TRIGGER PROJ.GenerateCodeProjectArtifact
+                ON PROJ.PROJECT_ARTIFACT
+                AFTER INSERT
+                AS
+                BEGIN
+	                BEGIN TRY
+		                BEGIN TRANSACTION;
 
-UPDATE PROJ.PROJECT_ARTIFACT SET code = (SELECT 'ART' + CONVERT(nvarchar, MAX(A.ProjectArtifactID))
-FROM PROJ.PROJECT_ARTIFACT AS A) WHERE ProjectArtifactID = (SELECT ProjectArtifactID from inserted)
+                UPDATE PROJ.PROJECT_ARTIFACT SET code = (SELECT 'ART' + CONVERT(nvarchar, MAX(A.ProjectArtifactID))
+                FROM PROJ.PROJECT_ARTIFACT AS A) WHERE ProjectArtifactID = (SELECT ProjectArtifactID from inserted)
 
-		COMMIT TRANSACTION;
-	END TRY
-BEGIN CATCH
-	SELECT
-        ERROR_NUMBER() as ErrorNumber,
-        ERROR_MESSAGE() as ErrorMessage;
-        ROLLBACK TRANSACTION;
-END CATCH
-END
-GO");
+		                COMMIT TRANSACTION;
+	                END TRY
+                BEGIN CATCH
+	                SELECT
+                        ERROR_NUMBER() as ErrorNumber,
+                        ERROR_MESSAGE() as ErrorMessage;
+                        ROLLBACK TRANSACTION;
+                END CATCH
+                END
+                GO");
 
-            Sql(@"CREATE TRIGGER LINK.GenerateCodeLinkRequirementsArtifacts
-ON LINK.LINK_BETWEEN_REQUIREMENTS_ARTIFACTS
-AFTER INSERT
-AS
-BEGIN
-	BEGIN TRY
-		BEGIN TRANSACTION;
+                Sql(@"CREATE TRIGGER LINK.GenerateCodeLinkRequirementsArtifacts
+                ON LINK.LINK_BETWEEN_REQUIREMENTS_ARTIFACTS
+                AFTER INSERT
+                AS
+                BEGIN
+	                BEGIN TRY
+		                BEGIN TRANSACTION;
 
-UPDATE LINK.LINK_BETWEEN_REQUIREMENTS_ARTIFACTS SET code = (SELECT 'R-A' + CONVERT(nvarchar, MAX(A.LinkArtifactRequirementID))
-FROM LINK.LINK_BETWEEN_REQUIREMENTS_ARTIFACTS AS A) WHERE LinkArtifactRequirementID = (SELECT LinkArtifactRequirementID from inserted)
+                UPDATE LINK.LINK_BETWEEN_REQUIREMENTS_ARTIFACTS SET code = (SELECT 'R-A' + CONVERT(nvarchar, MAX(A.LinkArtifactRequirementID))
+                FROM LINK.LINK_BETWEEN_REQUIREMENTS_ARTIFACTS AS A) WHERE LinkArtifactRequirementID = (SELECT LinkArtifactRequirementID from inserted)
 
-		COMMIT TRANSACTION;
-	END TRY
-BEGIN CATCH
-	SELECT
-        ERROR_NUMBER() as ErrorNumber,
-        ERROR_MESSAGE() as ErrorMessage;
-        ROLLBACK TRANSACTION;
-END CATCH
-END
-GO");
+		                COMMIT TRANSACTION;
+	                END TRY
+                BEGIN CATCH
+	                SELECT
+                        ERROR_NUMBER() as ErrorNumber,
+                        ERROR_MESSAGE() as ErrorMessage;
+                        ROLLBACK TRANSACTION;
+                END CATCH
+                END
+                GO");
 
-            Sql(@"CREATE TRIGGER LINK.GenerateCodeLinkBetweenArtifacts
-ON LINK.LINK_BETWEEN_REQUIREMENT
-AFTER INSERT
-AS
-BEGIN
-	BEGIN TRY
-		BEGIN TRANSACTION;
+                Sql(@"CREATE TRIGGER LINK.GenerateCodeLinkBetweenArtifacts
+                ON LINK.LINK_BETWEEN_REQUIREMENT
+                AFTER INSERT
+                AS
+                BEGIN
+	                BEGIN TRY
+		                BEGIN TRANSACTION;
 
-UPDATE LINK.LINK_BETWEEN_REQUIREMENT SET code = (SELECT 'R-R' + CONVERT(nvarchar, MAX(A.LinkRequirementsID))
-FROM LINK.LINK_BETWEEN_REQUIREMENT AS A) WHERE LinkRequirementsID = (SELECT LinkRequirementsID from inserted)
+                UPDATE LINK.LINK_BETWEEN_REQUIREMENT SET code = (SELECT 'R-R' + CONVERT(nvarchar, MAX(A.LinkRequirementsID))
+                FROM LINK.LINK_BETWEEN_REQUIREMENT AS A) WHERE LinkRequirementsID = (SELECT LinkRequirementsID from inserted)
 
-		COMMIT TRANSACTION;
-	END TRY
-BEGIN CATCH
-	SELECT
-        ERROR_NUMBER() as ErrorNumber,
-        ERROR_MESSAGE() as ErrorMessage;
-        ROLLBACK TRANSACTION;
-END CATCH
-END
-GO");
+		                COMMIT TRANSACTION;
+	                END TRY
+                BEGIN CATCH
+	                SELECT
+                        ERROR_NUMBER() as ErrorNumber,
+                        ERROR_MESSAGE() as ErrorMessage;
+                        ROLLBACK TRANSACTION;
+                END CATCH
+                END
+                GO");
             #endregion
 
-            #region Insert Data
+            #region Insert Default Data
 
             //Login: admin
             //Password: 123456
@@ -2393,6 +2393,8 @@ GO");
 
         public override void Down()
         {
+            #region Drop Tables and Constraints
+
             DropForeignKey("TASK.SUBTASK", "UserTaskID", "TASK.USER_TASK");
             DropForeignKey("TASK.SUBTASK", "TaskType_TypeTaskID", "TASK.TASK_TYPE");
             DropForeignKey("TASK.SUBTASK", "StatusTask_TaskStatusID", "TASK.STATUS_TASK");
@@ -2506,8 +2508,7 @@ GO");
             DropIndex("REQ.REQUEST_STATUS", new[] { "description" });
             DropIndex("REQ.REQUIREMENT_REQUEST_FOR_CHANGES", new[] { "RequestStatusID" });
             DropIndex("REQ.REQUIREMENT_REQUEST_FOR_CHANGES", new[] { "StakeholderRequirementID" });
-            DropIndex("PROJ.STAKEHOLDER_REQUIREMENT", new[] { "RequirementID" });
-            DropIndex("PROJ.STAKEHOLDER_REQUIREMENT", new[] { "StakeholdersProjectID" });
+            DropIndex("PROJ.STAKEHOLDER_REQUIREMENT", "IX_STAKEHOLDER_REQUIREMENT");
             DropIndex("PROJ.STAKEHOLDERS_PROJECT", "IX_STAKEHOLDERS_PROJECT");
             DropIndex("PROJ.PROJECT_PHASES", new[] { "description" });
             DropIndex("PROJ.PROJECT", new[] { "code" });
@@ -2522,7 +2523,6 @@ GO");
             DropIndex("LINK.LINK_REQUIREMENT_ATTRIBUTES", new[] { "AttributeID" });
             DropIndex("LINK.LINK_BETWEEN_REQUIREMENT", new[] { "code" });
             DropIndex("LINK.LINK_BETWEEN_REQUIREMENT", "IX_LINK_BETWEEN_REQUIREMENT");
-            DropIndex("LINK.LINK_BETWEEN_REQUIREMENT", new[] { "TypeLinkID" });
             DropIndex("LINK.LINK_BETWEEN_REQUIREMENT", new[] { "CreationUserID" });
             DropIndex("LINK.TYPE_LINK", new[] { "description" });
             DropIndex("LINK.TYPE_LINK", new[] { "CreationUserID" });
@@ -2591,6 +2591,8 @@ GO");
             DropTable("ART.HISTORY_PROJECT_ARTIFACT");
             DropTable("PROJ.PROJECT_ARTIFACT");
             DropTable("ART.ARTIFACT_TYPE");
+
+            #endregion
         }
     }
 }
